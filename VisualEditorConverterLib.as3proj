@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+  <output>
+    <movie path="bin-debug/VisualEditorConverterLib.swc"/>
+    <movie width="800"/>
+    <movie fps="32"/>
+    <movie height="600"/>
+    <movie platform="Flash Player"/>
+    <movie version="11"/>
+    <movie disabled="False"/>
+    <movie background="#FFFFFF"/>
+    <movie input=""/>
+  </output>
+  &lt;!-- Other classes to be compiled into your SWF --&gt;
+  <classpaths>
+    <class path="src"/>
+  </classpaths>
+  <moonshineResourcePaths></moonshineResourcePaths>
+  <moonshineNativeExtensionPaths></moonshineNativeExtensionPaths>
+  <build>
+    <option benchmark="False"/>
+    <option warnings="True"/>
+    <option es="False"/>
+    <option verboseStackTraces="False"/>
+    <option customSDK=""/>
+    <option additional="+configname=flex"/>
+    <option linkReport=""/>
+    <option optimize="False"/>
+    <option staticLinkRSL="False"/>
+    <option showActionScriptWarnings="True"/>
+    <option compilerConstants=""/>
+    <option loadConfig=""/>
+    <option showBindingWarnings="True"/>
+    <option showDeprecationWarnings="True"/>
+    <option showUnusedTypeSelectorWarnings="True"/>
+    <option locale=""/>
+    <option strict="True"/>
+    <option accessible="False"/>
+    <option useNetwork="True"/>
+    <option allowSourcePathOverlap="False"/>
+    <option useResourceBundleMetadata="True"/>
+    <option antBuildPath="build/build.xml"/>
+  </build>
+  <mavenBuild>
+    <option commandLine=""/>
+    <option mavenBuildPath=""/>
+    <option settingsFilePath=""/>
+    <actions>
+      <action action="install" actionName="Build"/>
+      <action action="clean" actionName="Clean"/>
+      <action action="clean install" actionName="Clean and Build"/>
+      <action action="war:exploded" actionName="Exploded"/>
+    </actions>
+  </mavenBuild>
+  <includeLibraries></includeLibraries>
+  <libraryPaths></libraryPaths>
+  <externalLibraryPaths></externalLibraryPaths>
+  <rslPaths></rslPaths>
+  <intrinsics>
+    <element path="Library\AS3\frameworks\Flex4"/>
+  </intrinsics>
+  <library></library>
+  <compileTargets></compileTargets>
+  <hiddenPaths></hiddenPaths>
+  <preBuildCommand>null</preBuildCommand>
+  <postBuildCommand alwaysRun="False">null</postBuildCommand>
+  <trustSVNCertificate>False</trustSVNCertificate>
+  <options>
+    <option testMovieCommand=""/>
+    <option defaultBuildTargets=""/>
+    <option isExportedToExistingSource="False"/>
+    <option showHiddenPaths="False"/>
+    <option visualEditorExportPath=""/>
+    <option isPrimeFacesVisualEditor="False"/>
+    <option testMovie=""/>
+  </options>
+  <moonshineRunCustomization>
+    <option targetPlatform="2"/>
+    <option urlToLaunch=""/>
+    <option projectType="2"/>
+    <option deviceSimulator="null"/>
+    <option launchMethod="Simulator"/>
+    <option customUrlToLaunch=""/>
+    <deviceSimulator>null</deviceSimulator>
+    <certAndroid>null</certAndroid>
+    <certIos>null</certIos>
+    <certIosProvisioning>null</certIosProvisioning>
+  </moonshineRunCustomization>
+</project>

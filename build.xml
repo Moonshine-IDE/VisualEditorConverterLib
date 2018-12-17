@@ -1,0 +1,38 @@
+<project name="VisualEditorConverterLib" default="main" basedir=".">
+	<property name="version" value="0.1.0"/>
+	<property environment="env"/>
+	<property name="FLEX_HOME" value="${env.FLEX_HOME}" />
+	<!--Path to Moonshine IDE libs folder where built swc will be copied. If not exists target
+		copy-bin-to-moonshine won't be fired.-->
+	<property name="VISUALEDITOR_LIBS_PATH" value="../MockupVisualEditor/libs"/>
+	<property name="SWC_NAME" value="VisualEditorConverterLib-${version}.swc"/>
+	<property name="IsDebug" value="true" />
+	<taskdef resource="flexTasks.tasks" classpath="${FLEX_HOME}/ant/lib/flexTasks.jar"/>
+
+	<target name="main" depends="clean-up-bin, build, copy-bin-to-visualeditor"/>
+
+	<target name="clean-up-bin">
+		<delete>
+			<fileset dir="${basedir}/bin">
+				<include name="*"/>
+			</fileset>
+		</delete>
+	</target>
+
+	<!-- Compile library project to SWC -->
+	<target name="build">
+		<echo>Building VisualEditorConverterLib swc</echo>
+		<echo>${SWC_NAME}</echo>
+		<compc debug="${IsDebug}" output="${basedir}/bin/${SWC_NAME}" fork="true"
+			   incremental="true">
+			<arg value="-load-config=${FLEX_HOME}/frameworks/flex-config.xml"/>
+			<source-path path-element="${basedir}/src" />
+			<include-sources dir="${basedir}/src" includes="*"/>
+		</compc>
+	</target>
+
+	<target name="copy-bin-to-visualeditor" if="VISUALEDITOR_LIBS_PATH">
+		<echo>Copying ${SWC_NAME} to ${VISUALEDITOR_LIBS_PATH}</echo>
+		<copy file="${basedir}/bin/${SWC_NAME}" todir="${VISUALEDITOR_LIBS_PATH}" force="true"/>
+	</target>
+</project>
