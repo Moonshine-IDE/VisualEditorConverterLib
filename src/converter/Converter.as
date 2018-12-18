@@ -6,6 +6,8 @@ package converter
 	import surface.SurfaceMockup;
 	import events.ConverterEvent;
 	import flash.events.EventDispatcher;
+	import components.primeFaces.Div;
+	import components.primeFaces.RootDiv;
 
 	[Event(name="conversionCompleted", type="events.ConverterEvent")]
 	public class Converter extends EventDispatcher
@@ -95,6 +97,8 @@ package converter
 			
 			this.classLookup = {};
 			this.classLookup[Button.ELEMENT_NAME] = Button;
+			this.classLookup[Div.ELEMENT_NAME] = Div;
+			this.classLookup["RootDiv"] = RootDiv;
 		}
 	}
 }
