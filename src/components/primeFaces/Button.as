@@ -77,51 +77,7 @@ package components.primeFaces
 		{
 			_isSelected = value;
 		}
-		
-		private var _width:Number;
-		public function get width():Number
-		{
-			return _width;
-		}
 
-		public function set width(value:Number):void
-		{
-			_width = value;
-		}
-		
-		private var _height:Number;
-		public function get height():Number
-		{
-			return _height;
-		}
-
-		public function set height(value:Number):void
-		{
-			_height = value;
-		}
-		
-		private var _percentWidth:Number;
-		public function get percentWidth():Number
-		{
-			return _percentWidth;
-		}
-
-		public function set percentWidth(value:Number):void
-		{
-			_percentWidth = value;
-		}
-		
-		private var _percentHeight:Number;
-		public function get percentHeight():Number
-		{
-			return _percentHeight;
-		}
-
-		public function set percentHeight(value:Number):void
-		{
-			_percentHeight = value;
-		}
-	
 		public function fromXML(xml:XML, childFromXMLCallback:Function):void
 		{
 			this.enabled = xml.@disabled == "false" ? true : false;
@@ -133,14 +89,13 @@ package components.primeFaces
 		
 		public function toCode():XML
 		{
-		    var test:IComponent = this;
 			var tagFace:String = isCommandButton ? PRIME_FACES_XML_ELEMENT_NAME_COMMAND_BUTTON : PRIME_FACES_XML_ELEMENT_NAME;
-			var xml:XML = new XML("<" + CodeMxmlUtils.getMXMLTagNameWithSelection(test, tagFace) + "/>");
+			var xml:XML = new XML("<" + CodeMxmlUtils.getMXMLTagNameWithSelection(this, tagFace) + "/>");
             var primeFacesNamespace:Namespace = new Namespace("p", "http://primefaces.org/ui");
             xml.addNamespace(primeFacesNamespace);
             xml.setNamespace(primeFacesNamespace);
 
-            CodeXMLUtils.addSizeHtmlStyleToXML(xml, test);
+            CodeXMLUtils.addSizeHtmlStyleToXML(xml, this);
 
 			xml.@disabled = !this.enabled;
             xml.@value = this.label;

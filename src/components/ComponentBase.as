@@ -1,51 +1,84 @@
 package components
 {
     
-	public class ComponentBase  
+	import interfaces.IVisualComponent;
+
+	public class ComponentBase implements IVisualComponent
 	{
+		private var _elements:Array;
+		
+		public function ComponentBase():void
+		{
+			_elements = [];	
+		}		
+		
 		private var _width:Number;
-		private function get width():Number
+		public function get width():Number
 		{
 			return _width;
 		}
 
-		private function set width(value:Number):void
+		public function set width(value:Number):void
 		{
 			_width = value;
 		}
 		
 		private var _height:Number;
-		private function get height():Number
+		public function get height():Number
 		{
 			return _height;
 		}
 
-		private function set height(value:Number):void
+		public function set height(value:Number):void
 		{
 			_height = value;
 		}
 		
 		private var _percentWidth:Number;
-		private function get percentWidth():Number
+		public function get percentWidth():Number
 		{
 			return _percentWidth;
 		}
 
-		private function set percentWidth(value:Number):void
+		public function set percentWidth(value:Number):void
 		{
 			_percentWidth = value;
 		}
 		
 		private var _percentHeight:Number;
-		private function get percentHeight():Number
+		public function get percentHeight():Number
 		{
 			return _percentHeight;
 		}
 
-		private function set percentHeight(value:Number):void
+		public function set percentHeight(value:Number):void
 		{
 			_percentHeight = value;
 		}
 		
+		public function get numElements():int
+		{
+			if (_elements)
+			{
+				return _elements.length;	
+			}	
+			
+			return 0;
+		}		
+		
+		public function addElement(element:Object):void
+		{
+			_elements.push(element);		
+		}
+		
+		public function getElementAt(index:int):Object
+		{
+			if (numElements > 0) 
+			{
+				return _elements[index]
+			}
+			
+			return null;
+		}
 	}
 }

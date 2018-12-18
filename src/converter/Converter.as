@@ -2,13 +2,18 @@ package converter
 {
 	import interfaces.IComponent;
 	import interfaces.ISurface;
+	import components.primeFaces.Button;
+	import surface.SurfaceMockup;
+	import events.ConverterEvent;
+	import flash.events.EventDispatcher;
 
-	public class Converter  
+	[Event(name="conversionCompleted", type="events.ConverterEvent")]
+	public class Converter extends EventDispatcher
 	{
 		private static var _instance:Converter;
 		
 		public var classLookup:Object;
-		private var surface:ISurface;
+		private var componentsSurface:ISurface;
 		
 		public function Converter(classLookup:Object = null)
 		{
@@ -18,7 +23,7 @@ package converter
 	        } 
 	        _instance = this;
 
-			this.classLookup = classLookup;
+			fillClassLookupWidthData(classLookup);
 	    }
 	
 	    public static function getInstance(classLookup:Object = null):Converter  
@@ -27,12 +32,23 @@ package converter
 	        {
 	            new Converter(classLookup);
 	        } 
+
 	        return _instance;
 	    }
+
+		public function fromXMLOnly(xml:XML):void
+		{	
+			var surfaceMockup:SurfaceMockup = new SurfaceMockup();
+
+			this.fromXML(surfaceMockup, xml);
+			
+			var code:XML = surfaceMockup.toCode();
+			this.dispatchEvent(new ConverterEvent(ConverterEvent.CONVERSION_COMPLETED, code));
+		}		
 		
 		public function fromXML(surface:ISurface, xml:XML):void
 		{
-			this.surface = surface;
+			this.componentsSurface = surface;
 			
 			var elements:XMLList = xml.elements();
 			var elementCount:int = elements.length();
@@ -53,7 +69,7 @@ package converter
                     for(var i:int = 0; i < elementCount; i++)
                     {
                         var elementXML:XML = elements[i];
-                        itemFromXML(parent, elementXML);
+                        this.itemFromXML(parent, elementXML);
                     }
 				return null;
 			}
@@ -63,10 +79,22 @@ package converter
 			{
 				throw new Error("Failed to create surface component: " + name);
 			}
-			item.fromXML(itemXML, itemFromXML);
+			item.fromXML(itemXML, this.itemFromXML);
 			parent.addElement(item);
-			surface.addItem(item);
+			componentsSurface.addItem(item);
 			return item;
+		}
+		
+		private function fillClassLookupWidthData(classLookup:Object):void
+		{
+			if (classLookup)
+			{
+				this.classLookup = classLookup;
+				return;
+			}
+			
+			this.classLookup = {};
+			this.classLookup[Button.ELEMENT_NAME] = Button;
 		}
 	}
 }
