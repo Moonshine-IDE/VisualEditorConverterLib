@@ -16,7 +16,7 @@ package surface
 		
 		public function addItem(item:IComponent):void
 		{
-			_elements.push(item);
+			
 		}
 		
 		public function get numElements():int
