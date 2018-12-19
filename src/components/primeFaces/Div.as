@@ -40,6 +40,14 @@ package components.primeFaces
 			this._xml = xml;
 			
 			this._cssClass = xml.@["class"];
+	
+            var elementsXML:XMLList = xml.elements();
+            var childCount:int = elementsXML.length();
+            for(var i:int = 0; i < childCount; i++)
+            {
+                var childXML:XML = elementsXML[i];
+                childFromXMLCallback(this, childXML);
+            }
 		}
 		
 		public function toCode():XML
