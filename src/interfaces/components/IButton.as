@@ -2,7 +2,7 @@ package interfaces.components
 {
 	import interfaces.IComponent;
 
-	public interface IButton extends IComponent
+	public interface IButton extends IComponent, IIsSelected 
 	{
 		function get label():String;
 		function set label(value:String):void;
@@ -18,9 +18,6 @@ package interfaces.components
 		
 		function get actionListener():String;
 		function set actionListener(value:String):void;
-		
-		function get isSelected():Boolean;
-		function set isSelected(value:Boolean):void;
 		
 		function get width():Number;
 		function set width(value:Number):void;

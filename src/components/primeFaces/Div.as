@@ -24,6 +24,17 @@ package components.primeFaces
 			return _cssClass;
 		}
 		
+		private var _isSelected:Boolean;
+		public function get isSelected():Boolean
+		{
+			return _isSelected;
+		}
+
+		public function set isSelected(value:Boolean):void
+		{
+			_isSelected = value;
+		}
+		
 		public function fromXML(xml:XML, childFromXMLCallback:Function):void
 		{
 			this._xml = xml;

@@ -1,6 +1,8 @@
 package interfaces.components
 {
-	public interface IDiv 
+	import interfaces.IComponent;
+
+	public interface IDiv extends IComponent, IIsSelected
 	{
 		function get cssClass():String;
 	}
