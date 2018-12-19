@@ -5,11 +5,12 @@
 	<!--Path to Moonshine IDE libs folder where built swc will be copied. If not exists target
 		copy-bin-to-moonshine won't be fired.-->
 	<property name="VISUALEDITOR_LIBS_PATH" value="../MockupVisualEditor/libs"/>
+	<property name="XHTMLCONVERTERCLI_LIBS_PATH" value="../XHTMLConverterCLI/libs"/>
 	<property name="SWC_NAME" value="VisualEditorConverterLib-${version}.swc"/>
 	<property name="IsDebug" value="true" />
 	<taskdef resource="flexTasks.tasks" classpath="${FLEX_HOME}/ant/lib/flexTasks.jar"/>
 
-	<target name="main" depends="clean-up-bin, build, copy-bin-to-visualeditor"/>
+	<target name="main" depends="clean-up-bin, build, copy-bin-to-visualeditor, copy-bin-to-xhtmlconvertercli"/>
 
 	<target name="clean-up-bin">
 		<delete>
@@ -34,5 +35,9 @@
 	<target name="copy-bin-to-visualeditor" if="VISUALEDITOR_LIBS_PATH">
 		<echo>Copying ${SWC_NAME} to ${VISUALEDITOR_LIBS_PATH}</echo>
 		<copy file="${basedir}/bin/${SWC_NAME}" todir="${VISUALEDITOR_LIBS_PATH}" force="true"/>
+	</target>
+	<target name="copy-bin-to-xhtmlconvertercli" if="XHTMLCONVERTERCLI_LIBS_PATH">
+		<echo>Copying ${SWC_NAME} to ${XHTMLCONVERTERCLI_LIBS_PATH}</echo>
+		<copy file="${basedir}/bin/${SWC_NAME}" todir="${XHTMLCONVERTERCLI_LIBS_PATH}" force="true"/>
 	</target>
 </project>
