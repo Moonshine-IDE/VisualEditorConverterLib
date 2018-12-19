@@ -80,6 +80,8 @@ package components.primeFaces
 
 		public function fromXML(xml:XML, childFromXMLCallback:Function):void
 		{
+			this.setComponentSize(xml);
+			
 			this.enabled = xml.@disabled == "false" ? true : false;
 			this.isCommandButton = xml.@isCommandButton == "true" ? true : false;
             this.label = xml.@value;

@@ -39,6 +39,8 @@ package components.primeFaces
 		{
 			this._xml = xml;
 			
+			setComponentSize(xml);
+			
 			this._cssClass = xml.@["class"];
 	
             var elementsXML:XMLList = xml.elements();
