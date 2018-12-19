@@ -8,6 +8,7 @@ package converter
 	import flash.events.EventDispatcher;
 	import components.primeFaces.Div;
 	import components.primeFaces.RootDiv;
+	import events.ConverterErrorEvent;
 
 	[Event(name="conversionCompleted", type="events.ConverterEvent")]
 	public class Converter extends EventDispatcher
@@ -79,7 +80,9 @@ package converter
 			var item:IComponent = new type() as IComponent;
 			if(item === null)
 			{
-				throw new Error("Failed to create surface component: " + name);
+				var errorMessage:String = "Failed to create surface component: " + name;
+				dispatchEvent(new ConverterErrorEvent(errorMessage));
+				throw new Error(errorMessage);
 			}
 			item.fromXML(itemXML, this.itemFromXML);
 			parent.addElement(item);
