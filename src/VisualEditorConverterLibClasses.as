@@ -13,6 +13,7 @@ package
 		import interfaces.components.IRootDiv; IRootDiv;
 		import interfaces.components.IDiv; IDiv;
 		import interfaces.components.ITabView; ITabView;
+		import interfaces.components.IPanelGrid; IPanelGrid;
 		import interfaces.components.IInclude; IInclude;
 		import interfaces.components.IButton; IButton;
 		import interfaces.components.IOutputLabel; IOutputLabel;
@@ -22,6 +23,7 @@ package
 		import components.primeFaces.RootDiv; RootDiv;
 		import components.primeFaces.Div; Div;
 		import components.primeFaces.TabView; TabView;
+		import components.primeFaces.PanelGrid; PanelGrid;
 		import components.primeFaces.Include; Include;
 		import components.primeFaces.Button; Button;
 		import components.primeFaces.OutputLabel; OutputLabel;

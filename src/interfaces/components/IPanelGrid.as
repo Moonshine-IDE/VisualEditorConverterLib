@@ -4,20 +4,18 @@ package interfaces.components
 
 	public interface IPanelGrid extends IComponent, IIsSelected 
 	{
-		function get cdataXML():XML;
-		function get cdataInformation():String;
+		function get hasHeader():Boolean;
+			
+		function get headerRowCount():int;
+		function set headerRowCount(value:int):void;
 		
-		function get width():Number;
-		function set width(value:Number):void;
+		function get columnCount():int;
+		function set columnCount(value:int):void;
 		
-		function get height():Number;
-		function set height(value:Number):void;
+		function get headerRowTitles():Array;
+		function set headerRowTitles(value:Array):void;
 		
-		function get percentWidth():Number;
-		function set percentWidth(value:Number):void;
-		
-		function get percentHeight():Number;
-		function set percentHeight(value:Number):void;
-		
+		function get rowCount():int;
+		function set rowCount(value:int):void;
 	}
 }

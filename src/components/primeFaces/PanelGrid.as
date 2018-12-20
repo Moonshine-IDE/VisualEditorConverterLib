@@ -1,24 +1,21 @@
 package components.primeFaces
 {
-	import mx.containers.GridItem;
-	import mx.containers.GridRow;
-	
 	import components.ComponentBase;
 	
 	import interfaces.IComponent;
 	import interfaces.IVisualComponent;
 	import interfaces.components.IPanelGrid;
-	import interfaces.components.ITable;
 	
 	import utils.CodeMxmlUtils;
 	import utils.CodeXMLUtils;
 	
-	public class PanelGrid extends ComponentBase implements IPanelGrid, ITable
+	public class PanelGrid extends ComponentBase implements IPanelGrid
 	{
 		public static const PRIME_FACES_XML_ELEMENT_NAME:String = "panelGrid";
 		public static const ELEMENT_NAME:String = "PanelGrid";
 		
 		private var bodyRowsXML:XMLList;
+
 		private var thisCallbackXML:Function;
 		
 		private var _isSelected:Boolean;
@@ -30,19 +27,7 @@ package components.primeFaces
 		{
 			_isSelected = value;
 		}
-		
-		private var _cdataXML:XML;
-		public function get cdataXML():XML
-		{
-			return _cdataXML;
-		}
-		
-		private var _cdataInformation:String;
-		public function get cdataInformation():String
-		{
-			return _cdataInformation;
-		}
-		
+
 		public function get hasHeader():Boolean
 		{
 			return this.headerRowCount > 0;
@@ -98,13 +83,13 @@ package components.primeFaces
 			}
 		}
 
+		/**
+		 * Complexity of this component requires separate implementation of this method on client sight
+		 */
 		public function fromXML(xml:XML, childFromXMLCallback:Function):void
 		{
 			this.setComponentSize(xml);
-			
-			_cdataXML = CodeXMLUtils.getCdataXML(xml);
-			_cdataInformation = CodeXMLUtils.getCdataInformationFromXML(xml);
-			
+
 			this.bodyRowsXML = xml.Row;
 			var header:XMLList = xml.Header.Row;
 			var rCount:int = 0;
@@ -178,11 +163,12 @@ package components.primeFaces
 			
 			thisCallbackXML = childFromXMLCallback;
 			
-			// @note
-			// When to call this method? createChildren()?
-			createChildrenFromXML();
+			createBodyChildren();
 		}
 		
+		/**
+		 * Complexity of this component requires separate implementation of this method on client sight
+		 */
 		public function toCode():XML
 		{
 			var xml:XML = new XML("<" + CodeMxmlUtils.getMXMLTagNameWithSelection(this, PRIME_FACES_XML_ELEMENT_NAME) + "/>");
@@ -197,21 +183,7 @@ package components.primeFaces
 
 			return xml;
 		}
-		
-		private function createChildrenFromXML():void
-		{
-			if (!bodyRowsXML && thisCallbackXML == null) return;
-			
-			for (var rowIndex:int; rowIndex < rowCount; rowIndex++)
-			{
-				var rowXML:XML = bodyRowsXML[rowIndex];
-				var item:IComponent = new Div();
-				var div:XML = rowXML[0];
-				item.fromXML(div, thisCallbackXML);
-				this.addElement(item);
-			}
-		}
-		
+
 		private function toCodeHeader(xml:XML):void
 		{
 			if (!this.hasHeader) return;
@@ -231,7 +203,7 @@ package components.primeFaces
 				rowXML.setNamespace(primeFacesNamespace);
 				for (var col:int = 0; col < this.columnCount; col++)
 				{
-					var headerTitle:String = (this.hasOwnProperty("header")) ? this["header"].getTitle(row, col) : getTitleFromXML(row, col);
+					var headerTitle:String = this.getTitleFromXML(row, col);
 					var colXML:XML = new XML("<column>" + headerTitle + "</column>");
 					colXML.addNamespace(primeFacesNamespace);
 					colXML.setNamespace(primeFacesNamespace);
@@ -246,47 +218,6 @@ package components.primeFaces
 		}
 		
 		private function toCodeBody(xml:XML):void
-		{
-			// in case of CLI run
-			if (!this.hasOwnProperty("body"))
-			{
-				generateCodeByXML(xml);
-				return;
-			}
-			
-			var primeFacesNamespace:Namespace = new Namespace("p", "http://primefaces.org/ui");
-			
-			var bodyRowCount:int = this["body"].numElements;
-			for (var row:int = 0; row < bodyRowCount; row++)
-			{
-				var gridRow:GridRow = this["body"].getElementAt(row) as GridRow;
-				var rowXML:XML = new XML("<row/>");
-				rowXML.addNamespace(primeFacesNamespace);
-				rowXML.setNamespace(primeFacesNamespace);
-				for (var col:int = 0; col < this.columnCount; col++)
-				{
-					var gridItem:GridItem = gridRow.getElementAt(col) as GridItem;
-					var divContent:Div = gridItem.getElementAt(0) as Div;
-					
-					var colXML:XML = new XML("<column></column>");
-					colXML.addNamespace(primeFacesNamespace);
-					colXML.setNamespace(primeFacesNamespace);
-					
-					colXML.appendChild(divContent.toCode());
-					
-					rowXML.appendChild(colXML);
-				}
-				
-				xml.appendChild(rowXML);
-			}
-		}
-		
-		private function getTitleFromXML(selectedRowIndex:int = -1, selectedColumnIndex:int = -1):String
-		{
-			return headerRowTitles[selectedRowIndex][selectedColumnIndex];
-		}
-		
-		private function generateCodeByXML(xml:XML):void
 		{
 			var primeFacesNamespace:Namespace = new Namespace("p", "http://primefaces.org/ui");
 			
@@ -309,6 +240,25 @@ package components.primeFaces
 				}
 				
 				xml.appendChild(rowXML);
+			}
+		}
+		
+		private function getTitleFromXML(selectedRowIndex:int = -1, selectedColumnIndex:int = -1):String
+		{
+			return headerRowTitles[selectedRowIndex][selectedColumnIndex];
+		}
+			
+		private function createBodyChildren():void
+		{
+			if (!bodyRowsXML && thisCallbackXML == null) return;
+			
+			for (var rowIndex:int; rowIndex < rowCount; rowIndex++)
+			{
+				var rowXML:XML = bodyRowsXML[rowIndex];
+				var item:IComponent = new Div();
+				var div:XML = rowXML[0];
+				item.fromXML(div, thisCallbackXML);
+				this.addElement(item);
 			}
 		}
 	}

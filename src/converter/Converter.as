@@ -108,13 +108,14 @@ package converter
 			}
 			
 			this.classLookup = {};
+			this.classLookup["RootDiv"] = RootDiv;
+			this.classLookup[Div.ELEMENT_NAME] = Div;
+			this.classLookup[TabView.ELEMENT_NAME] = TabView;
+			this.classLookup[PanelGrid.ELEMENT_NAME] = PanelGrid;
+			this.classLookup[Include.ELEMENT_NAME] = Include;
 			this.classLookup[Button.ELEMENT_NAME] = Button;
 			this.classLookup[OutputLabel.ELEMENT_NAME] = OutputLabel;
 			this.classLookup[InputText.ELEMENT_NAME] = InputText;
-			this.classLookup[Include.ELEMENT_NAME] = Include;
-			this.classLookup[TabView.ELEMENT_NAME] = TabView;
-			this.classLookup[Div.ELEMENT_NAME] = Div;
-			this.classLookup["RootDiv"] = RootDiv;
 		}
 	}
 }

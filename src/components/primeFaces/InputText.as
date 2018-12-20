@@ -1,10 +1,12 @@
 package components.primeFaces
 {
 	import components.ComponentBase;
+
 	import interfaces.components.IInputText;
+
 	import utils.CodeMxmlUtils;
 	import utils.CodeXMLUtils;
-	import mx.utils.StringUtil;
+	import utils.StringHelperUtils;
 
 	public class InputText extends ComponentBase implements IInputText
 	{
@@ -96,8 +98,10 @@ package components.primeFaces
             }
 
             xml.@required = this.required;
+
+			var stringHelper:StringHelperUtils = new StringHelperUtils();
 			
-			if ((StringUtil.trim(maxLength).length != 0) && Math.round(Number(maxLength)) != 0)
+			if ((stringHelper.trim(maxLength, " ").length != 0) && Math.round(Number(maxLength)) != 0)
 			{
 				xml.@maxlength = this.maxLength;
 			}
