@@ -1,8 +1,10 @@
 package utils
 {
-	import interfaces.IComponentSizeOutput;
-	import interfaces.IComponentPercentSizeOutput;
+	import mx.utils.StringUtil;
+	
 	import interfaces.IComponent;
+	import interfaces.IComponentPercentSizeOutput;
+	import interfaces.IComponentSizeOutput;
 
 	public class CodeXMLUtils  
 	{
@@ -78,5 +80,42 @@ package utils
                 xml.@style += styleDiv;
             }
         }
+		
+		public static function getCdataXML(component:XML):XML
+		{
+			var cdataInformation:String;
+			var stringHelper:StringHelperUtils = new StringHelperUtils();
+			var scripts:XMLList = component.Script;
+			var scriptsCount:int = scripts.length();
+			if (scriptsCount > 0)
+			{
+				for (var i:int = 0; i < scriptsCount; i++)
+				{
+					cdataInformation = String(scripts[i].text());
+					if (cdataInformation)
+					{
+						cdataInformation = StringUtil.trim(cdataInformation);
+						if (cdataInformation.length <= 2)
+						{
+							cdataInformation = stringHelper.trim(cdataInformation, "\n");
+							cdataInformation = stringHelper.trim(cdataInformation, "\t");
+						}
+						if (cdataInformation)
+						{
+							return scripts[i];
+						}
+					}
+				}
+			}
+			
+			return null;
+		}
+		
+		public static function getCdataInformationFromXML(component:XML):String
+		{
+			var script:XML = getCdataXML(component);
+			
+			return script ? String(script) : null;
+		}
 	}
 }
