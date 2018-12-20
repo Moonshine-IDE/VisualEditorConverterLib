@@ -15,6 +15,7 @@ package converter
 	import interfaces.ISurface;
 	
 	import surface.SurfaceMockup;
+	import components.primeFaces.InputText;
 
 	[Event(name="conversionCompleted", type="events.ConverterEvent")]
 	public class Converter extends EventDispatcher
@@ -107,6 +108,7 @@ package converter
 			this.classLookup = {};
 			this.classLookup[Button.ELEMENT_NAME] = Button;
 			this.classLookup[OutputLabel.ELEMENT_NAME] = OutputLabel;
+			this.classLookup[InputText.ELEMENT_NAME] = InputText;
 			this.classLookup[Include.ELEMENT_NAME] = Include;
 			this.classLookup[Div.ELEMENT_NAME] = Div;
 			this.classLookup["RootDiv"] = RootDiv;

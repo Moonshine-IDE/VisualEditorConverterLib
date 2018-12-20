@@ -24,9 +24,10 @@
 	<target name="build">
 		<echo>Building VisualEditorConverterLib swc</echo>
 		<echo>${SWC_NAME}</echo>
-		<compc debug="${IsDebug}" output="${basedir}/bin/${SWC_NAME}" fork="true"
-			   incremental="true">
-			<arg value="-load-config=${FLEX_HOME}/frameworks/flex-config.xml"/>
+		<compc debug="${IsDebug}" output="${basedir}/bin/${SWC_NAME}" 
+			   fork="true" incremental="true"
+			   include-classes="VisualEditorConverterLibClasses">
+			<arg value="-load-config=${FLEX_HOME}/frameworks/flex-config.xml"/>			
 			<source-path path-element="${basedir}/src" />
 			<include-sources dir="${basedir}/src" includes="*"/>
 		</compc>

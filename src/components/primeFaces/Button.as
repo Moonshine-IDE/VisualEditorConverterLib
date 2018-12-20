@@ -12,6 +12,22 @@ package components.primeFaces
 		public static const PRIME_FACES_XML_ELEMENT_NAME_COMMAND_BUTTON:String = "commandButton";
 		public static const ELEMENT_NAME:String = "Button";
 
+		public function Button():void
+		{
+			super();	
+		}		
+		
+		private var _isSelected:Boolean;
+		public function get isSelected():Boolean
+		{
+			return _isSelected;
+		}
+
+		public function set isSelected(value:Boolean):void
+		{
+			_isSelected = value;
+		}
+		
 		private var _enabled:Boolean;
 		public function get enabled():Boolean
 		{
@@ -66,18 +82,7 @@ package components.primeFaces
 		{
 			_actionListener = value;
 		}
-			
-		private var _isSelected:Boolean;
-		public function get isSelected():Boolean
-		{
-			return _isSelected;
-		}
-
-		public function set isSelected(value:Boolean):void
-		{
-			_isSelected = value;
-		}
-
+	
 		public function fromXML(xml:XML, childFromXMLCallback:Function):void
 		{
 			this.setComponentSize(xml);
