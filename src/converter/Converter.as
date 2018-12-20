@@ -4,6 +4,7 @@ package converter
 	
 	import components.primeFaces.Button;
 	import components.primeFaces.Div;
+	import components.primeFaces.Include;
 	import components.primeFaces.OutputLabel;
 	import components.primeFaces.RootDiv;
 	
@@ -106,6 +107,7 @@ package converter
 			this.classLookup = {};
 			this.classLookup[Button.ELEMENT_NAME] = Button;
 			this.classLookup[OutputLabel.ELEMENT_NAME] = OutputLabel;
+			this.classLookup[Include.ELEMENT_NAME] = Include;
 			this.classLookup[Div.ELEMENT_NAME] = Div;
 			this.classLookup["RootDiv"] = RootDiv;
 		}
