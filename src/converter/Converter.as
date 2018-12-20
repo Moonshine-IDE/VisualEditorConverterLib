@@ -1,14 +1,19 @@
 package converter
 {
+	import flash.events.EventDispatcher;
+	
+	import components.primeFaces.Button;
+	import components.primeFaces.Div;
+	import components.primeFaces.OutputLabel;
+	import components.primeFaces.RootDiv;
+	
+	import events.ConverterErrorEvent;
+	import events.ConverterEvent;
+	
 	import interfaces.IComponent;
 	import interfaces.ISurface;
-	import components.primeFaces.Button;
+	
 	import surface.SurfaceMockup;
-	import events.ConverterEvent;
-	import flash.events.EventDispatcher;
-	import components.primeFaces.Div;
-	import components.primeFaces.RootDiv;
-	import events.ConverterErrorEvent;
 
 	[Event(name="conversionCompleted", type="events.ConverterEvent")]
 	public class Converter extends EventDispatcher
@@ -100,6 +105,7 @@ package converter
 			
 			this.classLookup = {};
 			this.classLookup[Button.ELEMENT_NAME] = Button;
+			this.classLookup[OutputLabel.ELEMENT_NAME] = OutputLabel;
 			this.classLookup[Div.ELEMENT_NAME] = Div;
 			this.classLookup["RootDiv"] = RootDiv;
 		}
