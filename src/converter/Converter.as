@@ -17,6 +17,7 @@ package converter
 	import interfaces.ISurface;
 	
 	import surface.SurfaceMockup;
+	import components.primeFaces.TabView;
 
 	[Event(name="conversionCompleted", type="events.ConverterEvent")]
 	public class Converter extends EventDispatcher
@@ -111,7 +112,7 @@ package converter
 			this.classLookup[OutputLabel.ELEMENT_NAME] = OutputLabel;
 			this.classLookup[InputText.ELEMENT_NAME] = InputText;
 			this.classLookup[Include.ELEMENT_NAME] = Include;
-			this.classLookup[PanelGrid.ELEMENT_NAME] = PanelGrid;
+			this.classLookup[TabView.ELEMENT_NAME] = TabView;
 			this.classLookup[Div.ELEMENT_NAME] = Div;
 			this.classLookup["RootDiv"] = RootDiv;
 		}

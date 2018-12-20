@@ -17,13 +17,7 @@ package components.primeFaces
 		{
 			super();
 		}
-		
-		private var _cssClass:String;
-		public function get cssClass():String
-		{
-			return _cssClass;
-		}
-		
+
 		private var _isSelected:Boolean;
 		public function get isSelected():Boolean
 		{
@@ -33,6 +27,23 @@ package components.primeFaces
 		public function set isSelected(value:Boolean):void
 		{
 			_isSelected = value;
+		}
+				
+		private var _cssClass:String;
+		public function get cssClass():String
+		{
+			return _cssClass;
+		}
+		
+		private var _label:String;
+		public function get label():String
+		{
+			return _label;
+		}
+
+		public function set label(value:String):void
+		{
+			_label = value;
 		}
 		
 		public function fromXML(xml:XML, childFromXMLCallback:Function):void
