@@ -79,13 +79,15 @@ package converter
 			var name:String = itemXML.localName();
 			if(!(name in this.classLookup))
 			{
-                    var elements:XMLList = itemXML.elements();
-                    var elementCount:int = elements.length();
-                    for(var i:int = 0; i < elementCount; i++)
-                    {
-                        var elementXML:XML = elements[i];
-                        this.itemFromXML(parent, elementXML);
-                    }
+				dispatchEvent(new ConverterEvent(ConverterEvent.UNKNOWN_CONVERSION_ITEM, null, name));
+				
+                var elements:XMLList = itemXML.elements();
+                var elementCount:int = elements.length();
+                for(var i:int = 0; i < elementCount; i++)
+                {
+                   var elementXML:XML = elements[i];
+                   this.itemFromXML(parent, elementXML);
+                }
 				return null;
 			}
 			var type:Class = this.classLookup[name];
