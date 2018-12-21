@@ -3,12 +3,14 @@ package converter
 	import flash.events.EventDispatcher;
 	
 	import components.primeFaces.Button;
+	import components.primeFaces.DataTable;
 	import components.primeFaces.Div;
 	import components.primeFaces.Include;
 	import components.primeFaces.InputText;
 	import components.primeFaces.OutputLabel;
 	import components.primeFaces.PanelGrid;
 	import components.primeFaces.RootDiv;
+	import components.primeFaces.TabView;
 	
 	import events.ConverterErrorEvent;
 	import events.ConverterEvent;
@@ -17,7 +19,6 @@ package converter
 	import interfaces.ISurface;
 	
 	import surface.SurfaceMockup;
-	import components.primeFaces.TabView;
 
 	[Event(name="conversionCompleted", type="events.ConverterEvent")]
 	public class Converter extends EventDispatcher
@@ -116,6 +117,7 @@ package converter
 			this.classLookup[Button.ELEMENT_NAME] = Button;
 			this.classLookup[OutputLabel.ELEMENT_NAME] = OutputLabel;
 			this.classLookup[InputText.ELEMENT_NAME] = InputText;
+			this.classLookup[DataTable.ELEMENT_NAME] = DataTable;
 		}
 	}
 }
