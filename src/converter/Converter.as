@@ -11,6 +11,7 @@ package converter
 	import components.primeFaces.OutputLabel;
 	import components.primeFaces.PanelGrid;
 	import components.primeFaces.RootDiv;
+	import components.primeFaces.SelectOneMenu;
 	import components.primeFaces.TabView;
 	
 	import events.ConverterErrorEvent;
@@ -120,6 +121,7 @@ package converter
 			this.classLookup[InputText.ELEMENT_NAME] = InputText;
 			this.classLookup[DataTable.ELEMENT_NAME] = DataTable;
 			this.classLookup[Fieldset.ELEMENT_NAME] = Fieldset;
+			this.classLookup[SelectOneMenu.ELEMENT_NAME] = SelectOneMenu;
 		}
 	}
 }
