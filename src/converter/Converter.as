@@ -5,6 +5,7 @@ package converter
 	import components.primeFaces.Button;
 	import components.primeFaces.DataTable;
 	import components.primeFaces.Div;
+	import components.primeFaces.Fieldset;
 	import components.primeFaces.Include;
 	import components.primeFaces.InputText;
 	import components.primeFaces.OutputLabel;
@@ -118,6 +119,7 @@ package converter
 			this.classLookup[OutputLabel.ELEMENT_NAME] = OutputLabel;
 			this.classLookup[InputText.ELEMENT_NAME] = InputText;
 			this.classLookup[DataTable.ELEMENT_NAME] = DataTable;
+			this.classLookup[Fieldset.ELEMENT_NAME] = Fieldset;
 		}
 	}
 }
