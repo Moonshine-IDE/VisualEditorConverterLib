@@ -1,10 +1,12 @@
 package utils
 {
 	import interfaces.IComponent;
+	import interfaces.IRootComponent;
+	import interfaces.components.IDiv;
 
 	public class MainTagCodeUtils  
 	{
-		public static function getParentContent(title:String, element:IComponent):XML
+		public static function getParentContent(title:String, element:IDiv):XML
 		{
 			var xml:XML = new XML("<html/>");
 
@@ -56,7 +58,7 @@ package utils
 
 			var mainDiv:XML = new XML("<div/>");
 
-            mainDiv["@class"] = "flexHorizontalLayout flexHorizontalLayoutLeft flexHorizontalLayoutTop";
+            mainDiv["@class"] = element.cssClass;
             CodeXMLUtils.addSizeHtmlStyleToXML(mainDiv, element);
 			
 			bodyXML.appendChild(mainDiv);

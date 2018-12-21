@@ -4,6 +4,8 @@ package surface
 	import interfaces.IComponent;
 	import interfaces.IVisualComponent;
 	import utils.MainTagCodeUtils;
+	import interfaces.IRootComponent;
+	import interfaces.components.IDiv;
 
 	public class SurfaceMockup implements ISurface, IVisualComponent, IComponent
 	{
@@ -52,22 +54,22 @@ package surface
 		public function toCode():XML
 		{
 			var element:Object = this.getElementAt(0);
-			var xml:XML = MainTagCodeUtils.getParentContent("", element as IComponent);
+			var xml:XML = MainTagCodeUtils.getParentContent("", element as IDiv);
             var mainContainer:XML = MainTagCodeUtils.getMainContainerTag(xml);
 
-			var elementCount:int = this.numElements;
+			var elementCount:int = (element as IVisualComponent).numElements;
 			
 			for (var i:int = 0; i < elementCount; i++)
             {
-                element = this.getElementAt(i) as IComponent;
+                var item:IComponent = element.getElementAt(i) as IComponent;
 
-                if (element === null)
+                if (item === null)
                 {
                         continue;
                 }
 
 			    XML.ignoreComments = false;
-                var code:XML = element.toCode();
+                var code:XML = item.toCode();
 				var commentOnlyXML:XMLList = (code.elements("primeFacesCommentOnlyTag").length() > 0) ?
 											  code.elements("primeFacesCommentOnlyTag") : null;
                 if (mainContainer)
