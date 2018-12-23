@@ -13,6 +13,7 @@ package converter
 	import components.primeFaces.RootDiv;
 	import components.primeFaces.SelectOneMenu;
 	import components.primeFaces.TabView;
+	import components.primeFaces.Grid;
 	
 	import events.ConverterErrorEvent;
 	import events.ConverterEvent;
@@ -117,6 +118,7 @@ package converter
 			this.classLookup[Div.ELEMENT_NAME] = Div;
 			this.classLookup[TabView.ELEMENT_NAME] = TabView;
 			this.classLookup[PanelGrid.ELEMENT_NAME] = PanelGrid;
+			this.classLookup[Grid.ELEMENT_NAME] = Grid;
 			this.classLookup[Include.ELEMENT_NAME] = Include;
 			this.classLookup[Button.ELEMENT_NAME] = Button;
 			this.classLookup[OutputLabel.ELEMENT_NAME] = OutputLabel;
