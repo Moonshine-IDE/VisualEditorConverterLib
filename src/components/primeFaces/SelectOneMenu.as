@@ -10,6 +10,8 @@ package components.primeFaces
 	import utils.CodeMxmlUtils;
 	import utils.CodeXMLUtils;
 	
+	import vo.SelectItem;
+	
 	public class SelectOneMenu extends ComponentBase implements ISelectOneMenu
 	{
 		public static const PRIME_FACES_XML_ELEMENT_NAME:String = "selectOneMenu";
@@ -32,7 +34,6 @@ package components.primeFaces
 		}
 		public function set value(value:String):void
 		{
-			if (_value === value) return;
 			_value = value;
 		}
 		
@@ -43,26 +44,19 @@ package components.primeFaces
 		}
 		public function set editable(value:Boolean):void
 		{
-			if (_editable == value) return;
 			_editable = value;
 		}
 		
 		private var _dataProvider:IList;
 		public function set dataProvider(value:IList):void
 		{
-			if (_dataProvider != value)
-			{
-				_dataProvider = value;
-			}
+			_dataProvider = value;
 		}
 		public function get dataProvider():IList
 		{
 			return _dataProvider;
 		}
 
-		/**
-		 * Complexity of this component requires separate implementation of this method on client sight
-		 */
 		public function fromXML(xml:XML, childFromXMLCallback:Function):void
 		{
 			this.setComponentSize(xml);
@@ -70,20 +64,17 @@ package components.primeFaces
 			this.value = xml.@value;
 			this.editable = xml.@editable == "true" ? true : false;
 			
-			var tmpItem:Object;
+			var tmpItem:SelectItem;
 			this.dataProvider = new ArrayCollection();
 			for each (var i:XML in xml.selectItem)
 			{
-				tmpItem = new Object();
+				tmpItem = new SelectItem();
 				tmpItem.itemLabel = i.@itemLabel;
 				tmpItem.itemValue = i.@itemValue;
 				this.dataProvider.addItem(tmpItem);
 			}
 		}
 		
-		/**
-		 * Complexity of this component requires separate implementation of this method on client sight
-		 */
 		public function toCode():XML
 		{
 			var xml:XML = new XML("<" + CodeMxmlUtils.getMXMLTagNameWithSelection(this, PRIME_FACES_XML_ELEMENT_NAME) + "/>");
@@ -98,7 +89,7 @@ package components.primeFaces
 			if (this.editable) xml["@editable"] = this.editable.toString();
 			
 			var itemXML:XML;
-			for each (var item:Object in dataProvider)
+			for each (var item:SelectItem in dataProvider)
 			{
 				itemXML = new XML("<selectItem />");
 				itemXML.addNamespace(facetNamespace);

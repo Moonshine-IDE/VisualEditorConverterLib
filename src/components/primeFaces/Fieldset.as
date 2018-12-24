@@ -13,6 +13,8 @@ package components.primeFaces
 		public static const PRIME_FACES_XML_ELEMENT_NAME:String = "fieldset";
 		public static const ELEMENT_NAME:String = "Fieldset";
 		
+		private static const DEFAULT_DURATION:int = 200;
+		
 		private var thisCallbackXML:Function;
 		
 		private var _isSelected:Boolean;
@@ -32,10 +34,7 @@ package components.primeFaces
 		}
 		public function set title(value:String):void
 		{
-			if (_title != value)
-			{
-				_title = value;
-			}
+			_title = value;
 		}
 		
 		private var _toggleable:Boolean;
@@ -45,23 +44,17 @@ package components.primeFaces
 		}
 		public function set toggleable(value:Boolean):void
 		{
-			if (_toggleable != value)
-			{
-				_toggleable = value;
-			}
+			_toggleable = value;
 		}
 		
-		private var _duration:Number = 200;
+		private var _duration:Number = DEFAULT_DURATION;
 		public function get duration():Number
 		{
 			return _duration;
 		}
 		public function set duration(value:Number):void
 		{
-			if (_duration != value)
-			{
-				_duration = value;
-			}
+			_duration = value;
 		}
 
 		/**

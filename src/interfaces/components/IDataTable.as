@@ -2,8 +2,11 @@ package interfaces.components
 {
 	import interfaces.IComponent;
 
-	public interface IDataTable extends IComponent, IIsSelected, IDataGrid 
+	public interface IDataTable extends IComponent, IIsSelected
 	{
+		function set resizableColumns(value:Boolean):void;
+		function get resizableColumns():Boolean;
+		
 		function get paginator():Boolean;
 		function set paginator(value:Boolean):void;
 			

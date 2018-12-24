@@ -9,6 +9,8 @@ package components.primeFaces
 	import utils.CodeMxmlUtils;
 	import utils.CodeXMLUtils;
 	
+	import vo.DataProviderListItem;
+	
 	public class DataTable extends ComponentBase implements IDataTable
 	{
 		public static const PRIME_FACES_XML_ELEMENT_NAME:String = "dataTable";
@@ -33,10 +35,7 @@ package components.primeFaces
 		}
 		public function set paginator(value:Boolean):void
 		{
-			if (_paginator != value)
-			{
-				_paginator = value;
-			}
+			_paginator = value;
 		}
 		
 		private var _resizableColumns:Boolean;
@@ -46,10 +45,7 @@ package components.primeFaces
 		}
 		public function set resizableColumns(value:Boolean):void
 		{
-			if (_resizableColumns != value)
-			{
-				_resizableColumns = value;
-			}
+			_resizableColumns = value;
 		}
 		
 		private var _emptyMessage:String = NO_RECORDS_FOUND;
@@ -59,10 +55,7 @@ package components.primeFaces
 		}
 		public function set emptyMessage(value:String):void
 		{
-			if (_emptyMessage != value)
-			{
-				_emptyMessage = value;
-			}
+			_emptyMessage = value;
 		}
 		
 		private var _tableVar:String = "";
@@ -72,7 +65,6 @@ package components.primeFaces
 		}
 		public function set tableVar(value:String):void
 		{
-			if (_tableVar == value) return;
 			_tableVar = value;
 		}
 		
@@ -83,7 +75,6 @@ package components.primeFaces
 		}
 		public function set tableValue(value:String):void
 		{
-			if (_tableValue == value) return;
 			_tableValue = value;
 		}
 		
@@ -94,13 +85,9 @@ package components.primeFaces
 		}
 		public function set tableColumnDescriptor(value:ArrayCollection):void
 		{
-			if (_tableColumnDescriptor === value) return;
 			_tableColumnDescriptor = value;
 		}
 
-		/**
-		 * Complexity of this component requires separate implementation of this method on client sight
-		 */
 		public function fromXML(xml:XML, childFromXMLCallback:Function):void
 		{
 			this.setComponentSize(xml);
@@ -116,16 +103,13 @@ package components.primeFaces
 			// re-generate column
 			for each (var col:XML in xml.column)
 			{
-				var tmpColumnVO:Object = new Object();
+				var tmpColumnVO:DataProviderListItem = new DataProviderListItem();
 				tmpColumnVO.label = col.@headerText;
 				tmpColumnVO.value = col.@value;
 				_tableColumnDescriptor.addItem(tmpColumnVO);
 			}
 		}
 		
-		/**
-		 * Complexity of this component requires separate implementation of this method on client sight
-		 */
 		public function toCode():XML
 		{
 			var xml:XML = new XML("<" + CodeMxmlUtils.getMXMLTagNameWithSelection(this, PRIME_FACES_XML_ELEMENT_NAME) + "/>");
@@ -144,7 +128,7 @@ package components.primeFaces
 			
 			var column:XML;
 			var outputText:XML;
-			for each (var col:Object in tableColumnDescriptor)
+			for each (var col:DataProviderListItem in tableColumnDescriptor)
 			{
 				column = new XML("<column/>");
 				column.addNamespace(primeFacesNamespace);
