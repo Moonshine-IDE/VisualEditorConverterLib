@@ -23,6 +23,7 @@ package converter
 	import interfaces.ISurface;
 	
 	import surface.SurfaceMockup;
+	import components.primeFaces.MainApplication;
 
 	[Event(name="conversionCompleted", type="events.ConverterEvent")]
 	public class Converter extends EventDispatcher
@@ -116,6 +117,7 @@ package converter
 			
 			this.classLookup = {};
 			this.classLookup["RootDiv"] = RootDiv;
+			this.classLookup["MainApplication"] = MainApplication;
 			this.classLookup[Div.ELEMENT_NAME] = Div;
 			this.classLookup[TabView.ELEMENT_NAME] = TabView;
 			this.classLookup[PanelGrid.ELEMENT_NAME] = PanelGrid;
