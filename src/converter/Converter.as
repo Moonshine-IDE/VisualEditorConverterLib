@@ -9,6 +9,8 @@ package converter
 	import components.primeFaces.Grid;
 	import components.primeFaces.Include;
 	import components.primeFaces.InputText;
+	import components.primeFaces.InputTextarea;
+	import components.primeFaces.MainApplication;
 	import components.primeFaces.OutputLabel;
 	import components.primeFaces.PanelGrid;
 	import components.primeFaces.RootDiv;
@@ -23,7 +25,6 @@ package converter
 	import interfaces.ISurface;
 	
 	import surface.SurfaceMockup;
-	import components.primeFaces.MainApplication;
 
 	[Event(name="conversionCompleted", type="events.ConverterEvent")]
 	public class Converter extends EventDispatcher
@@ -130,6 +131,7 @@ package converter
 			this.classLookup[Fieldset.ELEMENT_NAME] = Fieldset;
 			this.classLookup[SelectOneMenu.ELEMENT_NAME] = SelectOneMenu;
 			this.classLookup[TextEditor.ELEMENT_NAME] = TextEditor;
+			this.classLookup[InputTextarea.ELEMENT_NAME] = InputTextarea;
 		}
 	}
 }
