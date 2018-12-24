@@ -27,6 +27,7 @@ package converter
 	import surface.SurfaceMockup;
 	import components.primeFaces.Calendar;
 	import components.primeFaces.SelectBooleanCheckbox;
+	import components.primeFaces.SelectOneRadio;
 
 	[Event(name="conversionCompleted", type="events.ConverterEvent")]
 	public class Converter extends EventDispatcher
@@ -136,6 +137,7 @@ package converter
 			this.classLookup[InputTextarea.ELEMENT_NAME] = InputTextarea;
 			this.classLookup[Calendar.ELEMENT_NAME] = Calendar;
 			this.classLookup[SelectBooleanCheckbox.ELEMENT_NAME] = SelectBooleanCheckbox;
+			this.classLookup[SelectOneRadio.ELEMENT_NAME] = SelectOneRadio;
 		}
 	}
 }
