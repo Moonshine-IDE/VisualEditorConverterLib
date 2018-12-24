@@ -1,7 +1,5 @@
 package components.primeFaces
 {
-	import mx.collections.ArrayCollection;
-	
 	import components.ComponentBase;
 	
 	import interfaces.components.IDataTable;
@@ -78,12 +76,12 @@ package components.primeFaces
 			_tableValue = value;
 		}
 		
-		private var _tableColumnDescriptor:ArrayCollection;
-		public function get tableColumnDescriptor():ArrayCollection
+		private var _tableColumnDescriptor:Array;
+		public function get tableColumnDescriptor():Array
 		{
 			return _tableColumnDescriptor;
 		}
-		public function set tableColumnDescriptor(value:ArrayCollection):void
+		public function set tableColumnDescriptor(value:Array):void
 		{
 			_tableColumnDescriptor = value;
 		}
@@ -98,7 +96,7 @@ package components.primeFaces
 			this.tableVar = xml.@['var'];
 			this.tableValue = xml.@value;
 			
-			_tableColumnDescriptor = new ArrayCollection();
+			_tableColumnDescriptor = new Array();
 			
 			// re-generate column
 			for each (var col:XML in xml.column)
@@ -106,7 +104,7 @@ package components.primeFaces
 				var tmpColumnVO:DataProviderListItem = new DataProviderListItem();
 				tmpColumnVO.label = col.@headerText;
 				tmpColumnVO.value = col.@value;
-				_tableColumnDescriptor.addItem(tmpColumnVO);
+				_tableColumnDescriptor.push(tmpColumnVO);
 			}
 		}
 		

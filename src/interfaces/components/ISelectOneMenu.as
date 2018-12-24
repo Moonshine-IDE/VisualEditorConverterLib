@@ -1,7 +1,5 @@
 package interfaces.components
 {
-	import mx.collections.IList;
-	
 	import interfaces.IComponent;
 
 	public interface ISelectOneMenu extends IComponent, IIsSelected
@@ -12,7 +10,7 @@ package interfaces.components
 		function get editable():Boolean;
 		function set editable(value:Boolean):void;
 		
-		function set dataProvider(value:IList):void;
-		function get dataProvider():IList;
+		function set dataProvider(value:Array):void;
+		function get dataProvider():Array;
 	}
 }

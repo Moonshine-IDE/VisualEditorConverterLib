@@ -1,6 +1,5 @@
 package components.primeFaces
 {
-	import mx.collections.ArrayCollection;
 	import mx.collections.IList;
 	
 	import components.ComponentBase;
@@ -47,12 +46,12 @@ package components.primeFaces
 			_editable = value;
 		}
 		
-		private var _dataProvider:IList;
-		public function set dataProvider(value:IList):void
+		private var _dataProvider:Array;
+		public function set dataProvider(value:Array):void
 		{
 			_dataProvider = value;
 		}
-		public function get dataProvider():IList
+		public function get dataProvider():Array
 		{
 			return _dataProvider;
 		}
@@ -65,13 +64,13 @@ package components.primeFaces
 			this.editable = xml.@editable == "true" ? true : false;
 			
 			var tmpItem:SelectItem;
-			this.dataProvider = new ArrayCollection();
+			this.dataProvider = new Array();
 			for each (var i:XML in xml.selectItem)
 			{
 				tmpItem = new SelectItem();
 				tmpItem.itemLabel = i.@itemLabel;
 				tmpItem.itemValue = i.@itemValue;
-				this.dataProvider.addItem(tmpItem);
+				this.dataProvider.push(tmpItem);
 			}
 		}
 		
