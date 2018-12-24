@@ -6,6 +6,7 @@ package converter
 	import components.primeFaces.DataTable;
 	import components.primeFaces.Div;
 	import components.primeFaces.Fieldset;
+	import components.primeFaces.Grid;
 	import components.primeFaces.Include;
 	import components.primeFaces.InputText;
 	import components.primeFaces.OutputLabel;
@@ -13,7 +14,7 @@ package converter
 	import components.primeFaces.RootDiv;
 	import components.primeFaces.SelectOneMenu;
 	import components.primeFaces.TabView;
-	import components.primeFaces.Grid;
+	import components.primeFaces.TextEditor;
 	
 	import events.ConverterErrorEvent;
 	import events.ConverterEvent;
@@ -126,6 +127,7 @@ package converter
 			this.classLookup[DataTable.ELEMENT_NAME] = DataTable;
 			this.classLookup[Fieldset.ELEMENT_NAME] = Fieldset;
 			this.classLookup[SelectOneMenu.ELEMENT_NAME] = SelectOneMenu;
+			this.classLookup[TextEditor.ELEMENT_NAME] = TextEditor;
 		}
 	}
 }
