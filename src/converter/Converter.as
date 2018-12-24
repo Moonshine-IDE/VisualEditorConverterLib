@@ -25,6 +25,7 @@ package converter
 	import interfaces.ISurface;
 	
 	import surface.SurfaceMockup;
+	import components.primeFaces.Calendar;
 
 	[Event(name="conversionCompleted", type="events.ConverterEvent")]
 	public class Converter extends EventDispatcher
@@ -132,6 +133,7 @@ package converter
 			this.classLookup[SelectOneMenu.ELEMENT_NAME] = SelectOneMenu;
 			this.classLookup[TextEditor.ELEMENT_NAME] = TextEditor;
 			this.classLookup[InputTextarea.ELEMENT_NAME] = InputTextarea;
+			this.classLookup[Calendar.ELEMENT_NAME] = Calendar;
 		}
 	}
 }
