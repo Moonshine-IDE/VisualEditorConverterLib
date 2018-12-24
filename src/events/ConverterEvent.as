@@ -23,7 +23,7 @@ package events
 			return _xHtmlOutput;
 		}
 		
-		private function get itemName():String
+		public function get itemName():String
 		{
 			return _itemName;
 		}
