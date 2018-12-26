@@ -3,20 +3,26 @@ package converter
 	import flash.events.EventDispatcher;
 	
 	import components.primeFaces.Button;
+	import components.primeFaces.Calendar;
 	import components.primeFaces.DataTable;
 	import components.primeFaces.Div;
 	import components.primeFaces.Fieldset;
 	import components.primeFaces.Grid;
 	import components.primeFaces.Include;
+	import components.primeFaces.InputMask;
+	import components.primeFaces.InputNumber;
 	import components.primeFaces.InputText;
 	import components.primeFaces.InputTextarea;
 	import components.primeFaces.MainApplication;
 	import components.primeFaces.OutputLabel;
 	import components.primeFaces.PanelGrid;
 	import components.primeFaces.RootDiv;
+	import components.primeFaces.SelectBooleanCheckbox;
 	import components.primeFaces.SelectOneMenu;
+	import components.primeFaces.SelectOneRadio;
 	import components.primeFaces.TabView;
 	import components.primeFaces.TextEditor;
+	import components.primeFaces.Tree;
 	
 	import events.ConverterErrorEvent;
 	import events.ConverterEvent;
@@ -25,9 +31,6 @@ package converter
 	import interfaces.ISurface;
 	
 	import surface.SurfaceMockup;
-	import components.primeFaces.Calendar;
-	import components.primeFaces.SelectBooleanCheckbox;
-	import components.primeFaces.SelectOneRadio;
 
 	[Event(name="conversionCompleted", type="events.ConverterEvent")]
 	public class Converter extends EventDispatcher
@@ -138,6 +141,9 @@ package converter
 			this.classLookup[Calendar.ELEMENT_NAME] = Calendar;
 			this.classLookup[SelectBooleanCheckbox.ELEMENT_NAME] = SelectBooleanCheckbox;
 			this.classLookup[SelectOneRadio.ELEMENT_NAME] = SelectOneRadio;
+			this.classLookup[InputMask.ELEMENT_NAME] = InputMask;
+			this.classLookup[InputNumber.ELEMENT_NAME] = InputNumber;
+			this.classLookup[Tree.ELEMENT_NAME] = Tree;
 		}
 	}
 }
