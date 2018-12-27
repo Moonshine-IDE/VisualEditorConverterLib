@@ -25,7 +25,7 @@ package config
         /**
          * Provide direct path to src folder of tests
          */
-        public var baseURL:String = "d:\\Work\\projects\\Prominic.NET\\VisualEditorConverterLib\\libTests\\src";
+        public var baseURL:String = "";
 
         public function TestConfig(testConfigEnforcer:TestConfigEnforcer)
         {
