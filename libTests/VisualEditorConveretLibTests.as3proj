@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+  <output>
+    <movie disabled="False"/>
+    <movie platform="Flash Player"/>
+    <movie version="30"/>
+    <movie width="800"/>
+    <movie fps="32"/>
+    <movie height="600"/>
+    <movie background="#FFFFFF"/>
+    <movie path="bin-debug/VisualEditorConveretLibTests.swc"/>
+    <movie input=""/>
+  </output>
+  &lt;!-- Other classes to be compiled into your SWF --&gt;
+  <classpaths>
+    <class path="src"/>
+  </classpaths>
+  <moonshineResourcePaths>
+    <!-- <empty/> -->
+  </moonshineResourcePaths>
+  <moonshineNativeExtensionPaths>
+    <!-- <empty/> -->
+  </moonshineNativeExtensionPaths>
+  <build>
+    <option showBindingWarnings="True"/>
+    <option optimize="False"/>
+    <option showDeprecationWarnings="True"/>
+    <option showUnusedTypeSelectorWarnings="True"/>
+    <option strict="True"/>
+    <option accessible="False"/>
+    <option useNetwork="True"/>
+    <option allowSourcePathOverlap="False"/>
+    <option useResourceBundleMetadata="True"/>
+    <option benchmark="False"/>
+    <option warnings="True"/>
+    <option locale=""/>
+    <option es="False"/>
+    <option verboseStackTraces="False"/>
+    <option customSDK=""/>
+    <option loadConfig=""/>
+    <option linkReport=""/>
+    <option antBuildPath="build/build.xml"/>
+    <option staticLinkRSL="False"/>
+    <option showActionScriptWarnings="True"/>
+    <option compilerConstants=""/>
+    <option additional="+configname=flex"/>
+  </build>
+  <mavenBuild>
+    <option mavenBuildPath="D:\Work\projects\Prominic.NET\VisualEditorConverterLib\libTests"/>
+    <option settingsFilePath=""/>
+    <option commandLine=""/>
+    <actions>
+      <action actionName="Build" action="install"/>
+      <action actionName="Clean" action="clean"/>
+      <action actionName="Clean and Build" action="clean install"/>
+      <action actionName="Exploded" action="war:exploded"/>
+    </actions>
+  </mavenBuild>
+  <includeLibraries>
+    <!-- <empty/> -->
+  </includeLibraries>
+  <libraryPaths>
+    <!-- <empty/> -->
+  </libraryPaths>
+  <externalLibraryPaths>
+    <element path="libs/flexunit-4.2.0-20140410-flex_4.12.0.swc"/>
+    <element path="libs/flexunit-cilistener-4.2.0-20140410-4.12.0.swc"/>
+    <element path="libs/flexunit-uilistener-4.2.0-20140410-4.12.0.swc"/>
+  </externalLibraryPaths>
+  <rslPaths>
+    <!-- <empty/> -->
+  </rslPaths>
+  <intrinsics>
+    <element path="Library\AS3\frameworks\Flex4"/>
+  </intrinsics>
+  <library>
+    
+    <!-- example: <asset path="..." id="..." update="..." glyphs="..." mode="..." place="..." sharepoint="..." /> -->
+    
+  </library>
+  <compileTargets>
+    <!-- <empty/> -->
+  </compileTargets>
+  <hiddenPaths>
+    <!-- <empty/> -->
+  </hiddenPaths>
+  <preBuildCommand>null</preBuildCommand>
+  <postBuildCommand alwaysRun="False">null</postBuildCommand>
+  <trustSVNCertificate>False</trustSVNCertificate>
+  <options>
+    <option showHiddenPaths="False"/>
+    <option defaultBuildTargets=""/>
+    <option isExportedToExistingSource="False"/>
+    <option isPrimeFacesVisualEditor="False"/>
+    <option visualEditorExportPath=""/>
+    <option testMovie=""/>
+    <option testMovieCommand=""/>
+  </options>
+  <moonshineRunCustomization>
+    <option projectType="2"/>
+    <option customUrlToLaunch=""/>
+    <option deviceSimulator="null"/>
+    <option targetPlatform="2"/>
+    <option launchMethod="Simulator"/>
+    <option urlToLaunch=""/>
+    <deviceSimulator>null</deviceSimulator>
+    <certAndroid>null</certAndroid>
+    <certIos>null</certIos>
+    <certIosProvisioning>null</certIosProvisioning>
+  </moonshineRunCustomization>
+</project>
