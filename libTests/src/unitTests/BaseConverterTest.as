@@ -28,7 +28,7 @@ package
 
     public class BaseConverterTest
     {
-        protected var converter:Converter;
+        protected var componentsConverter:Converter;
 
         protected var conversionCompletedHandler:Function;
         protected var conversionFailedHandler:Function;
@@ -36,30 +36,30 @@ package
 
         public function setUpTest():void
         {
-            converter = Converter.getInstance();
+            componentsConverter = Converter.getInstance();
         }
 
         public function tearDownTest():void
         {
             if (conversionCompletedHandler != null)
             {
-                Converter.getInstance().removeEventListener(ConverterEvent.CONVERSION_COMPLETED, conversionCompletedHandler);
+                componentsConverter.removeEventListener(ConverterEvent.CONVERSION_COMPLETED, conversionCompletedHandler);
             }
 
             if (unknownItemHandler != null)
             {
-                Converter.getInstance().removeEventListener(ConverterEvent.UNKNOWN_CONVERSION_ITEM, unknownItemHandler);
+                componentsConverter.removeEventListener(ConverterEvent.UNKNOWN_CONVERSION_ITEM, unknownItemHandler);
             }
 
             if (conversionFailedHandler != null)
             {
-                Converter.getInstance().removeEventListener(ConverterErrorEvent.CONVERSION_FAILED, conversionFailedHandler);
+                componentsConverter.removeEventListener(ConverterErrorEvent.CONVERSION_FAILED, conversionFailedHandler);
             }
 
             conversionCompletedHandler = null;
             unknownItemHandler = null;
             conversionFailedHandler = null;
-            converter = null;
+            componentsConverter = null;
         }
 
         protected function defaultUnknownItemHandler(event:ConverterEvent):void

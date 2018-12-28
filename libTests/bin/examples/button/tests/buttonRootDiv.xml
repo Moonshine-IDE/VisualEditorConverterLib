@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mockup>
   <RootDiv width="700" height="450" class="flexVerticalLayout flexVerticalLayoutLeft flexVerticalLayoutTop" wrap="false">
-    <Button width="100" height="30" disabled="false" value="Button" title="" isCommandButton="false" actionListener=""/>
+    <Button width="100" height="30" disabled="true" value="Button" title="Title" isCommandButton="false" actionListener="actionListener"/>
   </RootDiv>
 </mockup>

@@ -1,5 +1,5 @@
 <mockup>
   <MainApplication title="" class="flexVerticalLayout flexVerticalLayoutLeft flexVerticalLayoutTop" wrap="false">
-    <Button width="100" height="30" disabled="false" value="Button" title="" isCommandButton="false" actionListener=""/>
+    <Button width="100" height="30" disabled="true" value="Button" title="Title" isCommandButton="false" actionListener="actionListener"/>
   </MainApplication>
 </mockup>

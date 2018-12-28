@@ -18,12 +18,21 @@
 ////////////////////////////////////////////////////////////////////////////////
 package button
 {
+    import components.primeFaces.Button;
+
+    import converter.Converter;
+
     import events.ConverterErrorEvent;
     import events.ConverterEvent;
 
+    import interfaces.components.IButton;
+
     import loaders.TestConfigurationLoader;
 
+    import org.flexunit.asserts.assertFalse;
+
     import org.flexunit.asserts.assertNotNull;
+    import org.flexunit.asserts.assertTrue;
     import org.flexunit.async.Async;
 
     import utils.FileRepository;
@@ -46,7 +55,7 @@ package button
             super.setUpTest();
 
             this.conversionFailedHandler = this.defaultConversionFailedHandler;
-            converter.addEventListener(ConverterErrorEvent.CONVERSION_FAILED, this.conversionFailedHandler);
+            componentsConverter.addEventListener(ConverterErrorEvent.CONVERSION_FAILED, this.conversionFailedHandler);
         }
 
         [After]
@@ -55,21 +64,64 @@ package button
             super.tearDownTest();
         }
 
-        [Test(dataProvider=dp, async)]
-        public function buttonTest(testCase:TestCaseVO):void
+        [Test(dataProvider=dp, order="1")]
+        public function buttonExistsTest(testCase:TestCaseVO):void
         {
-            var buttonXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
+            var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
+            var buttonsMainApp:XMLList = rootXML.MainApplication.Button;
+            var buttonsRootDiv:XMLList = rootXML.RootDiv.Button;
+
+            assertTrue("Example does not contain Button: ", buttonsMainApp.length() > 0 || buttonsRootDiv.length() > 0);
+        }
+
+        [Test(dataProvider=dp, async, order="2")]
+        public function buttonConverterTest(testCase:TestCaseVO):void
+        {
+            var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
 
             this.conversionCompletedHandler = Async.asyncHandler(this, this.buttonTestHandler, 100,
                     {timeOut: "Timeout reached CONVERSION_COMPLETED"}, timeOutAsyncTest);
-            converter.addEventListener(ConverterEvent.CONVERSION_COMPLETED, conversionCompletedHandler);
+            componentsConverter.addEventListener(ConverterEvent.CONVERSION_COMPLETED, conversionCompletedHandler);
 
-            converter.fromXMLOnly(buttonXML);
+            componentsConverter.fromXMLOnly(rootXML);
+        }
+
+        [Test(dataProvider=dp, order="3")]
+        public function buttonPropertiesTest(testCase:TestCaseVO):void
+        {
+            var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
+            var buttonXML:XML = getButton(rootXML);
+
+            var btn:IButton = new Button();
+
+            btn.fromXML(buttonXML, function(xml:XML):void
+            {
+
+            });
+
+            assertFalse(btn.enabled);
+            assertNotNull(btn.actionListener);
+            assertTrue(btn.actionListener.length > 0);
+            assertNotNull(btn.toolTip);
+            assertNotNull(btn.label);
         }
 
         private function buttonTestHandler(event:ConverterEvent, passThroughData:Object):void
         {
             assertNotNull("Button conversion failed, cause not output", event.xHtmlOutput);
+        }
+
+        private function getButton(xml:XML):XML
+        {
+            var buttonsMainApp:XMLList = xml.MainApplication.Button;
+            var buttonsRootDiv:XMLList = xml.RootDiv.Button;
+
+            if (buttonsMainApp.length() > 0)
+            {
+                return XML(buttonsMainApp);
+            }
+
+            return XML(buttonsRootDiv);
         }
     }
 }
