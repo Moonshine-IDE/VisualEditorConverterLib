@@ -20,10 +20,13 @@ package
 {
     import button.ButtonTest;
 
+    import selectOneListbox.SelectOneListboxTest;
+
     [Suite]
     [RunWith("org.flexunit.runners.Suite")]
     public class AllTestsSuite
     {
         public var buttonTest:ButtonTest;
+        public var selectOneListboxTest:SelectOneListboxTest;
     }
 }

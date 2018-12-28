@@ -16,18 +16,18 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package button
+package selectOneListbox
 {
-    import components.primeFaces.Button;
+    import components.primeFaces.SelectOneListbox;
 
     import events.ConverterErrorEvent;
     import events.ConverterEvent;
 
-    import interfaces.components.IButton;
+    import interfaces.components.ISelectOneListbox;
 
     import loaders.TestConfigurationLoader;
 
-    import org.flexunit.asserts.assertFalse;
+    import org.flexunit.asserts.assertEquals;
 
     import org.flexunit.asserts.assertNotNull;
     import org.flexunit.asserts.assertTrue;
@@ -39,13 +39,13 @@ package button
 
     [TestCase]
     [RunWith("org.flexunit.runners.Parameterized")]
-    public class ButtonTest extends BaseConverterTest
+    public class SelectOneListboxTest extends BaseConverterTest
     {
         [DataPoints(loader=dpLoader)]
         [ArrayElementType("vo.TestCaseVO")]
         public static var dp:Array;
 
-        public static var dpLoader:TestConfigurationLoader = new TestConfigurationLoader("button", "ButtonTest");
+        public static var dpLoader:TestConfigurationLoader = new TestConfigurationLoader("selectOneListbox", "SelectOneListboxTest");
 
         [Before]
         override public function setUpTest():void
@@ -63,21 +63,22 @@ package button
         }
 
         [Test(dataProvider=dp, order="1")]
-        public function buttonExistsTest(testCase:TestCaseVO):void
+        public function selectOneListboxExistsTest(testCase:TestCaseVO):void
         {
             var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
-            var buttonsMainApp:XMLList = rootXML.MainApplication.Button;
-            var buttonsRootDiv:XMLList = rootXML.RootDiv.Button;
+            var rootDiv:XMLList = rootXML.RootDiv.SelectOneListbox;
+            var listItem:XMLList = rootXML.RootDiv.SelectOneListbox.selectItem;
 
-            assertTrue("Example does not contain Button: ", buttonsMainApp.length() > 0 || buttonsRootDiv.length() > 0);
+            assertTrue("Example does not contain SelectOneListbox", rootDiv.length() > 0);
+            assertTrue("SelectOneListbox deos not contain selectItem", listItem.length() > 0);
         }
 
         [Test(dataProvider=dp, async, order="2")]
-        public function buttonConverterTest(testCase:TestCaseVO):void
+        public function selectOneListboxConverterTest(testCase:TestCaseVO):void
         {
             var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
 
-            this.conversionCompletedHandler = Async.asyncHandler(this, this.buttonTestHandler, 100,
+            this.conversionCompletedHandler = Async.asyncHandler(this, this.selectOneListboxTestHandler, 100,
                     {timeOut: "Timeout reached CONVERSION_COMPLETED"}, timeOutAsyncTest);
             componentsConverter.addEventListener(ConverterEvent.CONVERSION_COMPLETED, conversionCompletedHandler);
 
@@ -85,41 +86,39 @@ package button
         }
 
         [Test(dataProvider=dp, order="3")]
-        public function buttonPropertiesTest(testCase:TestCaseVO):void
+        public function selectOneListboxPropertiesTest(testCase:TestCaseVO):void
         {
             var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
-            var buttonXML:XML = getButton(rootXML);
+            var selectOneListboxXML:XML = getSelectOneListbox(rootXML);
 
-            var btn:IButton = new Button();
+            var listbox:ISelectOneListbox = new SelectOneListbox();
 
-            btn.fromXML(buttonXML, function(xml:XML):void
+            listbox.fromXML(selectOneListboxXML, function(xml:XML):void
             {
 
             });
 
-            assertFalse(btn.enabled);
-            assertNotNull(btn.actionListener);
-            assertTrue(btn.actionListener.length > 0);
-            assertNotNull(btn.toolTip);
-            assertNotNull(btn.label);
+            assertNotNull(listbox.value);
+            assertEquals(selectOneListboxXML.@value,  listbox.value);
+            assertNotNull(listbox.dataProvider);
+            assertTrue(listbox.dataProvider.length > 0);
         }
 
-        private function buttonTestHandler(event:ConverterEvent, passThroughData:Object):void
+        private function selectOneListboxTestHandler(event:ConverterEvent, passThroughData:Object):void
         {
-            assertNotNull("Button conversion failed, cause not output", event.xHtmlOutput);
+            assertNotNull("SelectOneListbox conversion failed, cause not output", event.xHtmlOutput);
         }
 
-        private function getButton(xml:XML):XML
+        private function getSelectOneListbox(xml:XML):XML
         {
-            var buttonsMainApp:XMLList = xml.MainApplication.Button;
-            var buttonsRootDiv:XMLList = xml.RootDiv.Button;
+            var rootDiv:XMLList = xml.RootDiv.SelectOneListbox;
 
-            if (buttonsMainApp.length() > 0)
+            if (rootDiv.length() > 0)
             {
-                return XML(buttonsMainApp);
+                return XML(rootDiv);
             }
 
-            return XML(buttonsRootDiv);
+            return XML(rootDiv);
         }
     }
 }

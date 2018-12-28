@@ -1,0 +1,8 @@
+<mockup>
+  <RootDiv width="700" height="450" class="flexVerticalLayout flexVerticalLayoutLeft flexVerticalLayoutTop" wrap="false">
+    <SelectOneListbox width="120" height="120" value="bean">
+      <selectItem itemLabel="Select One" itemValue="Some"/>
+      <selectItem itemLabel="Title" itemValue="Some"/>
+    </SelectOneListbox>
+  </RootDiv>
+</mockup>

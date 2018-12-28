@@ -20,6 +20,8 @@ package loaders
 {
     import config.TestConfig;
 
+    import flash.utils.setTimeout;
+
     import utils.FileRepository;
     import mx.rpc.AsyncToken;
     import mx.rpc.IResponder;
@@ -69,7 +71,7 @@ package loaders
                 return;
             }
 
-            token.notifyResult(dp);
+            setTimeout(token.notifyResult, 50, dp);
         }
 
         public function fault(info:Object):void
