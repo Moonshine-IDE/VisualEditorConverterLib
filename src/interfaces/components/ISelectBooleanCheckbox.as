@@ -1,8 +1,9 @@
 package interfaces.components
 {
 	import interfaces.IComponent;
+    import interfaces.IIsSelected;
 
-	public interface ISelectBooleanCheckbox extends IComponent, IIsSelected
+    public interface ISelectBooleanCheckbox extends IComponent, IIsSelected
 	{
 		function get label():String;
 		function set label(value:String):void;

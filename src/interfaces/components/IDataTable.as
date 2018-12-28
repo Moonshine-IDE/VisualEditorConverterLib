@@ -1,8 +1,9 @@
 package interfaces.components
 {
 	import interfaces.IComponent;
+    import interfaces.IIsSelected;
 
-	public interface IDataTable extends IComponent, IIsSelected
+    public interface IDataTable extends IComponent, IIsSelected
 	{
 		function set resizableColumns(value:Boolean):void;
 		function get resizableColumns():Boolean;

@@ -1,8 +1,10 @@
 package interfaces.components
 {
-	import interfaces.IComponent;
+    import interfaces.ICollapsiblePanel;
+    import interfaces.IComponent;
+    import interfaces.IIsSelected;
 
-	public interface IFieldset extends IComponent, IIsSelected, ICollapsiblePanel
+    public interface IFieldset extends IComponent, IIsSelected, ICollapsiblePanel
 	{
 		function get toggleable():Boolean;
 		function set toggleable(value:Boolean):void;

@@ -1,4 +1,4 @@
-package interfaces.components
+package interfaces
 {
 	public interface ICollapsiblePanel
 	{

@@ -6,3 +6,6 @@ bin-debug/VisualEditorConverterLib.swc
 libTests/libTests.iml
 libTests/out
 libTests/obj
+libTests/bin
+bin-debug/VisualEditorConverterLib-0.1.0.swc
+VisualEditorConverterLib.iml

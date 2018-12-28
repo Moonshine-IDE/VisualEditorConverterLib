@@ -1,8 +1,9 @@
 package interfaces.components
 {
 	import interfaces.IComponent;
+    import interfaces.IIsSelected;
 
-	public interface ICalendar extends IComponent, IIsSelected
+    public interface ICalendar extends IComponent, IIsSelected
 	{
 		function get pattern():String;
 		function set pattern(value:String):void;

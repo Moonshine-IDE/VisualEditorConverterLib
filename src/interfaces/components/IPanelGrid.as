@@ -1,8 +1,9 @@
 package interfaces.components
 {
 	import interfaces.IComponent;
+    import interfaces.IIsSelected;
 
-	public interface IPanelGrid extends IComponent, IIsSelected 
+    public interface IPanelGrid extends IComponent, IIsSelected
 	{
 		function get hasHeader():Boolean;
 			

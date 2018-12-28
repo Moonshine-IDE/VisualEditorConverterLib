@@ -1,8 +1,9 @@
 package interfaces.components
 {
 	import interfaces.IComponent;
+    import interfaces.IIsSelected;
 
-	public interface ITree extends IComponent, IIsSelected
+    public interface ITree extends IComponent, IIsSelected
 	{
 		function get treeVar():String;
 		function set treeVar(value:String):void;

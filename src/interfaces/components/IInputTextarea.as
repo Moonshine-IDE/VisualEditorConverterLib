@@ -1,8 +1,9 @@
 package interfaces.components
 {
 	import interfaces.IComponent;
+    import interfaces.IIsSelected;
 
-	public interface IInputTextarea extends IComponent, IIsSelected
+    public interface IInputTextarea extends IComponent, IIsSelected
 	{
 		function get text():String;
 		function set text(value:String):void;

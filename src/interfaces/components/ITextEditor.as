@@ -1,8 +1,9 @@
 package interfaces.components
 {
 	import interfaces.IComponent;
+    import interfaces.IIsSelected;
 
-	public interface ITextEditor extends IComponent, IIsSelected 
+    public interface ITextEditor extends IComponent, IIsSelected
 	{
 		function set widgetVar(value:String):void;
 		function get widgetVar():String;

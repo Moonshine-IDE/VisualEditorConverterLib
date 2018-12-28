@@ -1,8 +1,9 @@
 package interfaces.components
 {
 	import interfaces.IComponent;
+    import interfaces.IIsSelected;
 
-	public interface ISelectOneMenu extends IComponent, IIsSelected
+    public interface ISelectOneMenu extends IComponent, IIsSelected
 	{
 		function get value():String;
 		function set value(value:String):void;

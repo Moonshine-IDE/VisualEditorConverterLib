@@ -1,8 +1,9 @@
 package interfaces.components
 {
 	import interfaces.IComponent;
+    import interfaces.IIsSelected;
 
-	public interface IInputMask extends IComponent, IIsSelected
+    public interface IInputMask extends IComponent, IIsSelected
 	{
 		function get maskText():String;
 		function set maskText(value:String):void;

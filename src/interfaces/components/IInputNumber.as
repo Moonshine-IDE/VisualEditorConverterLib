@@ -1,8 +1,9 @@
 package interfaces.components
 {
 	import interfaces.IComponent;
+    import interfaces.IIsSelected;
 
-	public interface IInputNumber extends IComponent, IIsSelected
+    public interface IInputNumber extends IComponent, IIsSelected
 	{
 		function get thousandSeparator():String;
 		function set thousandSeparator(value:String):void;

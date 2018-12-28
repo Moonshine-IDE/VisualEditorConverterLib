@@ -1,0 +1,10 @@
+<flex-config>
+    
+    <compiler>
+        <accessible>true</accessible>
+    </compiler>
+   <include-classes>
+        <class>VisualEditorConverterLibClasses</class>
+		<class>interfaces.IComponent</class>
+    </include-classes>
+</flex-config>

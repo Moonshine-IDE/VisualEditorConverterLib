@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
   <output>
-    <movie path="bin-debug/VisualEditorConverterLib.swc"/>
+    <movie disabled="False"/>
+    <movie platform="Flash Player"/>
+    <movie version="30"/>
     <movie width="800"/>
     <movie fps="32"/>
     <movie height="600"/>
-    <movie platform="Flash Player"/>
-    <movie version="11"/>
-    <movie disabled="False"/>
     <movie background="#FFFFFF"/>
+    <movie path="bin-debug/VisualEditorConverterLib.swc"/>
     <movie input=""/>
   </output>
   &lt;!-- Other classes to be compiled into your SWF --&gt;
@@ -18,38 +18,38 @@
   <moonshineResourcePaths></moonshineResourcePaths>
   <moonshineNativeExtensionPaths></moonshineNativeExtensionPaths>
   <build>
+    <option allowSourcePathOverlap="False"/>
+    <option useResourceBundleMetadata="True"/>
     <option benchmark="False"/>
     <option warnings="True"/>
     <option es="False"/>
     <option verboseStackTraces="False"/>
     <option customSDK=""/>
-    <option additional="+configname=flex"/>
+    <option loadConfig=""/>
     <option linkReport=""/>
-    <option optimize="False"/>
+    <option antBuildPath="build/build.xml"/>
     <option staticLinkRSL="False"/>
     <option showActionScriptWarnings="True"/>
     <option compilerConstants=""/>
-    <option loadConfig=""/>
-    <option showBindingWarnings="True"/>
+    <option additional="+configname=flex"/>
+    <option locale=""/>
+    <option optimize="False"/>
     <option showDeprecationWarnings="True"/>
     <option showUnusedTypeSelectorWarnings="True"/>
-    <option locale=""/>
+    <option showBindingWarnings="True"/>
     <option strict="True"/>
     <option accessible="False"/>
     <option useNetwork="True"/>
-    <option allowSourcePathOverlap="False"/>
-    <option useResourceBundleMetadata="True"/>
-    <option antBuildPath="build/build.xml"/>
   </build>
   <mavenBuild>
-    <option commandLine=""/>
-    <option mavenBuildPath=""/>
     <option settingsFilePath=""/>
+    <option commandLine=""/>
+    <option mavenBuildPath="D:\Work\projects\Prominic.NET\VisualEditorConverterLib"/>
     <actions>
-      <action action="install" actionName="Build"/>
-      <action action="clean" actionName="Clean"/>
-      <action action="clean install" actionName="Clean and Build"/>
-      <action action="war:exploded" actionName="Exploded"/>
+      <action actionName="Build" action="install"/>
+      <action actionName="Clean" action="clean"/>
+      <action actionName="Clean and Build" action="clean install"/>
+      <action actionName="Exploded" action="war:exploded"/>
     </actions>
   </mavenBuild>
   <includeLibraries></includeLibraries>
@@ -67,20 +67,20 @@
   <trustSVNCertificate>False</trustSVNCertificate>
   <options>
     <option testMovieCommand=""/>
+    <option showHiddenPaths="False"/>
     <option defaultBuildTargets=""/>
     <option isExportedToExistingSource="False"/>
-    <option showHiddenPaths="False"/>
-    <option visualEditorExportPath=""/>
     <option isPrimeFacesVisualEditor="False"/>
+    <option visualEditorExportPath=""/>
     <option testMovie=""/>
   </options>
   <moonshineRunCustomization>
-    <option targetPlatform="2"/>
     <option urlToLaunch=""/>
-    <option projectType="2"/>
-    <option deviceSimulator="null"/>
-    <option launchMethod="Simulator"/>
     <option customUrlToLaunch=""/>
+    <option deviceSimulator="null"/>
+    <option targetPlatform="2"/>
+    <option launchMethod="Simulator"/>
+    <option projectType="2"/>
     <deviceSimulator>null</deviceSimulator>
     <certAndroid>null</certAndroid>
     <certIos>null</certIos>
