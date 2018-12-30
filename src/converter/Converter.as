@@ -31,6 +31,7 @@ package converter
 	import interfaces.ISurface;
 	
 	import surface.SurfaceMockup;
+	import components.primeFaces.AutoCompleteDropDownList;
 
 	[Event(name="conversionCompleted", type="events.ConverterEvent")]
 	public class Converter extends EventDispatcher
@@ -144,6 +145,7 @@ package converter
 			this.classLookup[InputMask.ELEMENT_NAME] = InputMask;
 			this.classLookup[InputNumber.ELEMENT_NAME] = InputNumber;
 			this.classLookup[Tree.ELEMENT_NAME] = Tree;
+			this.classLookup[AutoCompleteDropDownList.ELEMENT_NAME] = AutoCompleteDropDownList;
 		}
 	}
 }

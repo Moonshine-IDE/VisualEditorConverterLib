@@ -60,6 +60,7 @@ package
 		import components.primeFaces.Fieldset; Fieldset;
 		import components.primeFaces.DataTable; DataTable;
 		import components.primeFaces.Calendar; Calendar;
+		import components.primeFaces.AutoCompleteDropDownList; AutoCompleteDropDownList;
 
 		//Other classes
 		import converter.Converter; Converter;
@@ -78,5 +79,6 @@ package
 		//Events
         import events.ConverterEvent; ConverterEvent;
         import events.ConverterErrorEvent; ConverterErrorEvent;
+        
 	}
 }
