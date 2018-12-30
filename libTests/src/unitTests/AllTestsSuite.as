@@ -22,6 +22,8 @@ package
 
     import button.ButtonTest;
 
+    import calendar.CalendarTest;
+
     import selectOneListbox.SelectOneListboxTest;
 
     [Suite]
@@ -31,5 +33,6 @@ package
         public var buttonTest:ButtonTest;
         public var selectOneListboxTest:SelectOneListboxTest;
         public var autoCompleteTest:AutoCompleteTest;
+        public var calendarTest:CalendarTest;
     }
 }

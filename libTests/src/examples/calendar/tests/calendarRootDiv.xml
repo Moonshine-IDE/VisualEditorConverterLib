@@ -1,0 +1,5 @@
+<mockup>
+  <RootDiv width="700" height="450" class="flexVerticalLayout flexVerticalLayoutLeft flexVerticalLayoutTop" wrap="false">
+    <Calendar width="120" height="26" mode="popup" pattern="MM/dd/yyyy" minDate="12/30/2018" maxDate="01/31/2019" selectedDate="12/02/2018"/>
+  </RootDiv>
+</mockup>
