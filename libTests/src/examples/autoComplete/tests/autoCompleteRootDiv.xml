@@ -1,0 +1,5 @@
+<mockup>
+  <RootDiv width="700" height="450" class="flexVerticalLayout flexVerticalLayoutLeft flexVerticalLayoutTop" wrap="false">
+    <DropDownList width="135" height="38" var="variable" value="SomeValue" dropdown="true" multiple="true" completeMethod="SomeMethod" itemLabel="Item Label" itemValue="Item Value"/>
+  </RootDiv>
+</mockup>

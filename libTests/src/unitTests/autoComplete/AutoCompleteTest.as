@@ -16,17 +16,17 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package button
+package autoComplete
 {
-    import components.primeFaces.Button;
-
+    import components.primeFaces.AutoCompleteDropDownList;
     import events.ConverterErrorEvent;
 
-    import interfaces.components.IButton;
+    import interfaces.components.IAutoCompleteDropDownList;
+
 
     import loaders.TestConfigurationLoader;
 
-    import org.flexunit.asserts.assertFalse;
+    import org.flexunit.asserts.assertEquals;
 
     import org.flexunit.asserts.assertNotNull;
     import org.flexunit.asserts.assertTrue;
@@ -37,13 +37,13 @@ package button
 
     [TestCase]
     [RunWith("org.flexunit.runners.Parameterized")]
-    public class ButtonTest extends BaseConverterTest
+    public class AutoCompleteTest extends BaseConverterTest
     {
         [DataPoints(loader=dpLoader)]
         [ArrayElementType("vo.TestCaseVO")]
         public static var dp:Array;
 
-        public static var dpLoader:TestConfigurationLoader = new TestConfigurationLoader("button", "ButtonTest");
+        public static var dpLoader:TestConfigurationLoader = new TestConfigurationLoader("autoComplete", "AutoCompleteTest");
 
         [Before]
         override public function setUpTest():void
@@ -61,13 +61,12 @@ package button
         }
 
         [Test(dataProvider=dp, order="1")]
-        public function buttonExistsTest(testCase:TestCaseVO):void
+        public function autoCompleteExistsTest(testCase:TestCaseVO):void
         {
             var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
-            var buttonsMainApp:XMLList = rootXML.MainApplication.Button;
-            var buttonsRootDiv:XMLList = rootXML.RootDiv.Button;
+            var rootDiv:XMLList = rootXML.RootDiv.DropDownList;
 
-            assertTrue("Example does not contain Button: ", buttonsMainApp.length() > 0 || buttonsRootDiv.length() > 0);
+            assertTrue("Example does not contain AutoComplete", rootDiv.length() > 0);
         }
 
         [Test(dataProvider=dp, async, order="2")]
@@ -77,36 +76,39 @@ package button
         }
 
         [Test(dataProvider=dp, order="3")]
-        public function buttonPropertiesTest(testCase:TestCaseVO):void
+        public function autoCompletePropertiesTest(testCase:TestCaseVO):void
         {
             var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
-            var buttonXML:XML = getButton(rootXML);
+            var dropDownXML:XML = getDropDown(rootXML);
 
-            var btn:IButton = new Button();
+            var dropDown:IAutoCompleteDropDownList = new AutoCompleteDropDownList();
 
-            btn.fromXML(buttonXML, function(xml:XML):void
+            dropDown.fromXML(dropDownXML, function(xml:XML):void
             {
 
             });
 
-            assertFalse(btn.enabled);
-            assertNotNull(btn.actionListener);
-            assertTrue(btn.actionListener.length > 0);
-            assertNotNull(btn.toolTip);
-            assertNotNull(btn.label);
+            assertTrue(dropDown.isDropDown);
+            assertNotNull(dropDown.value);
+            assertEquals(dropDownXML.@value,  dropDown.value);
+            assertNotNull(dropDown.converter);
+            assertNotNull(dropDown.completeMethod);
+            assertNotNull(dropDown.fieldVar);
+            assertNotNull(dropDown.itemLabel);
+            assertNotNull(dropDown.itemValue);
+            assertTrue(dropDown.multiple);
         }
 
-        private function getButton(xml:XML):XML
+        private function getDropDown(xml:XML):XML
         {
-            var buttonsMainApp:XMLList = xml.MainApplication.Button;
-            var buttonsRootDiv:XMLList = xml.RootDiv.Button;
+            var rootDiv:XMLList = xml.RootDiv.DropDownList;
 
-            if (buttonsMainApp.length() > 0)
+            if (rootDiv.length() > 0)
             {
-                return XML(buttonsMainApp);
+                return XML(rootDiv);
             }
 
-            return XML(buttonsRootDiv);
+            return XML(rootDiv);
         }
     }
 }

@@ -21,7 +21,6 @@ package selectOneListbox
     import components.primeFaces.SelectOneListbox;
 
     import events.ConverterErrorEvent;
-    import events.ConverterEvent;
 
     import interfaces.components.ISelectOneListbox;
 
@@ -31,7 +30,6 @@ package selectOneListbox
 
     import org.flexunit.asserts.assertNotNull;
     import org.flexunit.asserts.assertTrue;
-    import org.flexunit.async.Async;
 
     import utils.FileRepository;
 
@@ -74,15 +72,9 @@ package selectOneListbox
         }
 
         [Test(dataProvider=dp, async, order="2")]
-        public function selectOneListboxConverterTest(testCase:TestCaseVO):void
+        override public function converterTest(testCase:TestCaseVO):void
         {
-            var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
-
-            this.conversionCompletedHandler = Async.asyncHandler(this, this.selectOneListboxTestHandler, 100,
-                    {timeOut: "Timeout reached CONVERSION_COMPLETED"}, timeOutAsyncTest);
-            componentsConverter.addEventListener(ConverterEvent.CONVERSION_COMPLETED, conversionCompletedHandler);
-
-            componentsConverter.fromXMLOnly(rootXML);
+            super.converterTest(testCase);
         }
 
         [Test(dataProvider=dp, order="3")]
@@ -102,11 +94,6 @@ package selectOneListbox
             assertEquals(selectOneListboxXML.@value,  listbox.value);
             assertNotNull(listbox.dataProvider);
             assertTrue(listbox.dataProvider.length > 0);
-        }
-
-        private function selectOneListboxTestHandler(event:ConverterEvent, passThroughData:Object):void
-        {
-            assertNotNull("SelectOneListbox conversion failed, cause not output", event.xHtmlOutput);
         }
 
         private function getSelectOneListbox(xml:XML):XML

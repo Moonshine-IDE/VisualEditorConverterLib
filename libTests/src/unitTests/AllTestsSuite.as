@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package
 {
+    import autoComplete.AutoCompleteTest;
+
     import button.ButtonTest;
 
     import selectOneListbox.SelectOneListboxTest;
@@ -28,5 +30,6 @@ package
     {
         public var buttonTest:ButtonTest;
         public var selectOneListboxTest:SelectOneListboxTest;
+        public var autoCompleteTest:AutoCompleteTest;
     }
 }
