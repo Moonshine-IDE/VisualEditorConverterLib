@@ -1,5 +1,7 @@
 package components.primeFaces
 {
+	import mx.formatters.NumberBaseRoundType;
+	
 	import components.ComponentBase;
 	
 	import interfaces.components.IInputNumber;
@@ -13,7 +15,17 @@ package components.primeFaces
 		public static const PRIME_FACES_XML_ELEMENT_NAME:String = "inputNumber";
 		public static const ELEMENT_NAME:String = "InputNumber";
 		
-		private var _formatter:utils.InputNumberFormatter;
+		private var _formatter:InputNumberFormatter;
+		
+		public function InputNumber()
+		{
+			super();
+			
+			_formatter = new InputNumberFormatter();
+			_formatter.useThousandsSeparator = true;
+			_formatter.rounding = NumberBaseRoundType.NONE;
+			_formatter.precision = -1;
+		}
 		
 		private var _text:String;
 		public function set text(value:String):void
