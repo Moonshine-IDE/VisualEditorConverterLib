@@ -2,6 +2,7 @@ package converter
 {
 	import flash.events.EventDispatcher;
 	
+	import components.primeFaces.AutoCompleteDropDownList;
 	import components.primeFaces.Button;
 	import components.primeFaces.Calendar;
 	import components.primeFaces.DataTable;
@@ -18,6 +19,7 @@ package converter
 	import components.primeFaces.PanelGrid;
 	import components.primeFaces.RootDiv;
 	import components.primeFaces.SelectBooleanCheckbox;
+	import components.primeFaces.SelectOneListbox;
 	import components.primeFaces.SelectOneMenu;
 	import components.primeFaces.SelectOneRadio;
 	import components.primeFaces.TabView;
@@ -31,7 +33,6 @@ package converter
 	import interfaces.ISurface;
 	
 	import surface.SurfaceMockup;
-	import components.primeFaces.AutoCompleteDropDownList;
 
 	[Event(name="conversionCompleted", type="events.ConverterEvent")]
 	public class Converter extends EventDispatcher
@@ -146,6 +147,7 @@ package converter
 			this.classLookup[InputNumber.ELEMENT_NAME] = InputNumber;
 			this.classLookup[Tree.ELEMENT_NAME] = Tree;
 			this.classLookup[AutoCompleteDropDownList.ELEMENT_NAME] = AutoCompleteDropDownList;
+			this.classLookup[SelectOneListbox.ELEMENT_NAME] = SelectOneListbox;
 		}
 	}
 }

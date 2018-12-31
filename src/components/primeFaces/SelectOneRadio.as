@@ -67,7 +67,7 @@ package components.primeFaces
 				tmpItem = new SelectItem();
 				tmpItem.itemLabel = i.@itemLabel;
 				tmpItem.itemValue = i.@itemValue;
-				items.addItem(tmpItem);
+				items.push(tmpItem);
 			}
 		}
 		
