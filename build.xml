@@ -9,7 +9,7 @@
 	<property name="LIB_UNITTESTS_PATH" value="${basedir}/libTests/libs"/>
 	
 	<property name="SWC_NAME" value="VisualEditorConverterLib-${version}.swc"/>
-	<property name="IsDebug" value="true" />
+	<property name="IsDebug" value="false" />
 	<taskdef resource="flexTasks.tasks" classpath="${FLEX_HOME}/ant/lib/flexTasks.jar"/>
 
 	<target name="main" depends="clean-up-bin, build, copy-bin-to-libunittests, copy-bin-to-visualeditor, copy-bin-to-xhtmlconvertercli"/>
