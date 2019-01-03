@@ -20,12 +20,12 @@ package calendar
 {
     import components.primeFaces.Calendar;
     import events.ConverterErrorEvent;
-
     import interfaces.components.ICalendar;
 
     import loaders.TestConfigurationLoader;
 
     import org.flexunit.assertThat;
+    import org.flexunit.asserts.assertEquals;
 
     import org.flexunit.asserts.assertNotNull;
     import org.flexunit.asserts.assertTrue;
@@ -107,6 +107,28 @@ package calendar
             {
                 return cal.mode == item;
             }));
+        }
+
+        [Test(dataProvider=dp, order="4")]
+        public function calendarToCodeTest(testCase:TestCaseVO):void
+        {
+            var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
+            var calendarXML:XML = getCalendar(rootXML);
+
+            var cal:ICalendar = new Calendar();
+
+            cal.fromXML(calendarXML, function(xml:XML):void
+            {
+
+            });
+
+            var calHTML:XML = cal.toCode();
+
+            assertEquals(String(calHTML.@mode), cal.mode);
+            assertEquals(String(calHTML.@pattern), cal.pattern);
+            assertEquals(String(calHTML.@minDate), cal.minDate);
+            assertEquals(String(calHTML.@maxDate), cal.maxDate);
+            assertEquals(String(calHTML.@value), cal.selectedDate);
         }
 
         private function getCalendar(xml:XML):XML
