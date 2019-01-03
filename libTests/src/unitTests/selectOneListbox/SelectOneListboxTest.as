@@ -37,7 +37,7 @@ package selectOneListbox
 
     [TestCase]
     [RunWith("org.flexunit.runners.Parameterized")]
-    public class SelectOneListboxTest extends BaseConverterTest
+    public class SelectOneListboxTest extends BaseTest
     {
         [DataPoints(loader=dpLoader)]
         [ArrayElementType("vo.TestCaseVO")]
@@ -71,13 +71,7 @@ package selectOneListbox
             assertTrue("SelectOneListbox deos not contain selectItem", listItem.length() > 0);
         }
 
-        [Test(dataProvider=dp, async, order="2")]
-        override public function converterTest(testCase:TestCaseVO):void
-        {
-            super.converterTest(testCase);
-        }
-
-        [Test(dataProvider=dp, order="3")]
+        [Test(dataProvider=dp, order="2")]
         public function selectOneListboxPropertiesTest(testCase:TestCaseVO):void
         {
             var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);

@@ -36,7 +36,7 @@ package calendar
 
     [TestCase]
     [RunWith("org.flexunit.runners.Parameterized")]
-    public class CalendarTest extends BaseConverterTest
+    public class CalendarTest extends BaseTest
     {
         [DataPoints(loader=dpLoader)]
         [ArrayElementType("vo.TestCaseVO")]
@@ -70,13 +70,7 @@ package calendar
             assertTrue("Example does not contain Calendar", rootDiv.length() > 0);
         }
 
-        [Test(dataProvider=dp, async, order="2")]
-        override public function converterTest(testCase:TestCaseVO):void
-        {
-            super.converterTest(testCase);
-        }
-
-        [Test(dataProvider=dp, order="3")]
+        [Test(dataProvider=dp, order="2")]
         public function calendarPropertiesTest(testCase:TestCaseVO):void
         {
             var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
@@ -96,7 +90,7 @@ package calendar
             assertNotNull(cal.mode);
         }
 
-        [Test(dataProvider=dp, order="4")]
+        [Test(dataProvider=dp, order="3")]
         public function calendarModeTest(testCase:TestCaseVO):void
         {
             var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);

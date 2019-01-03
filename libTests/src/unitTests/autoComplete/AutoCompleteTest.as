@@ -37,7 +37,7 @@ package autoComplete
 
     [TestCase]
     [RunWith("org.flexunit.runners.Parameterized")]
-    public class AutoCompleteTest extends BaseConverterTest
+    public class AutoCompleteTest extends BaseTest
     {
         [DataPoints(loader=dpLoader)]
         [ArrayElementType("vo.TestCaseVO")]
@@ -69,13 +69,7 @@ package autoComplete
             assertTrue("Example does not contain AutoComplete", rootDiv.length() > 0);
         }
 
-        [Test(dataProvider=dp, async, order="2")]
-        override public function converterTest(testCase:TestCaseVO):void
-        {
-            super.converterTest(testCase);
-        }
-
-        [Test(dataProvider=dp, order="3")]
+        [Test(dataProvider=dp, order="2")]
         public function autoCompletePropertiesTest(testCase:TestCaseVO):void
         {
             var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);

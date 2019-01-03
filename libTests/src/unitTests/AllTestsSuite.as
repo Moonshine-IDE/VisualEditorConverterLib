@@ -24,12 +24,15 @@ package
 
     import calendar.CalendarTest;
 
+    import converter.ConverterTest;
+
     import selectOneListbox.SelectOneListboxTest;
 
     [Suite]
     [RunWith("org.flexunit.runners.Suite")]
     public class AllTestsSuite
     {
+        public var converterTest:ConverterTest;
         public var buttonTest:ButtonTest;
         public var selectOneListboxTest:SelectOneListboxTest;
         public var autoCompleteTest:AutoCompleteTest;
