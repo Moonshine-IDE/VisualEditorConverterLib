@@ -26,6 +26,8 @@ package
 
     import converter.ConverterTest;
 
+    import dataTable.DataTableTest;
+
     import selectOneListbox.SelectOneListboxTest;
 
     [Suite]
@@ -37,5 +39,6 @@ package
         public var selectOneListboxTest:SelectOneListboxTest;
         public var autoCompleteTest:AutoCompleteTest;
         public var calendarTest:CalendarTest;
+        public var dataTable:DataTableTest;
     }
 }
