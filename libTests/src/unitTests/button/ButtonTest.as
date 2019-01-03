@@ -31,7 +31,6 @@ package button
     import org.flexunit.asserts.assertFalse;
 
     import org.flexunit.asserts.assertNotNull;
-    import org.flexunit.asserts.assertStrictlyEquals;
     import org.flexunit.asserts.assertTrue;
 
     import utils.FileRepository;
@@ -109,8 +108,8 @@ package button
             var btnHTML:XML = btn.toCode();
 
             assertEquals(String(btnHTML.@disabled) == "true", btn.enabled == false);
-            assertStrictlyEquals(String(btnHTML.@value), btn.label);
-            assertStrictlyEquals(String(btnHTML.@title), btn.toolTip);
+            assertEquals(String(btnHTML.@value), btn.label);
+            assertEquals(String(btnHTML.@title), btn.toolTip);
         }
 
         private function getButton(xml:XML):XML

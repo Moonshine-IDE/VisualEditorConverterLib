@@ -93,6 +93,31 @@ package autoComplete
             assertTrue(dropDown.multiple);
         }
 
+        [Test(dataProvider=dp, order="3")]
+        public function autoCompleteToCodeTest(testCase:TestCaseVO):void
+        {
+            var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
+            var dropDownXML:XML = getDropDown(rootXML);
+
+            var dropDown:IAutoCompleteDropDownList = new AutoCompleteDropDownList();
+
+            dropDown.fromXML(dropDownXML, function(xml:XML):void
+            {
+
+            });
+
+            var dropDownHTML:XML = dropDown.toCode();
+
+            assertEquals(dropDownHTML.@dropdown == "true", dropDown.isDropDown);
+            assertEquals(dropDownHTML.@multiple == "true", dropDown.multiple);
+            assertEquals(String(dropDownHTML.@value), dropDown.value);
+            assertEquals(String(dropDownHTML["@var"]), dropDown.fieldVar);
+            assertEquals(String(dropDownHTML.@completeMethod), dropDown.completeMethod);
+            assertEquals(String(dropDownHTML.@itemValue), dropDown.itemValue);
+            assertEquals(String(dropDownHTML.@itemLabel), dropDown.itemLabel);
+            assertEquals(String(dropDownHTML.@converter), dropDown.converter);
+        }
+
         private function getDropDown(xml:XML):XML
         {
             var rootDiv:XMLList = xml.RootDiv.DropDownList;
