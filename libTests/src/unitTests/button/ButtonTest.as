@@ -26,9 +26,12 @@ package button
 
     import loaders.TestConfigurationLoader;
 
+    import org.flexunit.asserts.assertEquals;
+
     import org.flexunit.asserts.assertFalse;
 
     import org.flexunit.asserts.assertNotNull;
+    import org.flexunit.asserts.assertStrictlyEquals;
     import org.flexunit.asserts.assertTrue;
 
     import utils.FileRepository;
@@ -88,6 +91,26 @@ package button
             assertTrue(btn.actionListener.length > 0);
             assertNotNull(btn.toolTip);
             assertNotNull(btn.label);
+        }
+
+        [Test(dataProvider=dp, order="3")]
+        public function buttonToCodeTest(testCase:TestCaseVO):void
+        {
+            var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
+            var buttonXML:XML = getButton(rootXML);
+
+            var btn:IButton = new Button();
+
+            btn.fromXML(buttonXML, function(xml:XML):void
+            {
+
+            });
+
+            var btnHTML:XML = btn.toCode();
+
+            assertEquals(String(btnHTML.@disabled) == "true", btn.enabled == false);
+            assertStrictlyEquals(String(btnHTML.@value), btn.label);
+            assertStrictlyEquals(String(btnHTML.@title), btn.toolTip);
         }
 
         private function getButton(xml:XML):XML
