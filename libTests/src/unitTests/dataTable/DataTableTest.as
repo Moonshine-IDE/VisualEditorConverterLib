@@ -21,10 +21,12 @@ package dataTable
     import components.primeFaces.DataTable;
 
     import events.ConverterErrorEvent;
-
+    
     import interfaces.components.IDataTable;
 
     import loaders.TestConfigurationLoader;
+
+    import org.flexunit.asserts.assertEquals;
 
     import org.flexunit.asserts.assertNotNull;
     import org.flexunit.asserts.assertTrue;
@@ -87,6 +89,28 @@ package dataTable
             assertTrue(dt.resizableColumns);
             assertNotNull(dt.tableValue);
             assertNotNull(dt.tableVar);
+        }
+
+        [Test(dataProvider=dp, order="3")]
+        public function dataTableToCodeTest(testCase:TestCaseVO):void
+        {
+            var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
+            var dropDownXML:XML = getDataTable(rootXML);
+
+            var dt:IDataTable = new DataTable();
+
+            dt.fromXML(dropDownXML, function(xml:XML):void
+            {
+
+            });
+
+            var dtHTML:XML = dt.toCode();
+
+            assertEquals(dtHTML.@paginator == "true", dt.paginator);
+            assertEquals(dtHTML.@resizableColumns == "true", dt.resizableColumns);
+            assertEquals(String(dtHTML.@emptyMessage), dt.emptyMessage);
+            assertEquals(String(dtHTML["@var"]), dt.tableVar);
+            assertEquals(String(dtHTML.@value), dt.tableValue);
         }
 
         private function getDataTable(xml:XML):XML
