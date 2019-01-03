@@ -42,6 +42,8 @@ package converter
 		public var classLookup:Object;
 		private var componentsSurface:ISurface;
 		
+		private var unknownItemsExceptions:Array;
+		
 		public function Converter(classLookup:Object = null)
 		{
 	        if(_instance)
@@ -91,7 +93,12 @@ package converter
 			var name:String = itemXML.localName();
 			if(!(name in this.classLookup))
 			{
-				dispatchEvent(new ConverterEvent(ConverterEvent.UNKNOWN_CONVERSION_ITEM, null, name));
+				if (!this.unknownItemsExceptions.some(function(itemName:String, index:int, arr:Array):Boolean {
+						return itemName == name;
+					}))
+				{				
+					dispatchEvent(new ConverterEvent(ConverterEvent.UNKNOWN_CONVERSION_ITEM, null, name));
+				}
 				
                 var elements:XMLList = itemXML.elements();
                 var elementCount:int = elements.length();
@@ -148,6 +155,10 @@ package converter
 			this.classLookup[Tree.ELEMENT_NAME] = Tree;
 			this.classLookup[AutoCompleteDropDownList.ELEMENT_NAME] = AutoCompleteDropDownList;
 			this.classLookup[SelectOneListbox.ELEMENT_NAME] = SelectOneListbox;
+			
+			this.unknownItemsExceptions = [
+				"Column"
+			];
 		}
 	}
 }
