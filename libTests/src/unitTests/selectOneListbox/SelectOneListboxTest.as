@@ -90,6 +90,24 @@ package selectOneListbox
             assertTrue(listbox.dataProvider.length > 0);
         }
 
+        [Test(dataProvider=dp, order="3")]
+        public function selectOneListboxToCodeTest(testCase:TestCaseVO):void
+        {
+            var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
+            var selectOneListboxXML:XML = getSelectOneListbox(rootXML);
+
+            var listbox:ISelectOneListbox = new SelectOneListbox();
+
+            listbox.fromXML(selectOneListboxXML, function(xml:XML):void
+            {
+
+            });
+
+            var dropDownHTML:XML = listbox.toCode();
+
+            assertEquals(String(dropDownHTML.@value), listbox.value);
+        }
+
         private function getSelectOneListbox(xml:XML):XML
         {
             var rootDiv:XMLList = xml.RootDiv.SelectOneListbox;
