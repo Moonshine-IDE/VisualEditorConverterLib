@@ -2,53 +2,49 @@
 <project>
   <output>
     <movie disabled="False"/>
-    <movie platform="Flash Player"/>
+    <movie platform="null"/>
     <movie version="30"/>
-    <movie width="800"/>
-    <movie fps="32"/>
-    <movie height="600"/>
-    <movie background="#FFFFFF"/>
-    <movie path="bin-debug/VisualEditorConveretLibTests.swc"/>
+    <movie width="100"/>
+    <movie fps="24"/>
+    <movie height="100"/>
+    <movie background="#000000"/>
+    <movie path="bin-debug/FlexUnitApplication.swf"/>
     <movie input=""/>
   </output>
   &lt;!-- Other classes to be compiled into your SWF --&gt;
   <classpaths>
     <class path="src"/>
   </classpaths>
-  <moonshineResourcePaths>
-    <!-- <empty/> -->
-  </moonshineResourcePaths>
-  <moonshineNativeExtensionPaths>
-    <!-- <empty/> -->
-  </moonshineNativeExtensionPaths>
+  <moonshineResourcePaths></moonshineResourcePaths>
+  <moonshineNativeExtensionPaths></moonshineNativeExtensionPaths>
   <build>
-    <option showBindingWarnings="True"/>
-    <option optimize="False"/>
-    <option showDeprecationWarnings="True"/>
     <option showUnusedTypeSelectorWarnings="True"/>
-    <option strict="True"/>
-    <option accessible="False"/>
-    <option useNetwork="True"/>
-    <option allowSourcePathOverlap="False"/>
     <option useResourceBundleMetadata="True"/>
     <option benchmark="False"/>
     <option warnings="True"/>
-    <option locale=""/>
     <option es="False"/>
     <option verboseStackTraces="False"/>
-    <option customSDK=""/>
+    <option allowSourcePathOverlap="False"/>
     <option loadConfig=""/>
     <option linkReport=""/>
-    <option antBuildPath="build/build.xml"/>
+    <option optimize="True"/>
     <option staticLinkRSL="False"/>
     <option showActionScriptWarnings="True"/>
+    <option customSDK="D:\Work\flex-sdk-4.16.1_adobe_air_30"/>
+    <option antBuildPath=""/>
+    <option locale=""/>
+    <option showDeprecationWarnings="True"/>
+    <option additional="-locale en_US"/>
     <option compilerConstants=""/>
-    <option additional="+configname=flex"/>
+    <option showBindingWarnings="True"/>
+    <option strict="True"/>
+    <option accessible="True"/>
+    <option useNetwork="True"/>
   </build>
   <mavenBuild>
-    <option mavenBuildPath="D:\Work\projects\Prominic.NET\VisualEditorConverterLib\libTests"/>
-    <option settingsFilePath=""/>
     <option commandLine=""/>
+    <option settingsFilePath=""/>
+    <option mavenBuildPath=""/>
     <actions>
       <action actionName="Build" action="install"/>
       <action actionName="Clean" action="clean"/>
@@ -56,53 +52,37 @@
       <action actionName="Exploded" action="war:exploded"/>
     </actions>
   </mavenBuild>
-  <includeLibraries>
-    <!-- <empty/> -->
-  </includeLibraries>
+  <includeLibraries></includeLibraries>
   <libraryPaths>
-    <!-- <empty/> -->
+    <element path="libs"/>
   </libraryPaths>
-  <externalLibraryPaths>
-    <element path="libs/flexunit-4.2.0-20140410-flex_4.12.0.swc"/>
-    <element path="libs/flexunit-cilistener-4.2.0-20140410-4.12.0.swc"/>
-    <element path="libs/flexunit-uilistener-4.2.0-20140410-4.12.0.swc"/>
-  </externalLibraryPaths>
-  <rslPaths>
-    <!-- <empty/> -->
-  </rslPaths>
-  <intrinsics>
-    <element path="Library\AS3\frameworks\Flex4"/>
-  </intrinsics>
-  <library>
-    
-    <!-- example: <asset path="..." id="..." update="..." glyphs="..." mode="..." place="..." sharepoint="..." /> -->
-    
-  </library>
+  <externalLibraryPaths></externalLibraryPaths>
+  <rslPaths></rslPaths>
+  <intrinsics></intrinsics>
+  <library></library>
   <compileTargets>
-    <!-- <empty/> -->
+    <compile path="src/FlexUnitApplication.mxml"/>
   </compileTargets>
-  <hiddenPaths>
-    <!-- <empty/> -->
-  </hiddenPaths>
+  <hiddenPaths></hiddenPaths>
   <preBuildCommand>null</preBuildCommand>
   <postBuildCommand alwaysRun="False">null</postBuildCommand>
   <trustSVNCertificate>False</trustSVNCertificate>
   <options>
+    <option visualEditorExportPath=""/>
+    <option isPrimeFacesVisualEditor="False"/>
+    <option testMovie="AIR"/>
+    <option testMovieCommand=""/>
     <option showHiddenPaths="False"/>
     <option defaultBuildTargets=""/>
     <option isExportedToExistingSource="False"/>
-    <option isPrimeFacesVisualEditor="False"/>
-    <option visualEditorExportPath=""/>
-    <option testMovie=""/>
-    <option testMovieCommand=""/>
   </options>
   <moonshineRunCustomization>
-    <option projectType="2"/>
-    <option customUrlToLaunch=""/>
     <option deviceSimulator="null"/>
-    <option targetPlatform="2"/>
     <option launchMethod="Simulator"/>
+    <option customUrlToLaunch=""/>
     <option urlToLaunch=""/>
+    <option projectType="1"/>
+    <option targetPlatform="1"/>
     <deviceSimulator>null</deviceSimulator>
     <certAndroid>null</certAndroid>
     <certIos>null</certIos>

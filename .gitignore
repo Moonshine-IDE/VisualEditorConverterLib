@@ -10,3 +10,5 @@ libTests/bin
 bin-debug/VisualEditorConverterLib-0.1.0.swc
 VisualEditorConverterLib.iml
 libTests/libs/VisualEditorConverterLib-0.1.0.swc
+libTests/bin-debug/FlexUnitApplication.swf
+libTests/bin-debug/FlexUnitApplication-app.xml

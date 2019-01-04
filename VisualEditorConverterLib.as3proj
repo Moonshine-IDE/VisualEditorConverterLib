@@ -44,7 +44,7 @@
   <mavenBuild>
     <option settingsFilePath=""/>
     <option commandLine=""/>
-    <option mavenBuildPath="D:\Work\projects\Prominic.NET\VisualEditorConverterLib"/>
+    <option mavenBuildPath=""/>
     <actions>
       <action actionName="Build" action="install"/>
       <action actionName="Clean" action="clean"/>
