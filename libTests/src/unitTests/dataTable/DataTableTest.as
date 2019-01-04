@@ -16,13 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package unitTests.autoComplete
+package unitTests.dataTable
 {
-    import components.primeFaces.AutoCompleteDropDownList;
+    import components.primeFaces.DataTable;
     
     import events.ConverterErrorEvent;
     
-    import interfaces.components.IAutoCompleteDropDownList;
+    import interfaces.components.IDataTable;
     
     import loaders.TestConfigurationLoader;
     
@@ -38,13 +38,13 @@ package unitTests.autoComplete
 
     [TestCase]
     [RunWith("org.flexunit.runners.Parameterized")]
-    public class AutoCompleteTest extends BaseTest
+    public class DataTableTest extends BaseTest
     {
         [DataPoints(loader=dpLoader)]
         [ArrayElementType("vo.TestCaseVO")]
         public static var dp:Array;
 
-        public static var dpLoader:TestConfigurationLoader = new TestConfigurationLoader("autoComplete", "AutoCompleteTest");
+        public static var dpLoader:TestConfigurationLoader = new TestConfigurationLoader("dataTable", "DataTableTest");
 
         [Before]
         override public function setUpTest():void
@@ -62,66 +62,61 @@ package unitTests.autoComplete
         }
 
         [Test(dataProvider=dp, order="1")]
-        public function autoCompleteExistsTest(testCase:TestCaseVO):void
+        public function dataTableExistsTest(testCase:TestCaseVO):void
         {
             var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
-            var rootDiv:XMLList = rootXML.RootDiv.DropDownList;
+            var rootDiv:XMLList = rootXML.RootDiv.DataTable;
+            var columns:XMLList = rootXML.RootDiv.DataTable.column;
 
-            assertTrue("Example does not contain AutoComplete", rootDiv.length() > 0);
+            assertTrue("Example does not contain DataTable", rootDiv.length() > 0);
+            assertTrue("Example does not contain column", columns.length() > 0);
         }
 
         [Test(dataProvider=dp, order="2")]
-        public function autoCompletePropertiesTest(testCase:TestCaseVO):void
+        public function dataTablePropertiesTest(testCase:TestCaseVO):void
         {
             var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
-            var dropDownXML:XML = getDropDown(rootXML);
+            var dropDownXML:XML = getDataTable(rootXML);
 
-            var dropDown:IAutoCompleteDropDownList = new AutoCompleteDropDownList();
+            var dt:IDataTable = new DataTable();
 
-            dropDown.fromXML(dropDownXML, function(xml:XML):void
+            dt.fromXML(dropDownXML, function(xml:XML):void
             {
 
             });
 
-            assertTrue(dropDown.isDropDown);
-            assertNotNull(dropDown.value);
-            assertEquals(dropDownXML.@value,  dropDown.value);
-            assertNotNull(dropDown.converter);
-            assertNotNull(dropDown.completeMethod);
-            assertNotNull(dropDown.fieldVar);
-            assertNotNull(dropDown.itemLabel);
-            assertNotNull(dropDown.itemValue);
-            assertTrue(dropDown.multiple);
+            assertNotNull(dt.emptyMessage);
+            assertTrue(dt.paginator);
+            assertTrue(dt.resizableColumns);
+            assertNotNull(dt.tableValue);
+            assertNotNull(dt.tableVar);
         }
 
         [Test(dataProvider=dp, order="3")]
-        public function autoCompleteToCodeTest(testCase:TestCaseVO):void
+        public function dataTableToCodeTest(testCase:TestCaseVO):void
         {
             var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
-            var dropDownXML:XML = getDropDown(rootXML);
+            var dropDownXML:XML = getDataTable(rootXML);
 
-            var dropDown:IAutoCompleteDropDownList = new AutoCompleteDropDownList();
+            var dt:IDataTable = new DataTable();
 
-            dropDown.fromXML(dropDownXML, function(xml:XML):void
+            dt.fromXML(dropDownXML, function(xml:XML):void
             {
 
             });
 
-            var dropDownHTML:XML = dropDown.toCode();
+            var dtHTML:XML = dt.toCode();
 
-            assertEquals(dropDownHTML.@dropdown == "true", dropDown.isDropDown);
-            assertEquals(dropDownHTML.@multiple == "true", dropDown.multiple);
-            assertEquals(String(dropDownHTML.@value), dropDown.value);
-            assertEquals(String(dropDownHTML["@var"]), dropDown.fieldVar);
-            assertEquals(String(dropDownHTML.@completeMethod), dropDown.completeMethod);
-            assertEquals(String(dropDownHTML.@itemValue), dropDown.itemValue);
-            assertEquals(String(dropDownHTML.@itemLabel), dropDown.itemLabel);
-            assertEquals(String(dropDownHTML.@converter), dropDown.converter);
+            assertEquals(dtHTML.@paginator == "true", dt.paginator);
+            assertEquals(dtHTML.@resizableColumns == "true", dt.resizableColumns);
+            assertEquals(String(dtHTML.@emptyMessage), dt.emptyMessage);
+            assertEquals(String(dtHTML["@var"]), dt.tableVar);
+            assertEquals(String(dtHTML.@value), dt.tableValue);
         }
 
-        private function getDropDown(xml:XML):XML
+        private function getDataTable(xml:XML):XML
         {
-            var rootDiv:XMLList = xml.RootDiv.DropDownList;
+            var rootDiv:XMLList = xml.RootDiv.DataTable;
 
             if (rootDiv.length() > 0)
             {

@@ -27,10 +27,11 @@ package unitTests.calendar
     import loaders.TestConfigurationLoader;
     
     import org.flexunit.assertThat;
+    import org.flexunit.asserts.assertEquals;
     import org.flexunit.asserts.assertNotNull;
     import org.flexunit.asserts.assertTrue;
     
-    import unitTests.BaseConverterTest;
+    import unitTests.BaseTest;
     
     import utils.FileRepository;
     
@@ -38,7 +39,7 @@ package unitTests.calendar
 
     [TestCase]
     [RunWith("org.flexunit.runners.Parameterized")]
-    public class CalendarTest extends BaseConverterTest
+    public class CalendarTest extends BaseTest
     {
         [DataPoints(loader=dpLoader)]
         [ArrayElementType("vo.TestCaseVO")]
@@ -72,13 +73,7 @@ package unitTests.calendar
             assertTrue("Example does not contain Calendar", rootDiv.length() > 0);
         }
 
-        [Test(dataProvider=dp, async, order="2")]
-        override public function converterTest(testCase:TestCaseVO):void
-        {
-            super.converterTest(testCase);
-        }
-
-        [Test(dataProvider=dp, order="3")]
+        [Test(dataProvider=dp, order="2")]
         public function calendarPropertiesTest(testCase:TestCaseVO):void
         {
             var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
@@ -98,7 +93,7 @@ package unitTests.calendar
             assertNotNull(cal.mode);
         }
 
-        [Test(dataProvider=dp, order="4")]
+        [Test(dataProvider=dp, order="3")]
         public function calendarModeTest(testCase:TestCaseVO):void
         {
             var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
@@ -115,6 +110,28 @@ package unitTests.calendar
             {
                 return cal.mode == item;
             }));
+        }
+
+        [Test(dataProvider=dp, order="4")]
+        public function calendarToCodeTest(testCase:TestCaseVO):void
+        {
+            var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
+            var calendarXML:XML = getCalendar(rootXML);
+
+            var cal:ICalendar = new Calendar();
+
+            cal.fromXML(calendarXML, function(xml:XML):void
+            {
+
+            });
+
+            var calHTML:XML = cal.toCode();
+
+            assertEquals(String(calHTML.@mode), cal.mode);
+            assertEquals(String(calHTML.@pattern), cal.pattern);
+            assertEquals(String(calHTML.@minDate), cal.minDate);
+            assertEquals(String(calHTML.@maxDate), cal.maxDate);
+            assertEquals(String(calHTML.@value), cal.selectedDate);
         }
 
         private function getCalendar(xml:XML):XML

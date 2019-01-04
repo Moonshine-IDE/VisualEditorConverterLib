@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package  unitTests.selectOneListbox
+package unitTests.selectOneListbox
 {
     import components.primeFaces.SelectOneListbox;
     
@@ -30,7 +30,7 @@ package  unitTests.selectOneListbox
     import org.flexunit.asserts.assertNotNull;
     import org.flexunit.asserts.assertTrue;
     
-    import unitTests.BaseConverterTest;
+    import unitTests.BaseTest;
     
     import utils.FileRepository;
     
@@ -38,7 +38,7 @@ package  unitTests.selectOneListbox
 
     [TestCase]
     [RunWith("org.flexunit.runners.Parameterized")]
-    public class SelectOneListboxTest extends BaseConverterTest
+    public class SelectOneListboxTest extends BaseTest
     {
         [DataPoints(loader=dpLoader)]
         [ArrayElementType("vo.TestCaseVO")]
@@ -72,13 +72,7 @@ package  unitTests.selectOneListbox
             assertTrue("SelectOneListbox deos not contain selectItem", listItem.length() > 0);
         }
 
-        [Test(dataProvider=dp, async, order="2")]
-        override public function converterTest(testCase:TestCaseVO):void
-        {
-            super.converterTest(testCase);
-        }
-
-        [Test(dataProvider=dp, order="3")]
+        [Test(dataProvider=dp, order="2")]
         public function selectOneListboxPropertiesTest(testCase:TestCaseVO):void
         {
             var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
@@ -95,6 +89,24 @@ package  unitTests.selectOneListbox
             assertEquals(selectOneListboxXML.@value,  listbox.value);
             assertNotNull(listbox.dataProvider);
             assertTrue(listbox.dataProvider.length > 0);
+        }
+
+        [Test(dataProvider=dp, order="3")]
+        public function selectOneListboxToCodeTest(testCase:TestCaseVO):void
+        {
+            var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
+            var selectOneListboxXML:XML = getSelectOneListbox(rootXML);
+
+            var listbox:ISelectOneListbox = new SelectOneListbox();
+
+            listbox.fromXML(selectOneListboxXML, function(xml:XML):void
+            {
+
+            });
+
+            var dropDownHTML:XML = listbox.toCode();
+
+            assertEquals(String(dropDownHTML.@value), listbox.value);
         }
 
         private function getSelectOneListbox(xml:XML):XML

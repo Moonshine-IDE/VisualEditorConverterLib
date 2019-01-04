@@ -27,19 +27,13 @@ package unitTests
     import org.flexunit.asserts.assertNotNull;
 
     import org.flexunit.asserts.fail;
-    import org.flexunit.async.Async;
 
-    import utils.FileRepository;
-
-    import vo.TestCaseVO;
-
-    public class BaseConverterTest
+    public class BaseTest
     {
         protected var componentsConverter:Converter;
 
         protected var conversionCompletedHandler:Function;
         protected var conversionFailedHandler:Function;
-        protected var unknownItemHandler:Function;
 
         public function setUpTest():void
         {
@@ -53,51 +47,19 @@ package unitTests
                 componentsConverter.removeEventListener(ConverterEvent.CONVERSION_COMPLETED, conversionCompletedHandler);
             }
 
-            if (unknownItemHandler != null)
-            {
-                componentsConverter.removeEventListener(ConverterEvent.UNKNOWN_CONVERSION_ITEM, unknownItemHandler);
-            }
-
             if (conversionFailedHandler != null)
             {
                 componentsConverter.removeEventListener(ConverterErrorEvent.CONVERSION_FAILED, conversionFailedHandler);
             }
 
             conversionCompletedHandler = null;
-            unknownItemHandler = null;
             conversionFailedHandler = null;
             componentsConverter = null;
-        }
-
-        public function converterTest(testCase:TestCaseVO):void
-        {
-            var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
-
-            this.conversionCompletedHandler = Async.asyncHandler(this, this.converterTestHandler, 100,
-                    {timeOut: "Timeout reached CONVERSION_COMPLETED"}, timeOutAsyncTest);
-            componentsConverter.addEventListener(ConverterEvent.CONVERSION_COMPLETED, conversionCompletedHandler);
-
-            componentsConverter.fromXMLOnly(rootXML);
-        }
-
-        protected function defaultUnknownItemHandler(event:ConverterEvent):void
-        {
-
         }
 
         protected function defaultConversionFailedHandler(event:ConverterErrorEvent):void
         {
             fail("Conversion failed with error: ".concat(event.errorMessage));
-        }
-
-        protected function timeOutAsyncTest(passThroughData:Object):void
-        {
-            fail(passThroughData.timeOut);
-        }
-
-        private function converterTestHandler(event:ConverterEvent, passThroughData:Object):void
-        {
-            assertNotNull("Conversion failed, cause there is no HTML output", event.xHtmlOutput);
         }
     }
 }

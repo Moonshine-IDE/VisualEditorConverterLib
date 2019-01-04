@@ -26,11 +26,12 @@ package unitTests.button
     
     import loaders.TestConfigurationLoader;
     
+    import org.flexunit.asserts.assertEquals;
     import org.flexunit.asserts.assertFalse;
     import org.flexunit.asserts.assertNotNull;
     import org.flexunit.asserts.assertTrue;
     
-    import unitTests.BaseConverterTest;
+    import unitTests.BaseTest;
     
     import utils.FileRepository;
     
@@ -38,7 +39,7 @@ package unitTests.button
 
     [TestCase]
     [RunWith("org.flexunit.runners.Parameterized")]
-    public class ButtonTest extends BaseConverterTest
+    public class ButtonTest extends BaseTest
     {
         [DataPoints(loader=dpLoader)]
         [ArrayElementType("vo.TestCaseVO")]
@@ -71,13 +72,7 @@ package unitTests.button
             assertTrue("Example does not contain Button: ", buttonsMainApp.length() > 0 || buttonsRootDiv.length() > 0);
         }
 
-        [Test(dataProvider=dp, async, order="2")]
-        override public function converterTest(testCase:TestCaseVO):void
-        {
-            super.converterTest(testCase);
-        }
-
-        [Test(dataProvider=dp, order="3")]
+        [Test(dataProvider=dp, order="2")]
         public function buttonPropertiesTest(testCase:TestCaseVO):void
         {
             var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
@@ -95,6 +90,26 @@ package unitTests.button
             assertTrue(btn.actionListener.length > 0);
             assertNotNull(btn.toolTip);
             assertNotNull(btn.label);
+        }
+
+        [Test(dataProvider=dp, order="3")]
+        public function buttonToCodeTest(testCase:TestCaseVO):void
+        {
+            var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
+            var buttonXML:XML = getButton(rootXML);
+
+            var btn:IButton = new Button();
+
+            btn.fromXML(buttonXML, function(xml:XML):void
+            {
+
+            });
+
+            var btnHTML:XML = btn.toCode();
+
+            assertEquals(String(btnHTML.@disabled) == "true", btn.enabled == false);
+            assertEquals(String(btnHTML.@value), btn.label);
+            assertEquals(String(btnHTML.@title), btn.toolTip);
         }
 
         private function getButton(xml:XML):XML
