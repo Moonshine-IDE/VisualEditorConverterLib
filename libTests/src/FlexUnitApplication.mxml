@@ -9,12 +9,12 @@
 					   creationComplete="onCreationComplete()" showStatusBar="false">
 	<fx:Script>
 		<![CDATA[
-			import unitTests.inputText.InputTextTest;
+			import unitTests.outputLabel.OutputLabelTest;
 			
 			public function currentRunTestSuite():Array
 			{
 				var testsToRun:Array = new Array();
-				testsToRun.push(unitTests.inputText.InputTextTest);
+				testsToRun.push(unitTests.outputLabel.OutputLabelTest);
 				return testsToRun;
 			}
 			

@@ -23,8 +23,9 @@ package unitTests
     import unitTests.calendar.CalendarTest;
     import unitTests.converter.ConverterTest;
     import unitTests.dataTable.DataTableTest;
-    import unitTests.selectOneListbox.SelectOneListboxTest;
     import unitTests.inputText.InputTextTest;
+    import unitTests.outputLabel.OutputLabelTest;
+    import unitTests.selectOneListbox.SelectOneListboxTest;
 
     [Suite]
     [RunWith("org.flexunit.runners.Suite")]
@@ -37,5 +38,6 @@ package unitTests
         public var calendarTest:CalendarTest;
         public var dataTable:DataTableTest;
 		public var inputText:InputTextTest;
+		public var outputLabel:OutputLabelTest;
     }
 }
