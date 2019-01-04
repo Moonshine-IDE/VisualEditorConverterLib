@@ -35,7 +35,7 @@ package loaders
 
     public class TestConfigurationLoader implements IExternalDependencyLoader, IResponder
     {
-        private const TEST_CONTENT_PATH:String = "\\examples\\";
+        private const TEST_CONTENT_PATH:String = "/examples/";
 
         private var httpService:HTTPService;
         private var token:ExternalDependencyToken;
@@ -85,7 +85,7 @@ package loaders
             var testCases:XMLList = xmlData.TestCase.(@testName == this.testName);
             for each (var testCase:XML in testCases)
             {
-                var testCaseFilePath:String = TestConfig.getInstance().baseURL.concat(TEST_CONTENT_PATH, this.fileName, "\\tests\\");
+                var testCaseFilePath:String = TestConfig.getInstance().baseURL.concat(TEST_CONTENT_PATH, this.fileName, "/tests/");
                 FileRepository.readFile(testCaseFilePath, testCase.@fileName, null, fault);
 
                 testConfigData.push([new TestCaseVO(testCaseFilePath, testCase.@fileName)]);
@@ -98,7 +98,7 @@ package loaders
         {
             httpService = new HTTPService();
             httpService.url = LoaderUtil.createAbsoluteURL(
-                    TestConfig.getInstance().baseURL.concat("\\examples\\", fileName, "\\"), fileName + ".xml");
+                    TestConfig.getInstance().baseURL.concat("/examples/", fileName, "/"), fileName + ".xml");
             httpService.resultFormat = "e4x";
         }
     }

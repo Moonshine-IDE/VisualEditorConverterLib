@@ -16,23 +16,24 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package autoComplete
+package unitTests.autoComplete
 {
     import components.primeFaces.AutoCompleteDropDownList;
+    
     import events.ConverterErrorEvent;
-
+    
     import interfaces.components.IAutoCompleteDropDownList;
-
-
+    
     import loaders.TestConfigurationLoader;
-
+    
     import org.flexunit.asserts.assertEquals;
-
     import org.flexunit.asserts.assertNotNull;
     import org.flexunit.asserts.assertTrue;
-
+    
+    import unitTests.BaseConverterTest;
+    
     import utils.FileRepository;
-
+    
     import vo.TestCaseVO;
 
     [TestCase]

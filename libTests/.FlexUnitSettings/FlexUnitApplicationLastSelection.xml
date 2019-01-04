@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testrun name="" >
+<testsuite  name="Default Test Suite" project="VisualEditorConveretLibTests">
+<testsuite name="unitTests.button:ButtonTest" type="testsuiteclass"/>
+<testsuite name="unitTests.selectOneListbox:SelectOneListboxTest" type="testsuiteclass"/>
+</testsuite>
+<portNumber value="8765" />
+</testrun>

@@ -16,23 +16,24 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package button
+package unitTests.button
 {
     import components.primeFaces.Button;
-
+    
     import events.ConverterErrorEvent;
-
+    
     import interfaces.components.IButton;
-
+    
     import loaders.TestConfigurationLoader;
-
+    
     import org.flexunit.asserts.assertFalse;
-
     import org.flexunit.asserts.assertNotNull;
     import org.flexunit.asserts.assertTrue;
-
+    
+    import unitTests.BaseConverterTest;
+    
     import utils.FileRepository;
-
+    
     import vo.TestCaseVO;
 
     [TestCase]

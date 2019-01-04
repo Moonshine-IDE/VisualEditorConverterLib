@@ -16,15 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
+package unitTests
 {
-    import autoComplete.AutoCompleteTest;
+    import unitTests.autoComplete.AutoCompleteTest;
 
-    import button.ButtonTest;
+    import unitTests.button.ButtonTest;
 
-    import calendar.CalendarTest;
+    import unitTests.calendar.CalendarTest;
 
-    import selectOneListbox.SelectOneListboxTest;
+    import unitTests.selectOneListbox.SelectOneListboxTest;
 
     [Suite]
     [RunWith("org.flexunit.runners.Suite")]

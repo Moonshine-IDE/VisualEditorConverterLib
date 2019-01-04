@@ -16,23 +16,24 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package selectOneListbox
+package  unitTests.selectOneListbox
 {
     import components.primeFaces.SelectOneListbox;
-
+    
     import events.ConverterErrorEvent;
-
+    
     import interfaces.components.ISelectOneListbox;
-
+    
     import loaders.TestConfigurationLoader;
-
+    
     import org.flexunit.asserts.assertEquals;
-
     import org.flexunit.asserts.assertNotNull;
     import org.flexunit.asserts.assertTrue;
-
+    
+    import unitTests.BaseConverterTest;
+    
     import utils.FileRepository;
-
+    
     import vo.TestCaseVO;
 
     [TestCase]

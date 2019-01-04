@@ -16,22 +16,24 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package calendar
+package unitTests.calendar
 {
     import components.primeFaces.Calendar;
+    
     import events.ConverterErrorEvent;
-
+    
     import interfaces.components.ICalendar;
-
+    
     import loaders.TestConfigurationLoader;
-
+    
     import org.flexunit.assertThat;
-
     import org.flexunit.asserts.assertNotNull;
     import org.flexunit.asserts.assertTrue;
-
+    
+    import unitTests.BaseConverterTest;
+    
     import utils.FileRepository;
-
+    
     import vo.TestCaseVO;
 
     [TestCase]
