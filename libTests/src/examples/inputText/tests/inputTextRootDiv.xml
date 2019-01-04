@@ -1,0 +1,5 @@
+<mockup>
+  <RootDiv width="700" height="450" class="flexVerticalLayout flexVerticalLayoutLeft flexVerticalLayoutTop" wrap="false">
+  	<InputText width="100" height="30" value="Value" required="false" id="id" maxlength="999"/>
+  </RootDiv>
+</mockup>

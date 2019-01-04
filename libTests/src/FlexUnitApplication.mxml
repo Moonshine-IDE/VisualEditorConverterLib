@@ -9,14 +9,12 @@
 					   creationComplete="onCreationComplete()" showStatusBar="false">
 	<fx:Script>
 		<![CDATA[
-			import unitTests.button.ButtonTest;
-			import unitTests.selectOneListbox.SelectOneListboxTest;
+			import unitTests.inputText.InputTextTest;
 			
 			public function currentRunTestSuite():Array
 			{
 				var testsToRun:Array = new Array();
-				testsToRun.push(unitTests.button.ButtonTest);
-				testsToRun.push(unitTests.selectOneListbox.SelectOneListboxTest);
+				testsToRun.push(unitTests.inputText.InputTextTest);
 				return testsToRun;
 			}
 			

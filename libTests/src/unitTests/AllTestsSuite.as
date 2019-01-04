@@ -19,20 +19,12 @@
 package unitTests
 {
     import unitTests.autoComplete.AutoCompleteTest;
-
     import unitTests.button.ButtonTest;
-
     import unitTests.calendar.CalendarTest;
-
-<<<<<<< HEAD
+    import unitTests.converter.ConverterTest;
+    import unitTests.dataTable.DataTableTest;
     import unitTests.selectOneListbox.SelectOneListboxTest;
-=======
-    import converter.ConverterTest;
-
-    import dataTable.DataTableTest;
-
-    import selectOneListbox.SelectOneListboxTest;
->>>>>>> 534af8449a7e8050e910b790d2bf06951b82cdb6
+    import unitTests.inputText.InputTextTest;
 
     [Suite]
     [RunWith("org.flexunit.runners.Suite")]
@@ -44,5 +36,6 @@ package unitTests
         public var autoCompleteTest:AutoCompleteTest;
         public var calendarTest:CalendarTest;
         public var dataTable:DataTableTest;
+		public var inputText:InputTextTest;
     }
 }
