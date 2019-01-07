@@ -1,0 +1,5 @@
+<mockup>
+  <RootDiv width="700" height="450" class="flexVerticalLayout flexVerticalLayoutLeft flexVerticalLayoutTop" wrap="false">
+  	<InputTextarea width="100" height="60" value="Value" required="false" isAutoResize="false" isCounterDisplay="true" maxlength="999" counterTemplate="{0} characters remaining." id="id"/>
+  </RootDiv>
+</mockup>

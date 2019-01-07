@@ -24,6 +24,7 @@ package unitTests
     import unitTests.converter.ConverterTest;
     import unitTests.dataTable.DataTableTest;
     import unitTests.inputText.InputTextTest;
+    import unitTests.inputTextarea.InputTextareaTest;
     import unitTests.outputLabel.OutputLabelTest;
     import unitTests.selectOneListbox.SelectOneListboxTest;
 
@@ -39,5 +40,6 @@ package unitTests
         public var dataTable:DataTableTest;
 		public var inputText:InputTextTest;
 		public var outputLabel:OutputLabelTest;
+		public var inputTextarea:InputTextareaTest;
     }
 }
