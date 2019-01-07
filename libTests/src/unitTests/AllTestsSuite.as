@@ -27,6 +27,7 @@ package unitTests
     import unitTests.inputTextarea.InputTextareaTest;
     import unitTests.outputLabel.OutputLabelTest;
     import unitTests.selectOneListbox.SelectOneListboxTest;
+    import unitTests.selectOneRadio.SelectOneRadioTest;
 
     [Suite]
     [RunWith("org.flexunit.runners.Suite")]
@@ -41,5 +42,6 @@ package unitTests
 		public var inputText:InputTextTest;
 		public var outputLabel:OutputLabelTest;
 		public var inputTextarea:InputTextareaTest;
+		public var selectOneRadio:SelectOneRadioTest;
     }
 }
