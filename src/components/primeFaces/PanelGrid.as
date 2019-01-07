@@ -255,10 +255,44 @@ package components.primeFaces
 			for (var rowIndex:int; rowIndex < rowCount; rowIndex++)
 			{
 				var rowXML:XML = bodyRowsXML[rowIndex];
-				var item:IComponent = new Div();
-				var div:XML = rowXML[0];
-				item.fromXML(div, thisCallbackXML);
-				this.addElement(item);
+				var columnsXML:XMLList = bodyRowsXML[rowIndex].Column;
+				var container:IVisualComponent = new Div();
+				
+				for (var colIndex:int = 0; colIndex < this.columnCount; colIndex++)
+                {
+                    var colXML:XML = columnsXML[colIndex];
+                    var divs:XMLList = colXML.Div;
+	
+					var item:IComponent = new Div();
+					
+					if (divs.length() > 0)
+                    {
+						var divXMLList:XMLList = divs.children();
+                        //Make transition only if div contains children, if not it does not needed.
+                        if (divXMLList.length() > 0)
+                        {
+                            var divXML:XML = divs[0];
+                            if ("@percentHeight" in divXML)
+                            {
+                                delete divXML.@percentHeight;
+                            }
+
+                            item.fromXML(divXML, thisCallbackXML);
+                        }
+					}
+					else
+					{
+						for each (var columnContent:XML in colXML)
+                        {
+                            if (columnContent)
+                            {
+                                thisCallbackXML(item, columnContent);
+                            }
+                        }
+					}
+					container.addElement(item);
+				}
+				this.addElement(container);
 			}
 		}
 	}

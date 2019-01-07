@@ -29,7 +29,7 @@ package components.primeFaces
 			_isSelected = value;
 		}
 				
-		private var _cssClass:String;
+		private var _cssClass:String = "flexHorizontalLayout flexHorizontalLayoutLeft flexHorizontalLayoutTop";
 		public function get cssClass():String
 		{
 			return _cssClass;
@@ -52,7 +52,10 @@ package components.primeFaces
 			
 			setComponentSize(xml);
 			
-			this._cssClass = xml.@["class"];
+			if (xml.@["class"])
+			{
+				this._cssClass = xml.@["class"];
+			}
 	
             var elementsXML:XMLList = xml.elements();
             var childCount:int = elementsXML.length();
