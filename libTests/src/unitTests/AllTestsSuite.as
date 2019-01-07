@@ -26,6 +26,7 @@ package unitTests
     import unitTests.inputText.InputTextTest;
     import unitTests.inputTextarea.InputTextareaTest;
     import unitTests.outputLabel.OutputLabelTest;
+    import unitTests.panelGrid.PanelGridTest;
     import unitTests.selectOneListbox.SelectOneListboxTest;
     import unitTests.selectOneRadio.SelectOneRadioTest;
 
@@ -38,10 +39,11 @@ package unitTests
         public var selectOneListboxTest:SelectOneListboxTest;
         public var autoCompleteTest:AutoCompleteTest;
         public var calendarTest:CalendarTest;
-        public var dataTable:DataTableTest;
-		public var inputText:InputTextTest;
-		public var outputLabel:OutputLabelTest;
+        public var dataTableTest:DataTableTest;
+		public var inputTextTest:InputTextTest;
+		public var outputLabelTest:OutputLabelTest;
 		public var inputTextarea:InputTextareaTest;
-		public var selectOneRadio:SelectOneRadioTest;
+		public var selectOneRadioTest:SelectOneRadioTest;
+        public var panelGridTest:PanelGridTest;
     }
 }

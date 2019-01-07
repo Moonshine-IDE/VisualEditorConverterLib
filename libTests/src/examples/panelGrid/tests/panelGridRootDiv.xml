@@ -1,0 +1,28 @@
+<mockup>
+  <RootDiv width="700" height="450" class="flexVerticalLayout flexVerticalLayoutLeft flexVerticalLayoutTop" wrap="false">
+    <PanelGrid width="290.5" height="224.5" rowCount="2" columnCount="2" headerRowCount="1">
+      <Header name="header">
+        <Row>
+          <Column>Title</Column>
+          <Column>Title</Column>
+        </Row>
+      </Header>
+      <Row>
+        <Column>
+          <Div percentWidth="100" percentHeight="100" class="flexHorizontalLayout flexHorizontalLayoutLeft flexHorizontalLayoutTop" wrap="false"/>
+        </Column>
+        <Column>
+          <Div percentWidth="100" percentHeight="100" class="flexHorizontalLayout flexHorizontalLayoutLeft flexHorizontalLayoutTop" wrap="false"/>
+        </Column>
+      </Row>
+      <Row>
+        <Column>
+          <Div percentWidth="100" percentHeight="100" class="flexHorizontalLayout flexHorizontalLayoutLeft flexHorizontalLayoutTop" wrap="false"/>
+        </Column>
+        <Column>
+          <Div percentWidth="100" percentHeight="100" class="flexHorizontalLayout flexHorizontalLayoutLeft flexHorizontalLayoutTop" wrap="false"/>
+        </Column>
+      </Row>
+    </PanelGrid>
+  </RootDiv>
+</mockup>
