@@ -76,7 +76,13 @@ package loaders
 
         public function fault(info:Object):void
         {
-            token.notifyFault("Unable to load data tests");
+            var message:String = "";
+            if (info)
+            {
+                message = info.toString();
+            }
+
+            token.notifyFault("Unable to load data tests ".concat(message));
         }
 
         private function parseTestConfigData(xmlData:XML):Array
