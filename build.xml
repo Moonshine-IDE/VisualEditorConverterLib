@@ -50,6 +50,7 @@
 		       output="${basedir}/libTests/bin/FlexUnitApplication.swf"
 			   debug="${IsDebug}">
 			<source-path path-element="${basedir}/libTests/src" />
+			<source-path path-element="${basedir}/src" /> <!-- required for Bamboo build -->
 			<library-path dir="${LIB_UNITTESTS_PATH}" append="true">
 				<include name="*.swc" />
 			</library-path>
