@@ -14,7 +14,7 @@
 	<taskdef resource="flexUnitTasks.tasks" classpath="${LIB_UNITTESTS_PATH}/flexUnitTasks-4.2.0-20140410.jar" />
 	<taskdef resource="flexTasks.tasks" classpath="${FLEX_HOME}/ant/lib/flexTasks.jar"/>
 
-	<target name="main" depends="create-dirs, clean-up-bin, build, copy-bin-to-libunittests, copy-bin-to-visualeditor, copy-bin-to-xhtmlconvertercli, test"/>
+	<target name="main" depends="build, copy-bin-to-libunittests, copy-bin-to-visualeditor, copy-bin-to-xhtmlconvertercli, test"/>
 
 	<target name="create-dirs">
 		<mkdir dir="${basedir}/bin"/>
@@ -31,7 +31,7 @@
 	</target>
 
 	<!-- Compile library project to SWC -->
-	<target name="build">
+	<target name="build" depends="create-dirs, clean-up-bin">
 		<echo>Building VisualEditorConverterLib swc</echo>
 		<echo>${SWC_NAME}</echo>
 		<compc debug="${IsDebug}" output="${basedir}/bin/${SWC_NAME}" 
