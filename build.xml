@@ -14,13 +14,18 @@
 	<taskdef resource="flexUnitTasks.tasks" classpath="${LIB_UNITTESTS_PATH}/flexUnitTasks-4.2.0-20140410.jar" />
 	<taskdef resource="flexTasks.tasks" classpath="${FLEX_HOME}/ant/lib/flexTasks.jar"/>
 
-	<target name="main" depends="clean-up-bin, build, copy-bin-to-libunittests, copy-bin-to-visualeditor, copy-bin-to-xhtmlconvertercli, test"/>
+	<target name="main" depends="create-bin, clean-up-bin, build, copy-bin-to-libunittests, copy-bin-to-visualeditor, copy-bin-to-xhtmlconvertercli, test"/>
 
+	<target name="create-bin">
+		<mkdir dir="${basedir}/bin" />
+		<mkdir dir="${basedir}/libTests/bin" />
+	</target>
 	<target name="clean-up-bin">
-		<delete>
-			<fileset dir="${basedir}/bin">
-				<include name="*"/>
-			</fileset>
+		<delete includeemptydirs="true">
+			<fileset dir="${basedir}/bin" includes="**/*"/>
+		</delete>
+		<delete includeemptydirs="true">
+			<fileset dir="${basedir}/libTests/bin" includes="**/*"/>
 		</delete>
 	</target>
 
@@ -40,7 +45,8 @@
 
 	<target name="test">
 		<mxmlc file="${basedir}/libTests/src/FlexUnitApplication.mxml"
-		       output="${basedir}/libTests/bin/FlexUnitApplication.swf">
+		       output="${basedir}/libTests/bin/FlexUnitApplication.swf"
+			   configname="air">
 			<source-path path-element="${basedir}/libTests/src" />
 			<library-path dir="${LIB_UNITTESTS_PATH}" append="true">
 				<include name="*.swc" />
