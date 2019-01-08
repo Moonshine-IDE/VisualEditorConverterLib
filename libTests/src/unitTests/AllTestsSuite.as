@@ -28,6 +28,7 @@ package unitTests
     import unitTests.outputLabel.OutputLabelTest;
     import unitTests.panelGrid.PanelGridTest;
     import unitTests.selectOneListbox.SelectOneListboxTest;
+    import unitTests.selectOneMenu.SelectOneMenuTest;
     import unitTests.selectOneRadio.SelectOneRadioTest;
 
     [Suite]
@@ -45,5 +46,6 @@ package unitTests
 		public var inputTextarea:InputTextareaTest;
 		public var selectOneRadioTest:SelectOneRadioTest;
         public var panelGridTest:PanelGridTest;
+		public var selectOneMenu:SelectOneMenuTest;
     }
 }
