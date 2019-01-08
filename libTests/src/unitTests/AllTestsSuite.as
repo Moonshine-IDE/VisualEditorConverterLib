@@ -30,6 +30,7 @@ package unitTests
     import unitTests.selectOneListbox.SelectOneListboxTest;
     import unitTests.selectOneMenu.SelectOneMenuTest;
     import unitTests.selectOneRadio.SelectOneRadioTest;
+    import unitTests.tabView.TabViewTest;
 
     [Suite]
     [RunWith("org.flexunit.runners.Suite")]
@@ -47,5 +48,6 @@ package unitTests
 		public var selectOneRadioTest:SelectOneRadioTest;
         public var panelGridTest:PanelGridTest;
 		public var selectOneMenu:SelectOneMenuTest;
+		public var tabView:TabViewTest;
     }
 }
