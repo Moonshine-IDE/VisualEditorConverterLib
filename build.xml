@@ -23,10 +23,10 @@
 		<mkdir dir="${basedir}/libTests/bin/html"/>
 	</target>
 	<target name="clean-up-bin">
-		<delete includeemptydirs="true">
+		<delete includeemptydirs="true" quiet="true">
 			<fileset dir="${basedir}/bin" includes="**/*"/>
 		</delete>
-		<delete includeemptydirs="true">
+		<delete includeemptydirs="true" quiet="true">
 			<fileset dir="${basedir}/libTests/bin" includes="**/*"/>
 		</delete>
 	</target>
