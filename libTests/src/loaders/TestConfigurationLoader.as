@@ -35,18 +35,22 @@ package loaders
 
     public class TestConfigurationLoader implements IExternalDependencyLoader, IResponder
     {
-        private const TEST_CONTENT_PATH:String = "/examples/";
+        private const TEST_CONTENT_PATH:String = "examples";
 
         private var httpService:HTTPService;
         private var token:ExternalDependencyToken;
         private var testName:String;
         private var fileName:String;
 
+        private var fileSeparator:String;
+
         public function TestConfigurationLoader(fileName:String, testName:String)
         {
             this.token = new ExternalDependencyToken();
             this.fileName = fileName;
             this.testName = testName;
+            this.fileSeparator = "/";
+
             createHttpService();
         }
 
@@ -91,7 +95,8 @@ package loaders
             var testCases:XMLList = xmlData.TestCase.(@testName == this.testName);
             for each (var testCase:XML in testCases)
             {
-                var testCaseFilePath:String = TestConfig.getInstance().baseURL.concat(TEST_CONTENT_PATH, this.fileName, "/tests/");
+                var testCaseFilePath:String = TestConfig.getInstance().baseURL.concat(TEST_CONTENT_PATH,
+                        fileSeparator, this.fileName, fileSeparator, "tests", fileSeparator);
                 FileRepository.readFile(testCaseFilePath, testCase.@fileName, null, fault);
 
                 testConfigData.push([new TestCaseVO(testCaseFilePath, testCase.@fileName)]);
@@ -102,9 +107,10 @@ package loaders
 
         private function createHttpService():void
         {
+            var rootUrl:String = TestConfig.getInstance().baseURL.concat("examples", fileSeparator, fileName, fileSeparator);
+
             httpService = new HTTPService();
-            httpService.url = LoaderUtil.createAbsoluteURL(
-                    TestConfig.getInstance().baseURL.concat("/examples/", fileName, "/"), fileName + ".xml");
+            httpService.url = LoaderUtil.createAbsoluteURL(rootUrl, fileName + ".xml");
             httpService.resultFormat = "e4x";
         }
     }
