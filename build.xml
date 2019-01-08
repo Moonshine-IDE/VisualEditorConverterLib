@@ -20,6 +20,7 @@
 		<mkdir dir="${basedir}/bin"/>
 		<mkdir dir="${basedir}/libTests/bin"/>
 		<mkdir dir="${basedir}/libTests/bin/examples"/>
+		<mkdir dir="${basedir}/libTests/bin/html"/>
 	</target>
 	<target name="clean-up-bin">
 		<delete includeemptydirs="true">
@@ -61,6 +62,12 @@
 			haltonfailure="true" 
 			verbose="true" 
 			localTrusted="true" port="8765"/>
+		<junitreport todir="${basedir}/libTests/bin">
+			<fileset dir="${basedir}/libTests/bin">
+				<include name="TEST-*.xml" />
+			</fileset>
+			<report format="frames" todir="${basedir}/libTests/bin/html" />
+		</junitreport>
 	</target>
 	
 	<target name="copy-tests-examples">
