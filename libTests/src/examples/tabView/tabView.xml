@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TestCases>
-	<TestCase testName="TabViewTest" fileName="TabViewRootDiv.xml"/>
+	<TestCase testName="TabViewTest" fileName="tabViewRootDiv.xml"/>
 </TestCases>
