@@ -44,6 +44,12 @@ package unitTests.fieldset
 
         public static var dpLoader:TestConfigurationLoader = new TestConfigurationLoader("fieldset", "FieldsetTest");
 
+		[DataPoints(loader=dpDefaultLoader)]
+        [ArrayElementType("vo.TestCaseVO")]
+		public static var dpDefaultTest:Array;
+		
+		public static var dpDefaultLoader:TestConfigurationLoader = new TestConfigurationLoader("fieldset", "DefaultValuesTest");
+		
         [Before]
         override public function setUpTest():void
         {
@@ -105,6 +111,22 @@ package unitTests.fieldset
             assertEquals(String(fieldsetHTML.@legend), fieldsetComponent.title);
 			assertEquals(String(fieldsetHTML.@toggleable) == "true", fieldsetComponent.toggleable == true);
 			assertEquals(Number(fieldsetHTML.@toggleSpeed), fieldsetComponent.duration);
+        }
+
+		[Test(dataProvider=dpDefaultTest, order="4")]
+        public function fieldsetToggleSpeedDefaultTest(testCase:TestCaseVO):void
+		{
+			var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
+            var fieldsetXML:XML = getFieldset(rootXML);
+
+            var fieldsetComponent:IFieldset = new Fieldset();
+
+            fieldsetComponent.fromXML(fieldsetXML, function(xml:XML):void
+            {
+
+            });
+
+			assertEquals("No default value for toggleSpeed in fieldset", fieldsetComponent.duration, 200);
         }
 
         private function getFieldset(xml:XML):XML

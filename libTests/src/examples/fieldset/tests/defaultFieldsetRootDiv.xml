@@ -1,0 +1,7 @@
+<mockup>
+  <RootDiv width="700" height="450" class="flexVerticalLayout flexVerticalLayoutLeft flexVerticalLayoutTop" wrap="false">
+    <Fieldset width="160" height="140" legend="Basic" toggleable="true">
+      <Div percentWidth="100" percentHeight="100" class="flexHorizontalLayout flexHorizontalLayoutLeft flexHorizontalLayoutTop" wrap="false"/>
+    </Fieldset>
+  </RootDiv>
+</mockup>
