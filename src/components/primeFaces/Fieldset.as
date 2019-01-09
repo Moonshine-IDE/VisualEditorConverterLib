@@ -67,8 +67,14 @@ package components.primeFaces
 			this.title = xml.@legend;
 			this.toggleable = xml.@toggleable == "true" ? true : false;
 			
-			var toggleDuration:Number = Number(xml.@toggleSpeed);
-			this.duration = isNaN(toggleDuration) ? 200 : toggleDuration;
+			this.duration = DEFAULT_DURATION;
+			
+			var togglSpeed:String = String(xml.@toggleSpeed);
+			if (this.toggleable && togglSpeed)
+			{
+				var toggleDuration:Number = Number(xml.@toggleSpeed);
+				this.duration = isNaN(toggleDuration) || toggleDuration == 0 ? DEFAULT_DURATION : toggleDuration;
+			}
 			
 			thisCallbackXML = childFromXMLCallback;
 			createChildren(xml.elements());
