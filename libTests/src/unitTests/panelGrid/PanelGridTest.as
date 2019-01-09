@@ -93,11 +93,11 @@ package unitTests.panelGrid
         public function panelGridPropertiesTest(testCase:TestCaseVO):void
         {
             var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
-            var dropDownXML:XML = getPanelGrid(rootXML);
+            var panelGridXML:XML = getPanelGrid(rootXML);
 
             var pGrid:IPanelGrid = new PanelGrid();
 
-            pGrid.fromXML(dropDownXML, function(xml:XML):void
+            pGrid.fromXML(panelGridXML, function(xml:XML):void
             {
 
             });
@@ -110,7 +110,7 @@ package unitTests.panelGrid
         }
 
         [Test(dataProvider=dp, order="5")]
-        public function dataTableToCodeTest(testCase:TestCaseVO):void
+        public function panelGridToCodeTest(testCase:TestCaseVO):void
         {
             var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
             var panelGridXML:XML = getPanelGrid(rootXML);

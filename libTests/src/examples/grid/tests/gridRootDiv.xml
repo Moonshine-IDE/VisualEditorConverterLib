@@ -1,0 +1,30 @@
+<mockup>
+  <RootDiv width="700" height="450" class="flexVerticalLayout flexVerticalLayoutLeft flexVerticalLayoutTop" wrap="false">
+    <Grid width="327" height="205">
+      <Row class="ui-g">
+        <Column class="ui-g-6 ui-lg-6 ui-sm-6 ui-md-6 ui-xl-6">
+          <Div percentWidth="100" percentHeight="100" class="flexHorizontalLayout flexHorizontalLayoutLeft flexHorizontalLayoutTop" wrap="false"/>
+        </Column>
+        <Column class="ui-g-6 ui-lg-6 ui-sm-6 ui-md-6 ui-xl-6">
+          <Div percentWidth="100" percentHeight="100" class="flexHorizontalLayout flexHorizontalLayoutLeft flexHorizontalLayoutTop" wrap="false"/>
+        </Column>
+      </Row>
+      <Row class="ui-g">
+        <Column class="ui-g-6 ui-lg-6 ui-sm-6 ui-md-6 ui-xl-6">
+          <Div percentWidth="100" percentHeight="100" class="flexHorizontalLayout flexHorizontalLayoutLeft flexHorizontalLayoutTop" wrap="false"/>
+        </Column>
+        <Column class="ui-g-6 ui-lg-6 ui-sm-6 ui-md-6 ui-xl-6">
+          <Div percentWidth="100" percentHeight="100" class="flexHorizontalLayout flexHorizontalLayoutLeft flexHorizontalLayoutTop" wrap="false"/>
+        </Column>
+      </Row>
+      <Row class="ui-g">
+        <Column class="ui-g-6 ui-lg-6 ui-sm-6 ui-md-6 ui-xl-6">
+          <Div percentWidth="100" percentHeight="100" class="flexHorizontalLayout flexHorizontalLayoutLeft flexHorizontalLayoutTop" wrap="false"/>
+        </Column>
+        <Column class="ui-g-6 ui-lg-6 ui-sm-6 ui-md-6 ui-xl-6">
+          <Div percentWidth="100" percentHeight="100" class="flexHorizontalLayout flexHorizontalLayoutLeft flexHorizontalLayoutTop" wrap="false"/>
+        </Column>
+      </Row>
+    </Grid>
+  </RootDiv>
+</mockup>

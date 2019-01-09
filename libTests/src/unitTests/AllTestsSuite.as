@@ -33,6 +33,7 @@ package unitTests
     import unitTests.selectOneRadio.SelectOneRadioTest;
     import unitTests.tabView.TabViewTest;
     import unitTests.textEditor.TextEditorTest;
+    import unitTests.grid.GridTest;
 
     [Suite]
     [RunWith("org.flexunit.runners.Suite")]
@@ -49,9 +50,10 @@ package unitTests
 		public var inputTextarea:InputTextareaTest;
 		public var selectOneRadioTest:SelectOneRadioTest;
         public var panelGridTest:PanelGridTest;
-		public var selectOneMenu:SelectOneMenuTest;
-		public var tabView:TabViewTest;
-		public var selectBooleanCheckbox:SelectBooleanCheckboxTest;
-		public var textEditor:TextEditorTest;
+		public var selectOneMenuTest:SelectOneMenuTest;
+		public var tabViewTest:TabViewTest;
+		public var selectBooleanCheckboxTest:SelectBooleanCheckboxTest;
+		public var textEditorTest:TextEditorTest;
+		public var gridTest:GridTest;
     }
 }
