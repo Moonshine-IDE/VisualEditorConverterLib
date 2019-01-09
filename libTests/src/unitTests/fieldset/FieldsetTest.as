@@ -16,13 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package unitTests.selectOneListbox
+package unitTests.fieldset
 {
-    import components.primeFaces.SelectOneListbox;
-    
     import events.ConverterErrorEvent;
-    
-    import interfaces.components.ISelectOneListbox;
     
     import loaders.TestConfigurationLoader;
     
@@ -35,16 +31,18 @@ package unitTests.selectOneListbox
     import utils.FileRepository;
     
     import vo.TestCaseVO;
+    import interfaces.components.IFieldset;
+    import components.primeFaces.Fieldset;
 
     [TestCase]
     [RunWith("org.flexunit.runners.Parameterized")]
-    public class SelectOneListboxTest extends BaseTest
+    public class FieldsetTest extends BaseTest
     {
         [DataPoints(loader=dpLoader)]
         [ArrayElementType("vo.TestCaseVO")]
         public static var dp:Array;
 
-        public static var dpLoader:TestConfigurationLoader = new TestConfigurationLoader("selectOneListbox", "SelectOneListboxTest");
+        public static var dpLoader:TestConfigurationLoader = new TestConfigurationLoader("fieldset", "FieldsetTest");
 
         [Before]
         override public function setUpTest():void
@@ -62,56 +60,56 @@ package unitTests.selectOneListbox
         }
 
         [Test(dataProvider=dp, order="1")]
-        public function selectOneListboxExistsTest(testCase:TestCaseVO):void
+        public function fieldsetExistsTest(testCase:TestCaseVO):void
         {
             var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
-            var rootDiv:XMLList = rootXML.RootDiv.SelectOneListbox;
-            var listItem:XMLList = rootXML.RootDiv.SelectOneListbox.selectItem;
+            var rootDiv:XMLList = rootXML.RootDiv.Fieldset;
 
-            assertTrue("Example does not contain SelectOneListbox", rootDiv.length() > 0);
-            assertTrue("SelectOneListbox deos not contain selectItem", listItem.length() > 0);
+            assertTrue("Example does not contain Fieldset", rootDiv.length() > 0);
         }
 
         [Test(dataProvider=dp, order="2")]
-        public function selectOneListboxPropertiesTest(testCase:TestCaseVO):void
+        public function fieldsetPropertiesTest(testCase:TestCaseVO):void
         {
             var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
-            var selectOneListboxXML:XML = getSelectOneListbox(rootXML);
+            var fieldsetXML:XML = getFieldset(rootXML);
 
-            var listbox:ISelectOneListbox = new SelectOneListbox();
+            var fieldsetComponent:IFieldset = new Fieldset();
 
-            listbox.fromXML(selectOneListboxXML, function(xml:XML):void
+            fieldsetComponent.fromXML(fieldsetXML, function(xml:XML):void
             {
 
             });
 
-            assertNotNull(listbox.value);
-            assertEquals(selectOneListboxXML.@value,  listbox.value);
-            assertNotNull(listbox.dataProvider);
-            assertTrue(listbox.dataProvider.length > 0);
+			assertTrue(fieldsetComponent.toggleable);
+			assertTrue(isNaN(fieldsetComponent.duration) == false);
+			assertEquals(fieldsetComponent.duration, 220);
+			assertNotNull(fieldsetComponent.title);
         }
 
         [Test(dataProvider=dp, order="3")]
-        public function selectOneListboxToCodeTest(testCase:TestCaseVO):void
+        public function fieldsetToCodeTest(testCase:TestCaseVO):void
         {
             var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
-            var selectOneListboxXML:XML = getSelectOneListbox(rootXML);
+            var fieldsetXML:XML = getFieldset(rootXML);
 
-            var listbox:ISelectOneListbox = new SelectOneListbox();
+            var fieldsetComponent:IFieldset = new Fieldset();
 
-            listbox.fromXML(selectOneListboxXML, function(xml:XML):void
+            fieldsetComponent.fromXML(fieldsetXML, function(xml:XML):void
             {
 
             });
 
-            var listboxHTML:XML = listbox.toCode();
+            var fieldsetHTML:XML = fieldsetComponent.toCode();
 
-            assertEquals(String(listboxHTML.@value), listbox.value);
+            assertEquals(String(fieldsetHTML.@legend), fieldsetComponent.title);
+			assertEquals(String(fieldsetHTML.@toggleable) == "true", fieldsetComponent.toggleable == true);
+			assertEquals(Number(fieldsetHTML.@toggleSpeed), fieldsetComponent.duration);
         }
 
-        private function getSelectOneListbox(xml:XML):XML
+        private function getFieldset(xml:XML):XML
         {
-            var rootDiv:XMLList = xml.RootDiv.SelectOneListbox;
+            var rootDiv:XMLList = xml.RootDiv.Fieldset;
 
             if (rootDiv.length() > 0)
             {

@@ -34,6 +34,7 @@ package unitTests
     import unitTests.tabView.TabViewTest;
     import unitTests.textEditor.TextEditorTest;
     import unitTests.grid.GridTest;
+    import unitTests.fieldset.FieldsetTest;
 
     [Suite]
     [RunWith("org.flexunit.runners.Suite")]
@@ -55,5 +56,6 @@ package unitTests
 		public var selectBooleanCheckboxTest:SelectBooleanCheckboxTest;
 		public var textEditorTest:TextEditorTest;
 		public var gridTest:GridTest;
+		public var fieldsetTest:FieldsetTest;
     }
 }
