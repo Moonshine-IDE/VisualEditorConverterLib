@@ -32,6 +32,7 @@ package unitTests
     import unitTests.selectOneMenu.SelectOneMenuTest;
     import unitTests.selectOneRadio.SelectOneRadioTest;
     import unitTests.tabView.TabViewTest;
+    import unitTests.textEditor.TextEditorTest;
 
     [Suite]
     [RunWith("org.flexunit.runners.Suite")]
@@ -51,5 +52,6 @@ package unitTests
 		public var selectOneMenu:SelectOneMenuTest;
 		public var tabView:TabViewTest;
 		public var selectBooleanCheckbox:SelectBooleanCheckboxTest;
+		public var textEditor:TextEditorTest;
     }
 }
