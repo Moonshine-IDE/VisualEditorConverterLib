@@ -27,6 +27,7 @@ package unitTests
     import unitTests.inputTextarea.InputTextareaTest;
     import unitTests.outputLabel.OutputLabelTest;
     import unitTests.panelGrid.PanelGridTest;
+    import unitTests.selectBooleanCheckbox.SelectBooleanCheckboxTest;
     import unitTests.selectOneListbox.SelectOneListboxTest;
     import unitTests.selectOneMenu.SelectOneMenuTest;
     import unitTests.selectOneRadio.SelectOneRadioTest;
@@ -49,5 +50,6 @@ package unitTests
         public var panelGridTest:PanelGridTest;
 		public var selectOneMenu:SelectOneMenuTest;
 		public var tabView:TabViewTest;
+		public var selectBooleanCheckbox:SelectBooleanCheckboxTest;
     }
 }
