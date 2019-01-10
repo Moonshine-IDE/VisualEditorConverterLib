@@ -26,6 +26,7 @@ package unitTests
     import unitTests.fieldset.FieldsetTest;
     import unitTests.grid.GridTest;
     import unitTests.includes.IncludeTest;
+    import unitTests.inputNumber.InputNumberTest;
     import unitTests.inputText.InputTextTest;
     import unitTests.inputTextarea.InputTextareaTest;
     import unitTests.outputLabel.OutputLabelTest;
@@ -61,5 +62,6 @@ package unitTests
 		public var fieldsetTest:FieldsetTest;
 		public var includes:IncludeTest;
 		public var tree:TreeTest;
+		public var inputNumber:InputNumberTest;
     }
 }

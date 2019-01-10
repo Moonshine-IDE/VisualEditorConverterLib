@@ -1,0 +1,5 @@
+<mockup>
+  <RootDiv width="700" height="450" class="flexVerticalLayout flexVerticalLayoutLeft flexVerticalLayoutTop" wrap="false">
+  	<InputNumber width="100" height="30" value="0.00" required="false" thousandSeparator="," decimalSeparator="."/>
+  </RootDiv>
+</mockup>
