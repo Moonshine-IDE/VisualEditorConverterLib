@@ -23,6 +23,9 @@ package unitTests
     import unitTests.calendar.CalendarTest;
     import unitTests.converter.ConverterTest;
     import unitTests.dataTable.DataTableTest;
+    import unitTests.fieldset.FieldsetTest;
+    import unitTests.grid.GridTest;
+    import unitTests.includes.IncludeTest;
     import unitTests.inputText.InputTextTest;
     import unitTests.inputTextarea.InputTextareaTest;
     import unitTests.outputLabel.OutputLabelTest;
@@ -33,8 +36,6 @@ package unitTests
     import unitTests.selectOneRadio.SelectOneRadioTest;
     import unitTests.tabView.TabViewTest;
     import unitTests.textEditor.TextEditorTest;
-    import unitTests.grid.GridTest;
-    import unitTests.fieldset.FieldsetTest;
 
     [Suite]
     [RunWith("org.flexunit.runners.Suite")]
@@ -57,5 +58,6 @@ package unitTests
 		public var textEditorTest:TextEditorTest;
 		public var gridTest:GridTest;
 		public var fieldsetTest:FieldsetTest;
+		public var includes:IncludeTest;
     }
 }

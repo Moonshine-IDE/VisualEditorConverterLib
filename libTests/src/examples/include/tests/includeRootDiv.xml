@@ -1,0 +1,5 @@
+<mockup>
+  <RootDiv width="700" height="450" class="flexVerticalLayout flexVerticalLayoutLeft flexVerticalLayoutTop" wrap="false">
+    <Include width="405.5" height="135" src="xhtmlFile"/>
+  </RootDiv>
+</mockup>
