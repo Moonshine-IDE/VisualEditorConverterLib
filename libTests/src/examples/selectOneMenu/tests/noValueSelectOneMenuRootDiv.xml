@@ -1,0 +1,8 @@
+<mockup>
+  <RootDiv width="700" height="450" class="flexVerticalLayout flexVerticalLayoutLeft flexVerticalLayoutTop" wrap="false">
+    <SelectOneMenu width="120" height="30" editable="false">
+      <selectItem itemLabel="Select One" itemValue="itemValue"/>
+      <selectItem itemLabel="Select Two" itemValue="itemValue"/>
+    </SelectOneMenu>
+  </RootDiv>
+</mockup>

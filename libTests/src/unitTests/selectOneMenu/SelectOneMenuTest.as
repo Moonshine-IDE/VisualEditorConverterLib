@@ -47,6 +47,13 @@ package unitTests.selectOneMenu
 
         public static var dpLoader:TestConfigurationLoader = new TestConfigurationLoader("selectOneMenu", "SelectOneMenuTest");
 
+ 		[DataPoints(loader=noValueDpLoader)]
+        [ArrayElementType("vo.TestCaseVO")]
+        public static var noValueDp:Array;
+
+        public static var noValueDpLoader:TestConfigurationLoader = new TestConfigurationLoader("selectOneMenu", "NoValueSelectOneMenuTest");
+
+
         [Before]
         override public function setUpTest():void
         {
@@ -110,6 +117,24 @@ package unitTests.selectOneMenu
 			
 			assertEquals(String(selectMenuHTML.@editable) == "true", selectMenu.editable == true);
             assertEquals(String(selectMenuHTML.@value), selectMenu.value);
+        }
+
+		[Test(dataProvider=noValueDp, order="4")]
+        public function noValueTest(testCase:TestCaseVO):void
+        {
+            var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
+            var selectOneMenuXML:XML = getSelectOneMenu(rootXML);
+
+            var selectMenu:ISelectOneMenu = new SelectOneMenu();
+
+            selectMenu.fromXML(selectOneMenuXML, function(xml:XML):void
+            {
+
+            });
+
+            var selectMenuHTML:XML = selectMenu.toCode();
+			
+			assertFalse("@value" in selectMenuHTML);
         }
 
         private function getSelectOneMenu(xml:XML):XML

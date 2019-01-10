@@ -84,7 +84,11 @@ package components.primeFaces
 
             CodeXMLUtils.addSizeHtmlStyleToXML(xml, this);
 
-			xml["@value"] = this.value;
+			if (this.value)
+			{
+				xml["@value"] = this.value;
+			}
+			
 			if (this.editable) xml["@editable"] = this.editable.toString();
 			
 			var itemXML:XML;
