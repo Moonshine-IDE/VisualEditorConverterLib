@@ -36,6 +36,7 @@ package unitTests
     import unitTests.selectOneRadio.SelectOneRadioTest;
     import unitTests.tabView.TabViewTest;
     import unitTests.textEditor.TextEditorTest;
+    import unitTests.tree.TreeTest;
 
     [Suite]
     [RunWith("org.flexunit.runners.Suite")]
@@ -59,5 +60,6 @@ package unitTests
 		public var gridTest:GridTest;
 		public var fieldsetTest:FieldsetTest;
 		public var includes:IncludeTest;
+		public var tree:TreeTest;
     }
 }
