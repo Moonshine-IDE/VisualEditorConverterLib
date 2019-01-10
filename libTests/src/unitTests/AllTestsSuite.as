@@ -23,6 +23,7 @@ package unitTests
     import unitTests.calendar.CalendarTest;
     import unitTests.converter.ConverterTest;
     import unitTests.dataTable.DataTableTest;
+    import unitTests.div.DivTest;
     import unitTests.fieldset.FieldsetTest;
     import unitTests.grid.GridTest;
     import unitTests.includes.IncludeTest;
@@ -60,8 +61,9 @@ package unitTests
 		public var textEditorTest:TextEditorTest;
 		public var gridTest:GridTest;
 		public var fieldsetTest:FieldsetTest;
-		public var includes:IncludeTest;
-		public var tree:TreeTest;
-		public var inputNumber:InputNumberTest;
+		public var includeTest:IncludeTest;
+		public var treeTest:TreeTest;
+		public var inputNumberTest:InputNumberTest;
+		public var divTest:DivTest;
     }
 }

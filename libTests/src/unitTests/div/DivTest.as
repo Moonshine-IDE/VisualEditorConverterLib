@@ -16,35 +16,35 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package unitTests.includes
+package unitTests.div
 {
-    import components.primeFaces.Include;
-    
+    import components.primeFaces.Div;
+
     import events.ConverterErrorEvent;
-    
-    import interfaces.components.IInclude;
-    
+
+    import interfaces.components.IDiv;
+
     import loaders.TestConfigurationLoader;
-    
+
     import org.flexunit.asserts.assertEquals;
     import org.flexunit.asserts.assertNotNull;
     import org.flexunit.asserts.assertTrue;
-    
+
     import unitTests.BaseTest;
-    
+
     import utils.FileRepository;
-    
+
     import vo.TestCaseVO;
 
     [TestCase]
     [RunWith("org.flexunit.runners.Parameterized")]
-    public class IncludeTest extends BaseTest
+    public class DivTest extends BaseTest
     {
         [DataPoints(loader=dpLoader)]
         [ArrayElementType("vo.TestCaseVO")]
         public static var dp:Array;
 
-        public static var dpLoader:TestConfigurationLoader = new TestConfigurationLoader("include", "IncludeTest");
+        public static var dpLoader:TestConfigurationLoader = new TestConfigurationLoader("div", "DivTest");
 
         [Before]
         override public function setUpTest():void
@@ -62,51 +62,51 @@ package unitTests.includes
         }
 
         [Test(dataProvider=dp, order="1")]
-        public function includeExistsTest(testCase:TestCaseVO):void
+        public function divExistsTest(testCase:TestCaseVO):void
         {
             var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
-            var rootDiv:XMLList = rootXML.RootDiv.Include;
+            var rootDiv:XMLList = rootXML.RootDiv.Div;
 
-            assertTrue("Example does not contain Include", rootDiv.length() > 0);
+            assertTrue("Example does not contain Div", rootDiv.length() > 0);
         }
 
         [Test(dataProvider=dp, order="2")]
-        public function includePropertiesTest(testCase:TestCaseVO):void
+        public function divPropertiesTest(testCase:TestCaseVO):void
         {
             var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
-            var includeXML:XML = getInclude(rootXML);
+            var divXML:XML = getDiv(rootXML);
 
-            var inc:IInclude = new Include();
+            var divContainer:IDiv = new Div();
 
-			inc.fromXML(includeXML, function(xml:XML):void
+			divContainer.fromXML(divXML, function(xml:XML):void
             {
 
             });
 			
-			assertNotNull(inc.path);
+			assertNotNull(divContainer.cssClass);
         }
 
         [Test(dataProvider=dp, order="3")]
-        public function includeToCodeTest(testCase:TestCaseVO):void
+        public function divToCodeTest(testCase:TestCaseVO):void
         {
             var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
-			var includeXML:XML = getInclude(rootXML);
+			var divXML:XML = getDiv(rootXML);
 			
-			var inc:IInclude = new Include();
+			var divContainer:IDiv = new Div();
 			
-			inc.fromXML(includeXML, function(xml:XML):void
+			divContainer.fromXML(divXML, function(xml:XML):void
 			{
 				
 			});
 
-            var includeHTML:XML = inc.toCode();
+            var divHTML:XML = divContainer.toCode();
 
-			assertEquals(String(includeHTML.@src), inc.path);
+			assertEquals(String(divHTML["@class"]), divContainer.cssClass);
         }
 
-        private function getInclude(xml:XML):XML
+        private function getDiv(xml:XML):XML
         {
-            var rootDiv:XMLList = xml.RootDiv.Include;
+            var rootDiv:XMLList = xml.RootDiv.Div;
 
             if (rootDiv.length() > 0)
             {
