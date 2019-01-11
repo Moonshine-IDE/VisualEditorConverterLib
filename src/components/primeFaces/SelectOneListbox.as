@@ -76,8 +76,12 @@ package components.primeFaces
 			xml.setNamespace(primeFacesNamespace);
 
             CodeXMLUtils.addSizeHtmlStyleToXML(xml, this);
-            xml["@value"] = !this.value || this.value == "null" ? "" : this.value;
-
+			
+			if (this.value && this.value != "null")
+			{
+            		xml["@value"] = this.value;
+			}
+			
 			var itemXML:XML;
 			for each (var item:SelectItem in dataProvider)
 			{

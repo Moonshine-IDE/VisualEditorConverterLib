@@ -51,7 +51,7 @@ package unitTests.selectOneListbox
         [ArrayElementType("vo.TestCaseVO")]
         public static var noValueDp:Array;
 
-        public static var noValueDpLoader:TestConfigurationLoader = new TestConfigurationLoader("selectOneListbox", "NoValueSelectOneListbox");
+        public static var noValueDpLoader:TestConfigurationLoader = new TestConfigurationLoader("selectOneListbox", "NoValueSelectOneListboxTest");
 
         [Before]
         override public function setUpTest():void
