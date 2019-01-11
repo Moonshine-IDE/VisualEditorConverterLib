@@ -99,7 +99,11 @@ package components.primeFaces
 				itemXML.addNamespace(facetNamespace);
 				itemXML.setNamespace(facetNamespace);
 				itemXML["@itemLabel"] = item.itemLabel;
-				itemXML["@itemValue"] = item.itemValue ? item.itemValue : "";
+				if (item.itemValue)
+				{
+					itemXML["@itemValue"] = item.itemValue;
+				}
+				
 				xml.appendChild(itemXML);
 			}
 
