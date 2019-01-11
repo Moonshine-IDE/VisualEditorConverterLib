@@ -133,6 +133,16 @@ package unitTests.selectOneMenu
             });
 
             var selectMenuHTML:XML = selectMenu.toCode();
+
+			var facetNamespace:Namespace = new Namespace("f", "http://xmlns.jcp.org/jsf/core");
+			var items:XMLList = selectMenuHTML.facetNamespace::selectItem;
+						
+			assertTrue("There is no items in SelectOneMenu", items.length() > 0);
+			
+			for each (var item:XML in items)
+			{
+				assertFalse("@itemValue" in item);
+			}
 			
 			assertFalse("@value" in selectMenuHTML);
         }

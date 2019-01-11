@@ -19,22 +19,23 @@
 package unitTests.selectOneRadio
 {
 	import components.primeFaces.SelectOneRadio;
-	
+
 	import events.ConverterErrorEvent;
-	
+
 	import interfaces.components.ISelectOneRadio;
-	
+
 	import loaders.TestConfigurationLoader;
-	
+
 	import org.flexunit.asserts.assertEquals;
 	import org.flexunit.asserts.assertNotNull;
 	import org.flexunit.asserts.assertTrue;
-	
+
 	import unitTests.BaseTest;
-	
+
 	import utils.FileRepository;
-	
+
 	import vo.TestCaseVO;
+	import org.flexunit.asserts.assertFalse;
 	
 	[TestCase]
 	[RunWith("org.flexunit.runners.Parameterized")]
@@ -45,6 +46,13 @@ package unitTests.selectOneRadio
 		public static var dp:Array;
 		
 		public static var dpLoader:TestConfigurationLoader = new TestConfigurationLoader("selectOneRadio", "SelectOneRadioTest");
+		
+		[DataPoints(loader=noValueDpLoader)]
+        [ArrayElementType("vo.TestCaseVO")]
+        public static var noValueDp:Array;
+
+        public static var noValueDpLoader:TestConfigurationLoader = new TestConfigurationLoader("selectOneRadio", "NoValueSelectOneRadioTest");
+
 		
 		[Before]
 		override public function setUpTest():void
@@ -102,10 +110,38 @@ package unitTests.selectOneRadio
 				
 			});
 			
-			var dropDownHTML:XML = radio.toCode();
+			var selectOneRadioHTML:XML = radio.toCode();
 			
-			assertEquals(String(dropDownHTML.@value), radio.value);
+			assertEquals(String(selectOneRadioHTML.@value), radio.value);
 		}
+		
+		[Test(dataProvider=noValueDp, order="4")]
+        public function noValueTest(testCase:TestCaseVO):void
+        {
+            var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
+			var selectOneRadioXML:XML = getSelectOneRadio(rootXML);
+			
+			var radio:ISelectOneRadio = new SelectOneRadio();
+			
+			radio.fromXML(selectOneRadioXML, function(xml:XML):void
+			{
+				
+			});
+			
+			var selectOneRadioHTML:XML = radio.toCode();
+
+			var facetNamespace:Namespace = new Namespace("f", "http://xmlns.jcp.org/jsf/core");
+			var items:XMLList = selectOneRadioHTML.facetNamespace::selectItem;
+						
+			assertTrue("There is no items in SelectOneRadio", items.length() > 0);
+			
+			for each (var item:XML in items)
+			{
+				assertFalse("@itemValue" in item);
+			}
+			
+			assertFalse("@value" in selectOneRadioHTML);
+        }
 		
 		private function getSelectOneRadio(xml:XML):XML
 		{
