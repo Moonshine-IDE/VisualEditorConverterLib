@@ -1,0 +1,5 @@
+<mockup>
+  <RootDiv width="700" height="450" class="flexVerticalLayout flexVerticalLayoutLeft flexVerticalLayoutTop" wrap="false">
+    <InputMask width="100" height="30" mask="(999) 999-9999" value="3242423423" required="true" id="inputMask"/>
+  </RootDiv>
+</mockup>

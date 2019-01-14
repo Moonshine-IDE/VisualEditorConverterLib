@@ -27,6 +27,7 @@ package unitTests
     import unitTests.fieldset.FieldsetTest;
     import unitTests.grid.GridTest;
     import unitTests.includes.IncludeTest;
+    import unitTests.inputMask.InputMaskTest;
     import unitTests.inputNumber.InputNumberTest;
     import unitTests.inputText.InputTextTest;
     import unitTests.inputTextarea.InputTextareaTest;
@@ -65,5 +66,6 @@ package unitTests
 		public var treeTest:TreeTest;
 		public var inputNumberTest:InputNumberTest;
 		public var divTest:DivTest;
+		public var inputMaskTest:InputMaskTest;
     }
 }

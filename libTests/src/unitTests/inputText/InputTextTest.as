@@ -57,11 +57,11 @@ package unitTests.inputText
 		public function inputTextPropertiesTest(testCase:TestCaseVO):void
 		{
 			var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
-			var buttonXML:XML = getTextInput(rootXML);
+			var inputTextXML:XML = getTextInput(rootXML);
 			
 			var txt:IInputText = new InputText();
 			
-			txt.fromXML(buttonXML, function(xml:XML):void
+			txt.fromXML(inputTextXML, function(xml:XML):void
 			{
 				
 			});
@@ -76,11 +76,11 @@ package unitTests.inputText
 		public function inputTextToCodeTest(testCase:TestCaseVO):void
 		{
 			var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
-			var buttonXML:XML = getTextInput(rootXML);
+			var inputTextXML:XML = getTextInput(rootXML);
 			
 			var txt:IInputText = new InputText();
 			
-			txt.fromXML(buttonXML, function(xml:XML):void
+			txt.fromXML(inputTextXML, function(xml:XML):void
 			{
 				
 			});
