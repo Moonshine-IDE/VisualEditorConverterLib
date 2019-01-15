@@ -28,6 +28,8 @@ package unitTests.textEditor
     
     import org.flexunit.asserts.assertEquals;
     import org.flexunit.asserts.assertFalse;
+    import org.flexunit.asserts.assertNotNull;
+    import org.flexunit.asserts.assertNull;
     import org.flexunit.asserts.assertTrue;
     
     import unitTests.BaseTest;
@@ -112,7 +114,23 @@ package unitTests.textEditor
         }
 		
 		[Test(dataProvider=noTextDp, order="4")]
-		public function noTextTest(testCase:TestCaseVO):void
+		public function textPropertyIsNotNullTest(testCase:TestCaseVO):void
+		{
+			var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
+			var textEditorXML:XML = getTextEditor(rootXML);
+			
+			var textEditor:ITextEditor = new TextEditor();
+			
+			textEditor.fromXML(textEditorXML, function(xml:XML):void
+			{
+				
+			});
+			
+			assertNotNull(textEditor.text);
+		}
+		
+		[Test(dataProvider=noTextDp, order="5")]
+		public function noTextPropertyToCodeTest(testCase:TestCaseVO):void
 		{
 			var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
 			var textEditorXML:XML = getTextEditor(rootXML);
