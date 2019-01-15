@@ -1,0 +1,5 @@
+<mockup>
+  <RootDiv width="700" height="450" class="flexVerticalLayout flexVerticalLayoutLeft flexVerticalLayoutTop" wrap="false">
+    <TextEditor width="250" height="100" widgetVar="WidgetVar" placeholder="Input Text"/>
+  </RootDiv>
+</mockup>

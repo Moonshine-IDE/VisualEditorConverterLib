@@ -27,7 +27,7 @@ package unitTests.textEditor
     import loaders.TestConfigurationLoader;
     
     import org.flexunit.asserts.assertEquals;
-    import org.flexunit.asserts.assertNull;
+    import org.flexunit.asserts.assertFalse;
     import org.flexunit.asserts.assertTrue;
     
     import unitTests.BaseTest;
@@ -43,8 +43,12 @@ package unitTests.textEditor
         [DataPoints(loader=dpLoader)]
         [ArrayElementType("vo.TestCaseVO")]
         public static var dp:Array;
-
         public static var dpLoader:TestConfigurationLoader = new TestConfigurationLoader("textEditor", "TextEditorTest");
+		
+		[DataPoints(loader=noTextDpLoader)]
+		[ArrayElementType("vo.TestCaseVO")]
+		public static var noTextDp:Array;
+		public static var noTextDpLoader:TestConfigurationLoader = new TestConfigurationLoader("textEditor", "NoTextTextEditorTest");
 
         [Before]
         override public function setUpTest():void
@@ -106,6 +110,23 @@ package unitTests.textEditor
 			assertEquals(String(textEditorHTML.@widgetVar), textEditor.widgetVar);
 			assertEquals(String(textEditorHTML.@placeholder), textEditor.placeholder);
         }
+		
+		[Test(dataProvider=noTextDp, order="4")]
+		public function noTextTest(testCase:TestCaseVO):void
+		{
+			var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
+			var textEditorXML:XML = getTextEditor(rootXML);
+			
+			var textEditor:ITextEditor = new TextEditor();
+			
+			textEditor.fromXML(textEditorXML, function(xml:XML):void
+			{
+				
+			});
+			
+			var textEditorHTML:XML = textEditor.toCode();
+			assertFalse("@text" in textEditorHTML);
+		}
 
         private function getTextEditor(xml:XML):XML
         {
