@@ -28,7 +28,6 @@ package unitTests.textEditor
     
     import org.flexunit.asserts.assertEquals;
     import org.flexunit.asserts.assertFalse;
-    import org.flexunit.asserts.assertNotNull;
     import org.flexunit.asserts.assertNull;
     import org.flexunit.asserts.assertTrue;
     
@@ -90,7 +89,7 @@ package unitTests.textEditor
             });
 			
 			assertTrue(textEditor.widgetVar.length > 0);
-			assertTrue(textEditor.text.length > 0);
+			assertNull(textEditor.text);
 			assertTrue(textEditor.placeholder.length > 0);
         }
 
@@ -114,7 +113,7 @@ package unitTests.textEditor
         }
 		
 		[Test(dataProvider=noTextDp, order="4")]
-		public function textPropertyIsNotNullTest(testCase:TestCaseVO):void
+		public function textPropertyIsNullTest(testCase:TestCaseVO):void
 		{
 			var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
 			var textEditorXML:XML = getTextEditor(rootXML);
@@ -126,7 +125,7 @@ package unitTests.textEditor
 				
 			});
 			
-			assertNotNull(textEditor.text);
+			assertNull(textEditor.text);
 		}
 		
 		[Test(dataProvider=noTextDp, order="5")]
