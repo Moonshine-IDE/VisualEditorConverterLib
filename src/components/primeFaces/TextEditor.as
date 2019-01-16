@@ -60,7 +60,7 @@ package components.primeFaces
 			this.setComponentSize(xml);
 			
 			this.widgetVar = xml.@widgetVar;
-			this.text = xml.@text;
+			if (xml.@value != undefined) this.text = xml.@value;
 			this.placeholder = xml.@placeholder;
 		}
 		
