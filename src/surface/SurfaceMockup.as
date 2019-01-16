@@ -16,6 +16,50 @@ package surface
 			_elements = [];	
 		}		
 		
+				private var _width:Number;
+		public function get width():Number
+		{
+			return _width;
+		}
+
+		public function set width(value:Number):void
+		{
+			_width = value;
+		}
+		
+		private var _height:Number;
+		public function get height():Number
+		{
+			return _height;
+		}
+
+		public function set height(value:Number):void
+		{
+			_height = value;
+		}
+		
+		private var _percentWidth:Number;
+		public function get percentWidth():Number
+		{
+			return _percentWidth;
+		}
+
+		public function set percentWidth(value:Number):void
+		{
+			_percentWidth = value;
+		}
+		
+		private var _percentHeight:Number;
+		public function get percentHeight():Number
+		{
+			return _percentHeight;
+		}
+
+		public function set percentHeight(value:Number):void
+		{
+			_percentHeight = value;
+		}
+		
 		public function addItem(item:IComponent):void
 		{
 			
