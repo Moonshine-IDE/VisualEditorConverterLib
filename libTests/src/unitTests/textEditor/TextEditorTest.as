@@ -89,7 +89,7 @@ package unitTests.textEditor
             });
 			
 			assertTrue(textEditor.widgetVar.length > 0);
-			assertNull(textEditor.text);
+			assertTrue(textEditor.text.length > 0);
 			assertTrue(textEditor.placeholder.length > 0);
         }
 
