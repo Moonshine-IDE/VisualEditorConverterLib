@@ -35,6 +35,11 @@ package components.primeFaces
 			return _cssClass;
 		}
 		
+		public function set cssClass(value:String):void
+		{
+			_cssClass = value;	
+		}		
+		
 		private var _label:String;
 		public function get label():String
 		{
@@ -46,12 +51,24 @@ package components.primeFaces
 			_label = value;
 		}
 		
+		private var _wrap:Boolean;
+		public function get wrap():Boolean
+		{
+			return _wrap;
+		}		
+		
+		public function set wrap(value:Boolean):void
+		{
+			_wrap = value;
+		}		
+		
 		public function fromXML(xml:XML, childFromXMLCallback:Function):void
 		{
 			this._xml = xml;
 			
 			setComponentSize(xml);
 			
+			this.wrap = xml.@wrap == "true";
 			if (xml.@["class"])
 			{
 				this._cssClass = xml.@["class"];
