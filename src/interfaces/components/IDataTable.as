@@ -19,5 +19,7 @@ package interfaces.components
 		
 		function get tableValue():String;
 		function set tableValue(value:String):void;
+		
+		function get tableColumnDescriptor():Array;
 	}
 }
