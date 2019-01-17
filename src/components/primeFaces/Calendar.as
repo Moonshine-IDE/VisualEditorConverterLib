@@ -27,7 +27,7 @@ package components.primeFaces
 			_isSelected = value;
 		}
 		
-		private var _pattern:String;
+		private var _pattern:String = "MM/dd/yyyy";
 		public function get pattern():String
 		{
 			return _pattern;

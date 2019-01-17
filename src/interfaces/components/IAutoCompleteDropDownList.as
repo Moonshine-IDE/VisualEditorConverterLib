@@ -1,8 +1,9 @@
 package interfaces.components
 {
 	import interfaces.IComponent;
+	import interfaces.IIsSelected;
 
-	public interface IAutoCompleteDropDownList extends IComponent
+	public interface IAutoCompleteDropDownList extends IComponent, IIsSelected
 	{
 		function get value():String;
 		function set value(value:String):void;
