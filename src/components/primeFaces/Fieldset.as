@@ -15,7 +15,16 @@ package components.primeFaces
 		
 		private static const DEFAULT_DURATION:int = 200;
 		
+		private var _component:IComponent;
+
 		private var thisCallbackXML:Function;
+		
+		public function Fieldset(component:IComponent = null):void
+		{
+			super();
+			
+			_component = component;
+		}
 		
 		private var _isSelected:Boolean;
 		public function get isSelected():Boolean
@@ -57,6 +66,11 @@ package components.primeFaces
 			_duration = value;
 		}
 
+		private function get component():IComponent
+		{
+			return _component ? _component : this;
+		}
+		
 		/**
 		 * Complexity of this component requires separate implementation of this method on client sight
 		 */
@@ -96,10 +110,10 @@ package components.primeFaces
 			xml.@toggleable = this.toggleable;
 			xml.@toggleSpeed = this.duration;
 			
-			var elementCount:int = this.numElements;
+			var elementCount:int = component["numElements"];
 			for(var i:int = 0; i < elementCount; i++)
 			{
-				var element:IComponent = this.getElementAt(i) as IComponent;
+				var element:IComponent = component["getElementAt"](i) as IComponent;
 				if(element === null)
 				{
 					continue;

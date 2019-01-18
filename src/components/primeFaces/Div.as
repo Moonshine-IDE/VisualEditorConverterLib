@@ -1,21 +1,27 @@
 package components.primeFaces
 {
-	import interfaces.components.IDiv;
 	import components.ComponentBase;
+
+	import interfaces.IComponent;
+	import interfaces.components.IDiv;
+
 	import utils.CodeMxmlUtils;
 	import utils.CodeXMLUtils;
-	import interfaces.IComponent;
 	
 	public class Div extends ComponentBase implements IDiv
 	{
 		private static const PRIME_FACES_XML_ELEMENT_NAME:String = "div";
     	public static var ELEMENT_NAME:String = "Div";
 
+		private var _component:IComponent;
+
 		private var _xml:XML;
 		
-		public function Div()
+		public function Div(component:IComponent = null)
 		{
 			super();
+			
+			this._component = component;
 		}
 
 		private var _isSelected:Boolean;
@@ -62,6 +68,11 @@ package components.primeFaces
 			_wrap = value;
 		}		
 		
+		private function get component():IComponent
+		{
+			return _component ? _component : this;
+		}
+		
 		public function fromXML(xml:XML, childFromXMLCallback:Function):void
 		{
 			this._xml = xml;
@@ -79,7 +90,7 @@ package components.primeFaces
             for(var i:int = 0; i < childCount; i++)
             {
                 var childXML:XML = elementsXML[i];
-                childFromXMLCallback(this, childXML);
+                childFromXMLCallback(component, childXML);
             }
 		}
 		
@@ -92,10 +103,10 @@ package components.primeFaces
 			///TODO: Adjust for Visual Editor
             xml["@class"] = _cssClass;
 
-            var elementCount:int = this.numElements;
+            var elementCount:int = component["numElements"];
             for(var i:int = 0; i < elementCount; i++)
             {
-                var element:IComponent = this.getElementAt(i) as IComponent;
+                var element:IComponent = component["getElementAt"](i) as IComponent;
                 xml.appendChild(element.toCode());
             }
 
