@@ -7,6 +7,7 @@ package components.primeFaces
 	
 	import utils.CodeMxmlUtils;
 	import utils.CodeXMLUtils;
+	import converter.Converter;
 	
 	public class Fieldset extends ComponentBase implements IFieldset
 	{
@@ -131,7 +132,16 @@ package components.primeFaces
 			
 			var divXML:XML = elements[0];
 			var childCount:int = divXML.length();
-			var item:IComponent = new Div();
+			var item:IComponent = null;
+			
+			if (component["numElements"] > 0)
+			{
+				item = component["getElementAt"](0);
+			}
+			else
+			{
+				item = Converter.getInstance().getNewInstanceOfComponent(Div.ELEMENT_NAME);
+			}
 			
 			for (var itemIndex:int; itemIndex < childCount; itemIndex++)
 			{
@@ -139,7 +149,10 @@ package components.primeFaces
 				item.fromXML(itemXML, thisCallbackXML);
 			}
 			
-			this.addElement(item);
+			if (component["numElements"] == 0)
+			{
+				component["addElement"](item);
+			}
 		}
 	}
 }

@@ -55,6 +55,17 @@ package converter
 			fillClassLookupWidthData(classLookup);
 	    }
 	
+		public function getNewInstanceOfComponent(name:String):IComponent
+		{
+			if ((name in this.classLookup))
+			{
+				var type:Class = this.classLookup[name];
+				return new type() as IComponent;
+			}
+
+			return null;						
+	    }		
+	
 	    public static function getInstance(classLookup:Object = null):Converter  
 	    {
 	        if(!_instance)
@@ -109,8 +120,8 @@ package converter
                 }
 				return null;
 			}
-			var type:Class = this.classLookup[name];
-			var item:IComponent = new type() as IComponent;
+
+			var item:IComponent = getNewInstanceOfComponent(name);
 			if(item === null)
 			{
 				var errorMessage:String = "Failed to create surface component: " + name;
