@@ -5,6 +5,8 @@ package components
 
 	public class Container extends ComponentBase implements IComponent
 	{
+		public static const ELEMENT_NAME:String = "Container";
+		
 		public function Container()
 		{
 			super();

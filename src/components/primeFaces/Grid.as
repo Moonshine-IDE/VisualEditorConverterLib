@@ -1,8 +1,15 @@
 package components.primeFaces
 {
     import components.ComponentBase;
-    import interfaces.components.IGrid;
     import components.Container;
+    import components.GridItem;
+    import components.GridRow;
+
+    import converter.Converter;
+
+    import interfaces.IComponent;
+    import interfaces.components.IGrid;
+
     import utils.CodeMxmlUtils;
     import utils.CodeXMLUtils;
 
@@ -13,9 +20,13 @@ package components.primeFaces
 			
 		private static const MAX_COLUMN_COUNT:int = 12;
 
-		public function Grid()
+		private var _component:IComponent;
+
+		public function Grid(component:IComponent = null)
 		{
 			super();
+			
+			_component = component;
 		}
 		
 		private var _isSelected:Boolean;
@@ -26,6 +37,11 @@ package components.primeFaces
 		public function set isSelected(value:Boolean):void
 		{
 			_isSelected = value;
+		}
+		
+		private function get component():IComponent
+		{
+			return _component ? _component : this;
 		}
 		
 		/**
@@ -43,8 +59,9 @@ package components.primeFaces
                 {
                     var rowXML:XML = elementsXML[row];
                     var colListXML:XMLList = rowXML.elements();
-
-                    var gridRow:Container = new Container();
+					
+					var conv:Converter = Converter.getInstance();
+                    var gridRow:Object = conv.getNewInstanceOfComponent(GridRow.GRIDROW_NAME);
  
                     var colCount:int = colListXML.length();
                     for (var col:int = 0; col < colCount; col++)
@@ -52,12 +69,12 @@ package components.primeFaces
                         var colXML:XML = colListXML[col];
                         if (colXML.length() > 0)
                         {
-                            var gridItem:Container = new Container();
+                            var gridItem:Object = conv.getNewInstanceOfComponent(GridItem.GRIDITEM_NAME);
      
                             var divXMLList:XMLList = colXML.elements();
                             var divXML:XML = divXMLList[0];
 
-                            var div:Div = new Div();
+                            var div:Div = conv.getNewInstanceOfComponent(Div.ELEMENT_NAME) as Div;
                             div.percentWidth = div.percentHeight = 100;
 
                             gridItem.addElement(div);
@@ -70,7 +87,7 @@ package components.primeFaces
                         }
                     }
 
-                    this.addElement(gridRow);
+                    component["addElement"](gridRow);
                 }
             }
 		}
@@ -87,18 +104,18 @@ package components.primeFaces
 
             CodeXMLUtils.addSizeHtmlStyleToXML(xml, this);
 
-            var gridRowNumElements:int = this.numElements;
+            var gridRowNumElements:int = component["numElements"];
             for (var row:int = 0; row < gridRowNumElements; row++)
             {
                 var rowXML:XML = new XML("<div />");
                 rowXML["@class"] = "ui-g";
 
-                var gridRow:Container = this.getElementAt(row) as Container;
+                var gridRow:Object = component["getElementAt"](row);
                 var gridColumnNumElements:int = gridRow.numElements;
                 for (var col:int = 0; col < gridColumnNumElements; col++)
                 {
-                    var gridCol:Container = gridRow.getElementAt(col) as Container;
-                    var div:Div = gridCol.getElementAt(0) as Div;
+                    var gridCol:Object = gridRow["getElementAt"](col);
+                    var div:Object = gridCol.getElementAt(0);
 
                     var colXML:XML = new XML("<div />");
                     colXML["@class"] = this.getClassNameBasedOnColumns(gridColumnNumElements);

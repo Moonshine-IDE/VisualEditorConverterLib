@@ -33,6 +33,9 @@ package converter
 	import interfaces.ISurface;
 	
 	import surface.SurfaceMockup;
+	import components.Container;
+	import components.GridRow;
+	import components.GridItem;
 
 	[Event(name="conversionCompleted", type="events.ConverterEvent")]
 	public class Converter extends EventDispatcher
@@ -166,6 +169,9 @@ package converter
 			this.classLookup[Tree.ELEMENT_NAME] = Tree;
 			this.classLookup[AutoCompleteDropDownList.ELEMENT_NAME] = AutoCompleteDropDownList;
 			this.classLookup[SelectOneListbox.ELEMENT_NAME] = SelectOneListbox;
+			this.classLookup[Container.ELEMENT_NAME] = Container;
+			this.classLookup[GridRow.GRIDROW_NAME] = GridRow;
+			this.classLookup[GridItem.GRIDITEM_NAME] = GridItem;
 			
 			this.unknownItemsExceptions = [
 				"Column"
