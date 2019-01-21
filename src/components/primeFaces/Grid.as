@@ -61,7 +61,8 @@ package components.primeFaces
 					
 					var conv:Converter = Converter.getInstance();
                     var gridRow:Object = conv.getNewInstanceOfComponent(GridRow.GRIDROW_NAME);
- 
+ 					gridRow.percentWidth = gridRow.percentHeight = 100;
+
                     var colCount:int = colListXML.length();
                     for (var col:int = 0; col < colCount; col++)
                     {
@@ -69,7 +70,8 @@ package components.primeFaces
                         if (colXML.length() > 0)
                         {
                             var gridItem:Object = conv.getNewInstanceOfComponent(GridItem.GRIDITEM_NAME);
-     
+     						gridItem.percentWidth = gridRow.percentHeight = 100;
+
                             var divXMLList:XMLList = colXML.elements();
                             var divXML:XML = divXMLList[0];
 
