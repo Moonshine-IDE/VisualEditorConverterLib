@@ -1,7 +1,6 @@
 package components.primeFaces
 {
     import components.ComponentBase;
-    import components.Container;
     import components.GridItem;
     import components.GridRow;
 
@@ -74,7 +73,7 @@ package components.primeFaces
                             var divXMLList:XMLList = colXML.elements();
                             var divXML:XML = divXMLList[0];
 
-                            var div:Div = conv.getNewInstanceOfComponent(Div.ELEMENT_NAME) as Div;
+                            var div:Object = conv.getNewInstanceOfComponent(Div.ELEMENT_NAME);
                             div.percentWidth = div.percentHeight = 100;
 
                             gridItem.addElement(div);
