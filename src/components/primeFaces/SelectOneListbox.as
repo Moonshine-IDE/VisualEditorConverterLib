@@ -38,7 +38,7 @@ package components.primeFaces
 			_value = value;
 		}
 		
-		private var _dataProvider:Array;
+		private var _dataProvider:Array = [];
 		public function get dataProvider():Array
 		{
 			return _dataProvider;
@@ -56,7 +56,6 @@ package components.primeFaces
 			this.value = xml.@value;
 
 			var tmpItem:SelectItem;
-			this.dataProvider = [];
 			
 			for each (var i:XML in xml.selectItem)
 			{
