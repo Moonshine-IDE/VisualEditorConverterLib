@@ -59,8 +59,11 @@ package components.primeFaces
 		{
 			this.setComponentSize(xml);
 			
-			this.widgetVar = xml.@widgetVar;
-			if ("@text" in xml) this.text = xml.@text;
+			if ("@text" in xml) 
+			{
+				this.text = xml.@text;
+			}	
+			this.widgetVar = xml.@widgetVar;		
 			this.placeholder = xml.@placeholder;
 		}
 		

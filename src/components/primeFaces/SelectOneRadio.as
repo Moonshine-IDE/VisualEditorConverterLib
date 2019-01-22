@@ -12,8 +12,6 @@ package components.primeFaces
 	    public static const PRIME_FACES_XML_ELEMENT_NAME:String = "selectOneRadio";
         public static const ELEMENT_NAME:String = "SelectOneRadio";
 
-		private var items:Array;
-		
 		public function SelectOneRadio()
 		{
 			super();
@@ -52,6 +50,18 @@ package components.primeFaces
 			_columns = value;
 		}
 		
+		private var _items:Array = [];
+
+		public function get items():Array
+		{
+			return _items;
+		}
+
+		public function set items(value:Array):void
+		{
+			_items = value;
+		}
+		
 		public function fromXML(xml:XML, childFromXMLCallback:Function):void
 		{
 			this.setComponentSize(xml);
@@ -60,13 +70,15 @@ package components.primeFaces
 			this.value = xml.@value;
 			
 			var tmpItem:SelectItem;
-			items = [];
-			
-			for each (var i:XML in xml.selectItem)
+	
+			for each (var item:XML in xml.selectItem)
 			{
 				tmpItem = new SelectItem();
-				tmpItem.itemLabel = i.@itemLabel;
-				tmpItem.itemValue = i.@itemValue;
+				tmpItem.itemLabel = item.@itemLabel;
+				if ("@itemValue" in item)
+				{
+					tmpItem.itemValue = item.@itemValue;
+				}
 				items.push(tmpItem);
 			}
 		}

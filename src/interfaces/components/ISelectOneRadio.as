@@ -10,5 +10,8 @@ package interfaces.components
 		
 		function get value():String;
 		function set value(value:String):void;
+		
+		function get items():Array;
+		function set items(value:Array):void;
 	}
 }
