@@ -28,8 +28,8 @@ package unitTests.tree
     
     import org.flexunit.asserts.assertEquals;
     import org.flexunit.asserts.assertNotNull;
-    import org.flexunit.asserts.assertNull;
     import org.flexunit.asserts.assertTrue;
+    import org.flexunit.asserts.assertFalse;
     
     import unitTests.BaseTest;
     
@@ -47,6 +47,12 @@ package unitTests.tree
 
         public static var dpLoader:TestConfigurationLoader = new TestConfigurationLoader("tree", "TreeTest");
 
+		[DataPoints(loader=dpNoPropertyLoader)]
+        [ArrayElementType("vo.TestCaseVO")]
+        public static var dpNoProperty:Array;
+
+        public static var dpNoPropertyLoader:TestConfigurationLoader = new TestConfigurationLoader("tree", "NoPropertyTreeTest");
+		
         [Before]
         override public function setUpTest():void
         {
@@ -63,7 +69,7 @@ package unitTests.tree
         }
 
         [Test(dataProvider=dp, order="1")]
-        public function TreeExistsTest(testCase:TestCaseVO):void
+        public function treeExistsTest(testCase:TestCaseVO):void
         {
             var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
             var rootDiv:XMLList = rootXML.RootDiv.Tree;
@@ -89,7 +95,7 @@ package unitTests.tree
         }
 
         [Test(dataProvider=dp, order="3")]
-        public function TreeToCodeTest(testCase:TestCaseVO):void
+        public function treeToCodeTest(testCase:TestCaseVO):void
         {
             var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
 			var treeXML:XML = getTree(rootXML);
@@ -107,6 +113,42 @@ package unitTests.tree
 			assertEquals(String(treeHTML.@value), tree.treeValue);
         }
 
+		[Test(dataProvider=dpNoProperty)]
+		public function noValuePropertyToCodeTest(testCase:TestCaseVO):void
+		{
+			var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
+			var treeXML:XML = getTree(rootXML);
+			
+			var tree:ITree = new Tree();
+			
+			tree.fromXML(treeXML, function(xml:XML):void
+			{
+				
+			});
+
+            var treeHTML:XML = tree.toCode();
+
+			assertFalse("@value" in treeHTML);
+		}
+		
+		[Test(dataProvider=dpNoProperty)]
+		public function noVarPropertyToCodeTest(testCase:TestCaseVO):void
+		{
+			var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
+			var treeXML:XML = getTree(rootXML);
+			
+			var tree:ITree = new Tree();
+			
+			tree.fromXML(treeXML, function(xml:XML):void
+			{
+				
+			});
+
+            var treeHTML:XML = tree.toCode();
+
+			assertFalse("@var" in treeHTML);
+		}
+		
         private function getTree(xml:XML):XML
         {
             var rootDiv:XMLList = xml.RootDiv.Tree;

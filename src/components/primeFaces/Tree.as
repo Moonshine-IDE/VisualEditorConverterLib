@@ -12,7 +12,7 @@ package components.primeFaces
 		public static const PRIME_FACES_XML_ELEMENT_NAME:String = "tree";
 		public static const ELEMENT_NAME:String = "Tree";
 		
-		private var _treeVar:String = "";
+		private var _treeVar:String;
 		public function get treeVar():String
 		{
 			return _treeVar;
@@ -22,7 +22,7 @@ package components.primeFaces
 			_treeVar = value;
 		}
 		
-		private var _treeValue:String = "";
+		private var _treeValue:String;
 		public function get treeValue():String
 		{
 			return _treeValue;
@@ -46,8 +46,15 @@ package components.primeFaces
 		{
 			this.setComponentSize(xml);
 			
-			this.treeVar = xml.@["var"];
-			this.treeValue = xml.@value;
+			if ("@var" in xml)
+			{
+				this.treeVar = xml.@["var"];
+			}
+			
+			if ("@value" in xml)
+			{
+				this.treeValue = xml.@value;
+			}	
 		}
 		
 		public function toCode():XML
@@ -59,9 +66,16 @@ package components.primeFaces
 			xml.setNamespace(primeFacesNamespace);
 
             CodeXMLUtils.addSizeHtmlStyleToXML(xml, this);
-
-			xml.@["var"] = this.treeVar;
-			xml.@value = this.treeValue;
+			
+			if (treeVar)
+			{
+				xml.@["var"] = this.treeVar;
+			}
+			
+			if (treeValue)
+			{
+				xml.@value = this.treeValue;
+			}
 			
 			var node:XML = new XML("<treeNode/>");
 			node.addNamespace(primeFacesNamespace);
