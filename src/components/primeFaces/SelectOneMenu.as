@@ -46,7 +46,7 @@ package components.primeFaces
 			_editable = value;
 		}
 		
-		private var _dataProvider:Array;
+		private var _dataProvider:Array = [];
 		public function set dataProvider(value:Array):void
 		{
 			_dataProvider = value;
@@ -64,7 +64,6 @@ package components.primeFaces
 			this.editable = xml.@editable == "true" ? true : false;
 			
 			var tmpItem:SelectItem;
-			this.dataProvider = new Array();
 			for each (var i:XML in xml.selectItem)
 			{
 				tmpItem = new SelectItem();
