@@ -36,6 +36,7 @@ package converter
 	import components.Container;
 	import components.GridRow;
 	import components.GridItem;
+	import components.NavigatorContent;
 
 	[Event(name="conversionCompleted", type="events.ConverterEvent")]
 	public class Converter extends EventDispatcher
@@ -172,6 +173,7 @@ package converter
 			this.classLookup[Container.ELEMENT_NAME] = Container;
 			this.classLookup[GridRow.GRIDROW_NAME] = GridRow;
 			this.classLookup[GridItem.GRIDITEM_NAME] = GridItem;
+			this.classLookup[NavigatorContent.NAVIGATORCONTENT_NAME] = NavigatorContent;
 			
 			this.unknownItemsExceptions = [
 				"Column"

@@ -1,21 +1,28 @@
 package components.primeFaces
 {
-    
 	import components.ComponentBase;
-	import interfaces.components.ITabView;
-	import utils.CodeXMLUtils;
-	import utils.CodeMxmlUtils;
-	import interfaces.components.IDiv;
+	import components.NavigatorContent;
+
+	import converter.Converter;
+
 	import interfaces.IComponent;
+	import interfaces.components.ITabView;
+
+	import utils.CodeMxmlUtils;
+	import utils.CodeXMLUtils;
 
 	public class TabView extends ComponentBase implements ITabView
 	{
 		public static const PRIME_FACES_XML_ELEMENT_NAME:String = "tabView";
         public static const ELEMENT_NAME:String = "TabView";
-	
-		public function TabView()
+		
+		private var _component:IComponent;
+
+		public function TabView(component:IComponent = null)
 		{
 			super();
+			
+			_component = component;
 		}
 		
 		private var _isSelected:Boolean;
@@ -51,6 +58,23 @@ package components.primeFaces
 			_scrollable = value;
 		}
 		
+		private var _selectedIndex:int;
+
+		public function get selectedIndex():int
+		{
+			return _selectedIndex;
+		}
+
+		public function set selectedIndex(value:int):void
+		{
+			_selectedIndex = value;
+		}
+		
+		public function get component():IComponent
+		{
+			return _component ? _component : this;
+		}
+		
 		public function fromXML(xml:XML, childFromXMLCallback:Function):void
 		{
 			this.setComponentSize(xml);
@@ -68,19 +92,19 @@ package components.primeFaces
                 var tabXML:XML = tabsXML[i];
                 var tabChildren:XMLList = tabXML.Div;
 
-                var tab:Div = new Div();
-                tab.label = tabXML.@title;
-                if (tabChildren.length() == 1)
+                var tab:IComponent = Converter.getInstance().getNewInstanceOfComponent(NavigatorContent.NAVIGATORCONTENT_NAME);
+                tab["label"] = tabXML.@title;
+                if (tabChildren.length() == 0)
                 {
-                    super.addElement(tab);
+					var internalDiv:Object = Converter.getInstance().getNewInstanceOfComponent(Div.ELEMENT_NAME);
+			 		tab["addEelement"](internalDiv);
                 }
-                else
-                {
-					this.addElement(tab);
-                }
-
+				
+				component["addElement"](tab);
                 this.tabFromXML(tab, tabXML, childFromXMLCallback);
             }
+			
+			component["selectedIndex"] = xml.@selectedIndex;
 		}
 		
 		public function toCode():XML
@@ -95,10 +119,10 @@ package components.primeFaces
 			xml.@orientation = this.orientation;
             xml.@scrollable = this.scrollable;
 
-            var tabCount:int = this.numElements;
+            var tabCount:int = component["numElements"];
             for (var i:int = 0; i < tabCount; i++)
             {
-                var content:Div = this.getElementAt(i) as Div;
+                var content:Object = component["getElementAt"](i);
                 var contentCount:int = content.numElements;
 
                 var tab:XML = new XML("<tab />");
@@ -122,23 +146,15 @@ package components.primeFaces
 
             return xml;
 		}
-		
-		override public function addElement(element:Object):void
-		{
-             var internalDiv:Div = new Div();
-			 element.addEelement(internalDiv);
-		
-			 super.addElement(element);	
-		}		
-		
-		private function tabFromXML(tab:Div, xml:XML, callback:Function):void
+
+		private function tabFromXML(tab:IComponent, xml:XML, callback:Function):void
         {
             var elementsXML:XMLList = xml.elements();
             var childCount:int = elementsXML.length();
-            var container:Div;
-            if (tab.numElements > 0)
+            var container:Object;
+            if (tab["numElements"] > 0)
             {
-                container = tab.getElementAt(0) as Div;
+                container = tab["getElementAt"](0);
             }
             for(var i:int = 0; i < childCount; i++)
             {
@@ -149,10 +165,10 @@ package components.primeFaces
                 }
                 else
                 {
-                    container = new Div();
+                    container = Converter.getInstance().getNewInstanceOfComponent(Div.ELEMENT_NAME);
                     container.fromXML(childXML, callback);
 
-                    tab.addElement(container);
+                    tab["addElement"](container);
                 }
             }
         }

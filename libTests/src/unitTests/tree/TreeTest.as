@@ -113,7 +113,7 @@ package unitTests.tree
 			assertEquals(String(treeHTML.@value), tree.treeValue);
         }
 
-		[Test(dataProvider=dpNoProperty)]
+		[Test(dataProvider=dpNoProperty, order="4")]
 		public function noValuePropertyToCodeTest(testCase:TestCaseVO):void
 		{
 			var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);
@@ -131,7 +131,7 @@ package unitTests.tree
 			assertFalse("@value" in treeHTML);
 		}
 		
-		[Test(dataProvider=dpNoProperty)]
+		[Test(dataProvider=dpNoProperty, order="5")]
 		public function noVarPropertyToCodeTest(testCase:TestCaseVO):void
 		{
 			var rootXML:XML = FileRepository.getFileAsXML(testCase.testCaseBasePath, testCase.fileName);

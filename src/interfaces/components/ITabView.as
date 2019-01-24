@@ -10,5 +10,8 @@ package interfaces.components
 		
 		function get scrollable():Boolean;
 		function set scrollable(value:Boolean):void;
+		
+		function get selectedIndex():int;
+		function set selectedIndex(value:int):void;
 	}
 }
