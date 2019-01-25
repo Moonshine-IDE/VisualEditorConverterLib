@@ -1,11 +1,15 @@
 package components.primeFaces
 {
 	import components.ComponentBase;
-	
+	import components.GridItem;
+	import components.GridRow;
+
+	import converter.Converter;
+
 	import interfaces.IComponent;
-	import interfaces.IVisualComponent;
+	import interfaces.components.IDiv;
 	import interfaces.components.IPanelGrid;
-	
+
 	import utils.CodeMxmlUtils;
 	import utils.CodeXMLUtils;
 	
@@ -14,9 +18,14 @@ package components.primeFaces
 		public static const PRIME_FACES_XML_ELEMENT_NAME:String = "panelGrid";
 		public static const ELEMENT_NAME:String = "PanelGrid";
 		
-		private var bodyRowsXML:XMLList;
+		private var _component:IComponent;
 
-		private var thisCallbackXML:Function;
+		public function PanelGrid(component:IComponent = null):void
+		{
+			super();
+			
+			_component = component;
+		}
 		
 		private var _isSelected:Boolean;
 		public function get isSelected():Boolean
@@ -83,6 +92,26 @@ package components.primeFaces
 			}
 		}
 
+		private var _callbackXML:Function;
+
+		public function get callbackXML():Function
+		{
+			return _callbackXML;
+		}
+		
+		private var _bodyRowsXML:XMLList;
+
+		public function get bodyRowsXML():XMLList
+		{
+			return _bodyRowsXML;
+		}
+		
+		private function get component():IComponent
+		{
+			return _component;
+		}
+		
+		
 		/**
 		 * Complexity of this component requires separate implementation of this method on client sight
 		 */
@@ -90,7 +119,7 @@ package components.primeFaces
 		{
 			this.setComponentSize(xml);
 
-			this.bodyRowsXML = xml.Row;
+			_bodyRowsXML = xml.Row;
 			var header:XMLList = xml.Header.Row;
 			var rCount:int = 0;
 			
@@ -161,9 +190,12 @@ package components.primeFaces
 				}
 			}
 			
-			thisCallbackXML = childFromXMLCallback;
+			_callbackXML = childFromXMLCallback;
 			
-			createBodyChildren();
+			if (component == null)
+			{
+				createBodyChildren();
+			}
 		}
 		
 		/**
@@ -203,7 +235,7 @@ package components.primeFaces
 				rowXML.setNamespace(primeFacesNamespace);
 				for (var col:int = 0; col < this.columnCount; col++)
 				{
-					var headerTitle:String = this.getTitleFromXML(row, col);
+					var headerTitle:String = component ? component["header"]["getTitle"](row, col) : this.getTitle(row, col);
 					var colXML:XML = new XML("<column>" + headerTitle + "</column>");
 					colXML.addNamespace(primeFacesNamespace);
 					colXML.setNamespace(primeFacesNamespace);
@@ -221,21 +253,25 @@ package components.primeFaces
 		{
 			var primeFacesNamespace:Namespace = new Namespace("p", "http://primefaces.org/ui");
 			
-			for (var row:int=0; row < numElements; row++)
+			var elementsCount:int = component ? component["body"]["numElements"] : this.numElements;
+			for (var row:int=0; row < elementsCount; row++)
 			{
 				var rowXML:XML = new XML("<row/>");
 				rowXML.addNamespace(primeFacesNamespace);
 				rowXML.setNamespace(primeFacesNamespace);
 				
-				var rowElement:IVisualComponent = this.getElementAt(row) as IVisualComponent;
+				var body:Object = component ? component["body"] : this;
+				var rowElement:Object = body.getElementAt(row);
 				for (var col:int=0; col < rowElement.numElements; col++)
 				{
 					var colXML:XML = new XML("<column></column>");
 					colXML.addNamespace(primeFacesNamespace);
 					colXML.setNamespace(primeFacesNamespace);
 					
-					var colElement:IComponent = rowElement.getElementAt(col) as IComponent;
-					colXML.appendChild(colElement.toCode());
+					var colElement:IComponent = rowElement.getElementAt(col) as IComponent;					
+					var div:IComponent = colElement["getElementAt"](0);
+					
+					colXML.appendChild(div.toCode());
 					rowXML.appendChild(colXML);
 				}
 				
@@ -243,27 +279,28 @@ package components.primeFaces
 			}
 		}
 		
-		private function getTitleFromXML(selectedRowIndex:int = -1, selectedColumnIndex:int = -1):String
+		public function getTitle(selectedRowIndex:int = -1, selectedColumnIndex:int = -1):String
 		{
 			return headerRowTitles[selectedRowIndex][selectedColumnIndex];
 		}
 			
 		private function createBodyChildren():void
 		{
-			if (!bodyRowsXML && thisCallbackXML == null) return;
+			if (!bodyRowsXML && callbackXML == null) return;
 			
 			for (var rowIndex:int; rowIndex < rowCount; rowIndex++)
 			{
 				var rowXML:XML = bodyRowsXML[rowIndex];
 				var columnsXML:XMLList = bodyRowsXML[rowIndex].Column;
-				var container:IVisualComponent = new Div();
+				var container:Object = Converter.getInstance().getNewInstanceOfComponent(GridRow.GRIDROW_NAME);
 				
 				for (var colIndex:int = 0; colIndex < this.columnCount; colIndex++)
                 {
                     var colXML:XML = columnsXML[colIndex];
                     var divs:XMLList = colXML.Div;
 	
-					var item:IComponent = new Div();
+					var item:IComponent = Converter.getInstance().getNewInstanceOfComponent(GridItem.GRIDITEM_NAME);
+					var div:IDiv = Converter.getInstance().getNewInstanceOfComponent(Div.ELEMENT_NAME) as IDiv;
 					
 					if (divs.length() > 0)
                     {
@@ -276,8 +313,8 @@ package components.primeFaces
                             {
                                 delete divXML.@percentHeight;
                             }
-
-                            item.fromXML(divXML, thisCallbackXML);
+							
+                            div.fromXML(divXML, callbackXML);
                         }
 					}
 					else
@@ -286,12 +323,15 @@ package components.primeFaces
                         {
                             if (columnContent)
                             {
-                                thisCallbackXML(item, columnContent);
+                                callbackXML(item, columnContent);
                             }
                         }
 					}
+					
+					item["addElement"](div);
 					container.addElement(item);
 				}
+				
 				this.addElement(container);
 			}
 		}

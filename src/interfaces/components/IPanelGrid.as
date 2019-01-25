@@ -18,5 +18,8 @@ package interfaces.components
 		
 		function get rowCount():int;
 		function set rowCount(value:int):void;
+		
+		function get callbackXML():Function;
+		function get bodyRowsXML():XMLList;
 	}
 }
