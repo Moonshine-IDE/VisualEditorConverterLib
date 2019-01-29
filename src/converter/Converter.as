@@ -57,6 +57,10 @@ package converter
 	        _instance = this;
 
 			fillClassLookupWidthData(classLookup);
+						
+			this.unknownItemsExceptions = [
+				"Column"
+			];
 	    }
 	
 		public function getNewInstanceOfComponent(name:String):IComponent
@@ -174,10 +178,6 @@ package converter
 			this.classLookup[GridRow.GRIDROW_NAME] = GridRow;
 			this.classLookup[GridItem.GRIDITEM_NAME] = GridItem;
 			this.classLookup[NavigatorContent.NAVIGATORCONTENT_NAME] = NavigatorContent;
-			
-			this.unknownItemsExceptions = [
-				"Column"
-			];
 		}
 	}
 }
