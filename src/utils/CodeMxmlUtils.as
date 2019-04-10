@@ -4,7 +4,7 @@ package utils
 	{
 		public static function getMXMLTagNameWithSelection(component:Object, rootElementName:String):String
 		{
-			return (component.isSelected ? ""+ rootElementName : rootElementName);
+			return (component.isSelected ? "_moonshineSelected_"+ rootElementName : rootElementName);
 		}
 	}
 }
