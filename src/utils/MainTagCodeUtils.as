@@ -3,6 +3,7 @@ package utils
 	import interfaces.IComponent;
 	import interfaces.IRootComponent;
 	import interfaces.components.IDiv;
+	import interfaces.dominoComponents.IBody;
 
 	public class MainTagCodeUtils  
 	{
@@ -64,6 +65,24 @@ package utils
 			bodyXML.appendChild(mainDiv);
 			
 			xml.appendChild(headXml);
+			xml.appendChild(bodyXML);
+
+			return xml;
+		}
+
+
+		public static function getDominoParentContent(title:String, element:IBody):XML
+		{
+			var xml:XML = new XML("<form/>");
+
+            var dxlNamespace:Namespace = new Namespace("", "http://www.lotus.com/dxl");
+            xml.addNamespace(dxlNamespace);
+            xml.setNamespace(dxlNamespace);
+
+			
+			
+			var bodyXML:XML = new XML("<body/>");
+	
 			xml.appendChild(bodyXML);
 
 			return xml;
