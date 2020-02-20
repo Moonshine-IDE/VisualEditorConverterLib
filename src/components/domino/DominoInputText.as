@@ -175,7 +175,12 @@ package components.domino
 
 			//for now ,just default to text
 			if(this.type){
-				 xml.@type = this;
+				 xml.@type = this.type;
+			}
+
+
+			if(this.kind){
+				 xml.@kind = this.kind;
 			}
            
 			//for now ,just default to false,only input text

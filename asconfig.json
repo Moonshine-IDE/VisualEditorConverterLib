@@ -1,0 +1,26 @@
+{
+	"compilerOptions": {
+		"source-path": [
+			"src"
+		],
+		"default-frame-rate": 32,
+		"default-background-color": "#FFFFFF",
+		"output": "bin-debug/VisualEditorConverterLib.swc",
+		"default-size": {
+			"width": 800,
+			"height": 600
+		},
+		"target-player": "30.0",
+		"use-resource-bundle-metadata": true,
+		"benchmark": false,
+		"warnings": true,
+		"verbose-stacktraces": false,
+		"static-link-runtime-shared-libraries": false,
+		"optimize": false,
+		"show-unused-type-selector-warnings": true,
+		"strict": true,
+		"accessible": false,
+		"use-network": true
+	},
+	"additionalOptions": "+configname=flex"
+}
