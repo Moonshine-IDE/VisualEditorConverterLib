@@ -166,7 +166,7 @@ package components.domino
             // xml.addNamespace(primeFacesNamespace);
             // xml.setNamespace(primeFacesNamespace);
 
-			CodeXMLUtils.addSizeHtmlStyleToXML(xml, this);
+			//CodeXMLUtils.addSizeHtmlStyleToXML(xml, this);
 			
 			if (this.text)
             {
