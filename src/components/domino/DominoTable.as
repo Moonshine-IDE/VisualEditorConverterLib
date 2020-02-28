@@ -8,6 +8,8 @@ package components.domino
 	import utils.CodeXMLUtils;
 	import utils.StringHelperUtils;
 
+	import interfaces.dominoComponents.IDominoTable
+
 	/** 
 	 * Domino text element dxl format 
 	*/
