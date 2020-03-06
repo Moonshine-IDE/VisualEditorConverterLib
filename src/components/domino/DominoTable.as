@@ -10,17 +10,85 @@ package components.domino
 
 	import interfaces.dominoComponents.IDominoTable
 
+	import compoents.enum.TableWidthStyle;
+
 	/** 
-	 * Domino text element dxl format 
+	 * Domino table element dxl format 
+	 * example:
+	 * <table widthtype="fitmargins" cellbordercolor="yellow" 				leftmargin="1in" cellborderstyle="ridge" 						colorstyle="solid" bgcolor="silver" insidewrap="true" 				insidewrapheight="1in"> 
+				<border style="solid" width="2px" color="olive" 					dropshadow="true" /> 
+				<tablecolumn width="66.58%" /> 
+				<tablecolumn width="33.42%" /> 
+				<tablerow> 
+					<tablecell bgcolor="#e0ffbf"> 
+						<pardef id="3" align="center" 									leftmargin="0.0313in" keepwithnext="true" 							keeptogether="true" /> 
+						<par def="3"> 
+							<picture height="341px" width="218px" 								alttext="caldesigns white two-piece 								dress"> 
+								<imageref name="design1.jpg" /> 
+								<caption>CALDesigns</caption>
+							</picture> 
+						</par> 
+					</tablecell> 
+					<tablecell colorstyle="vgradient" bgcolor="none" 						altbgcolor="#a1e2ff"> 
+						<pardef id="4" align="center" 									leftmargin="0.0313in" keepwithnext="true" 							keeptogether="true" /> 
+						<par def="4" /> 
+						<pardef id="5" leftmargin="0.0313in" 							keepwithnext="true" keeptogether="true" /> 
+						<par def="5"> 
+							<run> 
+								<font size="24pt" color="blue" /> 
+								$250 
+							</run> 
+						</par> 
+					</tablecell> 
+				</tablerow> 
+				<tablerow> 
+					<tablecell bgcolor="#ffe1dc"> 
+						<pardef id="6" leftmargin="0.0313in" 							keepwithnext="true" keeptogether="true" /> 
+						<par def="6"> 
+							<imagemap lastdefaultid="8" 									lastcircleid="1" lastrectangleid="55"> 
+								<picture height="341px" width="219px" 									alttext="PERDesigns pink two-piece 									sleeveless dress"> 
+									<border style="dot" width="1px" 										color="#ff4040" /> 
+									<imageref name="design2.jpg" /> 
+									<caption>PERDesigns</caption> 
+								</picture> 
+								<area type="circle" htmlid="bracelet">
+									<point x="5" y="82" /> 
+									<point x="81" y="158" /> 
+									<urllink href="http://www.PERD
+									esigns.com/jewelry" /> 
+								</area> 
+							</imagemap> 
+						</par> 
+					</tablecell> 
+					<tablecell> 
+						<cellbackground repeat="hrepeat"> 
+							<imageref name="graphic.gif" /> 
+						</cellbackground>
+						<par def="5" /> 
+						<par> 
+							<run> 
+								<font size="24pt" color="blue" /> 
+								$300 
+							</run> 
+						</par> 
+					</tablecell> 
+				</tablerow> 
+			</table> 
 	*/
 	public class DominoTable extends ComponentBase implements IDominoTable
 	{
         public static const DOMINO_ELEMENT_NAME:String = "table";
         public static const ELEMENT_NAME:String = "table";
+
+		private static const MAX_COLUMN_COUNT:int = 12;
+
+		private var _component:IComponent;
 		
-        public function DominoTable()
+        public function DominoTable(component:IComponent = null)
 		{
 			super();
+
+			_component = component;
 		}
 		
 		private var _isSelected:Boolean;
@@ -34,6 +102,22 @@ package components.domino
 			_isSelected = value;
 		}
 
+		private function get component():IComponent
+		{
+			return _component ? _component : this;
+		}
+
+		//--------Domino table attrrite------------------------
+
+		private var _widthtype:TableWidthStyle;
+		public function get widthtype():TableWidthStyle
+		{
+			return _widthtype;
+		}
+		public function set widthtype(value:TableWidthStyle):void
+		{
+			_widthtype = value;
+		}
 
 
 		private var _minrowheight:String;
@@ -216,13 +300,66 @@ package components.domino
         public function fromXML(xml:XML, childFromXMLCallback:Function):void
 		{
 			this.setComponentSize(xml);
+			var elementsXML:XMLList = xml.elements();
+            if (elementsXML.length() > 0)
+            {
+                var childCount:int = elementsXML.length();
+                for(var row:int = 0; row < childCount; row++)
+                {
+                    var rowXML:XML = elementsXML[row];
+                    var colListXML:XMLList = rowXML.elements();
+					
+					var conv:Converter = Converter.getInstance();
+                    var gridRow:Object = conv.getNewInstanceOfComponent(GridRow.GRIDROW_NAME);
+ 					gridRow.percentWidth = gridRow.percentHeight = 100;
+
+                    var colCount:int = colListXML.length();
+                    for (var col:int = 0; col < colCount; col++)
+                    {
+                        var colXML:XML = colListXML[col];
+                        if (colXML.length() > 0)
+                        {
+                            var gridItem:Object = conv.getNewInstanceOfComponent(GridItem.GRIDITEM_NAME);
+     						gridItem.percentWidth = gridRow.percentHeight = 100;
+
+                            var divXMLList:XMLList = colXML.elements();
+                            var divXML:XML = divXMLList[0];
+
+                            var div:Object = conv.getNewInstanceOfComponent(Div.ELEMENT_NAME);
+                            div.percentWidth = div.percentHeight = 100;
+
+                            gridItem.addElement(div);
+                            gridRow.addElement(gridItem);
+
+                            divXML.@percentWidth = 100;
+                            divXML.@percentHeight = 100;
+
+                            div.fromXML(divXML, childFromXMLCallback);
+                        }
+                    }
+
+                    component["addElement"](gridRow);
+                }
+            }
         }
 
         public function toCode():XML
 		{
-            var table_xml:XML = new XML("<table/>");
 
-            return table_xml;
+            var xml:XML = new XML("<table/>");
+			//add attirive
+			if(this.widthtype != null){
+				xml.@widthtype=this.widthtype.toString();
+			}
+			if(this.minrowheight != null){
+				xml.@minrowheight=this.minrowheight;
+			}
+			var tableRowNumElements:int = component["numElements"];
+			for (var row:int = 0; row < tableRowNumElements; row++)
+            {
+				var rowXML:XML = new XML("<div />");
+			}
+            return xml;
         }
 
 

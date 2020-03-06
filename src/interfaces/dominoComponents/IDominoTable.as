@@ -1,6 +1,7 @@
 package interfaces.dominoComponents
 {
     import interfaces.IComponent;
+    import interfaces.IIsSelected;
 
     /**
      * Domino table dxl element, more details access follow url:
@@ -9,7 +10,7 @@ package interfaces.dominoComponents
      * followed by any number of <tablecolumn> and <tablerow> elements.
      */
 
-    public interface IDominoTable  extends IComponent
+    public interface IDominoTable  extends IComponent,IIsSelected
     {  
         
         function get minrowheight():String;
