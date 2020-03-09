@@ -1,4 +1,4 @@
-package components.domino
+package components.enum
 {   
     /**
      * The %table.row.displays; entity defines the different options for displaying each row in a table. 
@@ -29,7 +29,7 @@ package components.domino
 
 
 
-        public function toString()
+        public function toString():String
         {
             switch(this) {
                 case TableRowDisplays.ALL:

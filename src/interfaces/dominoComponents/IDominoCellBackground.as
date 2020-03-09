@@ -8,11 +8,11 @@ package interfaces.dominoComponents
      * Contains: %image.formats;, <imageref> 
      */
 
-    public interface IDominoTableCellBackground  extends IComponent
+    public interface IDominoCellBackground  extends IComponent
     {  
         //"once | vrepeat | hrepeat | tile | center | resize"
 
-        repeat
+       // repeat
   
     }
 }

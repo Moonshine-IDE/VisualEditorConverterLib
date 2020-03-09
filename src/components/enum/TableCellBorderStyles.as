@@ -1,4 +1,4 @@
-package components.domino
+package components.enum
 {
     /**
      * The %table.cell.border.styles; entity defines the choices to set the border style around a table cell. 
@@ -20,7 +20,7 @@ package components.domino
       }
 
 
-      public function toString()
+      public function toString():String
         {
             switch(this) {
                 case TableCellBorderStyles.SOLID:

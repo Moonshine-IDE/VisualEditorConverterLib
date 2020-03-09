@@ -34,7 +34,7 @@ package components.enum
 		}
 
 
-        public function toString()
+        public function toString():String
         {
             switch(this) {
                 case CellBackgroundRepeat.ONCE:

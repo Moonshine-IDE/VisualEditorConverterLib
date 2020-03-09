@@ -25,19 +25,19 @@ package components.enum
 		}
 
 
-        public function toString()
+        public function toString():String
         {
             switch(this) {
-                case CellBackgroundRepeat.TOP:
+                case TabLocations.TOP:
                     return "top";
-                case CellBackgroundRepeat.LEFT:
+                case TabLocations.LEFT:
                     return "left";
-                case CellBackgroundRepeat.BOTTOM:
+                case TabLocations.BOTTOM:
                     return "bottom";
-                case CellBackgroundRepeat.RIGHT:
+                case TabLocations.RIGHT:
                     return "right";
                 default:
-                    /* CellBackgroundRepeat.NONE is considered 'undefined' (no direction) */
+                    /* TabLocations.NONE is considered 'undefined' (no direction) */
                     return "undefined";
             }
         }

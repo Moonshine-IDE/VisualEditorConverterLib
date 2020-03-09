@@ -1,4 +1,4 @@
-package components.domino
+package components.enum
 {   
     /**
      * <!ENTITY % tablecell.color.styles "solid | vgradient | hgradient">
@@ -20,15 +20,15 @@ package components.domino
 		}
 
 
-        public function toString()
+        public function toString():String
         {
             switch(this) {
                 case TableCellColorStyle.SOLID:
                     return "solid";
-                case TableCellColorStyle.VREPEAT:
-                    return "vrepeat";
-                case TableCellColorStyle.HREPEAT:
-                    return "hrepeat";
+                case TableCellColorStyle.VGRADIENT:
+                    return "vgradient";
+                case TableCellColorStyle.HGRADIENT:
+                    return "hgradient";
                 default:
                     /* TableCellColorStyle.NONE is considered 'undefined' (no direction) */
                     return "undefined";

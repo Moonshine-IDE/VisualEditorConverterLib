@@ -10,8 +10,12 @@ package components.domino
 
 	import interfaces.dominoComponents.IDominoTable
 
-	import compoents.enum.TableWidthStyle;
+	import components.enum.TableWidthStyle;
+	import interfaces.IComponent;
 
+	import converter.Converter;
+
+	import components.primeFaces.Div;
 	/** 
 	 * Domino table element dxl format 
 	 * example:
@@ -310,8 +314,8 @@ package components.domino
                     var colListXML:XMLList = rowXML.elements();
 					
 					var conv:Converter = Converter.getInstance();
-                    var gridRow:Object = conv.getNewInstanceOfComponent(GridRow.GRIDROW_NAME);
- 					gridRow.percentWidth = gridRow.percentHeight = 100;
+                    var tableRow:Object = conv.getNewInstanceOfComponent("tablerow");
+ 					tableRow.percentWidth = tableRow.percentHeight = 100;
 
                     var colCount:int = colListXML.length();
                     for (var col:int = 0; col < colCount; col++)
@@ -319,8 +323,8 @@ package components.domino
                         var colXML:XML = colListXML[col];
                         if (colXML.length() > 0)
                         {
-                            var gridItem:Object = conv.getNewInstanceOfComponent(GridItem.GRIDITEM_NAME);
-     						gridItem.percentWidth = gridRow.percentHeight = 100;
+                            var tableItem:Object = conv.getNewInstanceOfComponent("tablecell");
+     						tableItem.percentWidth = tableRow.percentHeight = 100;
 
                             var divXMLList:XMLList = colXML.elements();
                             var divXML:XML = divXMLList[0];
@@ -328,8 +332,8 @@ package components.domino
                             var div:Object = conv.getNewInstanceOfComponent(Div.ELEMENT_NAME);
                             div.percentWidth = div.percentHeight = 100;
 
-                            gridItem.addElement(div);
-                            gridRow.addElement(gridItem);
+                            tableItem.addElement(div);
+                            tableRow.addElement(tableItem);
 
                             divXML.@percentWidth = 100;
                             divXML.@percentHeight = 100;
@@ -338,7 +342,7 @@ package components.domino
                         }
                     }
 
-                    component["addElement"](gridRow);
+                    component["addElement"](tableRow);
                 }
             }
         }
@@ -355,10 +359,42 @@ package components.domino
 				xml.@minrowheight=this.minrowheight;
 			}
 			var tableRowNumElements:int = component["numElements"];
+			var tableColumnNumElements:int = 0;
 			for (var row:int = 0; row < tableRowNumElements; row++)
             {
-				var rowXML:XML = new XML("<div />");
+				var rowXML:XML = new XML("<tablerow/>");
+				var tableRow:Object = component["getElementAt"](row);
+				//for domino talbe we need get the max column .
+                var gridColumnNumElements_cache:int = tableRow.numElements;
+				if(gridColumnNumElements_cache>tableColumnNumElements){
+					tableColumnNumElements = gridColumnNumElements_cache;
+				}
+
+				//add domino table table cell for each row.
+				for (var col:int = 0; col < gridColumnNumElements_cache; col++)
+                {
+					var tableCol:Object = tableRow["getElementAt"](col);
+                    var div:Object = tableCol.getElementAt(0);
+
+					var rowCellXML:XML = new XML("<tablecell/>");
+
+					rowXML.appendChild(rowCellXML);
+				}
+
 			}
+
+			if(tableColumnNumElements>0){
+				for (var cl:int = 0; cl < tableColumnNumElements; cl++)
+                {
+					var tableColumnXml:XML = new XML("<tablecolumn/>");
+					xml.appendChild(rowXML);
+				}
+
+
+			}
+
+			xml.appendChild(tableColumnXml);
+
             return xml;
         }
 

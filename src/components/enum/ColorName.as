@@ -28,33 +28,33 @@ package components.enum
         }
 
 
-        public function toString()
+        public function toString():String
         {
             switch(this) {
-                case CellBackgroundRepeat.AQUA:
+                case ColorName.AQUA:
                     return "aqua";
-                case CellBackgroundRepeat.BLACK:
+                case ColorName.BLACK:
                     return "black";
-                case CellBackgroundRepeat.FUCHSIA:
+                case ColorName.FUCHSIA:
                     return "fuchsia";
-                case CellBackgroundRepeat.GRAY:
+                case ColorName.GRAY:
                     return "gray";
-                case CellBackgroundRepeat.GREEN:
+                case ColorName.GREEN:
                     return "green";
-                case CellBackgroundRepeat.LIME:
+                case ColorName.LIME:
                     return "lime";
-                case CellBackgroundRepeat.MAROON:
+                case ColorName.MAROON:
                     return "maroon";
-                case CellBackgroundRepeat.NAVY:
+                case ColorName.NAVY:
                     return "navy";
-                case CellBackgroundRepeat.OLIVE:
+                case ColorName.OLIVE:
                     return "olive";
-                case CellBackgroundRepeat.PURPLE:
+                case ColorName.PURPLE:
                     return "purple";
-                case CellBackgroundRepeat.RED:
+                case ColorName.RED:
                     return "red";
                 default:
-                    /* CellBackgroundRepeat.NONE is considered 'undefined' (no direction) */
+                    /* ColorName.NONE is considered 'undefined' (no direction) */
                     return "undefined";
             }
         }

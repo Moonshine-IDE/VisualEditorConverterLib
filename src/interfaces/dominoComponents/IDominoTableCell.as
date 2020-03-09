@@ -13,49 +13,18 @@ package interfaces.dominoComponents
     public interface IDominoTableCell  extends IComponent
     {  
 
-        private var _bgcolor:ColorName;
-		public function get bgcolor():ColorName
-		{
-			return _bgcolor;
-		}
-		public function set bgcolor(value:ColorName):void
-		{
-			_bgcolor = value;
-		}
+        function get bgcolor():ColorName
+		function set bgcolor(value:ColorName):void
+		
 
-        private var _rowspan:Number;
-		public function get rowspan():ColorName
-		{
-			return _rowspan;
-		}
-		public function set rowspan(value:Number):void
-		{
-			_bgcolor = value;
-		}
-
-
-        private var _columnspan:Number;
-        public function get columnspan():ColorName
-		{
-			return _columnspan;
-		}
-		public function set columnspan(value:Number):void
-		{
-			_columnspan = value;
-		}
-
-        private var _colorstyle:Number;
-        public function get colorstyle():ColorName
-		{
-			return _colorstyle;
-		}
-		public function set colorstyle(value:Number):void
-		{
-			_colorstyle = value;
-		}
-
-        
-
+        function get rowspan():Number
+	    function set rowspan(value:Number):void
+		
+		function get columnspan():Number
+		function set columnspan(value:Number):void
+		
+		function get colorstyle():Number
+		function set colorstyle(value:Number):void
         
   
     }

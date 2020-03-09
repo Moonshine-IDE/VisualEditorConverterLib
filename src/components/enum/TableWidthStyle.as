@@ -1,4 +1,4 @@
-package components.domino
+package components.enum
 {
     /**
      * The %table.widthtypes; entity defines the options for the width of a table. 
@@ -24,7 +24,7 @@ package components.domino
 		}
 
 
-        public function toString()
+        public function toString():String
         {
             switch(this) {
                 case TableWidthStyle.FIXEDLEFT:

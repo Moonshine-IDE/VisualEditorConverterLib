@@ -15,7 +15,14 @@ package components.domino
 	*/
 	public class DominoTableRow extends ComponentBase implements IDominoTableRow
 	{
-        private var _tablabel:String;
+        
+		public function DominoTableRow()
+		{
+			super();
+		}
+        
+		
+		private var _tablabel:String;
 		public function get tablabel():String
 		{
 			return _tablabel;
@@ -34,6 +41,19 @@ package components.domino
 		public function set name(value:String):void
 		{
 			_name = value;
+		}
+
+
+		public function fromXML(xml:XML, childFromXMLCallback:Function):void
+		{
+			this.setComponentSize(xml);
+		}
+
+		public function toCode():XML
+		{
+			  var xml:XML = new XML("<tablerow/>");
+
+			  return xml;
 		}
 
     }
