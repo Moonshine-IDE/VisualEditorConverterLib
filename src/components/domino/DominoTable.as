@@ -13,9 +13,17 @@ package components.domino
 	import components.enum.TableWidthStyle;
 	import interfaces.IComponent;
 
+	
+	import converter.DominoConverter;
 	import converter.Converter;
-
 	import components.primeFaces.Div;
+	import spark.components.Alert;
+	import components.GridItem;
+    import components.GridRow;
+	import components.DominoRow;
+	import mx.core.IVisualElement;
+
+	
 	/** 
 	 * Domino table element dxl format 
 	 * example:
@@ -308,14 +316,19 @@ package components.domino
             if (elementsXML.length() > 0)
             {
                 var childCount:int = elementsXML.length();
+				//Alert.show("childCount:"+childCount);
                 for(var row:int = 0; row < childCount; row++)
                 {
                     var rowXML:XML = elementsXML[row];
                     var colListXML:XMLList = rowXML.elements();
-					
+					//Alert.show("colListXML:"+colListXML);
 					var conv:Converter = Converter.getInstance();
-                    var tableRow:Object = conv.getNewInstanceOfComponent("tablerow");
- 					tableRow.percentWidth = tableRow.percentHeight = 100;
+                    
+				    var tableRow:Object = conv.getNewInstanceOfComponent(GridRow.GRIDROW_NAME);
+ 					if(tableRow==null){
+						 Alert.show("tableRow is null")
+					 }
+					 tableRow.percentWidth = tableRow.percentHeight = 100;
 
                     var colCount:int = colListXML.length();
                     for (var col:int = 0; col < colCount; col++)
@@ -323,14 +336,16 @@ package components.domino
                         var colXML:XML = colListXML[col];
                         if (colXML.length() > 0)
                         {
-                            var tableItem:Object = conv.getNewInstanceOfComponent("tablecell");
-     						tableItem.percentWidth = tableRow.percentHeight = 100;
+                            var tableItem:Object = conv.getNewInstanceOfComponent(GridItem.GRIDITEM_NAME);
+     						
+							tableItem.percentWidth = tableRow.percentHeight = 100;
 
                             var divXMLList:XMLList = colXML.elements();
                             var divXML:XML = divXMLList[0];
 
                             var div:Object = conv.getNewInstanceOfComponent(Div.ELEMENT_NAME);
-                            div.percentWidth = div.percentHeight = 100;
+						
+							div.percentWidth = div.percentHeight = 100;
 
                             tableItem.addElement(div);
                             tableRow.addElement(tableItem);
@@ -342,7 +357,7 @@ package components.domino
                         }
                     }
 
-                    component["addElement"](tableRow);
+                    component["addElement"](tableRow as IVisualElement);
                 }
             }
         }
@@ -359,6 +374,7 @@ package components.domino
 				xml.@minrowheight=this.minrowheight;
 			}
 			var tableRowNumElements:int = component["numElements"];
+			
 			var tableColumnNumElements:int = 0;
 			for (var row:int = 0; row < tableRowNumElements; row++)
             {
@@ -381,13 +397,15 @@ package components.domino
 					rowXML.appendChild(rowCellXML);
 				}
 
+				xml.appendChild(rowXML);
+
 			}
 
 			if(tableColumnNumElements>0){
 				for (var cl:int = 0; cl < tableColumnNumElements; cl++)
                 {
 					var tableColumnXml:XML = new XML("<tablecolumn/>");
-					xml.appendChild(rowXML);
+					
 				}
 
 
