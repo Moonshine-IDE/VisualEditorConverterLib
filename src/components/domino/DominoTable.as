@@ -391,8 +391,23 @@ package components.domino
                 {
 					var tableCol:Object = tableRow["getElementAt"](col);
                     var div:Object = tableCol.getElementAt(0);
-
+					var divNumElements:int = div["numElements"];
+					//Alert.show("divNumElements:"+divNumElements);
 					var rowCellXML:XML = new XML("<tablecell/>");
+					if(divNumElements>0){
+							for (var div_count:int = 0; div_count < divNumElements; div_count++){
+									var tableCellElement:Object = div["getElementAt"](div_count);
+									rowCellXML.appendChild(tableCellElement.toCode());
+							}
+					}
+
+					//var divXML:XML = tableCol[0];
+
+					//Alert.show("divXML:"+div);
+                         
+
+				
+				
 
 					rowXML.appendChild(rowCellXML);
 				}
@@ -411,7 +426,7 @@ package components.domino
 
 			}
 
-			xml.appendChild(tableColumnXml);
+			//xml.appendChild(tableColumnXml);
 
             return xml;
         }
