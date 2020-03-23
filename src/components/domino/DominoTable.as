@@ -366,6 +366,9 @@ package components.domino
 		{
 
             var xml:XML = new XML("<table/>");
+
+			var tableColumnNumElements:int = 0;
+			
 			//add attirive
 			if(this.widthtype != null){
 				xml.@widthtype=this.widthtype.toString();
@@ -374,17 +377,35 @@ package components.domino
 				xml.@minrowheight=this.minrowheight;
 			}
 			var tableRowNumElements:int = component["numElements"];
-			
-			var tableColumnNumElements:int = 0;
+			//get the max column number
+			for (var row:int = 0; row < tableRowNumElements; row++)
+            {
+				var tableRow1:Object = component["getElementAt"](row);
+				var gridColumnNumElements_cache:int = tableRow1.numElements;
+				if(gridColumnNumElements_cache>tableColumnNumElements){
+					tableColumnNumElements = gridColumnNumElements_cache;
+				}
+			}
+			//generate column at first
+			if(tableColumnNumElements>0){
+				for (var cl:int = 0; cl < tableColumnNumElements; cl++)
+                {
+					var tableColumnXml:XML = new XML("<tablecolumn/>");
+						xml.appendChild(tableColumnXml);
+				}
+
+
+			}
+		
 			for (var row:int = 0; row < tableRowNumElements; row++)
             {
 				var rowXML:XML = new XML("<tablerow/>");
 				var tableRow:Object = component["getElementAt"](row);
 				//for domino talbe we need get the max column .
                 var gridColumnNumElements_cache:int = tableRow.numElements;
-				if(gridColumnNumElements_cache>tableColumnNumElements){
-					tableColumnNumElements = gridColumnNumElements_cache;
-				}
+				
+
+				//Alert.show("gridColumnNumElements_cache:"+gridColumnNumElements_cache)
 
 				//add domino table table cell for each row.
 				for (var col:int = 0; col < gridColumnNumElements_cache; col++)
@@ -402,12 +423,7 @@ package components.domino
 					}
 
 					//var divXML:XML = tableCol[0];
-
-					//Alert.show("divXML:"+div);
-                         
-
-				
-				
+					//Alert.show("divXML:"+div
 
 					rowXML.appendChild(rowCellXML);
 				}
@@ -415,18 +431,11 @@ package components.domino
 				xml.appendChild(rowXML);
 
 			}
+			//Alert.show("tableColumnNumElements:"+tableColumnNumElements)
 
-			if(tableColumnNumElements>0){
-				for (var cl:int = 0; cl < tableColumnNumElements; cl++)
-                {
-					var tableColumnXml:XML = new XML("<tablecolumn/>");
-					
-				}
+			
 
-
-			}
-
-			//xml.appendChild(tableColumnXml);
+		
 
             return xml;
         }
