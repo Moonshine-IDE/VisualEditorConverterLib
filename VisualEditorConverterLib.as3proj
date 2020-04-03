@@ -1,55 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
   <output>
-    <movie disabled="False"/>
-    <movie platform="Flash Player"/>
-    <movie version="30"/>
-    <movie width="800"/>
     <movie fps="32"/>
     <movie height="600"/>
+    <movie disabled="False"/>
     <movie background="#FFFFFF"/>
     <movie path="bin-debug/VisualEditorConverterLib.swc"/>
+    <movie width="800"/>
+    <movie platform="Flash Player"/>
+    <movie version="11"/>
     <movie input=""/>
   </output>
   &lt;!-- Other classes to be compiled into your SWF --&gt;
+  <jsOutput>
+    <option path=""/>
+  </jsOutput>
   <classpaths>
     <class path="src"/>
   </classpaths>
   <moonshineResourcePaths></moonshineResourcePaths>
   <moonshineNativeExtensionPaths></moonshineNativeExtensionPaths>
   <build>
+    <option es="False"/>
+    <option verboseStackTraces="False"/>
+    <option loadConfig=""/>
+    <option linkReport=""/>
+    <option optimize="False"/>
+    <option staticLinkRSL="False"/>
+    <option showActionScriptWarnings="True"/>
+    <option compilerConstants=""/>
+    <option customSDK=""/>
+    <option locale=""/>
+    <option sourceMap="False"/>
+    <option additional="+configname=flex"/>
+    <option showUnusedTypeSelectorWarnings="True"/>
+    <option showBindingWarnings="True"/>
+    <option strict="True"/>
+    <option antBuildPath="build.xml"/>
+    <option showDeprecationWarnings="True"/>
+    <option useNetwork="True"/>
     <option allowSourcePathOverlap="False"/>
     <option useResourceBundleMetadata="True"/>
     <option benchmark="False"/>
     <option warnings="True"/>
-    <option es="False"/>
-    <option verboseStackTraces="False"/>
-    <option customSDK=""/>
-    <option loadConfig=""/>
-    <option linkReport=""/>
-    <option antBuildPath="build/build.xml"/>
-    <option staticLinkRSL="False"/>
-    <option showActionScriptWarnings="True"/>
-    <option compilerConstants=""/>
-    <option additional="+configname=flex"/>
-    <option locale=""/>
-    <option optimize="False"/>
-    <option showDeprecationWarnings="True"/>
-    <option showUnusedTypeSelectorWarnings="True"/>
-    <option showBindingWarnings="True"/>
-    <option strict="True"/>
     <option accessible="False"/>
-    <option useNetwork="True"/>
   </build>
   <mavenBuild>
     <option settingsFilePath=""/>
-    <option commandLine=""/>
     <option mavenBuildPath=""/>
+    <option commandLine=""/>
     <actions>
-      <action actionName="Build" action="install"/>
-      <action actionName="Clean" action="clean"/>
-      <action actionName="Clean and Build" action="clean install"/>
-      <action actionName="Exploded" action="war:exploded"/>
+      <action action="install" actionName="Build"/>
+      <action action="clean" actionName="Clean"/>
+      <action action="clean install" actionName="Clean and Build"/>
+      <action action="war:exploded" actionName="Exploded"/>
     </actions>
   </mavenBuild>
   <includeLibraries></includeLibraries>
@@ -66,21 +70,24 @@
   <postBuildCommand alwaysRun="False">null</postBuildCommand>
   <trustSVNCertificate>False</trustSVNCertificate>
   <options>
-    <option testMovieCommand=""/>
-    <option showHiddenPaths="False"/>
-    <option defaultBuildTargets=""/>
-    <option isExportedToExistingSource="False"/>
-    <option isPrimeFacesVisualEditor="False"/>
-    <option visualEditorExportPath=""/>
+    <option isRoyale="False"/>
     <option testMovie=""/>
+    <option testMovieCommand=""/>
+    <option isExportedToExistingSource="False"/>
+    <option defaultBuildTargets=""/>
+    <option visualEditorExportPath=""/>
+    <option isPrimeFacesVisualEditor="False"/>
+    <option showHiddenPaths="False"/>
   </options>
   <moonshineRunCustomization>
-    <option urlToLaunch=""/>
-    <option customUrlToLaunch=""/>
-    <option deviceSimulator="null"/>
-    <option targetPlatform="2"/>
-    <option launchMethod="Simulator"/>
     <option projectType="2"/>
+    <option urlToLaunch=""/>
+    <option targetPlatform="2"/>
+    <option customUrlToLaunch=""/>
+    <option deviceConnectType="USB"/>
+    <option deviceSimulator="null"/>
+    <option launchMethod="Simulator"/>
+    <option webBrowser="null"/>
     <deviceSimulator>null</deviceSimulator>
     <certAndroid>null</certAndroid>
     <certIos>null</certIos>
