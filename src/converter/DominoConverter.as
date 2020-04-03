@@ -18,10 +18,14 @@ package converter
 
     import components.domino.Body;
     import components.domino.DominoInputText;
+	import components.domino.DominoTable;
+	import components.domino.DominoLabel;
 	import components.DominoRow;
 
 	import components.GridItem;
 	import components.primeFaces.Div;
+
+	import mx.controls.Alert;
 
     [Event(name="conversionCompleted", type="events.ConverterEvent")]
 	public class DominoConverter extends EventDispatcher
@@ -88,6 +92,7 @@ package converter
 			for(var i:int = 0; i < elementCount; i++)
 			{
 				var elementXML:XML = elements[i];
+			
 				itemFromXML(surface, elementXML);
 			}
 		}
@@ -113,7 +118,7 @@ package converter
                 }
 				return null;
 			}
-
+				//Alert.show("domino convert name:"+name);
 			var item:IComponent = getNewInstanceOfComponent(name);
 			if(item === null)
 			{
@@ -145,7 +150,10 @@ package converter
 			
 			this.classLookup["Body"] = Body;
 
-            
+            this.classLookup[DominoTable.PRIMEFACE_ELEMENT_NAME] = DominoTable;
+			this.classLookup[DominoTable.ELEMENT_NAME] = DominoTable;
+			//Domino label have specified format ,it not a signal tag name, it contain 3 tag, so this myabe a trouble in here
+			//this.classLookup[DominoLabel.ELEMENT_NAME] = DominoLabel;
 			this.classLookup[DominoInputText.ELEMENT_NAME] = DominoInputText;
 			this.classLookup[DominoRow.DOMINOROW_NAME] = DominoRow;
 			this.classLookup[GridItem.GRIDITEM_NAME] = GridItem;

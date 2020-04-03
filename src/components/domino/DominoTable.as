@@ -12,7 +12,7 @@ package components.domino
 
 	import components.enum.TableWidthStyle;
 	import interfaces.IComponent;
-
+	
 	
 	import converter.DominoConverter;
 	import converter.Converter;
@@ -91,6 +91,7 @@ package components.domino
 	{
         public static const DOMINO_ELEMENT_NAME:String = "table";
         public static const ELEMENT_NAME:String = "table";
+		public static const PRIMEFACE_ELEMENT_NAME:String = "Grid";
 
 		private static const MAX_COLUMN_COUNT:int = 12;
 
@@ -311,6 +312,8 @@ package components.domino
 
         public function fromXML(xml:XML, childFromXMLCallback:Function):void
 		{
+			
+			//Alert.show("fromXML xml:"+xml);
 			this.setComponentSize(xml);
 			var elementsXML:XMLList = xml.elements();
             if (elementsXML.length() > 0)
@@ -348,18 +351,22 @@ package components.domino
 							div.percentWidth = div.percentHeight = 100;
 
                             tableItem.addElement(div);
+						
                             tableRow.addElement(tableItem);
-
+						
                             divXML.@percentWidth = 100;
                             divXML.@percentHeight = 100;
-
+							
                             div.fromXML(divXML, childFromXMLCallback);
-                        }
+							
+						}
                     }
-
+						
+					
                     component["addElement"](tableRow as IVisualElement);
                 }
             }
+				
         }
 
         public function toCode():XML
@@ -378,9 +385,9 @@ package components.domino
 			}
 			var tableRowNumElements:int = component["numElements"];
 			//get the max column number
-			for (var row:int = 0; row < tableRowNumElements; row++)
+			for (var row0:int = 0; row0 < tableRowNumElements; row0++)
             {
-				var tableRow1:Object = component["getElementAt"](row);
+				var tableRow1:Object = component["getElementAt"](row0);
 				var gridColumnNumElements_cache:int = tableRow1.numElements;
 				if(gridColumnNumElements_cache>tableColumnNumElements){
 					tableColumnNumElements = gridColumnNumElements_cache;
@@ -402,13 +409,10 @@ package components.domino
 				var rowXML:XML = new XML("<tablerow/>");
 				var tableRow:Object = component["getElementAt"](row);
 				//for domino talbe we need get the max column .
-                var gridColumnNumElements_cache:int = tableRow.numElements;
+                var gridColumnNumElements_cache1:int = tableRow.numElements;
 				
-
-				//Alert.show("gridColumnNumElements_cache:"+gridColumnNumElements_cache)
-
 				//add domino table table cell for each row.
-				for (var col:int = 0; col < gridColumnNumElements_cache; col++)
+				for (var col:int = 0; col < gridColumnNumElements_cache1; col++)
                 {
 					var tableCol:Object = tableRow["getElementAt"](col);
                     var div:Object = tableCol.getElementAt(0);
@@ -431,8 +435,7 @@ package components.domino
 				xml.appendChild(rowXML);
 
 			}
-			//Alert.show("tableColumnNumElements:"+tableColumnNumElements)
-
+		
 			
 
 		
