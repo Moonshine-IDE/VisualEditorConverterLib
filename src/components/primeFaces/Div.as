@@ -7,11 +7,23 @@ package components.primeFaces
 
 	import utils.CodeMxmlUtils;
 	import utils.CodeXMLUtils;
+	import interfaces.components.IDominoParagraph;
+	//import components.domino.DominoParagraph;
+
+
+	import mx.controls.Alert;
+	import flash.utils.getQualifiedClassName;
+
+
+	import global.domino.DominoGlobals;
 	
 	public class Div extends ComponentBase implements IDiv
 	{
 		private static const PRIME_FACES_XML_ELEMENT_NAME:String = "div";
+		private static const Domino_XML_ELEMENT_NAME:String = "par";
     	public static var ELEMENT_NAME:String = "Div";
+
+		public  var isDomino:Boolean =false;
 
 		private var _component:IComponent;
 
@@ -96,21 +108,66 @@ package components.primeFaces
 		
 		public function toCode():XML
 		{
-			var xml:XML = new XML("<" + CodeMxmlUtils.getMXMLTagNameWithSelection(this, PRIME_FACES_XML_ELEMENT_NAME) + "/>");
+			var xml:XML 
+			if(isDomino){
+					xml = new XML("<" + CodeMxmlUtils.getMXMLTagNameWithSelection(this, Domino_XML_ELEMENT_NAME) + "/>");
 
-            CodeXMLUtils.addSizeHtmlStyleToXML(xml, this as IComponent);
+			}else{
+					xml = new XML("<" + CodeMxmlUtils.getMXMLTagNameWithSelection(this, PRIME_FACES_XML_ELEMENT_NAME) + "/>");
+					CodeXMLUtils.addSizeHtmlStyleToXML(xml, this as IComponent);
 
-			///TODO: Adjust for Visual Editor
-            xml["@class"] = _cssClass;
+					///TODO: Adjust for Visual Editor
+					xml["@class"] = _cssClass;
 
+			}
+		
+	
             var elementCount:int = component["numElements"];
             for(var i:int = 0; i < elementCount; i++)
             {
-                var element:IComponent = component["getElementAt"](i) as IComponent;
-                xml.appendChild(element.toCode());
+                DominoGlobals.PardefId=i;
+				var element:IComponent = component["getElementAt"](i) as IComponent;
+               
+			    var className:String=getQualifiedClassName(element)
+             
+				if(className=="view.domino.surfaceComponents.components::DominoParagraph"){
+					
+					xml.appendChild(toPerDefCode(element.toCode()));
+				}
+			   
+			    xml.appendChild(element.toCode());
+
+				
+				
             }
 
             return xml;
+		}
+
+
+		public function toPerDefCode( xml:XML):XML
+		{
+			var prefdef_str:String="";
+		
+			
+			if(xml!=null){
+				var cssstr:String=xml.@["class"];
+				if(cssstr.indexOf("flexHorizontalLayoutRight")>=0){
+					prefdef_str=" align=\"right\""
+				}
+				if(cssstr.indexOf("flexHorizontalLayoutLeft")>=0){
+					prefdef_str=" align=\"left\""
+				}
+
+				if(cssstr.indexOf("flexCenter")>=0){
+					prefdef_str=" align=\"center\""
+				}
+			}else{
+				prefdef_str=" align=\"left\""
+			}
+
+			var pardefXml:XML = new XML("<pardef id=\""+DominoGlobals.PardefId+"\" "+prefdef_str+"/>" ); 
+			return pardefXml;
 		}
 	}
 }

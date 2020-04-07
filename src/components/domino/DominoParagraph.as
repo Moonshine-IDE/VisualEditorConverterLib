@@ -3,18 +3,20 @@ package components.domino
 	import components.ComponentBase;
 
 	import interfaces.IComponent;
-	import interfaces.components.IDiv;
+	import interfaces.components.IDominoParagraph;
 
 	import utils.CodeMxmlUtils;
 	import utils.CodeXMLUtils;
 
 
     import mx.controls.Alert;
+
+	import global.domino.DominoGlobals;
 	
-	public class DominoParagraph extends ComponentBase implements IDiv
+	public class DominoParagraph extends ComponentBase implements IDominoParagraph
 	{
-		private static const PRIME_FACES_XML_ELEMENT_NAME:String = "paragraph";
-    	public static var ELEMENT_NAME:String = "Paragraph";
+		private static const PRIME_FACES_XML_ELEMENT_NAME:String = "par";
+    	public static var ELEMENT_NAME:String = "Par";
 
 		private var _component:IComponent;
 
@@ -49,16 +51,18 @@ package components.domino
 			_cssClass = value;	
 		}		
 		
-		private var _label:String;
-		public function get label():String
-		{
-			return _label;
-		}
+		// private var _label:String;
+		// public function get label():String
+		// {
+		// 	return _label;
+		// }
 
-		public function set label(value:String):void
-		{
-			_label = value;
-		}
+		// public function set label(value:String):void
+		// {
+		// 	_label = value;
+		// }
+
+		private var parid:int;
 		
 		private var _wrap:Boolean;
 		public function get wrap():Boolean
@@ -82,7 +86,7 @@ package components.domino
 			
 			setComponentSize(xml);
 			
-			this.wrap = xml.@wrap == "true";
+			this.wrap = true;
 			if (xml.@["class"])
 			{
 				this._cssClass = xml.@["class"];
@@ -99,21 +103,30 @@ package components.domino
 		
 		public function toCode():XML
 		{
-			var xml:XML = new XML("<" + CodeMxmlUtils.getMXMLTagNameWithSelection(this, PRIME_FACES_XML_ELEMENT_NAME) + "/>");
-
-            CodeXMLUtils.addSizeHtmlStyleToXML(xml, this as IComponent);
+			var parxml:XML=new XML();
+			
+			var xml:XML = new XML("<" + CodeMxmlUtils.getMXMLTagNameWithSelection(this, PRIME_FACES_XML_ELEMENT_NAME) + " def=\""+DominoGlobals.PardefId+"\"/>");
+			//flexHorizontalLayoutRight flexHorizontalLayoutLeft flexCenter
+			
+           // CodeXMLUtils.addSizeHtmlStyleToXML(xml, this as IComponent);
 
 			///TODO: Adjust for Visual Editor
-            xml["@class"] = _cssClass;
+            //xml["@class"] = _cssClass;
 
             var elementCount:int = component["numElements"];
             for(var i:int = 0; i < elementCount; i++)
             {
                 var element:IComponent = component["getElementAt"](i) as IComponent;
-                xml.appendChild(element.toCode());
+                var exml:XML=element.toCode();
+				if(exml.name()=="par"){
+					exml=exml.children()[0]
+				}
+				xml.appendChild(exml);
             }
+		
 
             return xml;
 		}
+
 	}
 }
