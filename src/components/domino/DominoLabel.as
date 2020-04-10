@@ -11,6 +11,8 @@ package components.domino
 	import components.domino.DominoFont;
 	import components.domino.DominoPar;
 	import components.domino.DominoRun;
+
+	import mx.controls.Alert;
 	/** 
 	 * Domino text element dxl format 
         dxl example of text 
@@ -85,38 +87,46 @@ package components.domino
         public function fromXML(xml:XML, childFromXMLCallback:Function):void
 		{
 			this.setComponentSize(xml);
-			
-			this.text = xml.@value;
 
-			var elementsXML:XMLList = xml.elements();
-            var childCount:int = elementsXML.length();
-            for(var i:int = 0; i < childCount; i++)
-            {
-                var childXML:XML = elementsXML[i];
-				if(childXML.name=="font"){
-					if(childXML.@style)
-					this.font.style=childXML.@style;
-					if(childXML.@color)
-					this.font.color=childXML.@color;
-					if(childXML.@size)
-					this.font.size=childXML.@size;
-					if(childXML.@name)
-					this.font.name=childXML.@name;
-					if(childXML.@truetype)
-					this.font.truetype=childXML.@truetype;
-					if(childXML.@pitch)
-					this.font.pitch=childXML.@pitch;
-				}
-				if(childXML.name=="run"){
-					this.run.html=childXML.@html
-					if(childXML.@highlight)
-					this.run.highlight=childXML.@highlight
-				}
-				if(childXML.name=="par"){
-					this.par.def=childXML.@def;
-				}
-                //childFromXMLCallback(component, childXML);
-            }
+			//Alert.show("lable xml:"+xml);
+			//Alert.show("lable text:"+ xml.children()[0].toString());
+
+			if(xml.children()[0]!=null){
+				this.text =unescape(xml.children()[0].toString());
+			}else{
+				this.text = unescape(xml.toString());
+			}
+			
+
+			// var elementsXML:XMLList = xml.elements();
+            // var childCount:int = elementsXML.length();
+            // for(var i:int = 0; i < childCount; i++)
+            // {
+            //     var childXML:XML = elementsXML[i];
+			// 	if(childXML.name=="font"){
+			// 		if(childXML.@style)
+			// 		this.font.style=childXML.@style;
+			// 		if(childXML.@color)
+			// 		this.font.color=childXML.@color;
+			// 		if(childXML.@size)
+			// 		this.font.size=childXML.@size;
+			// 		if(childXML.@name)
+			// 		this.font.name=childXML.@name;
+			// 		if(childXML.@truetype)
+			// 		this.font.truetype=childXML.@truetype;
+			// 		if(childXML.@pitch)
+			// 		this.font.pitch=childXML.@pitch;
+			// 	}
+			// 	if(childXML.name=="run"){
+			// 		this.run.html=childXML.@html
+			// 		if(childXML.@highlight)
+			// 		this.run.highlight=childXML.@highlight
+			// 	}
+			// 	if(childXML.name=="par"){
+			// 		this.par.def=childXML.@def;
+			// 	}
+            //     //childFromXMLCallback(component, childXML);
+            // }
 			
 		}
 		
@@ -125,7 +135,7 @@ package components.domino
 			
 			//for domino input field element must contain into par node
 			var par_xml:XML = new XML("<par/>");
-            var run_xml:XML = new XML("<run>"+this.text+"</run>");
+            var run_xml:XML = new XML("<run><![CDATA["+(this.text)+"]]></run>");
 			var font_xml:XML = new XML("<font/>");
 			var xml:XML=new XML();
 			if(_font!=null){

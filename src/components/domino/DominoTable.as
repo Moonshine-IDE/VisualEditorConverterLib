@@ -23,6 +23,8 @@ package components.domino
 	import components.DominoRow;
 	import mx.core.IVisualElement;
 
+	import flash.utils.getQualifiedClassName;
+
 	
 	/** 
 	 * Domino table element dxl format 
@@ -322,36 +324,38 @@ package components.domino
 				//Alert.show("childCount:"+childCount);
                 for(var row:int = 0; row < childCount; row++)
                 {
+					//Alert.show("row:"+row);
                     var rowXML:XML = elementsXML[row];
                     var colListXML:XMLList = rowXML.elements();
 					//Alert.show("colListXML:"+colListXML);
-					var conv:Converter = Converter.getInstance();
+					var dominoconv:DominoConverter = DominoConverter.getInstance();
                     
-				    var tableRow:Object = conv.getNewInstanceOfComponent(GridRow.GRIDROW_NAME);
- 					if(tableRow==null){
-						 Alert.show("tableRow is null")
-					 }
-					 tableRow.percentWidth = tableRow.percentHeight = 100;
+				    var tableRow:Object = dominoconv.getNewInstanceOfComponent(GridRow.GRIDROW_NAME);
+					//var tableRow:Object = new GridRow();
+ 					
+					tableRow.percentWidth = tableRow.percentHeight = 100;
 
                     var colCount:int = colListXML.length();
+					 //Alert.show("colCount:"+colCount);
                     for (var col:int = 0; col < colCount; col++)
                     {
                         var colXML:XML = colListXML[col];
                         if (colXML.length() > 0)
                         {
-                            var tableItem:Object = conv.getNewInstanceOfComponent(GridItem.GRIDITEM_NAME);
+                            var tableItem:Object = dominoconv.getNewInstanceOfComponent(GridItem.GRIDITEM_NAME);
+						    //var tableItem:GridItem =new GridItem();
      						
 							tableItem.percentWidth = tableRow.percentHeight = 100;
 
                             var divXMLList:XMLList = colXML.elements();
                             var divXML:XML = divXMLList[0];
 
-                            var div:Object = conv.getNewInstanceOfComponent(Div.ELEMENT_NAME);
-						
+                           var div:Object = dominoconv.getNewInstanceOfComponent(Div.ELEMENT_NAME);
+							//var div:Object =new Div();
 							div.percentWidth = div.percentHeight = 100;
 
                             tableItem.addElement(div);
-						
+							
                             tableRow.addElement(tableItem);
 						
                             divXML.@percentWidth = 100;
@@ -362,8 +366,13 @@ package components.domino
 						}
                     }
 						
-					
-                    component["addElement"](tableRow as IVisualElement);
+					if(tableRow!=null){
+						component["addElement"](tableRow);
+						
+					}else{
+						Alert.show("tableRow 376 is null")
+					}
+                   
                 }
             }
 				
