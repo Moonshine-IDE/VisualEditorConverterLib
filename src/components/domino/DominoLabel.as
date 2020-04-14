@@ -83,6 +83,29 @@ package components.domino
 			_text = value;
 		}
 
+		//------------ font start------------------------
+
+		private var _size:String;
+		public function get size():String
+		{
+			return _size;
+		}
+		public function set size(value:String):void
+		{
+			_size = value;
+		}
+
+
+		private var _color:String;
+		public function get color():String
+		{
+			return _color;
+		}
+		public function set color(value:String):void
+		{
+			_color = value;
+		}
+
 
         public function fromXML(xml:XML, childFromXMLCallback:Function):void
 		{
@@ -134,39 +157,44 @@ package components.domino
 		{
 			
 			//for domino input field element must contain into par node
+			var code_string:String=fixSpecailCharacter(this.text)
 			var par_xml:XML = new XML("<par/>");
-            var run_xml:XML = new XML("<run><![CDATA["+(this.text)+"]]></run>");
-			var font_xml:XML = new XML("<font/>");
+           
+			var font_xml:XML =  new XML("<font/>");
+				if(this.color){
+					font_xml.@color=this.color;
+				}
+
+				if(this.size){
+					font_xml.@size=this.size +"pt";
+				}
+
+
 			var xml:XML=new XML();
-			if(_font!=null){
-				if(_font.color){
-					font_xml.@color=_font.color
-				}
+			// if(_font!=null){
+				
 
-				if(_font.size){
-					font_xml.@size=_font.size
-				}
+			// 	if(_font.style){
+			// 		font_xml.@style=_font.style
+			// 	}
 
-				if(_font.style){
-					font_xml.@style=_font.style
-				}
-
-				if(_font.name){
-					font_xml.@name=_font.name
-				}
+			// 	if(_font.name){
+			// 		font_xml.@name=_font.name
+			// 	}
 
 			
-				font_xml.@truetype=_font.truetype
+			// 	font_xml.@truetype=_font.truetype
 				
 				
-				if(_font.pitch){
-					font_xml.@pitch=_font.pitch
-				}
-			}
+			// 	if(_font.pitch){
+			// 		font_xml.@pitch=_font.pitch
+			// 	}
+			// }
 
 			//CodeXMLUtils.addSizeHtmlStyleToXML(xml, this);
-			
-			run_xml.appendChild(font_xml);
+			//Alert.show("font_xml:"+font_xml.toXMLString());
+			 var run_xml:XML = new XML("<run>"+font_xml.toXMLString()+code_string+"</run>");
+			//run_xml.appendChild(font_xml);
 			//run_xml.appendChild(xml.createTextNode(this.text));
 			if(this.par!=null){
 				if(this.par.def!=null){
@@ -177,6 +205,38 @@ package components.domino
 			par_xml.appendChild(run_xml);
 
             return par_xml;
+		}
+
+		public static const AMPERSAND:String = "&amp;" 
+		public static const APOSTROPHE:String  = "&apos;" 
+		public static const DBL_QUOTES:String  = "&quot;" 
+		public static const GT:String  = "&gt;" 
+		public static const LT:String  = "&lt;" 
+
+
+		private function fixSpecailCharacter(text:String):String
+		{
+		
+
+			var amppattern:RegExp = /&/g;
+			text = text.replace(amppattern,AMPERSAND);
+			
+			var ltpattern:RegExp = /</g;
+			text = text.replace(ltpattern,LT);
+			var gtpattern:RegExp = />/g;
+			text = text.replace(gtpattern,GT);
+
+			var qtpattern:RegExp = /"/g;
+			text = text.replace(qtpattern,DBL_QUOTES);
+
+		
+
+			var aposattern:RegExp = /'/g;
+			text = text.replace(aposattern,APOSTROPHE);
+
+			return text
+
+
 		}
     }
 }

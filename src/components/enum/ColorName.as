@@ -21,7 +21,12 @@ package components.enum
         public static const OLIVE:ColorName         = new ColorName(OLIVE);
         public static const PURPLE:ColorName        = new ColorName(PURPLE);
         public static const RED:ColorName           = new ColorName(RED);
-
+        public static const SILVER:ColorName           = new ColorName(SILVER);
+        public static const TEAL:ColorName           = new ColorName(TEAL);
+        public static const WHITE:ColorName           = new ColorName(WHITE);
+        public static const YELLOW:ColorName           = new ColorName(YELLOW);
+        public static const NONE:ColorName           = new ColorName(NONE);
+        public static const SYSTEM:ColorName           = new ColorName(SYSTEM);
         /* Constructor */
 		public function ColorName(d:ColorName)
 		{
@@ -53,6 +58,18 @@ package components.enum
                     return "purple";
                 case ColorName.RED:
                     return "red";
+                case ColorName.SILVER:
+                    return "silver";
+                case ColorName.TEAL:
+                    return "teal";
+                case ColorName.WHITE:
+                    return "white";
+                case ColorName.YELLOW:
+                    return "yellow";
+                case ColorName.NONE:
+                    return "none";  
+                case ColorName.SYSTEM:
+                    return "system";    
                 default:
                     /* ColorName.NONE is considered 'undefined' (no direction) */
                     return "undefined";
