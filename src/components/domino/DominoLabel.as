@@ -111,7 +111,7 @@ package components.domino
 		{
 			this.setComponentSize(xml);
 
-			//Alert.show("lable xml:"+xml);
+			//Alert.show("lable xml:"+xml.toXMLString());
 			//Alert.show("lable text:"+ xml.children()[0].toString());
 
 			if(xml.children()[0]!=null){
@@ -119,6 +119,9 @@ package components.domino
 			}else{
 				this.text = unescape(xml.toString());
 			}
+
+			this.color=xml.@color;
+			this.size=xml.@size;
 			
 
 			// var elementsXML:XMLList = xml.elements();

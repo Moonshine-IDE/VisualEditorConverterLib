@@ -96,7 +96,8 @@ package components.domino
             var childCount:int = elementsXML.length();
             for(var i:int = 0; i < childCount; i++)
             {
-                var childXML:XML = elementsXML[i];
+                var childXML:XML =elementsXML[i];
+				//Alert.show("100:"+childXML.@size);
                 childFromXMLCallback(component, childXML);
             }
 		}
