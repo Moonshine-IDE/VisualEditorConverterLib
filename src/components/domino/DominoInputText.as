@@ -227,6 +227,14 @@ package components.domino
 			this.allowmultivalues=xml.@allowmultivalues == "true";
 			this.type=xml.@type;
 			this.kind=xml.@kind;
+
+			if(this.type=="number"){
+				this.digits= xml.@digits;
+                this.format=xml.@format  ;
+                this.punctuated=xml.@punctuated =="true";
+                this.parens=xml.@parens =="true" ;
+                this.percent=xml.@percent =="true" ;
+			}
 		}
 
 		
