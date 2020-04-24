@@ -210,7 +210,103 @@ package components.domino
 			_percent = value;
 		}
 
+		//-------------data time type-----------------
+		private var _show:String;
+		public function get show():String
+		{
+			return _show;
+		}
+		public function set show(value:String):void
+		{
+			_show = value;
+		}
 
+		private var _date:String;
+		public function get date():String
+		{
+			return _date;
+		}
+		public function set date(value:String):void
+		{
+			_date = value;
+		}
+
+
+
+		private var _showtodaywhenappropriate:Boolean
+		public function get showtodaywhenappropriate():Boolean
+		{
+			return _showtodaywhenappropriate;
+		}
+		public function set showtodaywhenappropriate(value:Boolean):void
+		{
+			_showtodaywhenappropriate = value;
+		}
+
+
+		private var _fourdigityear:Boolean
+		public function get fourdigityear():Boolean
+		{
+			return _fourdigityear;
+		}
+		public function set fourdigityear(value:Boolean):void
+		{
+			_fourdigityear = value;
+		}
+
+
+		private var _fourdigityearfor21stcentury:Boolean
+		public function get fourdigityearfor21stcentury():Boolean
+		{
+			return _fourdigityearfor21stcentury;
+		}
+		public function set fourdigityearfor21stcentury(value:Boolean):void
+		{
+			_fourdigityearfor21stcentury = value;
+		}
+
+
+		private var _omitthisyear:Boolean
+		public function get omitthisyear():Boolean
+		{
+			return _omitthisyear;
+		}
+		public function set omitthisyear(value:Boolean):void
+		{
+			_omitthisyear = value;
+		}
+
+
+
+		private var _time:String;
+		public function get time():String
+		{
+			return _time;
+		}
+		public function set time(value:String):void
+		{
+			_time = value;
+		}
+
+		private var _zone:String;
+		public function get zone():String
+		{
+			return _zone;
+		}
+		public function set zone(value:String):void
+		{
+			_zone = value;
+		}
+
+		private var _calendar:String;
+		public function get calendar():String
+		{
+			return _calendar;
+		}
+		public function set calendar(value:String):void
+		{
+			_calendar = value;
+		}
 		/** Domino number field property end */
 		
 		public function fromXML(xml:XML, childFromXMLCallback:Function):void
@@ -235,6 +331,17 @@ package components.domino
                 this.parens=xml.@parens =="true" ;
                 this.percent=xml.@percent =="true" ;
 			}
+			if(this.type=="datetime"){
+				this.show= xml.@show;
+				this.date= xml.@date;
+				this.showtodaywhenappropriate=xml.@showtodaywhenappropriate =="true" ;
+				this.fourdigityear=xml.@fourdigityear =="true" ;
+				this.fourdigityearfor21stcentury=xml.@fourdigityearfor21stcentury =="true" ;
+				this.omitthisyear=xml.@omitthisyear =="true" ;
+				this.time= xml.@time;
+				this.zone= xml.@zone;
+				this.calendar= xml.@calendar;
+			}	
 		}
 
 		
@@ -340,6 +447,50 @@ package components.domino
 				}
 
 				xml.appendChild(number_format_xml);
+			}
+
+			if(this.type=="datetime"){
+					var datetime_format_xml:XML = new XML("<datetimeformat/>");
+					if(this.show){
+						datetime_format_xml.@show = this.show;
+					}
+					if(this.date){
+						datetime_format_xml.@date = this.date;
+					}
+
+					if(this.showtodaywhenappropriate){
+						datetime_format_xml.@showtodaywhenappropriate = this.showtodaywhenappropriate;
+					}else{
+						datetime_format_xml.@showtodaywhenappropriate = "false"
+					}
+					if(this.fourdigityear){
+						datetime_format_xml.@fourdigityear = this.fourdigityear;
+					}else{
+						datetime_format_xml.@fourdigityear = "false"
+					}
+					if(this.fourdigityearfor21stcentury){
+						datetime_format_xml.@fourdigityearfor21stcentury = this.fourdigityearfor21stcentury;
+					}else{
+						datetime_format_xml.@fourdigityearfor21stcentury = "false"
+					}
+
+
+					if(this.omitthisyear){
+						datetime_format_xml.@omitthisyear = this.omitthisyear;
+					}else{
+						datetime_format_xml.@omitthisyear = "false"
+					}
+
+					if(this.time){
+						datetime_format_xml.@time = this.time;
+					}
+					if(this.zone){
+						datetime_format_xml.@zone = this.zone;
+					}
+					if(this.calendar){
+						datetime_format_xml.@calendar = this.calendar;
+					}
+					xml.appendChild(datetime_format_xml);
 			}
 
 			par_xml.appendChild(xml);
