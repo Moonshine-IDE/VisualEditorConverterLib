@@ -13,5 +13,11 @@ package interfaces.dominoComponents
         function get text():String;
         function set text(value:String):void;
 
+        function get size():String;
+        function set size(value:String):void;
+
+        function get color():String;
+        function set color(value:String):void;
+
     }
 }

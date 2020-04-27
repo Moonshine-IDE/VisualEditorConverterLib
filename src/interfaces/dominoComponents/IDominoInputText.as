@@ -36,5 +36,18 @@ package interfaces.dominoComponents
 		function get height():Number;
 		function set height(value:Number):void;
 
+
+		function get format():String;
+		function set format(value:String):void;
+		function get digits():String;
+		function set digits(value:String):void;
+		function get punctuated():Boolean;
+		function set punctuated(value:Boolean):void;
+		function get parens():Boolean;
+		function set parens(value:Boolean):void;
+		function get percent():Boolean;
+		function set percent(value:Boolean):void;
+
+
 	}
 }

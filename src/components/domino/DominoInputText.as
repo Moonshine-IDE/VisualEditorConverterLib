@@ -139,6 +139,79 @@ package components.domino
 		{
 			_kind = value;
 		}
+
+		/** Domino number field property name */
+		
+		/**
+		 * <field allowmultivalues="true" allowtabout="false" computeaftervalidation="false" dataconnectionfield="data" defaultfocus="false" kind="editable" listdisplayseparator="semicolon" listinputseparators="comma semicolon" name="%FieldName%" protected="false" showdelimiters="true" sign="false" storelocally="false" type="number" useappletinbrowser="false">
+		 *		<numberformat bytes="false" digits="2" format="general" parens="false" percent="false" preference="usersetting" punctuated="false"/>
+		 * 	</field>
+		 * 
+		 * <field allowmultivalues="false" allowtabout="false" computeaftervalidation="false" dataconnectionfield="data" defaultfocus="false" kind="editable" name="%FieldName%" protected="false" showdelimiters="true" sign="false" storelocally="false" type="text" useappletinbrowser="false"/>
+		 */
+
+		/** 
+		 * <!ENTITY % numberformat.formats "general | fixed | scientific | currency">
+		*/
+
+		private var _format:String;
+		public function get format():String
+		{
+			return _format;
+		}
+		public function set format(value:String):void
+		{
+			_format = value;
+		}
+
+
+		private var _digits:String;
+		public function get digits():String
+		{
+			return _digits;
+		}
+		public function set digits(value:String):void
+		{
+			_digits = value;
+		}
+
+		//If true, displays large numbers with the thousands separator; for example, 1,000.
+
+		private var _punctuated:Boolean
+		public function get punctuated():Boolean
+		{
+			return _punctuated;
+		}
+		public function set punctuated(value:Boolean):void
+		{
+			_punctuated = value;
+		}
+
+		//If true, displays negative numbers enclosed in parentheses; for example, (5) instead of -5.
+		private var _parens:Boolean
+		public function get parens():Boolean
+		{
+			return _parens;
+		}
+		public function set parens(value:Boolean):void
+		{
+			_parens = value;
+		}
+
+		//If true, displays values as percentages; for example, displays .10 as 10%.
+
+		private var _percent:Boolean
+		public function get percent():Boolean
+		{
+			return _percent;
+		}
+		public function set percent(value:Boolean):void
+		{
+			_percent = value;
+		}
+
+
+		/** Domino number field property end */
 		
 		public function fromXML(xml:XML, childFromXMLCallback:Function):void
 		{
@@ -148,13 +221,23 @@ package components.domino
 			this.maxLength = xml.@maxlength;
             this.idAttribute = xml.@id;
             this.required = xml.@required == "true";
-			this.nameAttribute = xml.@nameAttribute;
+			this.nameAttribute = xml.@name;
 			this.width=xml.@width;
 			this.height=xml.@height;
 			this.allowmultivalues=xml.@allowmultivalues == "true";
 			this.type=xml.@type;
 			this.kind=xml.@kind;
+
+			if(this.type=="number"){
+				this.digits= xml.@digits;
+                this.format=xml.@format  ;
+                this.punctuated=xml.@punctuated =="true";
+                this.parens=xml.@parens =="true" ;
+                this.percent=xml.@percent =="true" ;
+			}
 		}
+
+		
 		
 		public function toCode():XML
 		{
@@ -167,6 +250,22 @@ package components.domino
             // xml.setNamespace(primeFacesNamespace);
 
 			//CodeXMLUtils.addSizeHtmlStyleToXML(xml, this);
+			
+			/** Domino specified Propertys start
+			 * follow propertys are not supported with moonshine ide , but if we need them we can consider add them in moonshine ide on later.
+			 * these all propertys will default  to "false"
+			 * 
+			 */
+			
+			xml.@useappletinbrowser="false";
+			xml.@allowtabout="false";
+			//xml.@dataconnectionfield="false";
+			xml.@defaultfocus="false";
+			xml.@protected="false";
+			xml.@sign="false";
+			xml.@storelocally="false";
+
+			/**Domino specified Propertys end */
 			
 			if (this.text)
             {
@@ -181,11 +280,17 @@ package components.domino
 
 			if(this.kind){
 				 xml.@kind = this.kind;
+				 if(this.kind=="editable"){
+					 xml.@computeaftervalidation="false";
+				 }
+				 
 			}
            
 			//for now ,just default to false,only input text
 			if(this.allowmultivalues){
 				xml.@allowmultivalues=this.allowmultivalues;
+			}else{
+				xml.@allowmultivalues="false";
 			}
 			
 			if(this.width){
@@ -207,6 +312,34 @@ package components.domino
 			if(this.nameAttribute)
 			{
 				xml.@name = this.nameAttribute;
+			}
+
+			if(this.type=="number"){
+				var number_format_xml:XML = new XML("<numberformat/>");
+				if(this.digits){
+					number_format_xml.@digits = this.digits;
+				}
+				if(this.format){
+					number_format_xml.@format = this.format;
+				}
+
+				if(this.punctuated){
+					number_format_xml.@punctuated = this.punctuated;
+				}else{
+					number_format_xml.@punctuated = "false"
+				}
+				if(this.parens){
+					number_format_xml.@parens = this.parens;
+				}else{
+					number_format_xml.@parens = "false"
+				}
+				if(this.percent){
+					number_format_xml.@percent = this.percent;
+				}else{
+					number_format_xml.@percent = "false"
+				}
+
+				xml.appendChild(number_format_xml);
 			}
 
 			par_xml.appendChild(xml);
