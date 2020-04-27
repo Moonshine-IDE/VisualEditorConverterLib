@@ -49,5 +49,27 @@ package interfaces.dominoComponents
 		function set percent(value:Boolean):void;
 
 
+		function get show():String;
+		function set show(value:String):void;
+		function get date():String;
+		function set date(value:String):void;
+		function get showtodaywhenappropriate():Boolean;
+		function set showtodaywhenappropriate(value:Boolean):void;
+		function get fourdigityear():Boolean;
+		function set fourdigityear(value:Boolean):void;
+		function get fourdigityearfor21stcentury():Boolean;
+		function set fourdigityearfor21stcentury(value:Boolean):void;
+
+		function get omitthisyear():Boolean;
+		function set omitthisyear(value:Boolean):void;
+		function get time():String;
+		function set time(value:String):void;
+
+		function get zone():String;
+		function set zone(value:String):void;
+
+		function get calendar():String;
+		function set calendar(value:String):void;
+
 	}
 }
