@@ -333,7 +333,13 @@ package components.domino
 			}
 			if(this.type=="datetime"){
 				this.show= xml.@show;
+				if(!this.show){
+					this.show="datetime"
+				}
 				this.date= xml.@date;
+				if(!this.date){
+					this.date="yearmonthday"
+				}
 				this.showtodaywhenappropriate=xml.@showtodaywhenappropriate =="true" ;
 				this.fourdigityear=xml.@fourdigityear =="true" ;
 				this.fourdigityearfor21stcentury=xml.@fourdigityearfor21stcentury =="true" ;
