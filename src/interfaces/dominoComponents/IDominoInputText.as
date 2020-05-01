@@ -71,5 +71,10 @@ package interfaces.dominoComponents
 		function get calendar():String;
 		function set calendar(value:String):void;
 
+		function get keywords():String;
+		function set keywords(value:String):void;
+		function get keywordui():String;
+		function set keywordui(value:String):void;
+
 	}
 }

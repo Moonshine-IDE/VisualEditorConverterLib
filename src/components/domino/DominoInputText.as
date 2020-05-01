@@ -8,6 +8,7 @@ package components.domino
 	import utils.CodeXMLUtils;
 	import utils.StringHelperUtils;
 
+
 	/** 
 	 * Domino filed element dxl format , more details please view follow url
 	 * https://www.ibm.com/support/knowledgecenter/en/SSVRGU_9.0.1/basic/H_FIELD_ELEMENT_XML.html
@@ -307,6 +308,28 @@ package components.domino
 		{
 			_calendar = value;
 		}
+
+		//-------------keyword type-----------------
+		private var _keywords:String;
+		public function get keywords():String
+		{
+			return _keywords;
+		}
+		public function set keywords(value:String):void
+		{
+			_keywords = value;
+		}
+
+		private var _keywordui:String;
+		public function get keywordui():String
+		{
+			return _keywordui;
+		}
+		public function set keywordui(value:String):void
+		{
+			_keywordui = value;
+		}
+
 		/** Domino number field property end */
 		
 		public function fromXML(xml:XML, childFromXMLCallback:Function):void
@@ -348,6 +371,11 @@ package components.domino
 				this.zone= xml.@zone;
 				this.calendar= xml.@calendar;
 			}	
+
+			if(this.type=="keyword"){
+				this.keywords=xml.@keywords
+				this.keywordui=xml.@keywordui
+			}
 		}
 
 		
@@ -497,6 +525,46 @@ package components.domino
 						datetime_format_xml.@calendar = this.calendar;
 					}
 					xml.appendChild(datetime_format_xml);
+			}
+
+			if(this.type=="keyword"){
+				//<keywords allownew="false" columns="1" helperbutton="false" readingorder="lefttoright" 
+				//recalcchoices="false" ui="checkbox">
+				var keyword_format_xml:XML = new XML("<keywords/>");
+				if(this.keywordui){
+					keyword_format_xml.@ui=this.keywordui
+				}else{
+					keyword_format_xml.@ui="checkbox"
+				}
+
+				keyword_format_xml.@allownew="false"
+				keyword_format_xml.@columns="1"
+				keyword_format_xml.@helperbutton="false"
+				keyword_format_xml.@readingorder="lefttoright"
+				keyword_format_xml.@recalcchoices="false"
+
+
+
+				xml.appendChild(keyword_format_xml)
+
+				if(this.keywords){
+
+					var textlist_format_xml:XML = new XML("<textlist/>");
+
+					var myArrayOfLines:Array = this.keywords.split(/\n/);
+					for(var k:int = 0; k < myArrayOfLines.length; k=k+1)
+					{
+						
+						var text_format_xml:XML = new XML("<text>"+myArrayOfLines[k]+"</text>");
+						textlist_format_xml.appendChild(text_format_xml)
+					}
+
+
+					xml.appendChild(textlist_format_xml)
+
+
+				}
+				
 			}
 
 			par_xml.appendChild(xml);
