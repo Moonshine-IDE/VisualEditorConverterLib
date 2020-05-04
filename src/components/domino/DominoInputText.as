@@ -331,6 +331,8 @@ package components.domino
 		}
 
 		/** Domino number field property end */
+
+	
 		
 		public function fromXML(xml:XML, childFromXMLCallback:Function):void
 		{
@@ -530,22 +532,29 @@ package components.domino
 			if(this.type=="keyword"){
 				//<keywords allownew="false" columns="1" helperbutton="false" readingorder="lefttoright" 
 				//recalcchoices="false" ui="checkbox">
+				//fix xml 
+				xml.@allowtabout="false"
+				xml.@borderstyle="inset"
+				xml.@listdisplayseparator="comma"
+				xml.@listinputseparators="comma"
+				xml.@lookupaddressonrefresh="false"
+				xml.@lookupeachchar="false"
+				xml.@protected="false"
+				xml.@showdelimiters="true"
+				xml.@sign="false"
+				xml.@storelocally="false"
+				xml.@useappletinbrowser="false"
+				
 				var keyword_format_xml:XML = new XML("<keywords/>");
 				if(this.keywordui){
 					keyword_format_xml.@ui=this.keywordui
+					if(this.keywordui=="checkbox"){
+						xml.@allowmultivalues="true"
+					}
+					
 				}else{
 					keyword_format_xml.@ui="checkbox"
 				}
-
-				keyword_format_xml.@allownew="false"
-				keyword_format_xml.@columns="1"
-				keyword_format_xml.@helperbutton="false"
-				keyword_format_xml.@readingorder="lefttoright"
-				keyword_format_xml.@recalcchoices="false"
-
-
-
-				xml.appendChild(keyword_format_xml)
 
 				if(this.keywords){
 
@@ -560,10 +569,22 @@ package components.domino
 					}
 
 
-					xml.appendChild(textlist_format_xml)
+					keyword_format_xml.appendChild(textlist_format_xml)
 
 
 				}
+
+				//keyword_format_xml.@allownew="false"
+				keyword_format_xml.@columns="1"
+				keyword_format_xml.@helperbutton="false"
+				keyword_format_xml.@readingorder="lefttoright"
+				keyword_format_xml.@recalcchoices="false"
+
+
+
+				xml.appendChild(keyword_format_xml)
+
+				
 				
 			}
 
