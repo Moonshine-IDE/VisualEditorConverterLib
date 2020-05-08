@@ -437,10 +437,10 @@ package components.domino
 			}
 			
 			if(this.width){
-				xml.@width=this.width;
+				xml.@width=this.width+"pt";
 			}
 			if(this.height){
-				xml.@height=this.height;
+				xml.@height=this.height+"pt";
 			}
 		
 
@@ -550,6 +550,25 @@ package components.domino
 					keyword_format_xml.@ui=this.keywordui
 					if(this.keywordui=="checkbox"){
 						xml.@allowmultivalues="true"
+					}else  if(this.keywordui=="radiobutton"){
+						xml.@allowmultivalues="false"
+					}else  if(this.keywordui=="dialoglist"){
+						keyword_format_xml.@allownew="true"
+
+					}else  if(this.keywordui=="listbox"){
+						keyword_format_xml.@allownew="true"
+						xml.@multiline="true"
+						xml.@usenotesstyle="false"
+
+					}else  if(this.keywordui=="combobox"){
+						keyword_format_xml.@allownew="true"
+						xml.@multiline="true"
+						xml.@usenotesstyle="false"
+
+					}
+					
+					else  {
+						xml.@allowmultivalues="false"
 					}
 					
 				}else{
@@ -561,6 +580,7 @@ package components.domino
 					var textlist_format_xml:XML = new XML("<textlist/>");
 
 					var myArrayOfLines:Array = this.keywords.split(/\n/);
+					//
 					for(var k:int = 0; k < myArrayOfLines.length; k=k+1)
 					{
 						
@@ -576,9 +596,9 @@ package components.domino
 
 				//keyword_format_xml.@allownew="false"
 				keyword_format_xml.@columns="1"
-				keyword_format_xml.@helperbutton="false"
-				keyword_format_xml.@readingorder="lefttoright"
-				keyword_format_xml.@recalcchoices="false"
+				// keyword_format_xml.@helperbutton="false"
+				// keyword_format_xml.@readingorder="lefttoright"
+				// keyword_format_xml.@recalcchoices="false"
 
 
 
