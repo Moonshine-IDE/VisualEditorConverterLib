@@ -549,7 +549,7 @@ package components.domino
 				if(this.keywordui){
 					keyword_format_xml.@ui=this.keywordui
 					if(this.keywordui=="checkbox"){
-						xml.@allowmultivalues="true"
+						//xml.@allowmultivalues="true"
 					}else  if(this.keywordui=="radiobutton"){
 						xml.@allowmultivalues="false"
 					}else  if(this.keywordui=="dialoglist"){
@@ -568,7 +568,7 @@ package components.domino
 					}
 					
 					else  {
-						xml.@allowmultivalues="false"
+						//xml.@allowmultivalues="false"
 					}
 					
 				}else{
