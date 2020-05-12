@@ -76,5 +76,12 @@ package interfaces.dominoComponents
 		function get keywordui():String;
 		function set keywordui(value:String):void;
 
+		function get choicesdialog():String;
+		function set choicesdialog(value:String):void;
+		function get listinputseparators():String;
+		function set listinputseparators(value:String):void;
+		function get listdisplayseparator():String;
+		function set listdisplayseparator(value:String):void;
+
 	}
 }

@@ -330,6 +330,39 @@ package components.domino
 			_keywordui = value;
 		}
 
+
+		//-------------names type-----------------
+		private var _choicesdialog:String;
+		public function get choicesdialog():String
+		{
+			return _choicesdialog;
+		}
+		public function set choicesdialog(value:String):void
+		{
+			_choicesdialog = value;
+		}
+
+		private var _listinputseparators:String;
+		public function get listinputseparators():String
+		{
+			return _listinputseparators;
+		}
+		public function set listinputseparators(value:String):void
+		{
+			_listinputseparators = value;
+		}
+
+		private var _listdisplayseparator:String;
+		public function get listdisplayseparator():String
+		{
+			return _listdisplayseparator;
+		}
+		public function set listdisplayseparator(value:String):void
+		{
+			_listdisplayseparator = value;
+		}
+
+
 		/** Domino number field property end */
 
 	
@@ -377,6 +410,12 @@ package components.domino
 			if(this.type=="keyword"){
 				this.keywords=xml.@keywords
 				this.keywordui=xml.@keywordui
+			}
+
+			if(this.type=="names"){
+				this.choicesdialog=xml.@choicesdialog
+				this.listinputseparators=xml.@listinputseparators
+				this.listdisplayseparator=xml.@listdisplayseparator
 			}
 		}
 
@@ -607,6 +646,21 @@ package components.domino
 				
 				
 			}
+			if(this.type=="names"){
+				xml.@choicesdialog= this.choicesdialog;
+				if(this.listinputseparators){
+					xml.@listinputseparators=this.listinputseparators;
+				}else{
+					xml.@listinputseparators="comma semicolon newline"
+				}
+
+				if(this.listdisplayseparator){
+					xml.@listdisplayseparator=this.listdisplayseparator;
+				}else{
+					xml.@listdisplayseparator="newline"
+				};
+			}
+
 
 			par_xml.appendChild(xml);
 
