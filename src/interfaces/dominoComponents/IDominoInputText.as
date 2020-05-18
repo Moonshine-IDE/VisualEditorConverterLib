@@ -83,5 +83,16 @@ package interfaces.dominoComponents
 		function get listdisplayseparator():String;
 		function set listdisplayseparator(value:String):void;
 
+		function get formula():String
+		function set formula(value:String):void
+
+		function get password():String
+		function set password(value:String):void
+
+		function get onlyallow():String
+		function set onlyallow(value:String):void
+		function get firstdisplay():String
+		function set firstdisplay(value:String):void
+
 	}
 }

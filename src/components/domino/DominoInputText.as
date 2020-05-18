@@ -365,6 +365,53 @@ package components.domino
 		}
 
 
+		private var _formula:String;
+		public function get formula():String
+		{
+			return _formula;
+		}
+		public function set formula(value:String):void
+		{
+			_formula = value;
+		}
+
+
+		private var _password:String;
+		public function get password():String
+		{
+			return _password;
+		}
+		public function set password(value:String):void
+		{
+			_password = value;
+		}
+
+
+		private var _firstdisplay:String;
+		public function get firstdisplay():String
+		{
+			return _firstdisplay;
+		}
+		public function set firstdisplay(value:String):void
+		{
+			_firstdisplay = value;
+		}
+
+
+		private var _onlyallow:String;
+		public function get onlyallow():String
+		{
+			return _onlyallow;
+		}
+		public function set onlyallow(value:String):void
+		{
+			_onlyallow = value;
+		}
+
+		
+
+		
+
 		/** Domino number field property end */
 
 	
@@ -414,11 +461,26 @@ package components.domino
 				this.keywordui=xml.@keywordui
 			}
 
+			if(this.type=="formula"){
+				this.formula=xml.@formula
+			}
+
+			if(this.type=="password"){
+				this.password=xml.@password
+			}
+
 			if(this.type=="names"){
 				this.choicesdialog=xml.@choicesdialog
 				this.listinputseparators=xml.@listinputseparators
 				this.listdisplayseparator=xml.@listdisplayseparator
 			}
+
+			if(this.type=="richtextlite"){
+				this.onlyallow=xml.@onlyallow
+				this.firstdisplay=xml.@firstdisplay
+			}
+
+			
 		}
 
 		
@@ -661,6 +723,19 @@ package components.domino
 				}else{
 					xml.@listdisplayseparator="newline"
 				};
+			}
+
+			if(this.type=="formula"){
+				//xml.@useappletinbrowser="false"
+			}
+
+			if(this.type=="password"){
+
+			}
+
+			if(this.type=="richtextlite"){
+				xml.@firstdisplay= firstdisplay
+				xml.@onlyallow= onlyallow
 			}
 
 
