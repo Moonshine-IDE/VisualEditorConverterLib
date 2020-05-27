@@ -107,6 +107,17 @@ package components.domino
 		}
 
 
+		private var _fontStyle:String;
+		public function get fontStyle():String
+		{
+			return _fontStyle;
+		}
+		public function set fontStyle(value:String):void
+		{
+			_fontStyle = value;
+		}
+
+
         public function fromXML(xml:XML, childFromXMLCallback:Function):void
 		{
 			this.setComponentSize(xml);
@@ -122,6 +133,7 @@ package components.domino
 
 			this.color=xml.@color;
 			this.size=xml.@size;
+			this.fontStyle=xml.@style
 			
 
 			// var elementsXML:XMLList = xml.elements();
@@ -170,6 +182,10 @@ package components.domino
 
 				if(this.size){
 					font_xml.@size=this.size +"pt";
+				}
+
+				if(this.fontStyle){
+					font_xml.@style=this.fontStyle;
 				}
 
 

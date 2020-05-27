@@ -19,5 +19,8 @@ package interfaces.dominoComponents
         function get color():String;
         function set color(value:String):void;
 
+        function get fontStyle():String;
+        function set fontStyle(value:String):void;
+
     }
 }
