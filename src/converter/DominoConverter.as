@@ -20,6 +20,7 @@ package converter
     import components.domino.DominoInputText;
 	import components.domino.DominoTable;
 	import components.domino.DominoLabel;
+	import components.domino.DominoSection;
 	import components.DominoRow;
 
 	import components.GridItem;
@@ -158,6 +159,8 @@ package converter
 			this.classLookup[DominoRow.DOMINOROW_NAME] = DominoRow;
 			this.classLookup[GridItem.GRIDITEM_NAME] = GridItem;
 			this.classLookup[Div.ELEMENT_NAME] = Div;
+			this.classLookup[DominoSection.ELEMENT_NAME] = DominoSection;
+			
 
 			
 		}
