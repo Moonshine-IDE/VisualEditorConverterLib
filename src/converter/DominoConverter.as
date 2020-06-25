@@ -21,12 +21,14 @@ package converter
 	import components.domino.DominoTable;
 	import components.domino.DominoLabel;
 	import components.domino.DominoSection;
+	import components.domino.DominoTabView;
 	import components.DominoRow;
 
 	import components.GridItem;
 	import components.primeFaces.Div;
 
 	import mx.controls.Alert;
+	import components.NavigatorContent;
 
     [Event(name="conversionCompleted", type="events.ConverterEvent")]
 	public class DominoConverter extends EventDispatcher
@@ -160,8 +162,9 @@ package converter
 			this.classLookup[GridItem.GRIDITEM_NAME] = GridItem;
 			this.classLookup[Div.ELEMENT_NAME] = Div;
 			this.classLookup[DominoSection.ELEMENT_NAME] = DominoSection;
+			this.classLookup[DominoTabView.ELEMENT_NAME] = DominoTabView;
 			
-
+			this.classLookup[NavigatorContent.NAVIGATORCONTENT_NAME] = NavigatorContent;
 			
 		}
 	}
