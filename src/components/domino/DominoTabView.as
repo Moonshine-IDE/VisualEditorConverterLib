@@ -166,8 +166,18 @@ package components.domino
 		
 		public function toCode():XML
 		{
-			var xml:XML = new XML("<table rowdisplay='tabs' leftmargin='0.0104in'></table>");
-			var tableColumnXml:XML = new XML("<tablecolumn width='8.8528in' />");
+			var widthIn:Number=0
+			if(this.width&&this.width>0){
+				widthIn=(this.width/96).toFixed(4) as Number
+				
+			}
+
+			if(widthIn==0){
+				widthIn=4
+			}
+			
+			var xml:XML = new XML("<table rowdisplay='tabs'></table>");
+			var tableColumnXml:XML = new XML("<tablecolumn width='"+widthIn+"in' />");
 			xml.appendChild(tableColumnXml);
 			var tableColumnNumElements:int = 0;
 			
