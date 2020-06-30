@@ -176,7 +176,7 @@ package components.domino
 				widthIn=4
 			}
 			
-			var xml:XML = new XML("<table rowdisplay='tabs'></table>");
+			var xml:XML = new XML("<table rowdisplay='tabs' ></table>");
 			var tableColumnXml:XML = new XML("<tablecolumn width='"+widthIn+"in' />");
 			xml.appendChild(tableColumnXml);
 			var tableColumnNumElements:int = 0;
