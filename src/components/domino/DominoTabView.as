@@ -22,6 +22,8 @@ package components.domino
 		
 		private var _component:IComponent;
 
+		private var _parDefNum:Number=0;
+
 		public function DominoTabView(component:IComponent = null)
 		{
 			super();
@@ -217,8 +219,9 @@ package components.domino
 
                 xml.appendChild(tab);
             }
-			this.removeDiv(xml,null);
-
+			xml=this.removeDiv(xml,null);
+			xml=this.removePar(xml,null);
+			xml=this.addPar(xml,null);
             return xml;
 		}
 
@@ -288,6 +291,125 @@ package components.domino
 
 		}
 
+		private function removePar(xml:XML,rootXML:XML=null):XML{
+			var elementsXML:XMLList = xml.elements();
+            var childCount:int = elementsXML.length();
+
+			//_addpar=checkTabViewCell(xml)
+			
+			
+			if(xml.name()=="par"&& rootXML!=null){
+				if(_addpar==true){
+					for(var i:int = 0; i < childCount; i++)
+					{
+						var childXML:XML = elementsXML[i];
+						rootXML.appendChild(childXML);
+					}
+					this.deleteNode(xml);
+				}
+				//return rootXML
+				
+			}else{
+				for(var i:int = 0; i < childCount; i++){
+					var childXML:XML = elementsXML[i];
+					//Alert.show("261:"+childXML.name())
+					if(childXML.name()=="tablerow"&&childXML.@tablabel.length()>0){
+						_addpar=true
+					}
+					if(childXML.name()=="tablerow"&&childXML.@tablabel.length()==0){
+						_addpar=false
+					}
+					
+					//tablabel
+				
+					var childelementsXML:XMLList = childXML.elements();
+					var childCount2:int = childelementsXML.length();
+					if(childCount2>0){
+						this.removePar(childXML,rootXML)
+					}
+				}
+			}
+
+			
+
+			return xml;
+
+			
+
+		}
+
+
+
+		private var _addpar:Boolean=false;
+		private function addPar(xml:XML,rootXML:XML=null):XML{
+			var elementsXML:XMLList = xml.elements();
+            var childCount:int = elementsXML.length();
+
+
+			
+			
+			if(xml.name()=="tablecell"&& rootXML!=null){
+				if(_addpar==true){
+					var pardef:XML = new XML("<pardef id=\""+_parDefNum+"\" align=\"left\" />");
+					var par:XML = new XML("<par def=\""+_parDefNum+"\" />");
+					_parDefNum++;
+					xml.appendChild(pardef);
+					for(var i:int = 0; i < childCount; i++)
+					{
+						var childXML:XML = elementsXML[i];
+
+						if(childXML.name()=="par"){
+							var parelementsXML:XMLList = childXML.elements();
+            				var parchildCount:int = parelementsXML.length();
+							for(var j:int = 0; j < parchildCount; j++)
+							{
+								var parchildXML:XML = parelementsXML[j];
+								par.appendChild(parchildXML);
+								//this.deleteNode(parchildXML);
+							}
+						}
+					
+						//this.deleteNode(childXML);
+					}
+					xml.appendChild(par);
+				}
+				//this.deleteNode(xml);
+				//return rootXML
+				
+			}else{
+				for(var i:int = 0; i < childCount; i++){
+					var childXML:XML = elementsXML[i];
+					//Alert.show("261:"+childXML.name())
+					if(childXML.name()=="tablecell"){
+						rootXML=xml;
+					}
+
+					
+					if(childXML.name()=="tablerow"&&childXML.@tablabel.length()>0){
+						_addpar=true
+					}
+					if(childXML.name()=="tablerow"&&childXML.@tablabel.length()==0){
+						_addpar=false
+					}
+
+				
+					
+					var childelementsXML:XMLList = childXML.elements();
+					var childCount2:int = childelementsXML.length();
+					if(childCount2>0){
+						this.addPar(childXML,rootXML)
+					}
+				}
+			}
+
+			
+
+			return xml;
+
+			
+
+		}
+
 		
 
 		private function deleteNode(value:XML)
@@ -296,6 +418,37 @@ package components.domino
 			if(value==null){return;}
 			if(value.parent()==null){return;}
 			delete value.parent().children()[value.childIndex()]
+		}
+
+		private function checkTabViewCell(xml:XML):Boolean
+		{
+			 //<tablerow tablabel="Tab">
+			 var flag:Boolean=false;
+			// if(xml.name()=="table"&&xml.@rowdisplay=="tabs"){
+			// 		flag=true
+			// }
+		
+
+			if(xml.name()=="tablerow"&&xml.@tablabel.length()>0){
+					flag=true
+			}
+			if(xml.name()=="tablerow"&&xml.@tablabel.length()==0){
+					flag=false
+			}
+
+			if(flag==true){
+				Alert.show("xml.name:"+xml.name());
+				Alert.show("xml.tablabel:"+xml.@tablabel+":");
+
+			}
+
+
+			// if(xml.name()=="table"&&(xml.@rowdisplay==null||xml.@rowdisplay=="")){
+			// 	flag=false
+			// }
+
+			return flag;
+					
 		}
 	}
 }
