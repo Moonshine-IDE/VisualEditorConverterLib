@@ -56,7 +56,18 @@ package components.primeFaces
 		public function set cssClass(value:String):void
 		{
 			_cssClass = value;	
-		}		
+		}
+
+		private var _direction:String;
+		public function get direction():String
+		{
+			return _direction;
+		}
+		
+		public function set direction(value:String):void
+		{
+			_direction = value;	
+		}	
 		
 		private var _label:String;
 		public function get label():String
@@ -119,6 +130,12 @@ package components.primeFaces
 					///TODO: Adjust for Visual Editor
 					xml["@class"] = _cssClass;
 
+			}
+
+			if(!direction){
+				xml.@direction="Horizontal"
+			}else{
+				xml.@direction=direction
 			}
 		
 	

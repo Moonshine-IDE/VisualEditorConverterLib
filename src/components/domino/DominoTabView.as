@@ -219,9 +219,9 @@ package components.domino
 
                 xml.appendChild(tab);
             }
-			xml=this.removeDiv(xml,null);
-			xml=this.removePar(xml,null);
-			xml=this.addPar(xml,null);
+			 xml=this.removeDiv(xml,null);
+			 xml=this.removePar(xml,null);
+			 xml=this.addPar(xml,null);
             return xml;
 		}
 
@@ -265,6 +265,7 @@ package components.domino
 					var childXML:XML = elementsXML[i];
 					rootXML.appendChild(childXML);
 				}
+				rootXML.@direction=xml.@direction
 				this.deleteNode(xml);
 				//return rootXML
 				
@@ -319,6 +320,12 @@ package components.domino
 					if(childXML.name()=="tablerow"&&childXML.@tablabel.length()==0){
 						_addpar=false
 					}
+
+					if(childXML.name()=="tablecell"&&childXML.@direction=="Horizontal"){
+						_addpar=false
+					}
+
+					
 					
 					//tablabel
 				
@@ -348,7 +355,7 @@ package components.domino
 
 			
 			
-			if(xml.name()=="tablecell"&& rootXML!=null){
+			if(xml.name()=="tablecell"&& rootXML!=null && xml.@direction=="Horizontal"){
 				if(_addpar==true){
 					var pardef:XML = new XML("<pardef id=\""+_parDefNum+"\" align=\"left\" />");
 					var par:XML = new XML("<par def=\""+_parDefNum+"\" />");
