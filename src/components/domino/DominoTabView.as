@@ -222,6 +222,7 @@ package components.domino
 			 xml=this.removeDiv(xml,null);
 			 xml=this.removePar(xml,null);
 			 xml=this.addPar(xml,null);
+			 xml=this.removeBlankPar(xml,null);
             return xml;
 		}
 
@@ -406,6 +407,44 @@ package components.domino
 					if(childCount2>0){
 						this.addPar(childXML,rootXML)
 					}
+				}
+			}
+
+			
+
+			return xml;
+
+			
+
+		}
+
+
+		private function removeBlankPar(xml:XML,rootXML:XML=null):XML{
+			var elementsXML:XMLList = xml.elements();
+            var childCount:int = elementsXML.length();
+
+			//_addpar=checkTabViewCell(xml)
+			
+			
+			if(xml.name()=="par"&& childCount==0){
+				this.deleteNode(xml);
+				//return rootXML
+				
+			}else{
+				for(var i:int = 0; i < childCount; i++){
+					var childXML:XML = elementsXML[i];
+					
+				
+					var childelementsXML:XMLList = childXML.elements();
+					var childCount2:int = childelementsXML.length();
+					if(childXML.name()=="par"&& childCount2==0){
+						this.deleteNode(childXML);
+					}else{
+						if(childCount2>0){
+							this.removeBlankPar(childXML,rootXML)
+						}
+					}
+					
 				}
 			}
 
