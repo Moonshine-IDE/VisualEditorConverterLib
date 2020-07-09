@@ -106,7 +106,7 @@ package components.domino
 		{
 			var parxml:XML=new XML();
 			
-			var xml:XML = new XML("<" + CodeMxmlUtils.getMXMLTagNameWithSelection(this, PRIME_FACES_XML_ELEMENT_NAME) + " def=\""+DominoGlobals.PardefId+"\"/>");
+			var xml:XML = new XML("<" + CodeMxmlUtils.getMXMLTagNameWithSelection(this, PRIME_FACES_XML_ELEMENT_NAME) + " def=\""+DominoGlobals.PardefId+"\"  paragraph=\"true\"/>");
 			//flexHorizontalLayoutRight flexHorizontalLayoutLeft flexCenter
 			
            // CodeXMLUtils.addSizeHtmlStyleToXML(xml, this as IComponent);

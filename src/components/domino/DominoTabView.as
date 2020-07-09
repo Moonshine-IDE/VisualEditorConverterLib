@@ -299,8 +299,9 @@ package components.domino
 
 			//_addpar=checkTabViewCell(xml)
 			
-			
-			if(xml.name()=="par"&& rootXML!=null){
+			// var classProperty:string =;
+			if(xml.name()=="par"&& rootXML!=null && xml.@paragraph!="true"){
+				//Alert.show("length:"+xml.attribute("class"));
 				if(_addpar==true){
 					for(var i:int = 0; i < childCount; i++)
 					{
