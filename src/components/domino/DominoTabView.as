@@ -223,6 +223,7 @@ package components.domino
 			 xml=this.removePar(xml,null);
 			 xml=this.addPar(xml,null);
 			 xml=this.removeBlankPar(xml,null);
+			 xml=this.fixField(xml,null);
             return xml;
 		}
 
@@ -456,8 +457,61 @@ package components.domino
 			
 
 		}
+		private var _tablecellLayout:String="";
+		private function fixField(xml:XML,rootXML:XML=null):XML{
+			var elementsXML:XMLList = xml.elements();
+            var childCount:int = elementsXML.length();
 
-		
+			//_addpar=checkTabViewCell(xml)
+			
+			
+			if(xml.name()=="field"&& _tablecellLayout=="Horizontal"&& rootXML!=null){
+				
+				//return rootXML
+				  var run:XML = new XML("<run />");
+				  run.appendChild(xml);
+				  rootXML.appendChild(run);
+				
+			}else{
+				for(var i:int = 0; i < childCount; i++){
+					var childXML:XML = elementsXML[i];
+					//Alert.show("261:"+childXML.name())
+					if(childXML.name()=="tablecell"){
+						rootXML=xml;
+					}
+
+					if(childXML.name()=="tablecell"&&childXML.@direction=="Horizontal"){
+						_tablecellLayout="Horizontal"
+					}
+					if(childXML.name()=="tablecell"&&childXML.@direction=="Vertical"){
+						_tablecellLayout="Vertical"
+					}
+					if(childXML.name()=="tablecell"&&childXML.@direction==""){
+						_tablecellLayout="Vertical"
+					}
+
+					if(childXML.name()=="field"&& _tablecellLayout=="Horizontal"){
+				
+						//return rootXML
+						var run:XML = new XML("<run />");
+						run.appendChild(childXML);
+						xml.appendChild(run);
+					}
+			
+				
+					
+					var childelementsXML:XMLList = childXML.elements();
+					var childCount2:int = childelementsXML.length();
+					if(childCount2>0){
+						this.fixField(childXML,rootXML)
+					}
+				}
+			}
+
+			
+
+			return xml;
+		}
 
 		private function deleteNode(value:XML)
 		{
@@ -466,6 +520,8 @@ package components.domino
 			if(value.parent()==null){return;}
 			delete value.parent().children()[value.childIndex()]
 		}
+
+	
 
 		private function checkTabViewCell(xml:XML):Boolean
 		{
