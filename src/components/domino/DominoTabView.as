@@ -359,7 +359,8 @@ package components.domino
 			
 			
 			if(xml.name()=="tablecell"&& rootXML!=null && xml.@direction=="Horizontal"){
-				if(_addpar==true){
+				//Alert.show(""+elementsXML[0].name());
+				if(_addpar==true||elementsXML[0].name()=="table"){
 					var pardef:XML = new XML("<pardef id=\""+_parDefNum+"\" align=\"left\" />");
 					var par:XML = new XML("<par def=\""+_parDefNum+"\" />");
 					_parDefNum++;
@@ -371,12 +372,20 @@ package components.domino
 						if(childXML.name()=="par"){
 							var parelementsXML:XMLList = childXML.elements();
             				var parchildCount:int = parelementsXML.length();
+						
 							for(var j:int = 0; j < parchildCount; j++)
 							{
 								var parchildXML:XML = parelementsXML[j];
 								par.appendChild(parchildXML);
 								//this.deleteNode(parchildXML);
 							}
+							
+
+							
+						}
+
+						if(childXML.name()=="table"){
+								childXML.@leftmargin="0"
 						}
 					
 						//this.deleteNode(childXML);
