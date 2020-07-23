@@ -135,6 +135,17 @@ package components.domino
 		}
 
 
+		private var _width:Number;
+		override public function get width():Number
+		{
+			return _width;
+		}
+		override public function set width(value:Number):void
+		{
+			_width = value;
+		}
+
+
 		private var _minrowheight:String;
 		public function get minrowheight():String
 		{
@@ -383,11 +394,28 @@ package components.domino
 
             var xml:XML = new XML("<table/>");
 
+			var widthIn:Number=0
+			//Alert.show("width:"+this.width);
+			if(this.width&&this.width>0){
+				widthIn=(this.width/96) as Number;
+				var m:int = Math.pow(10, 4);
+    			widthIn=Math.round(widthIn * m) / m;
+				
+			}
+
+			if(widthIn==0){
+				widthIn=2
+			}
+			xml.@refwidth=widthIn+"in"
+
 			var tableColumnNumElements:int = 0;
-			
+			//widthtype='fixedleft' refwidth='2.5000in'
 			//add attirive
 			if(this.widthtype != null){
 				xml.@widthtype=this.widthtype.toString();
+			}else{
+				xml.@widthtype="fixedleft"
+				xml.@leftmargin="0"
 			}
 			if(this.minrowheight != null){
 				xml.@minrowheight=this.minrowheight;
