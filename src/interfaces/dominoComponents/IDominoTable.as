@@ -65,6 +65,9 @@ package interfaces.dominoComponents
 		function set insidewrapheight(value:String):void;
 
 
+        function get widthtype():String;
+		function set widthtype(value:String):void;
+
         /** % html.core.attrs "
          *htmlid,htmlclass,htmlstyle
          *htmltitle,extrahtmlattrs

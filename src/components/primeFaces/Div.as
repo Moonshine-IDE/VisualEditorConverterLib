@@ -16,6 +16,9 @@ package components.primeFaces
 
 
 	import global.domino.DominoGlobals;
+
+	import components.domino.DominoTable;
+	import interfaces.dominoComponents.IDominoTable;
 	
 	public class Div extends ComponentBase implements IDiv
 	{
@@ -137,6 +140,32 @@ package components.primeFaces
 			}else{
 				xml.@direction=direction
 			}
+			//setting the postion for horizontal and Vertical
+			if(_cssClass){
+				if(_cssClass.indexOf("flexCenter")>=0){
+					xml.@hpostion="center"
+				}
+				if(_cssClass.indexOf("flexHorizontalLayoutLeft")>=0){
+					xml.@hpostion="left"
+				}
+				if(_cssClass.indexOf("flexHorizontalLayoutRight")>=0){
+					xml.@hpostion="right"
+				}
+
+
+				if(_cssClass.indexOf("flexVerticalLayoutRight")>=0){
+					xml.@vpostion="right"
+				}
+				if(_cssClass.indexOf("flexMiddle")>=0){
+					xml.@vpostion="center"
+				}
+
+				if(_cssClass.indexOf("flexVerticalLayoutLeft")>=0){
+					xml.@vpostion="left"
+				}
+			}
+
+			
 		
 	
             var elementCount:int = component["numElements"];
@@ -150,6 +179,27 @@ package components.primeFaces
 				if(className=="view.domino.surfaceComponents.components::DominoParagraph"){
 					
 					xml.appendChild(toPerDefCode(element.toCode()));
+				}
+				//fix domino table postin with the div
+				if(className=="view.domino.surfaceComponents.components::DominoTable"){
+					if(xml.@hpostion=="left"){
+						element["widthtype"]="fixedleft"
+						element["leftmargin"]="0"
+					}
+
+					if(xml.@hpostion=="right"){
+					
+						element["widthtype"]="fixedright"
+						element["rightmargin"]="0"
+					
+					}
+					if(xml.@hpostion=="center"){
+						element["widthtype"]="fixedcenter"
+					
+					}
+
+					//fixedcenter
+					
 				}
 			   
 			    xml.appendChild(element.toCode());

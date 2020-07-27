@@ -163,6 +163,16 @@ package components.domino
 			_refwidth = value;
 		}
 
+		private var _widthIn:Number=0
+		public function get widthIn():Number
+		{
+			return _widthIn;
+		}
+		public function set widthIn(value:Number):void
+		{
+			_widthIn = value;
+		}
+
 		/**
 		<table rowdisplay='tabs' leftmargin='0.0104in' widthtype='fixedleft' refwidth='8.8528in'>
 
@@ -179,23 +189,23 @@ package components.domino
 		
 		public function toCode():XML
 		{
-			var widthIn:Number=0
+			
 			//Alert.show("width:"+this.width);
 			if(this.width&&this.width>0){
-				widthIn=(this.width/96) as Number;
+				this.widthIn=(this.width/96) as Number;
 				var m:int = Math.pow(10, 4);
-    			widthIn=Math.round(widthIn * m) / m;
+    			this.widthIn=Math.round(this.widthIn * m) / m;
 				
 			}
 
 			//Alert.show("widthIn:"+widthIn);
 
-			if(widthIn==0){
-				widthIn=4
+			if(this.widthIn==0){
+				this.widthIn=4
 			}
 			
 			var xml:XML = new XML("<table rowdisplay='tabs' ></table>");
-			var tableColumnXml:XML = new XML("<tablecolumn width='"+widthIn+"in' />");
+			var tableColumnXml:XML = new XML("<tablecolumn width='"+this.widthIn+"in' />");
 			xml.appendChild(tableColumnXml);
 			var tableColumnNumElements:int = 0;
 			
@@ -288,16 +298,16 @@ package components.domino
 				//return rootXML
 				
 			}else{
-				for(var i:int = 0; i < childCount; i++){
-					var childXML:XML = elementsXML[i];
+				for(var p:int = 0; p < childCount; p++){
+					var pchildXML:XML = elementsXML[p];
 					//Alert.show("261:"+childXML.name())
-					if(childXML.name()=="div"){
+					if(pchildXML.name()=="div"){
 						rootXML=xml;
 					}
-					var childelementsXML:XMLList = childXML.elements();
+					var childelementsXML:XMLList = pchildXML.elements();
 					var childCount2:int = childelementsXML.length();
 					if(childCount2>0){
-						this.removeDiv(childXML,rootXML)
+						this.removeDiv(pchildXML,rootXML)
 					}
 				}
 			}
@@ -330,17 +340,17 @@ package components.domino
 				//return rootXML
 				
 			}else{
-				for(var i:int = 0; i < childCount; i++){
-					var childXML:XML = elementsXML[i];
+				for(var n:int = 0; n < childCount; n++){
+					var nchildXML:XML = elementsXML[n];
 					//Alert.show("261:"+childXML.name())
-					if(childXML.name()=="tablerow"&&childXML.@tablabel.length()>0){
+					if(nchildXML.name()=="tablerow"&&nchildXML.@tablabel.length()>0){
 						_addpar=true
 					}
-					if(childXML.name()=="tablerow"&&childXML.@tablabel.length()==0){
+					if(nchildXML.name()=="tablerow"&&nchildXML.@tablabel.length()==0){
 						_addpar=false
 					}
 
-					if(childXML.name()=="tablecell"&&childXML.@direction=="Horizontal"){
+					if(nchildXML.name()=="tablecell"&&nchildXML.@direction=="Horizontal"){
 						_addpar=false
 					}
 
@@ -348,10 +358,10 @@ package components.domino
 					
 					//tablabel
 				
-					var childelementsXML:XMLList = childXML.elements();
+					var childelementsXML:XMLList = nchildXML.elements();
 					var childCount2:int = childelementsXML.length();
 					if(childCount2>0){
-						this.removePar(childXML,rootXML)
+						this.removePar(nchildXML,rootXML)
 					}
 				}
 			}
@@ -401,6 +411,27 @@ package components.domino
 						}
 
 						if(childXML.name()=="table"){
+							if(childXML.@widthtype=="fixedcenter"){
+									var centerAlign:Number=0
+								var tableWidth:String=childXML.@refwidth
+								if(tableWidth){
+									tableWidth=tableWidth.replace("in","")
+									var tableNumber:Number = Number(tableWidth);
+									var diff:Number=this.widthIn-tableNumber;
+									if(diff<0){
+										diff=0
+									}else{
+										centerAlign=(diff/2) as Number;
+										var m:int = Math.pow(10, 4);
+										centerAlign=Math.round(centerAlign * m) / m;
+									}
+									childXML.@leftmargin=centerAlign+"in"
+									childXML.@widthtype=="fixedleft"
+								}
+
+								//fix aligh widthIn
+							}
+							//fix center 
 							//	childXML.@leftmargin="0"
 						}
 					
@@ -412,27 +443,27 @@ package components.domino
 				//return rootXML
 				
 			}else{
-				for(var i:int = 0; i < childCount; i++){
-					var childXML:XML = elementsXML[i];
+				for(var h:int = 0; h < childCount; h++){
+					var hchildXML:XML = elementsXML[h];
 					//Alert.show("261:"+childXML.name())
-					if(childXML.name()=="tablecell"){
+					if(hchildXML.name()=="tablecell"){
 						rootXML=xml;
 					}
 
 					
-					if(childXML.name()=="tablerow"&&childXML.@tablabel.length()>0){
+					if(hchildXML.name()=="tablerow"&&hchildXML.@tablabel.length()>0){
 						_addpar=true
 					}
-					if(childXML.name()=="tablerow"&&childXML.@tablabel.length()==0){
+					if(hchildXML.name()=="tablerow"&&hchildXML.@tablabel.length()==0){
 						_addpar=false
 					}
 
 				
 					
-					var childelementsXML:XMLList = childXML.elements();
+					var childelementsXML:XMLList = hchildXML.elements();
 					var childCount2:int = childelementsXML.length();
 					if(childCount2>0){
-						this.addPar(childXML,rootXML)
+						this.addPar(hchildXML,rootXML)
 					}
 				}
 			}
@@ -518,9 +549,9 @@ package components.domino
 					if(childXML.name()=="field"&& _tablecellLayout=="Horizontal"){
 				
 						//return rootXML
-						var run:XML = new XML("<run />");
-						run.appendChild(childXML);
-						xml.appendChild(run);
+						var newrun:XML = new XML("<run />");
+						newrun.appendChild(childXML);
+						xml.appendChild(newrun);
 					}
 			
 				

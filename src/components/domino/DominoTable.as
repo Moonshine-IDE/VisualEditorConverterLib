@@ -124,12 +124,12 @@ package components.domino
 
 		//--------Domino table attrrite------------------------
 
-		private var _widthtype:TableWidthStyle;
-		public function get widthtype():TableWidthStyle
+		private var _widthtype:String;
+		public function get widthtype():String
 		{
 			return _widthtype;
 		}
-		public function set widthtype(value:TableWidthStyle):void
+		public function set widthtype(value:String):void
 		{
 			_widthtype = value;
 		}
@@ -417,6 +417,10 @@ package components.domino
 				xml.@widthtype="fixedleft"
 				xml.@leftmargin="0"
 			}
+			//setting center
+			// if(xml.@widthtype=="fixedcenter"){
+			// 	xml.@leftmargin="0"
+			// }
 			if(this.minrowheight != null){
 				xml.@minrowheight=this.minrowheight;
 			}
