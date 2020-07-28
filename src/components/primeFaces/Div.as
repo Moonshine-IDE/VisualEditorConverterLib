@@ -140,31 +140,7 @@ package components.primeFaces
 			}else{
 				xml.@direction=direction
 			}
-			//setting the postion for horizontal and Vertical
-			if(_cssClass){
-				if(_cssClass.indexOf("flexCenter")>=0){
-					xml.@hpostion="center"
-				}
-				if(_cssClass.indexOf("flexHorizontalLayoutLeft")>=0){
-					xml.@hpostion="left"
-				}
-				if(_cssClass.indexOf("flexHorizontalLayoutRight")>=0){
-					xml.@hpostion="right"
-				}
-
-
-				if(_cssClass.indexOf("flexVerticalLayoutRight")>=0){
-					xml.@vpostion="right"
-				}
-				if(_cssClass.indexOf("flexMiddle")>=0){
-					xml.@vpostion="center"
-				}
-
-				if(_cssClass.indexOf("flexVerticalLayoutLeft")>=0){
-					xml.@vpostion="left"
-				}
-			}
-
+			
 			
 		
 	

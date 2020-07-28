@@ -288,12 +288,56 @@ package components.domino
 			
 			
 			if(xml.name()=="div"&& rootXML!=null){
+				if(rootXML.name()=="tablecell"){
+					var divcssstr:String = xml["@class"];
+					var widthtype:String = "fixedright";
+					var rightmargin:String="0";
+					var leftmargin:String="0";
+					if(divcssstr){
+						//Alert.show("divcssstr:"+divcssstr);
+						
+						if(divcssstr.indexOf("flexHorizontalLayoutRight")>=0){
+							widthtype="fixedright"
+							//rootXML.@rightmargin="0"
+						}
+						if(divcssstr.indexOf("flexHorizontalLayoutLeft")>=0){
+							widthtype="fixedleft"
+							//rootXML.@leftmargin="0"
+						}
+
+						if(divcssstr.indexOf("flexCenter")>=0){
+							widthtype="fixedleft"
+							//rootXML.@centermargin="0"
+						}
+						
+					}
+
+					rootXML.@direction=xml.@direction;
+					if(xml.@vpostion){
+						rootXML.@vpostion=xml.@vpostion;
+					}
+					if(xml.@hpostion){
+						rootXML.@hpostion=xml.@hpostion
+					}
+				}
 				for(var i:int = 0; i < childCount; i++)
 				{
 					var childXML:XML = elementsXML[i];
+					if(childXML.name()=="table"){
+						childXML.@widthtype=widthtype
+						if(widthtype=="fixedleft"){
+							childXML.@leftmargin="0";
+							delete childXML.@rightmargin;
+						}
+						if(widthtype=="fixedright"){
+							childXML.@rightmargin="0"
+							delete childXML.@leftmargin;
+						}
+					}
 					rootXML.appendChild(childXML);
 				}
-				rootXML.@direction=xml.@direction
+			
+			
 				this.deleteNode(xml);
 				//return rootXML
 				
