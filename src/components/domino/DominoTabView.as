@@ -306,7 +306,7 @@ package components.domino
 						}
 
 						if(divcssstr.indexOf("flexCenter")>=0){
-							widthtype="fixedleft"
+							widthtype="fixedcenter"
 							//rootXML.@centermargin="0"
 						}
 						
