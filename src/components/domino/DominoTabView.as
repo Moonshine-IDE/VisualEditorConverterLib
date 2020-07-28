@@ -470,7 +470,7 @@ package components.domino
 										centerAlign=Math.round(centerAlign * m) / m;
 									}
 									childXML.@leftmargin=centerAlign+"in"
-									childXML.@widthtype=="fixedleft"
+									childXML.@widthtype="fixedleft"
 								}
 
 								//fix aligh widthIn
