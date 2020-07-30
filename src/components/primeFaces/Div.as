@@ -147,7 +147,7 @@ package components.primeFaces
             var elementCount:int = component["numElements"];
             for(var i:int = 0; i < elementCount; i++)
             {
-                DominoGlobals.PardefId=i;
+                DominoGlobals.PardefDivId++;
 				var element:IComponent = component["getElementAt"](i) as IComponent;
                
 			    var className:String=getQualifiedClassName(element)
@@ -192,7 +192,7 @@ package components.primeFaces
 		{
 			var prefdef_str:String="";
 		
-			
+			//Alert.show("div xml:"+xml.name());
 			if(xml!=null){
 				var cssstr:String=xml.@["class"];
 				if(cssstr.indexOf("flexHorizontalLayoutRight")>=0){
@@ -209,7 +209,7 @@ package components.primeFaces
 				prefdef_str=" align=\"left\""
 			}
 
-			var pardefXml:XML = new XML("<pardef id=\""+DominoGlobals.PardefId+"\" "+prefdef_str+"/>" ); 
+			var pardefXml:XML = new XML("<pardef id=\""+DominoGlobals.PardefDivId+"\" "+prefdef_str+" dominotype=\"domino\"/>" ); 
 			return pardefXml;
 		}
 	}

@@ -15,6 +15,9 @@ package components.domino
 
 	import mx.controls.Alert;
 
+
+	import global.domino.DominoGlobals;
+
 	public class DominoTabView extends ComponentBase implements ITabView
 	{
 		public static const PRIME_FACES_XML_ELEMENT_NAME:String = "tabView";
@@ -287,7 +290,8 @@ package components.domino
 			
 			
 			
-			if(xml.name()=="div"&& rootXML!=null){
+			if(xml.name()=="div"&& rootXML!=null && rootXML.name()=="tablecell"){
+				
 				if(rootXML.name()=="tablecell"){
 					var divcssstr:String = xml["@class"];
 					var widthtype:String = "fixedright";
@@ -334,6 +338,8 @@ package components.domino
 							delete childXML.@leftmargin;
 						}
 					}
+
+				
 					rootXML.appendChild(childXML);
 				}
 			
@@ -374,6 +380,7 @@ package components.domino
 			if(xml.name()=="par"&& rootXML!=null && xml.@paragraph!="true"){
 				//Alert.show("length:"+xml.attribute("class"));
 				if(_addpar==true){
+					//Alert.show("paragraph:"+xml.@paragraph);
 					for(var i:int = 0; i < childCount; i++)
 					{
 						var childXML:XML = elementsXML[i];
@@ -431,8 +438,9 @@ package components.domino
 			if(xml.name()=="tablecell"&& rootXML!=null && xml.@direction=="Horizontal"){
 				//Alert.show(""+elementsXML[0].name());
 				if(_addpar==true||elementsXML[0].name()=="table"){
-					var pardef:XML = new XML("<pardef id=\""+_parDefNum+"\" align=\"left\" />");
-					var par:XML = new XML("<par def=\""+_parDefNum+"\" />");
+					DominoGlobals.PardefId++
+					var pardef:XML = new XML("<pardef id=\""+DominoGlobals.PardefId+"\" align=\"left\" dominotype=\"tabView\"/>");
+					var par:XML = new XML("<par def=\""+DominoGlobals.PardefId+"\" />");
 					_parDefNum++;
 					xml.appendChild(pardef);
 					for(var i:int = 0; i < childCount; i++)
@@ -440,6 +448,10 @@ package components.domino
 						var childXML:XML = elementsXML[i];
 
 						if(childXML.name()=="par"){
+							//Alert.show("paragraph:"+childXML.@paragraph)
+						}
+
+						if(childXML.name()=="par"&& childXML.@paragraph!="true"){
 							var parelementsXML:XMLList = childXML.elements();
             				var parchildCount:int = parelementsXML.length();
 						
