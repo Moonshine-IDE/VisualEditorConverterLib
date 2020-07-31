@@ -302,27 +302,30 @@ package components.domino
 						
 						if(divcssstr.indexOf("flexHorizontalLayoutRight")>=0){
 							widthtype="fixedright"
-							//rootXML.@rightmargin="0"
+							rootXML.@hpostion="right"
 						}
 						if(divcssstr.indexOf("flexHorizontalLayoutLeft")>=0){
 							widthtype="fixedleft"
 							//rootXML.@leftmargin="0"
+							rootXML.@hpostion="left"
 						}
 
 						if(divcssstr.indexOf("flexCenter")>=0){
 							widthtype="fixedcenter"
+							rootXML.@hpostion="center"
 							//rootXML.@centermargin="0"
 						}
 						
 					}
+					//Alert.show("rootXML.@hpostion:"+rootXML.@hpostion);
 
 					rootXML.@direction=xml.@direction;
-					if(xml.@vpostion){
-						rootXML.@vpostion=xml.@vpostion;
-					}
-					if(xml.@hpostion){
-						rootXML.@hpostion=xml.@hpostion
-					}
+					// if(xml.@vpostion!=""){
+					// 	rootXML.@vpostion=xml.@vpostion;
+					// }
+					// if(xml.@hpostion!=""){
+					// 	rootXML.@hpostion=xml.@hpostion
+					// }
 				}
 				for(var i:int = 0; i < childCount; i++)
 				{
@@ -439,8 +442,23 @@ package components.domino
 				//Alert.show(""+elementsXML[0].name());
 				if(_addpar==true||elementsXML[0].name()=="table"){
 					DominoGlobals.PardefId++
-					var pardef:XML = new XML("<pardef id=\""+DominoGlobals.PardefId+"\" align=\"left\" dominotype=\"tabView\"/>");
-					var par:XML = new XML("<par def=\""+DominoGlobals.PardefId+"\" />");
+					var pardef:XML;
+
+					if(xml.@hpostion=="center"){
+						pardef = new XML("<pardef id=\""+DominoGlobals.PardefId+"\" align=\"center\" dominotype=\"tabView\"/>");
+					}
+					if(xml.@hpostion=="left"){
+						pardef = new XML("<pardef id=\""+DominoGlobals.PardefId+"\" align=\"left\" dominotype=\"tabView\"/>");
+					}
+					if(xml.@hpostion=="right"){
+						pardef = new XML("<pardef id=\""+DominoGlobals.PardefId+"\" align=\"right\" dominotype=\"tabView\"/>");
+					}
+					if(!pardef){
+						pardef = new XML("<pardef id=\""+DominoGlobals.PardefId+"\" align=\"left\" dominotype=\"tabView\"/>");
+				
+					}
+					
+						var par:XML = new XML("<par def=\""+DominoGlobals.PardefId+"\" />");
 					_parDefNum++;
 					xml.appendChild(pardef);
 					for(var i:int = 0; i < childCount; i++)
@@ -468,7 +486,9 @@ package components.domino
 
 						if(childXML.name()=="table"){
 							if(childXML.@widthtype=="fixedcenter"){
-									var centerAlign:Number=0
+								//we need setting the parent tablecell hpostion
+								xml.@hpostion="center";
+								var centerAlign:Number=0
 								var tableWidth:String=childXML.@refwidth
 								if(tableWidth){
 									tableWidth=tableWidth.replace("in","")
@@ -483,6 +503,7 @@ package components.domino
 									}
 									childXML.@leftmargin=centerAlign+"in"
 									childXML.@widthtype="fixedleft"
+									childXML.@widthtypecache="fixedcenter"
 								}
 
 								//fix aligh widthIn
