@@ -297,6 +297,7 @@ package components.domino
 					var widthtype:String = "fixedright";
 					var rightmargin:String="0";
 					var leftmargin:String="0";
+					var valign:String="";
 					if(divcssstr){
 						//Alert.show("divcssstr:"+divcssstr);
 						
@@ -315,6 +316,39 @@ package components.domino
 							rootXML.@hpostion="center"
 							//rootXML.@centermargin="0"
 						}
+
+						//Valign -------
+						//Valign Horizonta postion--center
+						if(divcssstr.indexOf("flexVerticalLayout")>=0 &&divcssstr.indexOf("flexMiddle")>=0 ){
+							widthtype="fixedcenter"
+							rootXML.@hpostion="center"
+							//rootXML.@centermargin="0"
+						}
+						// Valign Horizonta postion--left
+						//flexVerticalLayout flexVerticalLayoutLeft
+						if(divcssstr.indexOf("flexVerticalLayout")>=0 &&divcssstr.indexOf("flexVerticalLayoutLeft")>=0 ){
+							widthtype="fixedleft"
+							rootXML.@hpostion="left"
+						}
+						// Valign Horizonta postion--right
+						//flexVerticalLayout flexVerticalLayoutRight 
+						if(divcssstr.indexOf("flexVerticalLayout")>=0 &&divcssstr.indexOf("flexVerticalLayoutRight")>=0 ){
+							widthtype="fixedright"
+							rootXML.@hpostion="right"
+						}
+						//valign:top | center | bottom"
+						//flexVerticalLayout flexMiddle flexVerticalLayoutBottom
+						if(divcssstr.indexOf("flexVerticalLayoutBottom")>=0){
+							rootXML.@valign="bottom"
+						}
+						if(divcssstr.indexOf("flexVerticalLayoutTop")>=0){
+							rootXML.@valign="top"
+						}
+						if(divcssstr.indexOf("flexVerticalLayout")>=0 && divcssstr.indexOf("flexCenter")>=0){
+							rootXML.@valign="center"
+						}
+
+						//flexVerticalLayoutBottom
 						
 					}
 					//Alert.show("rootXML.@hpostion:"+rootXML.@hpostion);

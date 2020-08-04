@@ -70,6 +70,17 @@ package components.primeFaces
 		public function set direction(value:String):void
 		{
 			_direction = value;	
+		}
+
+		private var _vdirection:String;
+		public function get vdirection():String
+		{
+			return _vdirection;
+		}
+		
+		public function set vdirection(value:String):void
+		{
+			_vdirection = value;	
 		}	
 		
 		private var _label:String;
@@ -140,6 +151,12 @@ package components.primeFaces
 			}else{
 				xml.@direction=direction
 			}
+
+			if(!vdirection){
+				xml.@vdirection="Vertical"
+			}else{
+				xml.@vdirection=vdirection
+			}
 			
 			
 		
@@ -191,6 +208,7 @@ package components.primeFaces
 		public function toPerDefCode( xml:XML):XML
 		{
 			var prefdef_str:String="";
+			var vprefdef_str:String="";
 		
 			//Alert.show("div xml:"+xml.name());
 			if(xml!=null){
@@ -201,15 +219,31 @@ package components.primeFaces
 				if(cssstr.indexOf("flexHorizontalLayoutLeft")>=0){
 					prefdef_str=" align=\"left\""
 				}
-
+				//flexHorizontalLayout
 				if(cssstr.indexOf("flexCenter")>=0){
 					prefdef_str=" align=\"center\""
 				}
+
+				if(cssstr.indexOf("flexVerticalLayoutBottom")>=0){
+					vprefdef_str=" valign=\"bottom\""
+				}
+				if(cssstr.indexOf("flexVerticalLayoutTop")>=0){
+					vprefdef_str=" valign=\"top\""
+				}
+				if(cssstr.indexOf("flexVerticalLayout")>=0&&cssstr.indexOf("flexCenter")>=0){
+					vprefdef_str=" valign=\"center\""
+				}
+				//flexVerticalLayoutBottom
+				//flexVerticalLayoutTop
+				//flexCenter && flexVerticalLayout
+
+
 			}else{
-				prefdef_str=" align=\"left\""
+				prefdef_str=" align=\"left\" "
+				vprefdef_str=" valign=\"top\""
 			}
 
-			var pardefXml:XML = new XML("<pardef id=\""+DominoGlobals.PardefDivId+"\" "+prefdef_str+" dominotype=\"domino\"/>" ); 
+			var pardefXml:XML = new XML("<pardef id=\""+DominoGlobals.PardefDivId+"\" "+prefdef_str+" "+vprefdef_str+" dominotype=\"domino\"/>" ); 
 			return pardefXml;
 		}
 	}
