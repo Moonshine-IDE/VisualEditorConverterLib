@@ -24,6 +24,7 @@ package components.domino
 	import mx.core.IVisualElement;
 
 	import flash.utils.getQualifiedClassName;
+	import global.domino.DominoGlobals;
 
 	
 	/** 
@@ -457,9 +458,12 @@ package components.domino
                 {
 					var tableCol:Object = tableRow["getElementAt"](col);
                     var div:Object = tableCol.getElementAt(0);
+					
 					var divNumElements:int = div["numElements"];
 					//Alert.show("divNumElements:"+divNumElements);
 					var rowCellXML:XML = new XML("<tablecell/>");
+
+					
 					if(divNumElements>0){
 							for (var div_count:int = 0; div_count < divNumElements; div_count++){
 									var tableCellElement:Object = div["getElementAt"](div_count);
@@ -469,6 +473,9 @@ package components.domino
 
 					//var divXML:XML = tableCol[0];
 					//Alert.show("divXML:"+div
+					//we need handel div align in here,base on the class of div ,we need seting the align with tabcell
+					rowCellXML=fixDominoTableAlign(div,rowCellXML)
+
 
 					rowXML.appendChild(rowCellXML);
 				}
@@ -483,6 +490,182 @@ package components.domino
 
             return xml;
         }
+
+		private function fixDominoTableAlign(div:Object,rowCellXML:XML):XML
+		{
+			var divcssstr:String=div["cssClass"];
+			if(divcssstr!=null){
+			
+				//hpostion="right" valign="center"
+				
+				var widthtype:String = "fixedright";
+				var rightmargin:String="0";
+				var leftmargin:String="0";
+				var valign:String="";
+				if(divcssstr){
+					//Alert.show("divcssstr:"+divcssstr);
+					
+					if(divcssstr.indexOf("flexHorizontalLayoutRight")>=0){
+						widthtype="fixedright"
+						rowCellXML.@hpostion="right"
+					}
+					if(divcssstr.indexOf("flexHorizontalLayoutLeft")>=0){
+						widthtype="fixedleft"
+						
+						rowCellXML.@hpostion="left"
+					}
+
+					if(divcssstr.indexOf("flexCenter")>=0){
+						widthtype="fixedcenter"
+						rowCellXML.@hpostion="center"
+						
+					}
+
+					//Valign -------
+					//Valign Horizonta postion--center
+					if(divcssstr.indexOf("flexVerticalLayout")>=0 &&divcssstr.indexOf("flexMiddle")>=0 ){
+						widthtype="fixedcenter"
+						rowCellXML.@hpostion="center"
+					
+					}
+					// Valign Horizonta postion--left
+					//flexVerticalLayout flexVerticalLayoutLeft
+					if(divcssstr.indexOf("flexVerticalLayout")>=0 &&divcssstr.indexOf("flexVerticalLayoutLeft")>=0 ){
+						widthtype="fixedleft"
+						rowCellXML.@hpostion="left"
+					}
+					// Valign Horizonta postion--right
+					//flexVerticalLayout flexVerticalLayoutRight 
+					if(divcssstr.indexOf("flexVerticalLayout")>=0 &&divcssstr.indexOf("flexVerticalLayoutRight")>=0 ){
+						widthtype="fixedright"
+						rowCellXML.@hpostion="right"
+					}
+					//valign:top | center | bottom"
+					//flexVerticalLayout flexMiddle flexVerticalLayoutBottom
+					if(divcssstr.indexOf("flexVerticalLayoutBottom")>=0){
+						rowCellXML.@valign="bottom"
+					}
+					if(divcssstr.indexOf("flexVerticalLayoutTop")>=0){
+						rowCellXML.@valign="top"
+					}
+					if(divcssstr.indexOf("flexVerticalLayout")>=0 && divcssstr.indexOf("flexCenter")>=0){
+						rowCellXML.@valign="center"
+					}
+
+
+					// rowCellXML.@widthtype=widthtype
+					// if(widthtype=="fixedleft"){
+					// 	rowCellXML.@leftmargin="0";
+					// 	delete rowCellXML.@rightmargin;
+					// }
+					// if(widthtype=="fixedright"){
+					// 	rowCellXML.@rightmargin="0"
+					// 	delete rowCellXML.@leftmargin;
+					// }
+
+					DominoGlobals.PardefId++;
+
+					var pardef:XML;
+
+					if(rowCellXML.@hpostion=="center"){
+						pardef = new XML("<pardef id=\""+DominoGlobals.PardefId+"\" align=\"center\" dominotype=\"dominotable\"/>");
+					}
+					if(rowCellXML.@hpostion=="left"){
+						pardef = new XML("<pardef id=\""+DominoGlobals.PardefId+"\" align=\"left\" dominotype=\"dominotable\"/>");
+					}
+					if(rowCellXML.@hpostion=="right"){
+						pardef = new XML("<pardef id=\""+DominoGlobals.PardefId+"\" align=\"right\" dominotype=\"dominotable\"/>");
+					}
+					if(!pardef){
+						pardef = new XML("<pardef id=\""+DominoGlobals.PardefId+"\" align=\"left\" dominotype=\"dominotable\"/>");
+				
+					}
+
+					var par:XML = new XML("<par def=\""+DominoGlobals.PardefId+"\" />");
+					
+
+					var elementsXML:XMLList = rowCellXML.elements();
+					var childCount:int = elementsXML.length();
+					for(var i:int = 0; i < childCount; i++)
+					{
+						var childXML:XML = elementsXML[i];
+
+						if(childXML.name()=="par"){
+							//Alert.show("paragraph:"+childXML.@paragraph)
+						}
+
+						if(childXML.name()=="par"&& childXML.@paragraph!="true"){
+							var parelementsXML:XMLList = childXML.elements();
+            				var parchildCount:int = parelementsXML.length();
+						
+							for(var j:int = 0; j < parchildCount; j++)
+							{
+								var parchildXML:XML = parelementsXML[j];
+								par.appendChild(parchildXML);
+								//this.deleteNode(parchildXML);
+							}
+							
+
+							
+						}
+
+						if(childXML.name()=="table"){
+							if(childXML.@hpostion=="center"){
+								if(_width){
+									//we need setting the parent tablecell hpostion
+									//rowCellXML.@hpostion="center";
+									var centerAlign:Number=0
+									var tableWidth:String=childXML.@refwidth
+									if(tableWidth){
+										tableWidth=tableWidth.replace("in","")
+										var tableNumber:Number = Number(tableWidth);
+										var diff:Number=this._width-tableNumber;
+										if(diff<0){
+											diff=0
+										}else{
+											centerAlign=(diff/2) as Number;
+											var m:int = Math.pow(10, 4);
+											centerAlign=Math.round(centerAlign * m) / m;
+										}
+										childXML.@leftmargin=centerAlign+"in"
+										childXML.@widthtype="fixedleft"
+										childXML.@widthtypecache="fixedcenter"
+									}
+								}
+
+								
+							}
+							
+						}
+					
+					
+					}
+
+					
+					var par_elementsXML:XMLList = par.elements();
+					var par_childCount:int = par_elementsXML.length();
+					if(par_childCount>=1){
+						rowCellXML.appendChild(pardef);
+
+						rowCellXML.appendChild(par);
+					}
+
+					
+
+					//flexVerticalLayoutBottom
+					
+				}
+			}
+			return rowCellXML;
+		}
+
+		private function deleteNode(value:XML)
+		{
+
+			if(value==null){return;}
+			if(value.parent()==null){return;}
+			delete value.parent().children()[value.childIndex()]
+		}
 
 
     }
