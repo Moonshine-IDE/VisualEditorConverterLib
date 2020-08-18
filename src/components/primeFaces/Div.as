@@ -177,13 +177,13 @@ package components.primeFaces
 				if(className=="view.domino.surfaceComponents.components::DominoTable"){
 					if(xml.@hpostion=="left"){
 						element["widthtype"]="fixedleft"
-						element["leftmargin"]="0"
+						//element["leftmargin"]="0"
 					}
 
 					if(xml.@hpostion=="right"){
 					
 						element["widthtype"]="fixedright"
-						element["rightmargin"]="0"
+						//element["rightmargin"]="0"
 					
 					}
 					if(xml.@hpostion=="center"){

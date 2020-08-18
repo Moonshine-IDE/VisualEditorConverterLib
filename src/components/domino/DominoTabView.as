@@ -367,11 +367,11 @@ package components.domino
 					if(childXML.name()=="table"){
 						childXML.@widthtype=widthtype
 						if(widthtype=="fixedleft"){
-							childXML.@leftmargin="0";
+							//childXML.@leftmargin="0";
 							delete childXML.@rightmargin;
 						}
 						if(widthtype=="fixedright"){
-							childXML.@rightmargin="0"
+							//childXML.@rightmargin="0"
 							delete childXML.@leftmargin;
 						}
 					}

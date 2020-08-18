@@ -416,7 +416,7 @@ package components.domino
 				xml.@widthtype=this.widthtype.toString();
 			}else{
 				xml.@widthtype="fixedleft"
-				xml.@leftmargin="0"
+				//xml.@leftmargin="0"
 			}
 			//setting center
 			// if(xml.@widthtype=="fixedcenter"){
