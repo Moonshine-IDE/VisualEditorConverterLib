@@ -10,6 +10,28 @@ package components.domino
 	import flash.utils.ByteArray;
 	import mx.controls.Alert;
 
+	import mx.events.FlexEvent;
+
+	import flash.net.URLLoader;
+	import flash.net.URLRequest;
+	import flash.net.URLStream;
+	import flash.net.URLVariables;
+	import flash.net.URLRequestMethod;
+	import flash.net.URLRequestHeader;
+	import flash.events.Event;
+	import flash.net.URLLoaderDataFormat;
+	import flash.events.HTTPStatusEvent
+	//import flash.events.NativeProcessExitEvent;
+	import flash.events.ProgressEvent;
+
+	import 	mx.utils.Base64Encoder;
+
+	import flash.events.EventDispatcher;
+	import flash.events.IOErrorEvent;
+	import flash.events.ErrorEvent
+
+	import org.apache.flex.packageflexsdk.util.ApacheURLLoader;
+
 
 	/** 
 	 * Domino filed element dxl format , more details please view follow url
@@ -461,9 +483,9 @@ package components.domino
 				this.keywordui=xml.@keywordui
 			}
 
-			if(this.type=="formula"){
+			//if(this.type=="formula"){
 				this.formula=xml.@formula
-			}
+			//}
 
 			if(this.type=="password"){
 				this.password=xml.@password
@@ -558,6 +580,16 @@ package components.domino
 			if(this.nameAttribute)
 			{
 				xml.@name = this.nameAttribute;
+			}
+			//this is text computed filed
+			if(this.type=="text"){
+				//for now the formula only add to default value
+				if(this.formula){
+					//Alert.show("formula:"+this.formula);
+					//checkFormula(this.formula);
+					
+					//var code_xml:XML = new XML("<code envent=\"defaultvalue\"/>");
+				}
 			}
 
 			if(this.type=="number"){
@@ -744,6 +776,100 @@ package components.domino
             return par_xml;
 		}
 
+		public var loader : URLLoader ;
+		protected function dominoFormulaHandler(req:URLRequest):void
+		{
+			loader = new ApacheURLLoader();
+			loader.dataFormat = URLLoaderDataFormat.TEXT;
+			
+			loader.addEventListener(Event.COMPLETE, handleFormulaComplete);
+			loader.addEventListener(ErrorEvent.ERROR, handleFormulaError);
+			loader.addEventListener(IOErrorEvent.IO_ERROR, handleFormulaIOError);
+			
+			loader.load(req);
+		}
+		protected function handleFormulaComplete(event:Event):void
+		{
+			try
+			{
+				Alert.show("result:"+event.target.data);
+			}catch(e:Error){
+
+			}	
+		}
+		protected function handleFormulaError(e:* = null):void
+		{
+			Alert.show("error:"+e.toString())
+		}
+		protected function handleFormulaIOError(e:* = null):void
+		{
+					Alert.show("error:"+e.toString())
+		}
+        public function checkFormula(formula:String) : void{
+            var req : URLRequest = new URLRequest();
+            loader = new URLLoader();
+			loader.dataFormat = URLLoaderDataFormat.TEXT;
+            var params : URLVariables = new URLVariables();
+                  
+            //encoder.encode(formula);
+			
+            params.formula = base64Encode(formula);
+			Alert.show("params.formula:"+params.formula);
+            req.data = params;
+			req.requestHeaders.push(new URLRequestHeader('Content-Type', 'application/x-www-form-urlencoded'));
+			req.url="http://localhost:8080/dominoFormula/parse?formula="+params.formula;
+            req.method = URLRequestMethod.POST;
+            //loader.addEventListener(ProgressEvent.PROGRESS,urlStream_progressHandler);
+            //loader.addEventListener(Event.COMPLETE, urlLoader_complete);
+			dominoFormulaHandler(req);
+			// loader.addEventListener(Event.COMPLETE,eventComplete);
+			// loader.addEventListener(IOErrorEvent.IO_ERROR,ioerror);
+			// loader.addEventListener(HTTPStatusEvent.HTTP_STATUS, httpStatusHandler);
+        	// loader.addEventListener(Event.OPEN, onOpen);
+        	// loader.addEventListener(Event.ACTIVATE, onActivate);
+			// loader.load(req);
+			// function eventComplete(e:Event):void
+			// {
+			// 	Alert.show('result:' + e.target.data.toString());
+			// }
+        }
+		public static function base64Encode(str:String, charset:String = "UTF-8"):String{
+			if((str==null)){
+				return "";
+			}
+			var base64:Base64Encoder = new Base64Encoder();
+			base64.insertNewLines = false;
+			var byte:ByteArray = new ByteArray();
+			byte.writeMultiByte(str, charset);
+			base64.encodeBytes(byte);
+			return base64.toString();
+		}
+		private function httpStatusHandler(event:HTTPStatusEvent):void {
+        	Alert.show("httpStatusHandler: " + event);
+    	}
+
+		protected function onOpen(e:Event):void
+		{
+			Alert.show(e.toString());
+		}
+
+		protected function onActivate(e:Event):void
+		{
+			Alert.show(e.toString());
+		}
+		protected function ioerror(e:Event):void
+		{
+			Alert.show("Connection Error:"+e.toString());
+		}
+        protected function urlLoader_complete(evt:Event):void {
+            var dataSet:String  = loader.data;
+            Alert.show("dataSet:"+dataSet);
+            
+        }
+        protected function urlStream_progressHandler(event:ProgressEvent):void
+		{
+			//dispatchEvent(event);
+		} 
 
 		
 	}
