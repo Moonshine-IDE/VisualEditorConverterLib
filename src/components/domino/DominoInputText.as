@@ -452,6 +452,7 @@ package components.domino
 			this.allowmultivalues=xml.@allowmultivalues == "true";
 			this.type=xml.@type;
 			this.kind=xml.@kind;
+			//this.formula=xml.@formula;
 
 			if(this.type=="number"){
 				this.digits= xml.@digits;
@@ -587,8 +588,10 @@ package components.domino
 				if(this.formula){
 					//Alert.show("formula:"+this.formula);
 					//checkFormula(this.formula);
-					
-					//var code_xml:XML = new XML("<code envent=\"defaultvalue\"/>");
+					var code_xml:XML = new XML("<code envent=\"defaultvalue\"/>");
+					var formula_xml:XML=new XML("<formula >"+this.formula+"</formula>");
+					code_xml.appendChild(formula_xml);
+					xml.appendChild(code_xml);
 				}
 			}
 
