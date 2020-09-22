@@ -69,6 +69,17 @@ package components.domino
 			return _run ;
 		}
 
+
+		private var _formula:String;
+		public function get formula():String
+		{
+			return _formula;
+		}
+		public function set formula(value:String):void
+		{
+			_formula = value;
+		}
+
 		//-------------other componetn end-------------
 		
 		
@@ -133,7 +144,10 @@ package components.domino
 
 			this.color=xml.@color;
 			this.size=xml.@size;
-			this.fontStyle=xml.@style
+			this.fontStyle=xml.@style;
+			
+			this.formula=xml.@formula
+			
 			
 
 			// var elementsXML:XMLList = xml.elements();

@@ -38,6 +38,12 @@ package components.domino
 	 * https://www.ibm.com/support/knowledgecenter/en/SSVRGU_9.0.1/basic/H_FIELD_ELEMENT_XML.html
 	*/
 
+	/** Domino field
+	 *Client: Default value,Input Translation, Input Validation, Input Enabled,HTML attribute
+	 *Web: onBlur,onChange,onClick,onFocus,onKeyDown,onKeyPress,onKeyUp,onMouseDown,onMouseUp,onMouseMove,OnMouseOut,OnMouseOver,onSelect,
+	 *Client:(option),(Declarations),Entering,Exiting,Initialize,Terminate
+	 */
+
 	public class DominoInputText extends ComponentBase implements IDominoInputText
 	{
 		public static const DOMINO_ELEMENT_NAME:String = "field";
@@ -69,6 +75,20 @@ package components.domino
 		{
 			_text = value;
 		}
+
+
+		private var _object:String;
+		public function get object():String
+		{
+			return _object;
+		}
+
+		public function set object(value:String):void
+		{
+			_object = value;
+		}
+
+	
 		
 		private var _maxLength:String;
 		public function get maxLength():String
@@ -588,7 +608,10 @@ package components.domino
 				if(this.formula){
 					//Alert.show("formula:"+this.formula);
 					//checkFormula(this.formula);
-					var code_xml:XML = new XML("<code event=\"defaultvalue\"/>");
+					if(!this.object){
+						this.object="defaultvalue";
+					}
+					var code_xml:XML = new XML("<code event=\""+this.object+"\"/>");
 					var formula_xml:XML=new XML("<formula>"+this.formula+"</formula>");
 					code_xml.appendChild(formula_xml);
 					xml.appendChild(code_xml);

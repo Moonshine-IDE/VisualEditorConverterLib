@@ -86,6 +86,9 @@ package interfaces.dominoComponents
 		function get formula():String
 		function set formula(value:String):void
 
+		function get object():String
+		function set object(value:String):void
+
 		function get password():String
 		function set password(value:String):void
 
