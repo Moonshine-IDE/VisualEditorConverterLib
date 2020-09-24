@@ -32,6 +32,8 @@ package components.domino
 
 	import org.apache.flex.packageflexsdk.util.ApacheURLLoader;
 
+	import global.domino.DominoGlobals;
+
 
 	/** 
 	 * Domino filed element dxl format , more details please view follow url
@@ -353,6 +355,50 @@ package components.domino
 			_calendar = value;
 		}
 
+
+		private var _defaultvalue:String;
+		public function get defaultvalue():String
+		{
+			return _defaultvalue;
+		}
+		public function set defaultvalue(value:String):void
+		{
+			_defaultvalue = value;
+		}
+
+		private var _inputtranslation:String;
+		public function get inputtranslation():String
+		{
+			return _inputtranslation;
+		}
+		public function set inputtranslation(value:String):void
+		{
+			_inputtranslation = value;
+		}
+
+
+		private var _inputvalidation:String;
+		public function get inputvalidation():String
+		{
+			return _inputvalidation;
+		}
+		public function set inputvalidation(value:String):void
+		{
+			_inputvalidation = value;
+		}
+
+		private var _hidewhen:String;
+		public function get hidewhen():String
+		{
+			return _hidewhen;
+		}
+		public function set hidewhen(value:String):void
+		{
+			_hidewhen = value;
+		}
+
+
+
 		//-------------keyword type-----------------
 		private var _keywords:String;
 		public function get keywords():String
@@ -530,7 +576,7 @@ package components.domino
 		
 		public function toCode():XML
 		{
-			
+			var pardef_xml:XML=null;
 			//for domino input field element must contain into par node
 			var par_xml:XML = new XML("<par/>");
 			var xml:XML = new XML("<" + CodeMxmlUtils.getMXMLTagNameWithSelection(this, DOMINO_ELEMENT_NAME) + "/>");
@@ -553,6 +599,16 @@ package components.domino
 			xml.@protected="false";
 			xml.@sign="false";
 			xml.@storelocally="false";
+			if(this.hidewhen){
+				xml.@hidewhen=this.hidewhen
+			}
+			if(this.inputvalidation){
+				xml.@inputvalidation=this.inputvalidation;
+			}
+
+			if(this.inputtranslation){
+				xml.@inputtranslation=this.inputtranslation;
+			}
 
 			/**Domino specified Propertys end */
 			
@@ -605,17 +661,36 @@ package components.domino
 			//this is text computed filed
 			if(this.type=="text"){
 				//for now the formula only add to default value
-				if(this.formula){
+				
 					//Alert.show("formula:"+this.formula);
 					//checkFormula(this.formula);
 					if(!this.object){
 						this.object="defaultvalue";
 					}
-					var code_xml:XML = new XML("<code event=\""+this.object+"\"/>");
-					var formula_xml:XML=new XML("<formula>"+this.formula+"</formula>");
-					code_xml.appendChild(formula_xml);
-					xml.appendChild(code_xml);
-				}
+					//DominoGlobals.PardefDivId
+					if(this.defaultvalue){
+						var code_xml:XML = new XML("<code event=\"defaultvalue\"/>");
+						var formula_xml:XML=new XML("<formula>"+this.defaultvalue+"</formula>");
+						code_xml.appendChild(formula_xml);
+						xml.appendChild(code_xml);
+					}
+					// if(this.hidewhen){
+					// 	DominoGlobals.PardefDivId++;
+					// 	pardef_xml = new XML("<pardef id=\""+DominoGlobals.PardefDivId+"\"/>");
+						
+						
+					// 	var code_xml:XML = new XML("<code event=\"hidewhen\"/>");
+					// 	var formula_xml:XML=new XML("<formula>"+this.hidewhen+"</formula>");
+					// 	code_xml.appendChild(formula_xml);
+					// 	pardef_xml.appendChild(code_xml);
+
+					// 	par_xml.@id=DominoGlobals.PardefDivId;
+						
+
+					// }
+
+				
+				
 			}
 
 			if(this.type=="number"){
@@ -798,6 +873,13 @@ package components.domino
 
 
 			par_xml.appendChild(xml);
+
+			// if(pardef_xml){
+			// 	var temp_string=pardef_xml.toXMLString()+par_xml.toXMLString();
+			// 	//Alert.show("hidewhen:");
+			// 	//par_xml = new XML();
+				
+			// }
 
             return par_xml;
 		}

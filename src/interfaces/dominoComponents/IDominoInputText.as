@@ -26,6 +26,17 @@ package interfaces.dominoComponents
 		function get type():String;
 		function set type(value:String):void;
 
+		function get defaultvalue():String;
+		function set defaultvalue(value:String):void;
+		function get inputtranslation():String;
+		function set inputtranslation(value:String):void;
+		function get inputvalidation():String;
+		function set inputvalidation(value:String):void;
+		function get hidewhen():String;
+		function set hidewhen(value:String):void;
+
+		
+
 		function get kind():String;
 		function set kind(value:String):void;
 

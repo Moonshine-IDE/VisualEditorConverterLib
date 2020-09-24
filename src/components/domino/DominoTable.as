@@ -585,6 +585,7 @@ package components.domino
 					
 
 					var elementsXML:XMLList = rowCellXML.elements();
+					//Alert.show("rowCellXML:"+rowCellXML.toXMLString());
 					var childCount:int = elementsXML.length();
 					for(var i:int = 0; i < childCount; i++)
 					{
@@ -592,6 +593,17 @@ package components.domino
 
 						if(childXML.name()=="par"){
 							//Alert.show("paragraph:"+childXML.@paragraph)
+							var parelementsXML:XMLList = childXML.elements();
+							var parchildCount:int = parelementsXML.length();
+							for(var n:int = 0; n < parchildCount; n++)
+							{
+								var parchildXML:XML = parelementsXML[n];
+							
+								if(parchildXML.name()=="_moonshineSelected_field"||parchildXML.name()=="field"){
+									//Alert.show("parchildXML:"+parchildXML.toXMLString());
+									pardef=fixHideWhenwithField(parchildXML,pardef);
+								}		
+							}
 						}
 
 						if(childXML.name()=="par"&& childXML.@paragraph!="true"){
@@ -637,7 +649,14 @@ package components.domino
 							}
 							
 						}
-					
+
+						//we need add hidewhen to predef 
+						//fixHideWhenwithField
+						//Alert.show("field:"+childXML.name());
+						if(childXML.name()=="field"){
+							
+							
+						}
 					
 					}
 
@@ -657,6 +676,23 @@ package components.domino
 				}
 			}
 			return rowCellXML;
+		}
+
+		/**
+		 * This function will add the hidewhen formula of field to predef tag
+		   So that this format will work with dxl of notes client.
+		 */
+
+		private function fixHideWhenwithField(fieldXML:XML,predefXML:XML):XML
+		{
+			if(fieldXML.@hidewhen){
+				var code_xml:XML = new XML("<code event=\"hidewhen\" />");
+				var formula_xml:XML = new XML("<formula>"+fieldXML.@hidewhen+"</formula>");
+				code_xml.appendChild(formula_xml);
+				predefXML.appendChild(code_xml);
+			}
+
+			return predefXML;
 		}
 
 		private function deleteNode(value:XML)
