@@ -119,8 +119,13 @@ package components.domino
             {
                 var element:IComponent = component["getElementAt"](i) as IComponent;
                 var exml:XML=element.toCode();
+				var hidewhen:String=exml.@hidewhen;
+				//Alert.show("exml:"+exml.toXMLString());
 				if(exml.name()=="par"){
 					exml=exml.children()[0]
+				}
+				if(hidewhen){
+					xml.@hidewhen=hidewhen;
 				}
 				xml.appendChild(exml);
             }

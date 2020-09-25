@@ -518,6 +518,11 @@ package components.domino
 			this.allowmultivalues=xml.@allowmultivalues == "true";
 			this.type=xml.@type;
 			this.kind=xml.@kind;
+
+			this.defaultvalue=xml.@defaultvalue;
+			this.hidewhen=xml.@hidewhen;
+			this.inputvalidation=xml.@inputvalidation;
+			this.inputtranslation=xml.@inputtranslation;
 			//this.formula=xml.@formula;
 
 			if(this.type=="number"){
@@ -600,7 +605,8 @@ package components.domino
 			xml.@sign="false";
 			xml.@storelocally="false";
 			if(this.hidewhen){
-				xml.@hidewhen=this.hidewhen
+				xml.@hidewhen=this.hidewhen;
+				par_xml.@hidewhen=this.hidewhen;
 			}
 			if(this.inputvalidation){
 				xml.@inputvalidation=this.inputvalidation;

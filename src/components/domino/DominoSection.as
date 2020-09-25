@@ -8,6 +8,7 @@ package components.domino
 	import utils.StringHelperUtils;
 	import interfaces.IComponent;
 	import spark.components.Alert;
+	import global.domino.DominoGlobals;
     public class DominoSection extends ComponentBase implements IDominoSection
 	{
 		public static const DOMINO_ELEMENT_NAME:String = "section";
@@ -277,7 +278,21 @@ package components.domino
 				 	var exml:XML=element.toCode();
 					if(exml) {
 						if(exml.name()=="par"){
-							exml=exml.children()[0]
+							if(exml.@hidewhen){
+								//we need add pardef for hidewhen formuala
+								DominoGlobals.PardefId++;
+								var pardeXml:XML=new XML("<pardef id=\""+DominoGlobals.PardefId+"\"  dominotype=\"dominosection\"/>");
+								var code_xml:XML = new XML("<code event=\"hidewhen\" />");
+								var formula_xml:XML = new XML("<formula>"+exml.@hidewhen+"</formula>");
+								code_xml.appendChild(formula_xml);
+								pardeXml.appendChild(code_xml);
+								section_xml.appendChild(pardeXml);
+								exml.@def=DominoGlobals.PardefId;
+								
+							}else{
+								exml=exml.children()[0]
+							}
+							
 						}
 
 						if(exml.name()=="run"){
