@@ -680,6 +680,20 @@ package components.domino
 						code_xml.appendChild(formula_xml);
 						xml.appendChild(code_xml);
 					}
+					if(this.inputtranslation){
+						var code_xml:XML = new XML("<code event=\"inputtranslation\"/>");
+						var formula_xml:XML=new XML("<formula>"+this.inputtranslation+"</formula>");
+						code_xml.appendChild(formula_xml);
+						xml.appendChild(code_xml);
+
+					}
+					if(this.inputvalidation){
+						var code_xml:XML = new XML("<code event=\"inputvalidation\"/>");
+						var formula_xml:XML=new XML("<formula>"+this.inputvalidation+"</formula>");
+						code_xml.appendChild(formula_xml);
+						xml.appendChild(code_xml);
+
+					}
 					// if(this.hidewhen){
 					// 	DominoGlobals.PardefDivId++;
 					// 	pardef_xml = new XML("<pardef id=\""+DominoGlobals.PardefDivId+"\"/>");
