@@ -665,7 +665,7 @@ package components.domino
 				xml.@name = this.nameAttribute;
 			}
 			//this is text computed filed
-			if(this.type=="text"){
+			if(this.type=="text"|| this.type=="keyword"){
 				//for now the formula only add to default value
 				
 					//Alert.show("formula:"+this.formula);
