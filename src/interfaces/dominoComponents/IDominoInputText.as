@@ -20,6 +20,12 @@ package interfaces.dominoComponents
 		function get allowmultivalues():Boolean;
 		function set allowmultivalues(value:Boolean):void;
 
+		function get recalonchange():Boolean;
+		function set recalonchange(value:Boolean):void;
+
+		function get recalcchoices():Boolean;
+		function set recalcchoices(value:Boolean):void;
+
 		function get nameAttribute():String;
 		function set nameAttribute(value:String):void;
 
@@ -39,7 +45,9 @@ package interfaces.dominoComponents
 
 		function get kind():String;
 		function set kind(value:String):void;
-
+		
+		function get numberColumns():Number;
+		function set numberColumns(value:Number):void;
 
 		function get width():Number;
 		function set width(value:Number):void;

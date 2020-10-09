@@ -79,6 +79,22 @@ package components.domino
 		}
 
 
+		private var _numberColumns:Number;
+       
+        public function get numberColumns():Number
+        {
+            return _numberColumns;
+        }
+		
+        public function set numberColumns(value:Number):void
+        {
+            if (_numberColumns != value)
+            {
+                _numberColumns = value;
+            }
+        }
+
+
 		private var _object:String;
 		public function get object():String
 		{
@@ -395,6 +411,29 @@ package components.domino
 		public function set hidewhen(value:String):void
 		{
 			_hidewhen = value;
+		}
+
+		
+		private var _recalonchange:Boolean=false;
+		public function get recalonchange():Boolean
+		{
+			return _recalonchange;
+		}
+		public function set recalonchange(value:Boolean):void
+		{
+			_recalonchange = value;
+		}
+
+
+
+		private var _recalcchoices:Boolean=false;
+		public function get recalcchoices():Boolean
+		{
+			return _recalcchoices;
+		}
+		public function set recalcchoices(value:Boolean):void
+		{
+			_recalcchoices = value;
 		}
 
 
@@ -804,6 +843,12 @@ package components.domino
 				var keyword_format_xml:XML = new XML("<keywords/>");
 				if(this.keywordui){
 					keyword_format_xml.@ui=this.keywordui
+					keyword_format_xml.@recalonchange=this.recalonchange.toString();
+					keyword_format_xml.@recalcchoices=this.recalcchoices.toString();
+					Alert.show("vc numberColumns:"+this.numberColumns);
+					if(this.numberColumns){
+						keyword_format_xml.@columns=this.numberColumns.toString();
+					}
 					if(this.keywordui=="checkbox"){
 						//xml.@allowmultivalues="true"
 					}else  if(this.keywordui=="radiobutton"){
@@ -851,7 +896,7 @@ package components.domino
 				}
 
 				//keyword_format_xml.@allownew="false"
-				keyword_format_xml.@columns="1"
+				//keyword_format_xml.@columns="1"
 				// keyword_format_xml.@helperbutton="false"
 				// keyword_format_xml.@readingorder="lefttoright"
 				// keyword_format_xml.@recalcchoices="false"
