@@ -685,7 +685,7 @@ package components.domino
 
 		private function fixHideWhenwithField(fieldXML:XML,predefXML:XML):XML
 		{
-			if(fieldXML.@hidewhen){
+			if(fieldXML.@hidewhen&&fieldXML.@hidewhen.length>0){
 				var code_xml:XML = new XML("<code event=\"hidewhen\" />");
 				var formula_xml:XML = new XML("<formula>"+fieldXML.@hidewhen+"</formula>");
 				code_xml.appendChild(formula_xml);

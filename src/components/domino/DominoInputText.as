@@ -557,6 +557,7 @@ package components.domino
 			this.allowmultivalues=xml.@allowmultivalues == "true";
 			this.type=xml.@type;
 			this.kind=xml.@kind;
+			this.numberColumns=xml.@numberColumns;
 
 			this.defaultvalue=xml.@defaultvalue;
 			this.hidewhen=xml.@hidewhen;
