@@ -247,8 +247,8 @@ package components.primeFaces
 
 			var pardefXml:XML = new XML("<pardef id=\""+DominoGlobals.PardefDivId+"\" "+prefdef_str+" "+vprefdef_str+" dominotype=\"domino\"/>" );
 			if(xml.@hidewhen&& xml.@hidewhen!=""){
-				//Alert.show("xml.@hidewhen:"+xml.@hidewhen.length);
-				if(xml.@hidewhen.length>0){
+				//Alert.show("xml.@hidewhen:"+xml.@hidewhen+":"+xml.@hidewhen.length());
+				if(xml.@hidewhen.length()>0){
 					var code_xml:XML = new XML("<code event=\"hidewhen\" />");
 					var formula_xml:XML = new XML("<formula>"+xml.@hidewhen+"</formula>");
 					code_xml.appendChild(formula_xml);

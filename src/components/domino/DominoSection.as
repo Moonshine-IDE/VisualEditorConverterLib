@@ -278,7 +278,7 @@ package components.domino
 				 	var exml:XML=element.toCode();
 					if(exml) {
 						if(exml.name()=="par"){
-							if(exml.@hidewhen && exml.@hidewhen.length>0 ){
+							if(exml.@hidewhen && exml.@hidewhen.length()>0 ){
 								//we need add pardef for hidewhen formuala
 								DominoGlobals.PardefId++;
 								var pardeXml:XML=new XML("<pardef id=\""+DominoGlobals.PardefId+"\"  dominotype=\"dominosection\"/>");
