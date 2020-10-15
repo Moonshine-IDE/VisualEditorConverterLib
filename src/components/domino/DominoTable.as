@@ -591,6 +591,9 @@ package components.domino
 					{
 						var childXML:XML = elementsXML[i];
 
+						
+
+						
 						if(childXML.name()=="par"){
 							//Alert.show("paragraph:"+childXML.@paragraph)
 							var parelementsXML:XMLList = childXML.elements();
@@ -599,17 +602,22 @@ package components.domino
 							{
 								var parchildXML:XML = parelementsXML[n];
 							
-								if(parchildXML.name()=="_moonshineSelected_field"||parchildXML.name()=="field"){
-									//Alert.show("parchildXML:"+parchildXML.toXMLString());
+								if(parchildXML.@hidewhen.length()>0){
+								
 									pardef=fixHideWhenwithField(parchildXML,pardef);
+									pardef.@hidewhen=parchildXML.@hidewhen;
 								}		
 							}
-						}
 
+							
+							
+						}
 						if(childXML.name()=="par"&& childXML.@paragraph!="true"){
 							var parelementsXML:XMLList = childXML.elements();
             				var parchildCount:int = parelementsXML.length();
-						
+							if(childXML.@hidewhen){
+								par.@hidewhen=childXML.@hidewhen;
+							}
 							for(var j:int = 0; j < parchildCount; j++)
 							{
 								var parchildXML:XML = parelementsXML[j];
@@ -689,6 +697,7 @@ package components.domino
 				var code_xml:XML = new XML("<code event=\"hidewhen\" />");
 				var formula_xml:XML = new XML("<formula>"+fieldXML.@hidewhen+"</formula>");
 				code_xml.appendChild(formula_xml);
+				//predefXML.@hidewhen=fieldXML.@hidewhen
 				predefXML.appendChild(code_xml);
 			}
 

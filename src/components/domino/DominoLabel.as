@@ -13,6 +13,7 @@ package components.domino
 	import components.domino.DominoRun;
 
 	import mx.controls.Alert;
+	import global.domino.DominoGlobals;
 	/** 
 	 * Domino text element dxl format 
         dxl example of text 
@@ -39,6 +40,15 @@ package components.domino
 			_isSelected = value;
 		}
 		//------------comenent start------------------
+		private var _hidewhen:String;
+		public function get hidewhen():String
+		{
+			return _hidewhen;
+		}
+		public function set hidewhen(value:String):void
+		{
+			_hidewhen = value;
+		}
 		private var _font:DominoFont;
 		public function set font(font:DominoFont):void
 		{
@@ -146,7 +156,8 @@ package components.domino
 			this.size=xml.@size;
 			this.fontStyle=xml.@style;
 			
-			this.formula=xml.@formula
+			this.formula=xml.@formula;
+			this.hidewhen=xml.@hidewhen;
 			
 			
 
@@ -236,6 +247,26 @@ package components.domino
 			}
 		
 			par_xml.appendChild(run_xml);
+			if(this.hidewhen){
+				par_xml.@hidewhen = this.hidewhen;
+				par_xml.@dominotype="label";
+			}
+
+			//setting par def id
+			// if(this.hidewhen){
+			// 	DominoGlobals.PardefDivId++;
+			// 	var pardef_xml:XML = new XML("<pardef id=\""+DominoGlobals.PardefDivId+"\"/>");
+				
+				
+			// 	var code_xml:XML = new XML("<code event=\"hidewhen\"/>");
+			// 	var formula_xml:XML=new XML("<formula>"+this.hidewhen+"</formula>");
+			// 	code_xml.appendChild(formula_xml);
+			// 	pardef_xml.appendChild(code_xml);
+
+			// 	par_xml.@def=DominoGlobals.PardefDivId;
+					
+
+			// }
 
             return par_xml;
 		}

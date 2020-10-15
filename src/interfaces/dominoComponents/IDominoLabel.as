@@ -22,5 +22,8 @@ package interfaces.dominoComponents
         function get fontStyle():String;
         function set fontStyle(value:String):void;
 
+        function get hidewhen():String
+        function set hidewhen(value:String):void;
+
     }
 }
