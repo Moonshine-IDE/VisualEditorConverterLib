@@ -608,7 +608,9 @@ package components.domino
 									pardef.@hidewhen=parchildXML.@hidewhen;
 								}		
 							}
-
+							if(childXML.@hidewhen.length()>0){
+                                pardef=fixHideWhenwithField(childXML,pardef);
+                            }
 							
 							
 						}
