@@ -568,16 +568,16 @@ package components.domino
 					var pardef:XML;
 
 					if(rowCellXML.@hpostion=="center"){
-						pardef = new XML("<pardef id=\""+DominoGlobals.PardefId+"\" align=\"center\" dominotype=\"dominotable\"/>");
+						pardef = new XML("<pardef id=\""+DominoGlobals.PardefId+"\" align=\"center\" keeptogether=\"true\" keepwithnext=\"true\" dominotype=\"dominotable\"/>");
 					}
 					if(rowCellXML.@hpostion=="left"){
-						pardef = new XML("<pardef id=\""+DominoGlobals.PardefId+"\" align=\"left\" dominotype=\"dominotable\"/>");
+						pardef = new XML("<pardef id=\""+DominoGlobals.PardefId+"\" align=\"left\" keeptogether=\"true\" keepwithnext=\"true\" dominotype=\"dominotable\"/>");
 					}
 					if(rowCellXML.@hpostion=="right"){
-						pardef = new XML("<pardef id=\""+DominoGlobals.PardefId+"\" align=\"right\" dominotype=\"dominotable\"/>");
+						pardef = new XML("<pardef id=\""+DominoGlobals.PardefId+"\" align=\"right\" keeptogether=\"true\" keepwithnext=\"true\" dominotype=\"dominotable\"/>");
 					}
 					if(!pardef){
-						pardef = new XML("<pardef id=\""+DominoGlobals.PardefId+"\" align=\"left\" dominotype=\"dominotable\"/>");
+						pardef = new XML("<pardef id=\""+DominoGlobals.PardefId+"\" align=\"left\" keeptogether=\"true\" keepwithnext=\"true\" dominotype=\"dominotable\"/>");
 				
 					}
 

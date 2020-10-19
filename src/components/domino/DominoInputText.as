@@ -797,7 +797,7 @@ package components.domino
 				var keyword_format_xml:XML = new XML("<keywords/>");
 				if(this.keywordui){
 					keyword_format_xml.@ui=this.keywordui
-					keyword_format_xml.@recalonchange=this.recalonchange.toString();
+					keyword_format_xml.@recalconchange=this.recalonchange.toString();
 					keyword_format_xml.@recalcchoices=this.recalcchoices.toString();
 					//Alert.show("vc numberColumns:"+this.numberColumns);
 					if(this.numberColumns){
