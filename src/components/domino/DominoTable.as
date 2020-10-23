@@ -467,16 +467,20 @@ package components.domino
 					if(divNumElements>0){
 							for (var div_count:int = 0; div_count < divNumElements; div_count++){
 									var tableCellElement:Object = div["getElementAt"](div_count);
-									rowCellXML.appendChild(tableCellElement.toCode());
+									//we should check the empty par tag in here
+									var cellChildXml:XML=tableCellElement.toCode();
+									rowCellXML.appendChild(cellChildXml);
 							}
+							//Alert.show("rowCellXML:"+rowCellXML.toXMLString());
 					}
 
 					//var divXML:XML = tableCol[0];
 					//Alert.show("divXML:"+div
 					//we need handel div align in here,base on the class of div ,we need seting the align with tabcell
+					
 					rowCellXML=fixDominoTableAlign(div,rowCellXML)
 
-
+					
 					rowXML.appendChild(rowCellXML);
 				}
 
@@ -595,22 +599,28 @@ package components.domino
 
 						
 						if(childXML.name()=="par"){
-							//Alert.show("paragraph:"+childXML.@paragraph)
+							
 							var parelementsXML:XMLList = childXML.elements();
 							var parchildCount:int = parelementsXML.length();
+							
 							for(var n:int = 0; n < parchildCount; n++)
 							{
 								var parchildXML:XML = parelementsXML[n];
 							
 								if(parchildXML.@hidewhen.length()>0){
 								
-									pardef=fixHideWhenwithField(parchildXML,pardef);
+									//pardef=fixHideWhenwithField(parchildXML,pardef);
 									pardef.@hidewhen=parchildXML.@hidewhen;
 								}		
 							}
-							if(childXML.@hidewhen.length()>0){
-                                pardef=fixHideWhenwithField(childXML,pardef);
-                            }
+							if(parchildCount==0){
+								this.deleteNode(childXML)
+							}else{
+								if(childXML.@hidewhen.length()>0){
+                               	 pardef=fixHideWhenwithField(childXML,pardef);
+                            	}
+							}
+							
 							
 							
 						}
@@ -676,7 +686,13 @@ package components.domino
 					if(par_childCount>=1){
 						rowCellXML.appendChild(pardef);
 
+						//Alert.show("690:"+par.toXMLString());
+
 						rowCellXML.appendChild(par);
+					}else{
+						if(par_childCount==0){
+							this.deleteNode(par);
+						}
 					}
 
 					
@@ -685,8 +701,30 @@ package components.domino
 					
 				}
 			}
+			rowCellXML=removeEmptyParTag(rowCellXML);
+			
 			return rowCellXML;
 		}
+
+		private function removeEmptyParTag(rowCellXML:XML):XML
+		{
+			var elementsXML:XMLList = rowCellXML.elements();
+			//Alert.show("rowCellXML:"+rowCellXML.toXMLString());
+			var childCount:int = elementsXML.length();
+			for(var i:int = 0; i < childCount; i++)
+			{
+				var childXML:XML = elementsXML[i];
+				if(childXML.name()=="par"){
+					if(childXML.children().length()==0){
+						this.deleteNode(childXML);
+					}
+				}
+
+			}
+
+			return rowCellXML;
+		}
+
 
 		/**
 		 * This function will add the hidewhen formula of field to predef tag

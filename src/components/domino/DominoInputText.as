@@ -623,7 +623,7 @@ package components.domino
 		{
 			var pardef_xml:XML=null;
 			//for domino input field element must contain into par node
-			var par_xml:XML = new XML("<par/>");
+			var par_xml:XML = new XML("<par type=\"dominoField\"/>");
 			var xml:XML = new XML("<" + CodeMxmlUtils.getMXMLTagNameWithSelection(this, DOMINO_ELEMENT_NAME) + "/>");
             // var primeFacesNamespace:Namespace = new Namespace("p", "http://primefaces.org/ui");
             // xml.addNamespace(primeFacesNamespace);
