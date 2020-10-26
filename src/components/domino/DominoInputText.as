@@ -66,7 +66,20 @@ package components.domino
 		{
 			_isSelected = value;
 		}
-		
+
+		private var _keyformulachoices:Boolean;
+		public function get keyformulachoices():Boolean
+		{
+			return _keyformulachoices;
+		}
+
+		public function set keyformulachoices(value:Boolean):void
+		{
+			_keyformulachoices = value;
+		}
+
+
+	
 		private var _text:String;
 		public function get text():String
 		{
@@ -491,6 +504,16 @@ package components.domino
 			_listdisplayseparator = value;
 		}
 
+		private var _keywordsformula:String;
+		public function get keywordsformula():String
+		{
+			return _keywordsformula;
+		}
+		public function set keywordsformula(value:String):void
+		{
+			_keywordsformula = value;
+		}
+
 
 		private var _formula:String;
 		public function get formula():String
@@ -558,9 +581,11 @@ package components.domino
 			this.type=xml.@type;
 			this.kind=xml.@kind;
 			this.numberColumns=xml.@numberColumns;
+			this.keyformulachoices=xml.@keyformulachoices;
 
 			this.defaultvalue=xml.@defaultvalue;
 			this.hidewhen=xml.@hidewhen;
+			this.keywordsformula=xml.@keywordsformula;
 			this.inputvalidation=xml.@inputvalidation;
 			this.inputtranslation=xml.@inputtranslation;
 			//this.formula=xml.@formula;
@@ -831,20 +856,32 @@ package components.domino
 				}
 
 				if(this.keywords){
+					//Alert.show("keyformulachoices:"+this.keyformulachoices);
+					if(this.keyformulachoices==true){
 
-					var textlist_format_xml:XML = new XML("<textlist/>");
+						if(this.keywordsformula){
+							var formula_xml_key:XML = new XML("<formula>"+this.keywordsformula+"</formula>");
+								keyword_format_xml.appendChild(formula_xml_key)
+						}
 
-					var myArrayOfLines:Array = this.keywords.split(/\n/);
-					//
-					for(var k:int = 0; k < myArrayOfLines.length; k=k+1)
-					{
-						
-						var text_format_xml:XML = new XML("<text>"+myArrayOfLines[k]+"</text>");
-						textlist_format_xml.appendChild(text_format_xml)
+					}else{
+						var textlist_format_xml:XML = new XML("<textlist/>");
+
+						var myArrayOfLines:Array = this.keywords.split(/\n/);
+						//
+						for(var k:int = 0; k < myArrayOfLines.length; k=k+1)
+						{
+							
+							var text_format_xml:XML = new XML("<text>"+myArrayOfLines[k]+"</text>");
+							textlist_format_xml.appendChild(text_format_xml)
+						}
+							keyword_format_xml.appendChild(textlist_format_xml)
 					}
 
+					
 
-					keyword_format_xml.appendChild(textlist_format_xml)
+
+				
 
 
 				}

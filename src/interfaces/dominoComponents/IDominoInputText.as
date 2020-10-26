@@ -32,6 +32,9 @@ package interfaces.dominoComponents
 		function get type():String;
 		function set type(value:String):void;
 
+		function get keywordsformula():String;
+		function set keywordsformula(value:String):void;
+
 		function get defaultvalue():String;
 		function set defaultvalue(value:String):void;
 		function get inputtranslation():String;
@@ -81,6 +84,10 @@ package interfaces.dominoComponents
 
 		function get omitthisyear():Boolean;
 		function set omitthisyear(value:Boolean):void;
+
+		function get keyformulachoices():Boolean;
+		function set keyformulachoices(value:Boolean):void;
+		
 		function get time():String;
 		function set time(value:String):void;
 
