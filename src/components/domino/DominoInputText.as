@@ -855,28 +855,27 @@ package components.domino
 					keyword_format_xml.@ui="checkbox"
 				}
 
-				if(this.keywords){
-					//Alert.show("keyformulachoices:"+this.keyformulachoices);
-					if(this.keyformulachoices==true){
+				
+				if(this.keyformulachoices==true){
 
-						if(this.keywordsformula){
-							var formula_xml_key:XML = new XML("<formula>"+this.keywordsformula+"</formula>");
-								keyword_format_xml.appendChild(formula_xml_key)
-						}
-
-					}else{
-						var textlist_format_xml:XML = new XML("<textlist/>");
-
-						var myArrayOfLines:Array = this.keywords.split(/\n/);
-						//
-						for(var k:int = 0; k < myArrayOfLines.length; k=k+1)
-						{
-							
-							var text_format_xml:XML = new XML("<text>"+myArrayOfLines[k]+"</text>");
-							textlist_format_xml.appendChild(text_format_xml)
-						}
-							keyword_format_xml.appendChild(textlist_format_xml)
+					if(this.keywordsformula){
+						var formula_xml_key:XML = new XML("<formula>"+this.keywordsformula+"</formula>");
+							keyword_format_xml.appendChild(formula_xml_key)
 					}
+
+				}else{
+					var textlist_format_xml:XML = new XML("<textlist/>");
+
+					var myArrayOfLines:Array = this.keywords.split(/\n/);
+					//
+					for(var k:int = 0; k < myArrayOfLines.length; k=k+1)
+					{
+						
+						var text_format_xml:XML = new XML("<text>"+myArrayOfLines[k]+"</text>");
+						textlist_format_xml.appendChild(text_format_xml)
+					}
+						keyword_format_xml.appendChild(textlist_format_xml)
+				}
 
 					
 
@@ -884,7 +883,7 @@ package components.domino
 				
 
 
-				}
+				
 
 				//keyword_format_xml.@allownew="false"
 				//keyword_format_xml.@columns="1"
