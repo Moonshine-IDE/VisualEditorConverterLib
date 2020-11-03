@@ -289,6 +289,8 @@ package components.domino
 								section_xml.appendChild(pardeXml);
 								exml.@def=DominoGlobals.PardefId;
 								
+							}if(exml.@dominotype=="computedtext"){
+
 							}else{
 								exml=exml.children()[0]
 							}

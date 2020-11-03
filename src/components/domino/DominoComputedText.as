@@ -170,7 +170,7 @@ package components.domino
 			
 			//for domino input field element must contain into par node
 			//var code_string:String=fixSpecailCharacter(this.text)
-            var par_xml:XML = new XML("<par/>");
+            var par_xml:XML = new XML("<par dominotype=\"computedtext\"/>");
 			var xml:XML = new XML("<computedtext/>");
             if(this.formula==null||this.formula==""){
                 this.formula=" "
