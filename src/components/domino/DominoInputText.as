@@ -38,7 +38,7 @@ package components.domino
 	/** 
 	 * Domino filed element dxl format , more details please view follow url
 	 * https://www.ibm.com/support/knowledgecenter/en/SSVRGU_9.0.1/basic/H_FIELD_ELEMENT_XML.html
-	*/
+	 */
 
 	/** Domino field
 	 *Client: Default value,Input Translation, Input Validation, Input Enabled,HTML attribute
@@ -722,13 +722,13 @@ package components.domino
             if (this.idAttribute)
             {
                 xml.@id = this.idAttribute;
-				//xml.@name = this.idAttribute;
+				xml.@name = this.idAttribute;
             }
 
-			if(this.nameAttribute)
-			{
-				xml.@name = this.nameAttribute;
-			}
+			// if(this.nameAttribute)
+			// {
+			// 	xml.@name = this.nameAttribute;
+			// }
 		
 
 			if(this.type=="number"){

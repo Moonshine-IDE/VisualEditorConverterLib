@@ -88,21 +88,28 @@ package converter
 		
 		public function fromXML(surface:ISurface, xml:XML):void
 		{
-			this.componentsSurface = surface;
+		
+			if(xml!=null){
+				this.componentsSurface = surface;
+				
+				var elements:XMLList = xml.elements();
+				if(elements!=null){
+					var elementCount:int = elements.length();
 			
-			var elements:XMLList = xml.elements();
-			var elementCount:int = elements.length();
-			for(var i:int = 0; i < elementCount; i++)
-			{
-				var elementXML:XML = elements[i];
-			
-				itemFromXML(surface, elementXML);
+					for(var i:int = 0; i < elementCount; i++)
+					{
+						var elementXML:XML = elements[i];
+					
+						itemFromXML(surface, elementXML);
+					}
+				}
 			}
 		}
 		
 		private function itemFromXML(parent:Object, itemXML:XML):IComponent
 		{
 			var name:String = itemXML.localName();
+			//we don't need handel "<div>" in the domino visual editor
 			if(!(name in this.classLookup))
 			{
 				if (!this.unknownItemsExceptions.some(function(itemName:String, index:int, arr:Array):Boolean {
@@ -121,18 +128,29 @@ package converter
                 }
 				return null;
 			}
-				//Alert.show("domino convert name:"+name);
+			//Alert.show("domino convert name:"+name);
 			var item:IComponent = getNewInstanceOfComponent(name);
 			if(item === null)
 			{
-				var errorMessage:String = "Failed to create surface component: " + name;
-				dispatchEvent(new ConverterErrorEvent(errorMessage));
-				throw new Error(errorMessage);
+				//var errorMessage:String = "Failed to create surface component: " + name;
+				//dispatchEvent(new ConverterErrorEvent(errorMessage));
+				//throw new Error(errorMessage);
+				return null;
+			}else{
+				 item.fromXML(itemXML, this.itemFromXML);
+				 if(parent!=null){
+					 parent.addElement(item);
+				 }
+				 if(componentsSurface!=null){
+					componentsSurface.addItem(item);
+				 }
+				 
+			
+				return item;
+
 			}
-			item.fromXML(itemXML, this.itemFromXML);
-			parent.addElement(item);
-			componentsSurface.addItem(item);
-			return item;
+			
+			
 		}
 		
 		private function fillClassLookupWidthData(classLookup:Object):void
