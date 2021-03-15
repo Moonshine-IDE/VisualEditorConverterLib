@@ -34,6 +34,8 @@ package components.domino
 
 	import global.domino.DominoGlobals;
 
+	import mx.utils.StringUtil;
+
 
 	/** 
 	 * Domino filed element dxl format , more details please view follow url
@@ -722,13 +724,16 @@ package components.domino
             if (this.idAttribute)
             {
                 xml.@id = this.idAttribute;
-				xml.@name = this.idAttribute;
             }
 
-			// if(this.nameAttribute)
-			// {
-			// 	xml.@name = this.nameAttribute;
-			// }
+			if(this.nameAttribute)
+			{
+				xml.@name = this.nameAttribute;
+			}
+
+			if(StringUtil.trim(this.nameAttribute).length == 0||xml.@id!=xml.@name){
+				xml.@name =this.idAttribute;
+			}
 		
 
 			if(this.type=="number"){
