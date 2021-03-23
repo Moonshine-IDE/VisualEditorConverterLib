@@ -731,9 +731,10 @@ package components.domino
 				xml.@name = this.nameAttribute;
 			}
 
-			if(StringUtil.trim(this.nameAttribute).length == 0||xml.@id!=xml.@name){
-				xml.@name =this.idAttribute;
-			}
+			//domino file only need name property.
+			// if(StringUtil.trim(this.nameAttribute).length == 0||(xml.@id&&xml.@id!=xml.@name)){
+			// 	xml.@name =this.idAttribute;
+			// }
 		
 
 			if(this.type=="number"){
