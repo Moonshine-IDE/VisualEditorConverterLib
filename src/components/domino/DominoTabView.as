@@ -252,7 +252,7 @@ package components.domino
 			 xml=this.removePar(xml,null);
 			 xml=this.addPar(xml,null);
 			 xml=this.removeBlankPar(xml,null);
-			 xml=this.fixField(xml,null);
+			 //xml=this.fixField(xml,null);
             return xml;
 		}
 
