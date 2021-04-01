@@ -571,7 +571,7 @@ package components.domino
 		public function fromXML(xml:XML, childFromXMLCallback:Function):void
 		{
 			this.setComponentSize(xml);
-			
+			 //Alert.show("visual xml:"+xml.toXMLString());
 			this.text = xml.@value;
 			this.maxLength = xml.@maxlength;
             this.idAttribute = xml.@id;
@@ -583,8 +583,16 @@ package components.domino
 			this.type=xml.@type;
 			this.kind=xml.@kind;
 			this.numberColumns=xml.@numberColumns;
-			this.keyformulachoices=xml.@keyformulachoices;
-
+			if(xml.@keyformulachoices){
+				if(xml.@keyformulachoices.toString()=="false"){
+					this.keyformulachoices=false;
+				}else{
+					this.keyformulachoices=true;
+				}
+			}else{
+				this.keyformulachoices=false;
+			}
+			
 			this.defaultvalue=xml.@defaultvalue;
 			this.hidewhen=xml.@hidewhen;
 			this.keywordsformula=xml.@keywordsformula;
