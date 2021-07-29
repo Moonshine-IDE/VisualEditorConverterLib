@@ -197,6 +197,7 @@ package components.domino
 		{
 			
 			//for domino input field element must contain into par node
+			//Alert.show("code_string 1:"+this.text+":");
 			var code_string:String=fixSpecailCharacter(this.text)
 			var par_xml:XML = new XML("<par/>");
            
@@ -236,8 +237,9 @@ package components.domino
 			// }
 
 			//CodeXMLUtils.addSizeHtmlStyleToXML(xml, this);
-			//Alert.show("font_xml:"+font_xml.toXMLString());
+			//Alert.show("code_string 2:"+code_string+":");
 			 var run_xml:XML = new XML("<run>"+font_xml.toXMLString()+code_string+"</run>");
+			//Alert.show("run_xml 2:"+run_xml.toXMLString());
 			//run_xml.appendChild(font_xml);
 			//run_xml.appendChild(xml.createTextNode(this.text));
 			if(this.par!=null){
@@ -276,6 +278,8 @@ package components.domino
 		public static const DBL_QUOTES:String  = "&quot;" 
 		public static const GT:String  = "&gt;" 
 		public static const LT:String  = "&lt;" 
+		public static const SPEACE:String  = "&#160;"
+		 
 
 
 		private function fixSpecailCharacter(text:String):String
@@ -297,6 +301,14 @@ package components.domino
 
 			var aposattern:RegExp = /'/g;
 			text = text.replace(aposattern,APOSTROPHE);
+
+			var speace:RegExp = / /g;
+			text = text.replace(speace,SPEACE);
+
+			// var speace:RegExp = /&#160;/g;
+			// text = text.replace(speace,SPEACE);
+
+			
 
 			return text
 
