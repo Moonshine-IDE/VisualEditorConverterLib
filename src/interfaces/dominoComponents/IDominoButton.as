@@ -10,6 +10,24 @@ package interfaces.dominoComponents
 
 		function get enabled():Boolean;
 		function set enabled(value:Boolean):void;	
+
+		function get size():String;
+		function set size(value:String):void;	
+
+		function get color():String;
+		function set color(value:String):void;	
+
+		function get fontStyle():String;
+		function set fontStyle(value:String):void;
+
+
+		function get code():String;
+		function set code(value:String):void;	
+
+		function get codeEvent():String;
+		function set codeEvent(value:String):void;		
+
+
 		
 
 	}

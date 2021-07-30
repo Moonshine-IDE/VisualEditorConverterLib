@@ -924,21 +924,21 @@ package components.domino
 					//DominoGlobals.PardefDivId
 					if(this.defaultvalue){
 						var code_xml:XML = new XML("<code event=\"defaultvalue\"/>");
-						var formula_xml:XML=new XML("<formula>"+this.defaultvalue+"</formula>");
-						code_xml.appendChild(formula_xml);
+						var formula_xml1:XML=new XML("<formula>"+this.defaultvalue+"</formula>");
+						code_xml.appendChild(formula_xml1);
 						xml.appendChild(code_xml);
 					}
 					if(this.inputtranslation){
 						var code_xml:XML = new XML("<code event=\"inputtranslation\"/>");
-						var formula_xml:XML=new XML("<formula>"+this.inputtranslation+"</formula>");
-						code_xml.appendChild(formula_xml);
+						var formula_xml2:XML=new XML("<formula>"+this.inputtranslation+"</formula>");
+						code_xml.appendChild(formula_xml2);
 						xml.appendChild(code_xml);
 
 					}
 					if(this.inputvalidation){
 						var code_xml:XML = new XML("<code event=\"inputvalidation\"/>");
-						var formula_xml:XML=new XML("<formula>"+this.inputvalidation+"</formula>");
-						code_xml.appendChild(formula_xml);
+						var formula_xml3:XML=new XML("<formula>"+this.inputvalidation+"</formula>");
+						code_xml.appendChild(formula_xml3);
 						xml.appendChild(code_xml);
 
 					}

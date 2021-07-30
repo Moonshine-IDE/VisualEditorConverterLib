@@ -44,16 +44,6 @@ package components.domino
 			_enabled = value;
 		}
 		
-		// private var _isCommandButton:Boolean;
-		// public function get isCommandButton():Boolean
-		// {
-		// 	return _isCommandButton;
-		// }
-
-		// public function set isCommandButton(value:Boolean):void
-		// {
-		// 	_isCommandButton = value;
-		// }
 		
 		private var _label:String;
 		public function get label():String
@@ -76,6 +66,41 @@ package components.domino
 		public function set font(value:String):void
 		{
 			_font = value;
+		}
+
+
+        //------------ font start------------------------
+
+		private var _size:String;
+		public function get size():String
+		{
+			return _size;
+		}
+		public function set size(value:String):void
+		{
+			_size = value;
+		}
+
+
+		private var _color:String;
+		public function get color():String
+		{
+			return _color;
+		}
+		public function set color(value:String):void
+		{
+			_color = value;
+		}
+
+
+		private var _fontStyle:String;
+		public function get fontStyle():String
+		{
+			return _fontStyle;
+		}
+		public function set fontStyle(value:String):void
+		{
+			_fontStyle = value;
 		}
 
         private var _code:String;
@@ -183,13 +208,24 @@ package components.domino
 		}
 
         private var _codeevent:String;
-		public function get codeevent():String
+		public function get codeEvent():String
 		{
 			return _codeevent;
 		}
-		public function set codeevent(value:String):void
+		public function set codeEvent(value:String):void
 		{
 			_codeevent = value;
+		}
+
+
+        private var _formula:String;
+		public function get formula():String
+		{
+			return _formula;
+		}
+		public function set formula(value:String):void
+		{
+			_formula = value;
 		}
 
         //domino button still support html core property ,
@@ -209,6 +245,13 @@ package components.domino
             this.bgcolor = xml.@bgcolor;
             this.code = xml.@code;
             this.font = xml.@font;
+
+            this.color=xml.@color;
+			this.size=xml.@size;
+			this.fontStyle=xml.@style;
+
+            this.formula=xml.@formula;
+			this.codeEvent=xml.@codeEvent;
           
 		}
 
@@ -262,11 +305,31 @@ package components.domino
                 xml.@defaultValue = "false"
             }
 
+            var font_xml:XML =  new XML("<font/>");
+            var font_exist:Boolean =false;
+            if(this.color){
+                font_xml.@color=this.color;
+                font_exist=true;
+            }
+
+            if(this.size){
+                font_xml.@size=this.size +"pt";
+                 font_exist=true;
+            }
+
+            if(this.fontStyle){
+                font_xml.@style=this.fontStyle;
+                font_exist=true;
+            }
+            if(font_exist){
+                xml.appendChild(font_xml);
+            }
+
             if(this.code){
-                if(this.codeevent==null){
-                    this.codeevent="click";
+                if(this.codeEvent==null){
+                    this.codeEvent="click";
                 }
-                var code_xml:XML = new XML("<code event=\""+ this.codeevent+"\"/>");
+                var code_xml:XML = new XML("<code event=\""+ this.codeEvent+"\"/>");
                 var formula_xml:XML=new XML("<formula>"+this.code+"</formula>");
                 code_xml.appendChild(formula_xml);
                 xml.appendChild(code_xml);
