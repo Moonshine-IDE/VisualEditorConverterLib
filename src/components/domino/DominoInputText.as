@@ -912,53 +912,36 @@ package components.domino
 				
 				
 			}
+
+			var code_xml:XML = null;
 				//this is text computed filed
 			if(this.type=="text"|| this.type=="keyword"){
 				//for now the formula only add to default value
-				
-					//Alert.show("formula:"+this.formula);
-					//checkFormula(this.formula);
+
 					if(!this.object){
 						this.object="defaultvalue";
 					}
 					//DominoGlobals.PardefDivId
 					if(this.defaultvalue){
-						var code_xml:XML = new XML("<code event=\"defaultvalue\"/>");
+						code_xml = new XML("<code event=\"defaultvalue\"/>");
 						var formula_xml1:XML=new XML("<formula>"+this.defaultvalue+"</formula>");
 						code_xml.appendChild(formula_xml1);
 						xml.appendChild(code_xml);
 					}
 					if(this.inputtranslation){
-						var code_xml:XML = new XML("<code event=\"inputtranslation\"/>");
+						code_xml = new XML("<code event=\"inputtranslation\"/>");
 						var formula_xml2:XML=new XML("<formula>"+this.inputtranslation+"</formula>");
 						code_xml.appendChild(formula_xml2);
 						xml.appendChild(code_xml);
 
 					}
 					if(this.inputvalidation){
-						var code_xml:XML = new XML("<code event=\"inputvalidation\"/>");
+						code_xml = new XML("<code event=\"inputvalidation\"/>");
 						var formula_xml3:XML=new XML("<formula>"+this.inputvalidation+"</formula>");
 						code_xml.appendChild(formula_xml3);
 						xml.appendChild(code_xml);
 
 					}
-					// if(this.hidewhen){
-					// 	DominoGlobals.PardefDivId++;
-					// 	pardef_xml = new XML("<pardef id=\""+DominoGlobals.PardefDivId+"\"/>");
-						
-						
-					// 	var code_xml:XML = new XML("<code event=\"hidewhen\"/>");
-					// 	var formula_xml:XML=new XML("<formula>"+this.hidewhen+"</formula>");
-					// 	code_xml.appendChild(formula_xml);
-					// 	pardef_xml.appendChild(code_xml);
-
-					// 	par_xml.@id=DominoGlobals.PardefDivId;
-						
-
-					// }
-
-				
-				
 			}
 
 			if(this.type=="names"){

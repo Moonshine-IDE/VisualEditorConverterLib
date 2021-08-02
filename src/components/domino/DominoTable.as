@@ -587,29 +587,27 @@ package components.domino
 
 					var par:XML = new XML("<par def=\""+DominoGlobals.PardefId+"\" />");
 					
-
+					var parelementsXML:XMLList = null;
+					var parchildXML:XML = null;
+					var parchildCount:int = 0;
 					var elementsXML:XMLList = rowCellXML.elements();
-					//Alert.show("rowCellXML:"+rowCellXML.toXMLString());
+
 					var childCount:int = elementsXML.length();
 					for(var i:int = 0; i < childCount; i++)
 					{
 						var childXML:XML = elementsXML[i];
 
-						
-
-						
 						if(childXML.name()=="par"){
 							
-							var parelementsXML:XMLList = childXML.elements();
-							var parchildCount:int = parelementsXML.length();
+							parelementsXML = childXML.elements();
+							parchildCount = parelementsXML.length();
 							
 							for(var n:int = 0; n < parchildCount; n++)
 							{
-								var parchildXML:XML = parelementsXML[n];
+								parchildXML = parelementsXML[n];
 							
 								if(parchildXML.@hidewhen.length()>0){
-								
-									//pardef=fixHideWhenwithField(parchildXML,pardef);
+
 									pardef.@hidewhen=parchildXML.@hidewhen;
 								}		
 							}
@@ -620,19 +618,16 @@ package components.domino
                                	 pardef=fixHideWhenwithField(childXML,pardef);
                             	}
 							}
-							
-							
-							
 						}
 						if(childXML.name()=="par"&& childXML.@paragraph!="true"){
-							var parelementsXML:XMLList = childXML.elements();
-            				var parchildCount:int = parelementsXML.length();
+							parelementsXML = childXML.elements();
+            				parchildCount = parelementsXML.length();
 							if(childXML.@hidewhen){
 								par.@hidewhen=childXML.@hidewhen;
 							}
 							for(var j:int = 0; j < parchildCount; j++)
 							{
-								var parchildXML:XML = parelementsXML[j];
+								parchildXML = parelementsXML[j];
 								par.appendChild(parchildXML);
 								//this.deleteNode(parchildXML);
 							}
@@ -744,12 +739,19 @@ package components.domino
 			return predefXML;
 		}
 
-		private function deleteNode(value:XML)
+		private function deleteNode(value:XML):void
 		{
+			if(value==null)
+			{
+				return;
+			}
 
-			if(value==null){return;}
-			if(value.parent()==null){return;}
-			delete value.parent().children()[value.childIndex()]
+			if(value.parent()==null)
+			{
+				return;
+			}
+
+			delete value.parent().children()[value.childIndex()];
 		}
 
 

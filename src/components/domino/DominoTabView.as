@@ -3,18 +3,13 @@ package components.domino
 	import components.ComponentBase;
 	import components.NavigatorContent;
 
-	import converter.Converter;
 	import converter.DominoConverter;
 	import components.primeFaces.Div;
 
 	import interfaces.IComponent;
 	import interfaces.components.ITabView;
 
-	import utils.CodeMxmlUtils;
-	import utils.CodeXMLUtils;
-
 	import mx.controls.Alert;
-
 
 	import global.domino.DominoGlobals;
 
@@ -680,12 +675,19 @@ package components.domino
 			return xml;
 		}
 
-		private function deleteNode(value:XML)
+		private function deleteNode(value:XML):void
 		{
+			if(value==null)
+			{
+				return;
+			}
 
-			if(value==null){return;}
-			if(value.parent()==null){return;}
-			delete value.parent().children()[value.childIndex()]
+			if(value.parent()==null)
+			{
+				return;
+			}
+
+			delete value.parent().children()[value.childIndex()];
 		}
 
 	
