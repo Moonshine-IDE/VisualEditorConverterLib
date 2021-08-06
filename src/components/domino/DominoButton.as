@@ -299,11 +299,11 @@ package components.domino
                 xml.@maxlines = this.maxlines; 
             }
 
-            if(this.defaultValue){
-                xml.@defaultValue = "true"
-            }else{
-                xml.@defaultValue = "false"
-            }
+            // if(this.defaultValue){
+            //     xml.@defaultValue = "true"
+            // }else{
+            //     xml.@defaultValue = "false"
+            // }
 
             var font_xml:XML =  new XML("<font/>");
             var font_exist:Boolean =false;
@@ -329,9 +329,12 @@ package components.domino
                 if(this.codeEvent==null){
                     this.codeEvent="click";
                 }
-                var code_xml:XML = new XML("<code event=\""+ this.codeEvent+"\"/>");
-                var formula_xml:XML=new XML("<formula>"+this.code+"</formula>");
-                code_xml.appendChild(formula_xml);
+				var formual_string:String = "<formula>"+this.code+"</formula>";
+				var code_string:String ="<code event=\""+ this.codeEvent+"\">"+formual_string+"</code>";
+
+                //var code_xml:XML = new XML("<code event=\""+ this.codeEvent+"\"/>");
+                //var formula_xml:XML=new XML("<formula>"+this.code+"</formula>");
+                var code_xml:XML= new XML(code_string);
                 xml.appendChild(code_xml);
             }
 

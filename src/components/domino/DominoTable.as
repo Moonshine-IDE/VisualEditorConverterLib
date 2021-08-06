@@ -324,12 +324,24 @@ package components.domino
 			_insidewrapheight = value;
 		}
 
+
+		private var _refwidth:String;
+		public function get refwidth():String
+		{
+			return _refwidth;
+		}
+		public function set refwidth(value:String):void
+		{
+			_refwidth = value;
+		}
+
         public function fromXML(xml:XML, childFromXMLCallback:Function):void
 		{
 			
 			//Alert.show("fromXML xml:"+xml);
 			this.setComponentSize(xml);
 			var elementsXML:XMLList = xml.elements();
+			this.refwidth=xml.@refwidth;
             if (elementsXML.length() > 0)
             {
                 var childCount:int = elementsXML.length();
@@ -407,8 +419,12 @@ package components.domino
 			if(widthIn==0){
 				widthIn=2
 			}
-			xml.@refwidth=widthIn+"in"
-
+			if(this.refwidth){
+				xml.@refwidth=this.refwidth;
+			}else{
+				xml.@refwidth=widthIn+"in";
+			}
+		
 			var tableColumnNumElements:int = 0;
 			//widthtype='fixedleft' refwidth='2.5000in'
 			//add attirive
