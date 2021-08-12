@@ -139,6 +139,39 @@ package components.domino
 		}
 
 
+		private var _isUrlLink:String;
+		public function get isUrlLink():String
+		{
+			return _isUrlLink;
+		}
+		public function set isUrlLink(value:String):void
+		{
+			_isUrlLink = value;
+		}
+
+		private var _urlLinkHref:String;
+		public function get urlLinkHref():String
+		{
+			return _urlLinkHref;
+		}
+		public function set urlLinkHref(value:String):void
+		{
+			_urlLinkHref = value;
+		}
+
+		//showborder
+
+		private var _showBorder:String;
+		public function get showBorder():String
+		{
+			return _showBorder;
+		}
+		public function set showBorder(value:String):void
+		{
+			_showBorder = value;
+		}
+
+
         public function fromXML(xml:XML, childFromXMLCallback:Function):void
 		{
 			this.setComponentSize(xml);
@@ -158,6 +191,10 @@ package components.domino
 			
 			this.formula=xml.@formula;
 			this.hidewhen=xml.@hidewhen;
+
+			this.isUrlLink=xml.@isUrlLink;
+			this.urlLinkHref=xml.@urlLinkHref;
+			this.showBorder=xml.@showborder;
 			
 			
 
@@ -199,19 +236,19 @@ package components.domino
 			//for domino input field element must contain into par node
 			//Alert.show("code_string 1:"+this.text+":");
 			var code_string:String=fixSpecailCharacter(this.text)
-			var par_xml:XML = new XML("<par/>");
+			var parXML:XML = new XML("<par/>");
            
-			var font_xml:XML =  new XML("<font/>");
+			var fontXml:XML =  new XML("<font/>");
 				if(this.color){
-					font_xml.@color=this.color;
+					fontXml.@color=this.color;
 				}
 
 				if(this.size){
-					font_xml.@size=this.size +"pt";
+					fontXml.@size=this.size +"pt";
 				}
 
 				if(this.fontStyle){
-					font_xml.@style=this.fontStyle;
+					fontXml.@style=this.fontStyle;
 				}
 
 
@@ -220,38 +257,52 @@ package components.domino
 				
 
 			// 	if(_font.style){
-			// 		font_xml.@style=_font.style
+			// 		fontXml.@style=_font.style
 			// 	}
 
 			// 	if(_font.name){
-			// 		font_xml.@name=_font.name
+			// 		fontXml.@name=_font.name
 			// 	}
 
 			
-			// 	font_xml.@truetype=_font.truetype
+			// 	fontXml.@truetype=_font.truetype
 				
 				
 			// 	if(_font.pitch){
-			// 		font_xml.@pitch=_font.pitch
+			// 		fontXml.@pitch=_font.pitch
 			// 	}
 			// }
 
 			//CodeXMLUtils.addSizeHtmlStyleToXML(xml, this);
 			//Alert.show("code_string 2:"+code_string+":");
-			 var run_xml:XML = new XML("<run>"+font_xml.toXMLString()+code_string+"</run>");
-			//Alert.show("run_xml 2:"+run_xml.toXMLString());
-			//run_xml.appendChild(font_xml);
-			//run_xml.appendChild(xml.createTextNode(this.text));
+			 var runXml:XML = new XML("<run>"+fontXml.toXMLString()+code_string+"</run>");
+			//Alert.show("runXml 2:"+runXml.toXMLString());
+			//runXml.appendChild(fontXml);
+			//runXml.appendChild(xml.createTextNode(this.text));
 			if(this.par!=null){
 				if(this.par.def!=null){
-					par_xml.@def=this.par.def;
+					parXML.@def=this.par.def;
 				}
 			}
+
+			if(this.isUrlLink=="true"){
+				//craete  a new link node 
+				var linkXml:XML = new XML("<urllink></urllink>");
+				linkXml.@href=this.urlLinkHref;
+				linkXml.@showborder=this.showBorder;
+				linkXml.appendChild(runXml);
+				parXML.appendChild(linkXml);
+
+			}else{
+				//no link direction add the run node 
+				parXML.appendChild(runXml);
+			}
 		
-			par_xml.appendChild(run_xml);
+			
+			
 			if(this.hidewhen){
-				par_xml.@hidewhen = this.hidewhen;
-				par_xml.@dominotype="label";
+				parXML.@hidewhen = this.hidewhen;
+				parXML.@dominotype="label";
 			}
 
 			//setting par def id
@@ -265,12 +316,12 @@ package components.domino
 			// 	code_xml.appendChild(formula_xml);
 			// 	pardef_xml.appendChild(code_xml);
 
-			// 	par_xml.@def=DominoGlobals.PardefDivId;
+			// 	parXML.@def=DominoGlobals.PardefDivId;
 					
 
 			// }
 
-            return par_xml;
+            return parXML;
 		}
 
 		public static const AMPERSAND:String = "&amp;" 
