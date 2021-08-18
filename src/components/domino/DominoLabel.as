@@ -171,6 +171,16 @@ package components.domino
 			_showBorder = value;
 		}
 
+		private var _isNewLine:String;
+		public function get isNewLine():String
+		{
+			return _isNewLine;
+		}
+		public function set isNewLine(value:String):void
+		{
+			_isNewLine = value;
+		}
+
 
         public function fromXML(xml:XML, childFromXMLCallback:Function):void
 		{
@@ -195,6 +205,11 @@ package components.domino
 			this.isUrlLink=xml.@isUrlLink;
 			this.urlLinkHref=xml.@urlLinkHref;
 			this.showBorder=xml.@showborder;
+			if(xml.@isNewLine){
+				this.isNewLine=xml.@isNewLine;
+			}else{
+				this.isNewLine="false";
+			}
 			
 			
 
@@ -303,6 +318,13 @@ package components.domino
 			if(this.hidewhen){
 				parXML.@hidewhen = this.hidewhen;
 				parXML.@dominotype="label";
+			}
+
+			if(this.isNewLine=="true"){
+				//parXML = new XML("<newLine/>");
+				parXML.@isNewLine = "true";
+			}else{
+				parXML.@isNewLine = "false";
 			}
 
 			//setting par def id

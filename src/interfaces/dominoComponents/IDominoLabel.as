@@ -25,5 +25,8 @@ package interfaces.dominoComponents
         function get hidewhen():String
         function set hidewhen(value:String):void;
 
+        function get isNewLine():String
+        function set isNewLine(value:String):void;
+
     }
 }
