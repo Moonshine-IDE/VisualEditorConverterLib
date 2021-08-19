@@ -310,7 +310,19 @@ package components.domino
 
 			}else{
 				//no link direction add the run node 
-				parXML.appendChild(runXml);
+				if(this.isNewLine=="true"){
+					var blankRunXml:XML = new XML("<run></run>");
+					var blankFontXml:XML= new XML("<font color=\"system\" size=\"12pt\" style=\"normal\"/>");
+					blankRunXml.appendChild(blankFontXml);
+					blankRunXml.appendChild(new XML("     "));
+					parXML.appendChild(blankRunXml);
+					parXML.@isNewLine = "true";
+					parXML.@paragraph = "true";
+				}else{
+					parXML.appendChild(runXml);
+					parXML.@isNewLine = "false";
+				}
+				
 			}
 		
 			
@@ -318,13 +330,6 @@ package components.domino
 			if(this.hidewhen){
 				parXML.@hidewhen = this.hidewhen;
 				parXML.@dominotype="label";
-			}
-
-			if(this.isNewLine=="true"){
-				//parXML = new XML("<newLine/>");
-				parXML.@isNewLine = "true";
-			}else{
-				parXML.@isNewLine = "false";
 			}
 
 			//setting par def id
