@@ -409,21 +409,29 @@ package components.domino
 
 			var widthIn:Number=0
 			//Alert.show("width:"+this.width);
+			// if(this.refwidth){
+			// 	//convert the inch to pixel.
+			// 	xml.@refwidth=this.refwidth;
+			// 	//Alert.show("refwidth:"+this.refwidth);
+			// 	var refwidthConvert:Number =Number(this.refwidth.replace("in",""));
+			// 	this.width=refwidthConvert*96;
+			// 	//this.refwidth=null;
+
+		
+			// }
 			if(this.width&&this.width>0){
+				
 				widthIn=(this.width/96) as Number;
 				var m:int = Math.pow(10, 4);
     			widthIn=Math.round(widthIn * m) / m;
+				xml.@refwidth=widthIn+"in";
 				
 			}
-
+			
 			if(widthIn==0){
 				widthIn=2
 			}
-			if(this.refwidth){
-				xml.@refwidth=this.refwidth;
-			}else{
-				xml.@refwidth=widthIn+"in";
-			}
+			
 		
 			var tableColumnNumElements:int = 0;
 			//widthtype='fixedleft' refwidth='2.5000in'
