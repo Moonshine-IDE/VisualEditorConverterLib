@@ -14,6 +14,7 @@ package components.domino
 
 	import mx.controls.Alert;
 	import global.domino.DominoGlobals;
+	import com.adobe.utils.StringUtil;
 	/** 
 	 * Domino text element dxl format 
         dxl example of text 
@@ -181,13 +182,20 @@ package components.domino
 			_isNewLine = value;
 		}
 
+		private var _isBreak:String;
+		public function get isBreak():String
+		{
+			return _isBreak;
+		}
+		public function set isBreak(value:String):void
+		{
+			_isBreak = value;
+		}
+
 
         public function fromXML(xml:XML, childFromXMLCallback:Function):void
 		{
 			this.setComponentSize(xml);
-
-			//Alert.show("lable xml:"+xml.toXMLString());
-			//Alert.show("lable text:"+ xml.children()[0].toString());
 
 			if(xml.children()[0]!=null){
 				this.text =unescape(xml.children()[0].toString());
@@ -210,38 +218,14 @@ package components.domino
 			}else{
 				this.isNewLine="false";
 			}
-			
+			if(xml.@isBreak){
+				this.isBreak=xml.@isBreak;
+			}else{
+				this.isBreak="false";
+			}
 			
 
-			// var elementsXML:XMLList = xml.elements();
-            // var childCount:int = elementsXML.length();
-            // for(var i:int = 0; i < childCount; i++)
-            // {
-            //     var childXML:XML = elementsXML[i];
-			// 	if(childXML.name=="font"){
-			// 		if(childXML.@style)
-			// 		this.font.style=childXML.@style;
-			// 		if(childXML.@color)
-			// 		this.font.color=childXML.@color;
-			// 		if(childXML.@size)
-			// 		this.font.size=childXML.@size;
-			// 		if(childXML.@name)
-			// 		this.font.name=childXML.@name;
-			// 		if(childXML.@truetype)
-			// 		this.font.truetype=childXML.@truetype;
-			// 		if(childXML.@pitch)
-			// 		this.font.pitch=childXML.@pitch;
-			// 	}
-			// 	if(childXML.name=="run"){
-			// 		this.run.html=childXML.@html
-			// 		if(childXML.@highlight)
-			// 		this.run.highlight=childXML.@highlight
-			// 	}
-			// 	if(childXML.name=="par"){
-			// 		this.par.def=childXML.@def;
-			// 	}
-            //     //childFromXMLCallback(component, childXML);
-            // }
+			
 			
 		}
 		
@@ -249,8 +233,11 @@ package components.domino
 		{
 			
 			//for domino input field element must contain into par node
-			//Alert.show("code_string 1:"+this.text+":");
+		
+			
 			var code_string:String=fixSpecailCharacter(this.text)
+			
+			
 			var parXML:XML = new XML("<par/>");
            
 			var fontXml:XML =  new XML("<font/>");
@@ -268,32 +255,11 @@ package components.domino
 
 
 			var xml:XML=new XML();
-			// if(_font!=null){
-				
-
-			// 	if(_font.style){
-			// 		fontXml.@style=_font.style
-			// 	}
-
-			// 	if(_font.name){
-			// 		fontXml.@name=_font.name
-			// 	}
-
-			
-			// 	fontXml.@truetype=_font.truetype
-				
-				
-			// 	if(_font.pitch){
-			// 		fontXml.@pitch=_font.pitch
-			// 	}
-			// }
-
+		
 			//CodeXMLUtils.addSizeHtmlStyleToXML(xml, this);
 			//Alert.show("code_string 2:"+code_string+":");
-			 var runXml:XML = new XML("<run>"+fontXml.toXMLString()+code_string+"</run>");
-			//Alert.show("runXml 2:"+runXml.toXMLString());
-			//runXml.appendChild(fontXml);
-			//runXml.appendChild(xml.createTextNode(this.text));
+			var runXml:XML = new XML("<run>"+fontXml.toXMLString()+code_string+"</run>");
+			var rex:RegExp = /(\t|\n|\r)/gi;
 			if(this.par!=null){
 				if(this.par.def!=null){
 					parXML.@def=this.par.def;
@@ -305,12 +271,21 @@ package components.domino
 				var linkXml:XML = new XML("<urllink></urllink>");
 				linkXml.@href=this.urlLinkHref;
 				linkXml.@showborder=this.showBorder;
-				linkXml.appendChild(runXml);
+
+			
+				
+				var linkText:String=StringUtil.trim(fontXml.toXMLString())+code_string;
+				
+				linkText=linkText.replace(rex,'');
+				var linkRunXML:XML=new XML("<run>"+linkText+"</run>");
+				linkXml.appendChild(linkRunXML);
 				parXML.appendChild(linkXml);
 
 			}else{
 				//no link direction add the run node 
-				if(this.isNewLine=="true"){
+				if(this.isBreak=="true"){
+					parXML = new XML("<break/>");
+				}else if(this.isNewLine=="true"){
 					var blankRunXml:XML = new XML("<run></run>");
 					var blankFontXml:XML= new XML("<font color=\"system\" size=\"12pt\" style=\"normal\"/>");
 					blankRunXml.appendChild(blankFontXml);
@@ -331,22 +306,6 @@ package components.domino
 				parXML.@hidewhen = this.hidewhen;
 				parXML.@dominotype="label";
 			}
-
-			//setting par def id
-			// if(this.hidewhen){
-			// 	DominoGlobals.PardefDivId++;
-			// 	var pardef_xml:XML = new XML("<pardef id=\""+DominoGlobals.PardefDivId+"\"/>");
-				
-				
-			// 	var code_xml:XML = new XML("<code event=\"hidewhen\"/>");
-			// 	var formula_xml:XML=new XML("<formula>"+this.hidewhen+"</formula>");
-			// 	code_xml.appendChild(formula_xml);
-			// 	pardef_xml.appendChild(code_xml);
-
-			// 	parXML.@def=DominoGlobals.PardefDivId;
-					
-
-			// }
 
             return parXML;
 		}
@@ -379,14 +338,19 @@ package components.domino
 
 			var aposattern:RegExp = /'/g;
 			text = text.replace(aposattern,APOSTROPHE);
-
-			var speace:RegExp = / /g;
-			text = text.replace(speace,SPEACE);
-
-			// var speace:RegExp = /&#160;/g;
-			// text = text.replace(speace,SPEACE);
-
 			
+			//The first characters is space will lost in the format , because xml will auto remove the first space,
+			//I guess any text content of node , will auto execute a trim() function.
+			//So, in here , I convert the first normal space to non-break space.
+			var speace:RegExp = / /;
+			var lastspeace:RegExp = /.$/;
+			if(text.substring(0,1)==" "){
+				text = text.replace(speace,SPEACE);
+			}
+
+			if(text.substring(text.length-1)==" "){
+				text=text.replace(lastspeace,SPEACE);
+			}
 
 			return text
 
