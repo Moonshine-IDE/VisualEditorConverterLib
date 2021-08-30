@@ -140,6 +140,17 @@ package components.domino
 		}
 
 
+		private var _fontName:String;
+		public function get fontName():String
+		{
+			return _fontName;
+		}
+		public function set fontName(value:String):void
+		{
+			_fontName = value;
+		}
+
+
 		private var _isUrlLink:String;
 		public function get isUrlLink():String
 		{
@@ -206,6 +217,7 @@ package components.domino
 			this.color=xml.@color;
 			this.size=xml.@size;
 			this.fontStyle=xml.@style;
+			this.fontName=xml.@name;
 			
 			this.formula=xml.@formula;
 			this.hidewhen=xml.@hidewhen;
@@ -251,6 +263,10 @@ package components.domino
 
 				if(this.fontStyle){
 					fontXml.@style=this.fontStyle;
+				}
+
+				if(this.fontName){
+					fontXml.@name=this.fontName;
 				}
 
 
