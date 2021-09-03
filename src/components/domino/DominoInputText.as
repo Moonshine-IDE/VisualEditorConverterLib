@@ -601,7 +601,16 @@ package components.domino
 			//this.formula=xml.@formula;
 
 			if(this.type=="number"){
-				this.digits= xml.@digits;
+				if(xml.@digits!=null && xml.@digits.length>0){
+					this.digits= xml.@digits;
+				}else{
+					var numberFormatNode:XMLList=xml.descendants("numberformat");
+					if(numberFormatNode[0].@digits){
+						this.digits= numberFormatNode[0].@digits;
+					}
+				}
+			
+				//Alert.show("this.digits:"+this.digits);
                 this.format=xml.@format  ;
                 this.punctuated=xml.@punctuated =="true";
                 this.parens=xml.@parens =="true" ;
@@ -749,6 +758,7 @@ package components.domino
 				var number_format_xml:XML = new XML("<numberformat/>");
 				if(this.digits){
 					number_format_xml.@digits = this.digits;
+				
 				}
 				if(this.format){
 					number_format_xml.@format = this.format;
