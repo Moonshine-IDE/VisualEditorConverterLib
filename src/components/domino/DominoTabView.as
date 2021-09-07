@@ -82,6 +82,8 @@ package components.domino
 		public function fromXML(xml:XML, childFromXMLCallback:Function):void
 		{
 			this.setComponentSize(xml);
+
+			this.columnProperties=xml.@columsProperty;
 			
 			if ("@orientation" in xml)
             {
@@ -183,10 +185,24 @@ package components.domino
 
 
  */
+
+		private var _columnProperties:String;
+		public function get columnProperties():String
+		{
+			return _columnProperties;
+		}
+		public function set columnProperties(value:String):void
+		{
+			_columnProperties = value;
+		}
  		
 		
 		public function toCode():XML
 		{
+			var columnArrTemp:Array = null;
+			if(this.columnProperties!= null && this.columnProperties.length>0){
+				columnArrTemp= this.columnProperties.split(",");
+			}
 			
 			//Alert.show("width:"+this.width);
 			if(this.width&&this.width>0){

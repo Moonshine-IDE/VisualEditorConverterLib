@@ -335,6 +335,17 @@ package components.domino
 			_refwidth = value;
 		}
 
+
+		private var _columnProperties:String;
+		public function get columnProperties():String
+		{
+			return _columnProperties;
+		}
+		public function set columnProperties(value:String):void
+		{
+			_columnProperties = value;
+		}
+
         public function fromXML(xml:XML, childFromXMLCallback:Function):void
 		{
 			
@@ -342,6 +353,9 @@ package components.domino
 			this.setComponentSize(xml);
 			var elementsXML:XMLList = xml.elements();
 			this.refwidth=xml.@refwidth;
+			this.columnProperties=xml.@columsProperty;
+			
+		
             if (elementsXML.length() > 0)
             {
                 var childCount:int = elementsXML.length();
@@ -408,17 +422,13 @@ package components.domino
             var xml:XML = new XML("<table/>");
 
 			var widthIn:Number=0
-			//Alert.show("width:"+this.width);
-			// if(this.refwidth){
-			// 	//convert the inch to pixel.
-			// 	xml.@refwidth=this.refwidth;
-			// 	//Alert.show("refwidth:"+this.refwidth);
-			// 	var refwidthConvert:Number =Number(this.refwidth.replace("in",""));
-			// 	this.width=refwidthConvert*96;
-			// 	//this.refwidth=null;
-
 		
-			// }
+			var columnArrTemp:Array = null;
+			if(this.columnProperties!= null && this.columnProperties.length>0){
+				//Alert.show("columnProperties:"+columnProperties);
+				columnArrTemp= this.columnProperties.split(",");
+			}
+
 			if(this.width&&this.width>0){
 				
 				widthIn=(this.width/96) as Number;
@@ -442,10 +452,7 @@ package components.domino
 				xml.@widthtype="fixedleft"
 				//xml.@leftmargin="0"
 			}
-			//setting center
-			// if(xml.@widthtype=="fixedcenter"){
-			// 	xml.@leftmargin="0"
-			// }
+		
 			if(this.minrowheight != null){
 				xml.@minrowheight=this.minrowheight;
 			}
@@ -464,6 +471,12 @@ package components.domino
 				for (var cl:int = 0; cl < tableColumnNumElements; cl++)
                 {
 					var tableColumnXml:XML = new XML("<tablecolumn/>");
+					if(columnArrTemp!=null && columnArrTemp.length>=cl  && columnArrTemp.length > 0){
+						if(columnArrTemp[cl]!=null && columnArrTemp[cl].length >0){
+							tableColumnXml.@width=columnArrTemp[cl];
+						}
+						
+					}
 						xml.appendChild(tableColumnXml);
 				}
 

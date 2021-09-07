@@ -305,7 +305,7 @@ package components.domino
 					var blankRunXml:XML = new XML("<run></run>");
 					var blankFontXml:XML= new XML("<font color=\"system\" size=\"12pt\" style=\"normal\"/>");
 					blankRunXml.appendChild(blankFontXml);
-					blankRunXml.appendChild(new XML("     "));
+					//blankRunXml.appendChild(new XML("     "));
 					parXML.appendChild(blankRunXml);
 					parXML.@isNewLine = "true";
 					parXML.@paragraph = "true";
