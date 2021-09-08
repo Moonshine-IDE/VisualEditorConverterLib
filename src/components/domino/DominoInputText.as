@@ -605,6 +605,7 @@ package components.domino
 					this.digits= xml.@digits;
 				}else{
 					var numberFormatNode:XMLList=xml.descendants("numberformat");
+					if(numberFormatNode!=null && numberFormatNode[0])
 					if(numberFormatNode[0].@digits){
 						this.digits= numberFormatNode[0].@digits;
 					}

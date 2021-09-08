@@ -68,6 +68,10 @@ package interfaces.dominoComponents
         function get widthtype():String;
 		function set widthtype(value:String):void;
 
+
+        function get columnProperties():String
+        function set columnProperties(value:String):void;
+
         /** % html.core.attrs "
          *htmlid,htmlclass,htmlstyle
          *htmltitle,extrahtmlattrs
