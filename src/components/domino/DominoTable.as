@@ -354,6 +354,10 @@ package components.domino
 			var elementsXML:XMLList = xml.elements();
 			this.refwidth=xml.@refwidth;
 			this.columnProperties=xml.@columsProperty;
+
+			if(xml.@leftmargin){
+				this.leftmargin=xml.@leftmargin;
+			}
 			
 		
             if (elementsXML.length() > 0)
@@ -440,6 +444,10 @@ package components.domino
 			
 			if(widthIn==0){
 				widthIn=2
+			}
+
+			if(this.leftmargin){
+				xml.@leftmargin= this.leftmargin;
 			}
 			
 		
