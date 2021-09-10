@@ -601,7 +601,8 @@ package components.domino
 			//this.formula=xml.@formula;
 
 			if(this.type=="number"){
-				if(xml.@digits!=null && xml.@digits.length>0){
+			
+				if(xml.@digits!=null && xml.@digits.toString().length>0){
 					this.digits= xml.@digits;
 				}else{
 					var numberFormatNode:XMLList=xml.descendants("numberformat");
