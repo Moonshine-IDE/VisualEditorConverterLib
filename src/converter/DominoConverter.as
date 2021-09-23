@@ -22,6 +22,7 @@ package converter
 	import components.domino.DominoLabel;
 	import components.domino.DominoSection;
 	import components.domino.DominoTabView;
+	import components.domino.DominoCalendar;
 	import components.DominoRow;
 
 	import components.GridItem;
@@ -181,7 +182,7 @@ package converter
 			this.classLookup[Div.ELEMENT_NAME] = Div;
 			this.classLookup[DominoSection.ELEMENT_NAME] = DominoSection;
 			this.classLookup[DominoTabView.ELEMENT_NAME] = DominoTabView;
-			
+			this.classLookup[DominoCalendar.ELEMENT_NAME] = DominoCalendar;
 			this.classLookup[NavigatorContent.NAVIGATORCONTENT_NAME] = NavigatorContent;
 			
 		}

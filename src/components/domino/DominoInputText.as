@@ -633,7 +633,7 @@ package components.domino
 				this.omitthisyear=xml.@omitthisyear =="true" ;
 				this.time= xml.@time;
 				this.zone= xml.@zone;
-				this.calendar= xml.@calendar;
+				this.calendar= xml.@calendars;
 			}	
 
 			if(this.type=="keyword"){
