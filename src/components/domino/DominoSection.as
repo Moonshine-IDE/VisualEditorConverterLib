@@ -270,7 +270,8 @@ package components.domino
 			section_xml.appendChild(section_title_xml)
 				
 			var elementCount:int = component["numElements"];
- 			for(var i:int = 0; i < elementCount; i++)
+ 			//Alert.show("select child count:"+elementCount);
+			 for(var i:int = 0; i < elementCount; i++)
             {
                 var element:Object = component["getElementAt"](i) ;
                  if(element) {
@@ -292,7 +293,17 @@ package components.domino
 							}if(exml.@dominotype=="computedtext"){
 
 							}else{
-								exml=exml.children()[0]
+							//	exml=exml.children()[0]
+								// var exmlNumElements:int = exml["numElements"];
+								// if(exmlNumElements>0){
+								// 		for (var exmlCount:int = 0; exmlCount < exmlNumElements; exmlCount++){
+								// 				var exmlChildElement:Object = exml["getElementAt"](exmlCount);
+								// 				//we should check the empty par tag in here
+								// 				var exmlChildXml:XML=exmlChildElement.toCode();
+								// 				exml.appendChild(exmlChildXml);
+								// 		}
+								// 		//Alert.show("rowCellXML:"+rowCellXML.toXMLString());
+								// }
 							}
 							
 						}
