@@ -247,8 +247,7 @@ package components.domino
 			//for domino input field element must contain into par node
 		
 			
-			var code_string:String=fixSpecailCharacter(this.text)
-			
+			var code_string:String=fixSpecailCharacter(unescape(this.text));
 			
 			var parXML:XML = new XML("<par/>");
            
@@ -332,13 +331,16 @@ package components.domino
 		public static const GT:String  = "&gt;" 
 		public static const LT:String  = "&lt;" 
 		public static const SPEACE:String  = "&#160;"
+		public static const TAB:String  = "&#9;"
 		 
 
 
 		private function fixSpecailCharacter(text:String):String
 		{
 		
-
+			// if(text.indexOf("bootadm")>=0){
+			// 	Alert.show("label text:"+text);
+			// }
 			var amppattern:RegExp = /&/g;
 			text = text.replace(amppattern,AMPERSAND);
 			
@@ -351,14 +353,15 @@ package components.domino
 			text = text.replace(qtpattern,DBL_QUOTES);
 
 		
-
+			 var tabpattern:RegExp = /\t/g;
+			 text = text.replace(tabpattern,"&#tab;");
 			var aposattern:RegExp = /'/g;
 			text = text.replace(aposattern,APOSTROPHE);
 			
 			//The first characters is space will lost in the format , because xml will auto remove the first space,
 			//I guess any text content of node , will auto execute a trim() function.
 			//So, in here , I convert the first normal space to non-break space.
-			var speace:RegExp = / /;
+			var speace:RegExp = / /g;
 			var lastspeace:RegExp = /.$/;
 			if(text.substring(0,1)==" "){
 				text = text.replace(speace,SPEACE);
