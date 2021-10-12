@@ -32,5 +32,16 @@ package interfaces.dominoComponents
         function get isNewLine():String
         function set isNewLine(value:String):void;
 
+        function get truetype():String
+        function set truetype(value:String):void;
+
+        function get pitch():String
+        function set pitch(value:String):void;
+
+        function get familyid():String
+        function set familyid(value:String):void;
+
+
+
     }
 }

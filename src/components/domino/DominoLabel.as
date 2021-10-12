@@ -204,6 +204,38 @@ package components.domino
 		}
 
 
+		private var _familyid:String;
+		public function get familyid():String
+		{
+			return _familyid;
+		}
+		public function set familyid(value:String):void
+		{
+			_familyid = value;
+		}
+
+
+		private var _pitch:String;
+		public function get pitch():String
+		{
+			return _pitch;
+		}
+		public function set pitch(value:String):void
+		{
+			_pitch = value;
+		}
+
+		private var _truetype:String;
+		public function get truetype():String
+		{
+			return _truetype;
+		}
+		public function set truetype(value:String):void
+		{
+			_truetype = value;
+		}
+
+
         public function fromXML(xml:XML, childFromXMLCallback:Function):void
 		{
 			this.setComponentSize(xml);
@@ -225,6 +257,16 @@ package components.domino
 			this.isUrlLink=xml.@isUrlLink;
 			this.urlLinkHref=xml.@urlLinkHref;
 			this.showBorder=xml.@showborder;
+
+			this.pitch=xml.@pitch;
+			this.familyid=xml.@familyid;
+
+			if(xml.@truetype){
+				this.truetype=xml.@truetype;
+			}
+
+
+
 			if(xml.@isNewLine){
 				this.isNewLine=xml.@isNewLine;
 			}else{
@@ -267,6 +309,20 @@ package components.domino
 				if(this.fontName){
 					fontXml.@name=this.fontName;
 				}
+
+				if(this.pitch){
+					fontXml.@pitch=this.pitch;
+				}
+
+				if(this.truetype){
+					fontXml.@truetype=this.truetype;
+				}
+
+				if(this.familyid){
+					fontXml.@familyid=this.familyid;
+				}
+
+				
 
 
 			var xml:XML=new XML();
