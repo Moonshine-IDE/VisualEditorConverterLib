@@ -238,7 +238,7 @@ package components.domino
 			}
 
 			if(!this.titleSize){
-				this.titleSize="12pt";
+				//this.titleSize="12pt";
 			}
 			if(!this.titleColor){
 				this.titleColor="system"
@@ -251,10 +251,12 @@ package components.domino
 			if(!this.title){
 				this.title="Default Title"
 			}
-
-			if(this.titleSize.substring(this.titleSize.length-2)!="pt"){
-				this.titleSize=this.titleSize+"pt"
+			if(this.titleSize){
+				if(this.titleSize.substring(this.titleSize.length-2)!="pt"){
+					this.titleSize=this.titleSize+"pt"
+				}
 			}
+			
 
 	/**
 		 * <section onread='collapse' onpreview='collapse' onedit='collapse' onprint='collapse'><sectiontitle
@@ -262,8 +264,16 @@ package components.domino
 >Common Hidden Fields</text></sectiontitle></section>
 		 */
 
-			var section_title_xml_str:String="<sectiontitle>"+"<font size=\""+this.titleSize+"\" ";
-			 section_title_xml_str=section_title_xml_str+" color=\""+this.titleColor+"\" style=\""+this.titleFontStyle+"\" />"+"<text>"+this.title+"</text></sectiontitle>"
+			var section_title_xml_str:String="";
+			if(this.titleSize){
+				section_title_xml_str=	"<sectiontitle>"+"<font size=\""+this.titleSize+"\" ";
+			}else{
+				section_title_xml_str=	"<sectiontitle>"+"<font  ";
+			}
+
+			section_title_xml_str=section_title_xml_str+" color=\""+this.titleColor+"\" style=\""+this.titleFontStyle+"\" />"+"<text>"+this.title+"</text></sectiontitle>";
+			
+					
            
 			 var section_title_xml:XML =  new XML(section_title_xml_str);
 			// section_title_xml.appendChild(section_title_text_str);
