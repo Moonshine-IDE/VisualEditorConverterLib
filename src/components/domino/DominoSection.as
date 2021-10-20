@@ -271,12 +271,18 @@ package components.domino
 				section_title_xml_str=	"<sectiontitle>"+"<font  ";
 			}
 
-			section_title_xml_str=section_title_xml_str+" color=\""+this.titleColor+"\" style=\""+this.titleFontStyle+"\" />"+"<text>"+this.title+"</text></sectiontitle>";
+			
+
+			section_title_xml_str=section_title_xml_str+"  style=\""+this.titleFontStyle+"\" />"+"<text>"+this.title+"</text></sectiontitle>";
 			
 					
            
 			 var section_title_xml:XML =  new XML(section_title_xml_str);
 			// section_title_xml.appendChild(section_title_text_str);
+			if(this.titleColor){
+				section_title_xml.@color=this.titleColor;
+			}
+			
 			section_xml.appendChild(section_title_xml)
 				
 			var elementCount:int = component["numElements"];
