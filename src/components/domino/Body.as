@@ -2,22 +2,22 @@ package components.domino
 {
 	import components.ComponentBase;
 
-	import interfaces.IComponent;
-	import interfaces.dominoComponents.IBody;
+	import interfaces.IDominoComponent;
+	import interfaces.dominoComponents.IDominoBody;
 
 	import utils.CodeMxmlUtils;
 	import utils.CodeXMLUtils;
 	
-	public class Body extends ComponentBase implements IBody
+	public class Body extends ComponentBase implements IDominoBody
 	{
 		private static const DOMINO_ELEMENT_NAME:String = "body";
     	public static var ELEMENT_NAME:String = "Body";
 
-		private var _component:IComponent;
+		private var _component:IDominoComponent;
 
 		private var _xml:XML;
 		
-		public function Body(component:IComponent = null)
+		public function Body(component:IDominoComponent = null)
 		{
 			super();
 			
@@ -39,7 +39,7 @@ package components.domino
 		
 		
 	
-		private function get component():IComponent
+		private function get component():IDominoComponent
 		{
 			return _component ? _component : this;
 		}
@@ -65,18 +65,27 @@ package components.domino
 		{
 			var xml:XML = new XML("<" + CodeMxmlUtils.getMXMLTagNameWithSelection(this, DOMINO_ELEMENT_NAME) + "/>");
 
-            CodeXMLUtils.addSizeHtmlStyleToXML(xml, this as IComponent);
+            CodeXMLUtils.addSizeHtmlStyleToXML(xml, this as IDominoComponent);
 
 			
 
             var elementCount:int = component["numElements"];
             for(var i:int = 0; i < elementCount; i++)
             {
-                var element:IComponent = component["getElementAt"](i) as IComponent;
+                var element:IDominoComponent = component["getElementAt"](i) as IDominoComponent;
                 xml.appendChild(element.toCode());
             }
 
             return xml;
+		}
+
+		public function toRoyaleCode():XML
+		{
+			var tab_xml:XML = new XML("");
+			
+
+			return tab_xml;
+
 		}
 	}
 }

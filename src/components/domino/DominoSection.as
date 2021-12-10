@@ -337,6 +337,16 @@ package components.domino
             return section_xml;
 		}
 
+
+		public function toRoyaleCode():XML
+		{
+			var tab_xml:XML = new XML("");
+			
+
+			return tab_xml;
+
+		}
+
 		
     }
 }

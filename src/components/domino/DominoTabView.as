@@ -7,13 +7,15 @@ package components.domino
 	import components.primeFaces.Div;
 
 	import interfaces.IComponent;
+	import interfaces.IComponent;
 	import interfaces.components.ITabView;
+	import interfaces.dominoComponents.IDominoTabView;
 
 	import mx.controls.Alert;
 
 	import global.domino.DominoGlobals;
 
-	public class DominoTabView extends ComponentBase implements ITabView
+	public class DominoTabView extends ComponentBase implements IDominoTabView
 	{
 		public static const PRIME_FACES_XML_ELEMENT_NAME:String = "tabView";
         public static const ELEMENT_NAME:String = "TabView";
@@ -737,6 +739,16 @@ package components.domino
 
 			return flag;
 					
+		}
+
+
+		public function toRoyaleCode():XML
+		{
+			var tab_xml:XML = new XML("");
+			
+
+			return tab_xml;
+
 		}
 	}
 }
