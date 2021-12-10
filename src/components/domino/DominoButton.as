@@ -1,7 +1,7 @@
 package components.domino
 {
 	import interfaces.dominoComponents.IDominoButton;
-	import interfaces.IDominoComponent;
+	import interfaces.IComponent;
 	import components.ComponentBase;
 	import utils.CodeMxmlUtils;
 	import utils.CodeXMLUtils;
@@ -344,22 +344,6 @@ package components.domino
             return par_xml;
 
 			
-		}
-
-		//<j:Button text="%ViewComponentLabel%" click="{dispatchEvent(new ScreenEvent(ScreenEvent.EVENT_NAVIGATE_TO, %ViewComponentName%.NAME))}" 
-		//percentWidth="60"/>
-
-		public function toRoyaleCode():XML
-		{
-			var button_xml:XML = new XML("<j:Button />");
-			if(this.label==null){
-                this.label = "default";
-            }
-			button_xml.@text=  this.label 
-			button_xml.@percentWidth = "60"
-
-			return button_xml;
-
 		}
 	}
 }

@@ -4,7 +4,7 @@ package components.domino
 	import interfaces.components.ICalendar;
 	import utils.CodeXMLUtils;
 	import utils.CodeMxmlUtils;
-	import interfaces.IDominoComponent;
+	import interfaces.IComponent;
 
     //<Calendar date="yearmonthday" dateformat="weekdaymonthdayyear" 
 	//dateseparator1=" " dateseparator2="/" dateseparator3="/" 
