@@ -6,6 +6,8 @@ package components.domino
 	import utils.CodeMxmlUtils;
 	import utils.CodeXMLUtils;
 
+	import mx.controls.Alert;
+
     /**
     *Contained by: %richtext.hot.inline;
     *Contains: <font>, <code> 
@@ -349,7 +351,7 @@ package components.domino
 		//<j:Button text="%ViewComponentLabel%" click="{dispatchEvent(new ScreenEvent(ScreenEvent.EVENT_NAVIGATE_TO, %ViewComponentName%.NAME))}" 
 		//percentWidth="60"/>
 
-		public function toRoyaleCode():XML
+		public function toRoyaleConvertCode():XML
 		{
 			var button_xml:XML = new XML("<j:Button />");
 			if(this.label==null){
@@ -357,6 +359,8 @@ package components.domino
             }
 			button_xml.@text=  this.label 
 			button_xml.@percentWidth = "60"
+
+			Alert.show("Visual button xml:"+button_xml.toXMLString());
 
 			return button_xml;
 

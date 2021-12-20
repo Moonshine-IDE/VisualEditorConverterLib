@@ -996,6 +996,11 @@ package components.domino
 
             return par_xml;
 		}
+		public function toRoyaleConvertCode():XML
+		{	
+			return null;
+
+		}
 
 		public var loader : URLLoader ;
 		protected function dominoFormulaHandler(req:URLRequest):void

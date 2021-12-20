@@ -206,6 +206,11 @@ package components.primeFaces
             return xml;
 		}
 
+		public function toRoyaleConvertCode():XML
+		{	
+			return null;
+
+		}
 
 		public function toPerDefCode( xml:XML):XML
 		{

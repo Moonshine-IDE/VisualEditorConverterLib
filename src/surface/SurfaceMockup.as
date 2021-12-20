@@ -131,6 +131,43 @@ package surface
 		}
 
 
+		public function toRoyaleConvertCode():XML
+		{
+			var element:Object = this.getElementAt(0);
+			var xml:XML = MainTagCodeUtils.getParentContent("", element as IDiv);
+            var mainContainer:XML = MainTagCodeUtils.getMainContainerTag(xml);
+
+			var elementCount:int = (element as IVisualComponent).numElements;
+			
+			for (var i:int = 0; i < elementCount; i++)
+            {
+                var item:IComponent = element.getElementAt(i) as IComponent;
+
+                if (item === null)
+                {
+                        continue;
+                }
+
+			    XML.ignoreComments = false;
+                var code:XML = item.toRoyaleConvertCode();
+				var commentOnlyXML:XMLList = (code.elements("primeFacesCommentOnlyTag").length() > 0) ?
+											  code.elements("primeFacesCommentOnlyTag") : null;
+                if (mainContainer)
+                {
+                    mainContainer.appendChild(!commentOnlyXML ? code : commentOnlyXML.children());
+                }
+                else
+                {
+                    xml.appendChild(!commentOnlyXML ? code : commentOnlyXML.children());
+                }
+            }
+
+			return xml;
+		}
+
+		
+
+
 		public function toDominoCode():XML
 		{
 			var element:Object = this.getElementAt(0);

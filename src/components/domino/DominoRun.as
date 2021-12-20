@@ -87,6 +87,12 @@ package components.domino
 			return xml;
 		}
 
+		public function toRoyaleConvertCode():XML
+		{	
+			return null;
+
+		}
+
 
     }
 }

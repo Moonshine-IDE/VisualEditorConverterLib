@@ -380,6 +380,11 @@ package components.domino
 
             return parXML;
 		}
+		public function toRoyaleConvertCode():XML
+		{	
+			return null;
+
+		}
 
 		public static const AMPERSAND:String = "&amp;" 
 		public static const APOSTROPHE:String  = "&apos;" 

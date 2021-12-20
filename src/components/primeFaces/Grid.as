@@ -133,6 +133,12 @@ package components.primeFaces
 
             return xml;
 		}
+
+        public function toRoyaleConvertCode():XML
+		{	
+			return null;
+
+		}
 		
 		private function getClassNameBasedOnColumns(coulumnCountInRow:int):String
         {

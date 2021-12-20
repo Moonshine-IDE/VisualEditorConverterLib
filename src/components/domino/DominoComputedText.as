@@ -186,6 +186,11 @@ package components.domino
 
             return par_xml;
 		}
+		public function toRoyaleConvertCode():XML
+		{	
+			return null;
+
+		}
 
 		public static const AMPERSAND:String = "&amp;" 
 		public static const APOSTROPHE:String  = "&apos;" 

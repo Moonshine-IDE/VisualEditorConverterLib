@@ -85,5 +85,10 @@ package components.primeFaces
 			if (this.placeholder && StringUtil.trim(this.placeholder).length != 0) xml.@placeholder = this.placeholder;
 			return xml;
 		}
+		public function toRoyaleConvertCode():XML
+		{	
+			return null;
+
+		}
 	}
 }

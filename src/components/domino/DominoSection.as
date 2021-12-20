@@ -338,7 +338,7 @@ package components.domino
 		}
 
 
-		public function toRoyaleCode():XML
+		public function toRoyaleConvertCode():XML
 		{
 			var tab_xml:XML = new XML("");
 			

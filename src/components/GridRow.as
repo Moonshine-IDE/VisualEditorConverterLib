@@ -8,5 +8,9 @@ package components
 		{
 			super();
 		}
+		// public function toRoyaleConvertCode():XML
+		// {
+		// 	return null;
+		// }
 	}
 }

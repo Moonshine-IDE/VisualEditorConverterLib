@@ -268,6 +268,11 @@ package components.domino
 			 //xml=this.fixField(xml,null);
             return xml;
 		}
+		public function toRoyaleConvertCode():XML
+		{	
+			return null;
+
+		}
 
 		private function tabFromXML(tab:IComponent, xml:XML, callback:Function):void
         {
@@ -739,16 +744,6 @@ package components.domino
 
 			return flag;
 					
-		}
-
-
-		public function toRoyaleCode():XML
-		{
-			var tab_xml:XML = new XML("");
-			
-
-			return tab_xml;
-
 		}
 	}
 }

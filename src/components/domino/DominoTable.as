@@ -539,6 +539,11 @@ package components.domino
 
             return xml;
         }
+		public function toRoyaleConvertCode():XML
+		{	
+			return null;
+
+		}
 
 		private function fixDominoTableAlign(div:Object,rowCellXML:XML):XML
 		{
