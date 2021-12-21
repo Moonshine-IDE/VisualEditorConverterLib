@@ -208,7 +208,32 @@ package components.primeFaces
 
 		public function toRoyaleConvertCode():XML
 		{	
-			return null;
+			var xml:XML 
+			if(isDomino){
+					xml = new XML("<" + CodeMxmlUtils.getMXMLTagNameWithSelection(this, Domino_XML_ELEMENT_NAME) + "/>");
+
+			}else{
+					xml = new XML("<" + CodeMxmlUtils.getMXMLTagNameWithSelection(this, PRIME_FACES_XML_ELEMENT_NAME) + "/>");
+					CodeXMLUtils.addSizeHtmlStyleToXML(xml, this as IComponent);
+
+					///TODO: Adjust for Visual Editor
+					xml["@class"] = _cssClass;
+
+			}
+
+			
+			
+		
+	
+            var elementCount:int = component["numElements"];
+            for(var i:int = 0; i < elementCount; i++)
+            {
+				var element:IComponent = component["getElementAt"](i) as IComponent;
+                xml.appendChild(element.toRoyaleConvertCode());
+
+            }
+
+			 return xml;
 
 		}
 

@@ -18,7 +18,7 @@ package components.domino
 	{
 		public static const DOMINO_ELEMENT_NAME:String = "button";
 		public static const ELEMENT_NAME:String = "button";
-
+		public static const ROYALE_ELEMENT_NAME:String = "Button";
 		public function DominoButton():void
 		{
 			super();	
@@ -353,7 +353,13 @@ package components.domino
 
 		public function toRoyaleConvertCode():XML
 		{
-			var button_xml:XML = new XML("<j:Button />");
+
+			var button_xml:XML = new XML("<" + ROYALE_ELEMENT_NAME + "/>");
+            var royaleNamespace:Namespace = new Namespace("j", "library://ns.apache.org/royale/jewel");
+            button_xml.addNamespace(royaleNamespace);
+            button_xml.setNamespace(royaleNamespace);
+
+		
 			if(this.label==null){
                 this.label = "default";
             }
