@@ -364,9 +364,9 @@ package components.domino
                 this.label = "default";
             }
 			button_xml.@text=  this.label 
-			button_xml.@percentWidth = "60"
+			//button_xml.@percentWidth = "60"
 
-			Alert.show("Visual button xml:"+button_xml.toXMLString());
+			//Alert.show("Visual button xml:"+button_xml.toXMLString());
 
 			return button_xml;
 

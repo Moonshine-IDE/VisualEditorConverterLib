@@ -24,6 +24,7 @@ package components.domino
 	*/
 	public class DominoLabel extends ComponentBase implements IDominoLabel
 	{
+		public static const ROYALE_ELEMENT_NAME:String = "Label";
         
 		public function DominoLabel()
 		{
@@ -382,7 +383,23 @@ package components.domino
 		}
 		public function toRoyaleConvertCode():XML
 		{	
-			return null;
+
+			var code_string:String=fixSpecailCharacter(unescape(this.text));
+			var label_xml:XML = new XML("<" + ROYALE_ELEMENT_NAME + "/>");
+            var royaleNamespace:Namespace = new Namespace("j", "library://ns.apache.org/royale/jewel");
+            label_xml.addNamespace(royaleNamespace);
+            label_xml.setNamespace(royaleNamespace);
+
+		
+			
+			label_xml.@text= code_string;
+			label_xml.@className = "cursor-pointer";
+			label_xml.@multiline = "true";
+
+			//Alert.show("VisualLib Label execute:"+label_xml.toXMLString());
+
+
+			return label_xml;
 
 		}
 

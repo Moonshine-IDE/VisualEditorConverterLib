@@ -25,7 +25,7 @@ package components.primeFaces
 		private static const PRIME_FACES_XML_ELEMENT_NAME:String = "div";
 		private static const Domino_XML_ELEMENT_NAME:String = "par";
     	public static var ELEMENT_NAME:String = "Div";
-
+		private static const Royale_XML_ELEMENT_NAME:String="ApplicationMainContent";
 		public  var isDomino:Boolean =false;
 
 		private var _component:IComponent;
@@ -208,30 +208,23 @@ package components.primeFaces
 
 		public function toRoyaleConvertCode():XML
 		{	
-			var xml:XML 
-			if(isDomino){
-					xml = new XML("<" + CodeMxmlUtils.getMXMLTagNameWithSelection(this, Domino_XML_ELEMENT_NAME) + "/>");
-
-			}else{
-					xml = new XML("<" + CodeMxmlUtils.getMXMLTagNameWithSelection(this, PRIME_FACES_XML_ELEMENT_NAME) + "/>");
-					CodeXMLUtils.addSizeHtmlStyleToXML(xml, this as IComponent);
-
-					///TODO: Adjust for Visual Editor
-					xml["@class"] = _cssClass;
-
-			}
-
-			
-			
-		
-	
-            var elementCount:int = component["numElements"];
+			var xml:XML = new XML("<" +Royale_XML_ELEMENT_NAME+ "/>"); 
+            //hasTopAppBar="false" hasFooterBar="false" selectedContent="ItemsListing"
+			var royaleNamespace:Namespace = new Namespace("j", "library://ns.apache.org/royale/jewel");
+            xml.setNamespace(royaleNamespace);
+			xml.@id="mainContent";
+			xml.@hasTopAppBar="false";
+			xml.@hasFooterBar="false";
+			xml.@selectedContent="ItemsListing";
+			var elementCount:int = component["numElements"];
             for(var i:int = 0; i < elementCount; i++)
             {
 				var element:IComponent = component["getElementAt"](i) as IComponent;
                 xml.appendChild(element.toRoyaleConvertCode());
 
             }
+
+			//Alert.show("div xml:"+xml.toXMLString());
 
 			 return xml;
 
