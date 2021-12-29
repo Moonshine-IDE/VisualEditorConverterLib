@@ -146,6 +146,7 @@ package components.primeFaces
 
 			}
 
+			
 			if(!direction){
 				xml.@direction="Horizontal"
 			}else{
@@ -208,6 +209,10 @@ package components.primeFaces
 
 		public function toRoyaleConvertCode():XML
 		{	
+			
+			
+			
+			
 			var xml:XML = new XML("<" +Royale_XML_ELEMENT_NAME+ "/>"); 
             //hasTopAppBar="false" hasFooterBar="false" selectedContent="ItemsListing"
 			var royaleNamespace:Namespace = new Namespace("j", "library://ns.apache.org/royale/jewel");
@@ -216,15 +221,37 @@ package components.primeFaces
 			xml.@hasTopAppBar="false";
 			xml.@hasFooterBar="false";
 			xml.@selectedContent="ItemsListing";
+			
+			
+			if(!direction){
+				direction="Horizontal"
+			}
+			var layoutXml:XML; 
+			if(direction=="Horizontal"){
+				layoutXml= new XML("<HGroup/>"); 
+			}else{
+				layoutXml= new XML("<VGroup/>"); 
+			}
+			layoutXml.@localId="vg";
+			layoutXml.@className="wrapper";
+
+			layoutXml.setNamespace(royaleNamespace);
+			
+			
 			var elementCount:int = component["numElements"];
             for(var i:int = 0; i < elementCount; i++)
             {
 				var element:IComponent = component["getElementAt"](i) as IComponent;
-                xml.appendChild(element.toRoyaleConvertCode());
+                layoutXml.appendChild(element.toRoyaleConvertCode());
 
             }
 
-			//Alert.show("div xml:"+xml.toXMLString());
+			xml.appendChild(layoutXml);
+
+			//<j:HGroup localId="hg" gap="3" className="wrapper">
+			//<j:VGroup localId="vg" gap="3" className="wrapper">
+			//Alert.show("div xml 253:"+xml.toXMLString());
+
 
 			 return xml;
 

@@ -52,7 +52,10 @@ package components.domino
 	{
 		public static const DOMINO_ELEMENT_NAME:String = "field";
         public static const ELEMENT_NAME:String = "Field";
-
+      	public static const ROYALE_ELEMENT_NAME_TEXT:String = "TextInput";
+		public static const ROYALE_ELEMENT_NAME_DATE:String = "DateField";
+		public static const ROYALE_ELEMENT_NAME_CHECKBOX:String = "CheckBox";
+		
 		public function DominoInputText()
 		{
 			super();
@@ -996,9 +999,44 @@ package components.domino
 
             return par_xml;
 		}
+
+		//<j:TextInput localId="%localId%" percentWidth="100">%Beads%</j:TextInput>
+		//<j:DateField localId="%localId%" dateFormat="MM/DD/YYYY">%Beads%</j:DateField>
+		//<j:CheckBox text="Not Checked"/>
+		//<j:CheckBox text="Checked" selected="true"/>
+		//<j:ComboBox localId="watchmenComboBox" dataProvider="{listModel.watchmen}">
+		//<j:beads>
+		//<j:ComboBoxTextPrompt prompt="Watchmen Team..."/>
+		//</j:beads>
+		//</j:ComboBox>
 		public function toRoyaleConvertCode():XML
 		{	
-			return null;
+
+			//Alert.show("toRoyaleConvertCode tye:"+this.type);
+			var label_xml:XML ;
+			if(this.type=="text"){
+				label_xml = new XML("<" + ROYALE_ELEMENT_NAME_TEXT + ">"+"</"+ROYALE_ELEMENT_NAME_TEXT+">");
+				label_xml.@text=this.text;
+			}
+			//this.type=="datetime"
+			if(this.type=="datetime"){
+				label_xml = new XML("<" + ROYALE_ELEMENT_NAME_DATE + ">"+"</"+ROYALE_ELEMENT_NAME_DATE+">");
+				label_xml.@dateFormat="MM/DD/YYYY";
+			}
+
+			if(this.type=="keyword"){
+				if(this.keywordui=="checkbox"){
+					label_xml = new XML("<" + ROYALE_ELEMENT_NAME_CHECKBOX + ">"+"</"+ROYALE_ELEMENT_NAME_CHECKBOX+">");
+					label_xml.@text=this.text;
+				}
+			}
+			
+
+			var royaleNamespace:Namespace = new Namespace("j", "library://ns.apache.org/royale/jewel");
+            label_xml.addNamespace(royaleNamespace);
+            label_xml.setNamespace(royaleNamespace);
+
+			return label_xml;
 
 		}
 
