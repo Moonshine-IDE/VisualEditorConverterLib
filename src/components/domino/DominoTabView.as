@@ -19,6 +19,7 @@ package components.domino
 	{
 		public static const PRIME_FACES_XML_ELEMENT_NAME:String = "tabView";
         public static const ELEMENT_NAME:String = "TabView";
+		public static const Royale_XML_ELEMENT_NAME:String = "TabBar";
 		
 		private var _component:IComponent;
 
@@ -270,8 +271,71 @@ package components.domino
 		}
 		public function toRoyaleConvertCode():XML
 		{	
-			return null;
+			var xml:XML = new XML("<" +Royale_XML_ELEMENT_NAME+ "/>"); 
+			var royaleNamespace:Namespace = new Namespace("j", "library://ns.apache.org/royale/jewel");
+            xml.setNamespace(royaleNamespace);
+			xml.@width="100%";
+			xml.@className="tabBarVerticalIconItemRenderer";
+			xml.@dataProvider="{tabBarData}";
+			var beadsXml:XML =new XML("<beads/>");
+			beadsXml.setNamespace(royaleNamespace);
+			
+			var assiginXml:XML=new XML("<AssignTabContent/>");
+			assiginXml.setNamespace(royaleNamespace);
+			assiginXml.@selectedContentProperty="hash";
 
+			var contenXML:XML=new XML("<content/>");
+			contenXML.setNamespace(royaleNamespace);
+			
+			var tabContenXML:XML=new  XML("<TabBarContent/>");
+			tabContenXML.setNamespace(royaleNamespace);
+
+			var tabCount:int = component["numElements"];
+            for (var i:int = 0; i < tabCount; i++)
+            {
+                var content:Object = component["getElementAt"](i);
+                
+
+                var tab:XML = new XML("<SectionContent/>");
+                tab.setNamespace(royaleNamespace);
+                tab.@name = content.label;
+
+				var label:XML = new XML("<Label/>");
+				label.setNamespace(royaleNamespace);
+				label.@text=content.label;
+
+				tab.appendChild(label);
+				tabContenXML.appendChild(tab);
+
+
+			}
+
+			contenXML.appendChild(tabContenXML);
+			assiginXml.appendChild(contenXML);
+			beadsXml.appendChild(assiginXml);
+			xml.appendChild(beadsXml);
+			return xml;
+
+		}
+
+
+		public function getRoyaleDateProvider():String
+		{
+			//	new TabBarButtonVO("Tab 1", "tab1",null),
+			var str:String="";
+			var tabCount:int = component["numElements"];
+            for (var i:int = 0; i < tabCount; i++)
+            {
+                var content:Object = component["getElementAt"](i);
+                var contentCount:int = content.numElements;
+				var tabLabel=content.label;
+
+                str=str+"new TabBarButtonVO(\""+ tabLabel+"\", \""+tabLabel+"\",null)"+"\n";
+               
+               
+			}
+
+			return str;
 		}
 
 		private function tabFromXML(tab:IComponent, xml:XML, callback:Function):void

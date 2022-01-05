@@ -26,6 +26,7 @@ package components.primeFaces
 		private static const Domino_XML_ELEMENT_NAME:String = "par";
     	public static var ELEMENT_NAME:String = "Div";
 		private static const Royale_XML_ELEMENT_NAME:String="ApplicationMainContent";
+		private static const Royale_SELECT_ELEMENT_NAME:String="ScrollableSectionContent";
 		public  var isDomino:Boolean =false;
 
 		private var _component:IComponent;
@@ -210,17 +211,21 @@ package components.primeFaces
 		public function toRoyaleConvertCode():XML
 		{	
 			
-			
-			
-			
 			var xml:XML = new XML("<" +Royale_XML_ELEMENT_NAME+ "/>"); 
-            //hasTopAppBar="false" hasFooterBar="false" selectedContent="ItemsListing"
+            var sleclXMLContoner:XML= new XML("<" +Royale_SELECT_ELEMENT_NAME+ "/>"); //Royale_SELECT_ELEMENT_NAME
+			//       <j:ScrollableSectionContent name="ItemsListing" className="sectionCenter">
+			//hasTopAppBar="false" hasFooterBar="false" selectedContent="ItemsListing"
 			var royaleNamespace:Namespace = new Namespace("j", "library://ns.apache.org/royale/jewel");
             xml.setNamespace(royaleNamespace);
+			sleclXMLContoner.setNamespace(royaleNamespace);
 			xml.@id="mainContent";
 			xml.@hasTopAppBar="false";
 			xml.@hasFooterBar="false";
 			xml.@selectedContent="ItemsListing";
+
+			sleclXMLContoner.@name="ItemsListing";
+			sleclXMLContoner.@className="sectionCenter";
+
 			
 			
 			if(!direction){
@@ -246,7 +251,8 @@ package components.primeFaces
 
             }
 
-			xml.appendChild(layoutXml);
+			sleclXMLContoner.appendChild(layoutXml);
+			xml.appendChild(sleclXMLContoner);
 
 			//<j:HGroup localId="hg" gap="3" className="wrapper">
 			//<j:VGroup localId="vg" gap="3" className="wrapper">
