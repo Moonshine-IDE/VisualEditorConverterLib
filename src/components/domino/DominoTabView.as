@@ -276,13 +276,14 @@ package components.domino
             xml.setNamespace(royaleNamespace);
 			xml.@width="100%";
 			xml.@className="tabBarVerticalIconItemRenderer";
-			xml.@dataProvider="{tabBarData}";
+			xml.@dataProvider="{tabBarData"+DominoGlobals.RoyaleTabeViewId+"}";
+			xml.@royaleDataVarName="tabBarData"+DominoGlobals.RoyaleTabeViewId;
 			var beadsXml:XML =new XML("<beads/>");
 			beadsXml.setNamespace(royaleNamespace);
 			
 			var assiginXml:XML=new XML("<AssignTabContent/>");
 			assiginXml.setNamespace(royaleNamespace);
-			assiginXml.@selectedContentProperty="hash";
+			assiginXml.@selectedContentProperty="label";
 
 			var contenXML:XML=new XML("<content/>");
 			contenXML.setNamespace(royaleNamespace);
@@ -291,6 +292,7 @@ package components.domino
 			tabContenXML.setNamespace(royaleNamespace);
 
 			var tabCount:int = component["numElements"];
+			var labelStr:String = "";
             for (var i:int = 0; i < tabCount; i++)
             {
                 var content:Object = component["getElementAt"](i);
@@ -299,6 +301,7 @@ package components.domino
                 var tab:XML = new XML("<SectionContent/>");
                 tab.setNamespace(royaleNamespace);
                 tab.@name = content.label;
+				labelStr=labelStr+content.label+",";
 
 				var label:XML = new XML("<Label/>");
 				label.setNamespace(royaleNamespace);
@@ -309,11 +312,15 @@ package components.domino
 
 
 			}
+			if(labelStr.length>1){
+				labelStr=labelStr.substring(0,labelStr.length-1);
+			}
 
 			contenXML.appendChild(tabContenXML);
 			assiginXml.appendChild(contenXML);
 			beadsXml.appendChild(assiginXml);
 			xml.appendChild(beadsXml);
+			xml.@labelString=labelStr;
 			return xml;
 
 		}

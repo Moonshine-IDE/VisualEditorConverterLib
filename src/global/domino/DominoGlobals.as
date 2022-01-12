@@ -9,6 +9,7 @@ package global.domino
         public static var PardefDivId:int=1000;
         public static var NotesId:int;
         public static var NotesDocumentId:int;
+        public static var RoyaleTabeViewId:int =1;
 
     }
 }
