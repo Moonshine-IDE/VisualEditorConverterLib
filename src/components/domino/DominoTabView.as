@@ -307,7 +307,7 @@ package components.domino
 				label.setNamespace(royaleNamespace);
 				label.@text=content.label;
 
-				tab.appendChild(label);
+				//tab.appendChild(label);
 				tabContenXML.appendChild(tab);
 
 
