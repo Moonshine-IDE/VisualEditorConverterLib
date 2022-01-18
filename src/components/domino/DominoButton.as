@@ -28,12 +28,20 @@ package components.domino
 	import mx.controls.Alert;
 
     /**
-    *Contained by: %richtext.hot.inline;
-    *Contains: <font>, <code> 
-	*This class work for  convert from Visuale UI components to domino button dxl format or other target format.
+	* This class work for  convert from Visuale Button UI components to target framework of button format.
+	* Call different methods to convert the component to different target formats.
 	* For now: 
-	* toCode() will convert the Visuale UI components to domino dxl format.
-	* toRoyaleConvertCode() will  convert the Visuale UI components to Rayale format.
+	* toCode() will convert the Visuale UI Button components to domino button  dxl format.
+	* toRoyaleConvertCode() will  convert the Visuale UI Button components to Rayale button format.
+	* For Test Input&Output: 
+	* Input : Visuale UI Button component from Visual Editor
+	* Output example:  Domino - <button width='2in' widthtype='maximum' maxlines='1' wraptext='true' bgcolor='system'>
+    *					<code event='click'><formula>@URLOpen( "http://" + LoadBalancer_VirtualIP_Name + "/netmonitor.nsf/test?openform")</formula>
+    *					</code>Test LB</button>
+	* 				   Royale - <j:Button text="%ViewComponentLabel%" click="{dispatchEvent(new ScreenEvent(ScreenEvent.EVENT_NAVIGATE_TO, %ViewComponentName%.NAME))}" 
+	* 					percentWidth="60"/>
+	* Domino format rule:    * Contained by: %richtext.hot.inline;
+    *						 Contains: <font>, <code> 
     */
 
 	public class DominoButton extends ComponentBase implements IDominoButton
@@ -370,8 +378,13 @@ package components.domino
 			
 		}
 
-		//<j:Button text="%ViewComponentLabel%" click="{dispatchEvent(new ScreenEvent(ScreenEvent.EVENT_NAVIGATE_TO, %ViewComponentName%.NAME))}" 
-		//percentWidth="60"/>
+		/**
+		 * Royale format examples
+		 * <j:Button text="%ViewComponentLabel%" click="{dispatchEvent(new ScreenEvent(ScreenEvent.EVENT_NAVIGATE_TO, %ViewComponentName%.NAME))}" 
+		 * percentWidth="60"/>
+		 */
+
+		
 
 		public function toRoyaleConvertCode():XML
 		{

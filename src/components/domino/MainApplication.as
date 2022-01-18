@@ -24,6 +24,20 @@ package components.domino
 	import interfaces.dominoComponents.IMainApplication;
 	import interfaces.IRootComponent;
 	import components.primeFaces.RootDiv;
+
+	/**
+	* This class work for  convert from Visuale main container components to target framework of body format.
+	* Call different methods to convert the component to different target formats.
+	* For now: 
+	* toCode() will convert the Visuale main container components to domino button  dxl format.
+	* toRoyaleConvertCode() will  convert the Visuale main container components to Rayale button format.
+	* For Test Input&Output: 
+	* Input : Visuale UI main container component from Visual Editor
+	* Output example:  Domino - <itme name="$Body" sign="true"><richtext></richtext></item>
+	* 				   Royale - <j:ApplicationMainContent><j:ScrollableSectionConten></j:ScrollableSectionCont></j:ApplicationMainContent>
+	* 					
+	* {@link #components.domino}
+    */
 	public class MainApplication extends RootDiv implements IMainApplication
 	{
 		public function MainApplication()

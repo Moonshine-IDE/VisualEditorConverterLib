@@ -28,6 +28,24 @@ package components.domino
 	import interfaces.IComponent;
 	import spark.components.Alert;
 	import global.domino.DominoGlobals;
+
+	/**
+	* This class work for  convert from Visuale section  components  to target framework of body format.
+	* Call different methods to convert the component to different target formats.
+	* For now: 
+	* toCode() will convert the  Visuale section  components     to domino section  dxl format.
+	* toRoyaleConvertCode() :TODO
+	* For Test Input&Output: 
+	* Input : Visuale UI  section component   from Visual Editor
+	* Output example:  Domino -  <section expanded="false" showastext="false">
+    *    <sectiontitle color="system">
+    *      <font size="12pt" style="normal"/><text>Default Title</text>
+    *    </sectiontitle>
+	* 				   Royale - TODO
+	* 					
+	* {@link #components.domino}
+	* {@link #https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_SECTION_ELEMENT_XML.html}
+	*/
     public class DominoSection extends ComponentBase implements IDominoSection
 	{
 		public static const DOMINO_ELEMENT_NAME:String = "section";

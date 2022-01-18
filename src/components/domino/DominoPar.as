@@ -27,9 +27,21 @@ package components.domino
 	import utils.CodeXMLUtils;
 	import utils.StringHelperUtils;
 
-	/** 
-	 * Domino text element dxl format 
-	*/
+	/**
+	* This class work for  convert from par element of Visuale label/text/field  components  to target framework of body format.
+	* Call different methods to convert the component to different target formats.
+	* For now: 
+	* toCode() will convert the  par element    to domino calandar  dxl format.
+	* toRoyaleConvertCode() will  convert the Visuale main container components to Rayale button format.
+	* For Test Input&Output: 
+	* Input : Visuale UI  par element   from Visual Editor
+	* Output example:  Domino - <par isNewLine="false"></par>
+	* 				   Royale - TODO
+	* 					
+	* {@link #components.domino}
+	* {@link #https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_PARAGRAPH_ELEMENT_XML.html}
+	
+	 */
 	public class DominoPar extends ComponentBase implements IDominoPar
 	{
 		public static const DOMINO_ELEMENT_NAME:String = "par";

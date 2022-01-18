@@ -34,13 +34,23 @@ package components.domino
 	import mx.controls.Alert;
 	import global.domino.DominoGlobals;
 	import com.adobe.utils.StringUtil;
-	/** 
-	 * Domino text element dxl format 
-        dxl example of text 
-        <par def='6'><run><font color='blue'/>
-        example string .....
-        </run></par>
-	*/
+	/**
+	* This class work for  convert from Visuale label  components to target framework of body format.
+	* Call different methods to convert the component to different target formats.
+	* For now: 
+	* toCode() will convert the Visuale label  calandar to domino calandar  dxl format.
+	* toRoyaleConvertCode() will  convert the Visuale main container components to Rayale button format.
+	* For Test Input&Output: 
+	* Input : Visuale UI label component from Visual Editor
+	* Output example:  Domino -   <par isNewLine="false">
+    *    								<run>
+    *     								 	<font color="system" size="12pt" style="normal"/>Label
+    *   								 </run>
+    *  								</par>
+	* 				   Royale - TODO
+	* 					
+	* {@link #components.domino}
+	 */
 	public class DominoLabel extends ComponentBase implements IDominoLabel
 	{
 		public static const ROYALE_ELEMENT_NAME:String = "Label";

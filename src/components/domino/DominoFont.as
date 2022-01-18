@@ -27,9 +27,21 @@ package components.domino
 	import utils.CodeXMLUtils;
 	import utils.StringHelperUtils;
 
-	/** 
-	 * Domino text element dxl format 
-	*/
+	
+
+	/**
+	* This class work for  convert from Visuale font  components to target framework of body format.
+	* Call different methods to convert the component to different target formats.
+	* For now: 
+	* toCode() will convert the Visuale font  calandar to domino calandar  dxl format.
+	* toRoyaleConvertCode() will  convert the Visuale main container components to Rayale button format.
+	* For Test Input&Output: 
+	* Input : Visuale UI font component from Visual Editor
+	* Output example:  Domino -  <font size='12' color="black"></font>
+	* 				   Royale - TODO
+	* 					
+	* {@link #components.domino}
+    */
 	public class DominoFont extends ComponentBase implements IDominoFont
 	{
 		public static const DOMINO_ELEMENT_NAME:String = "font";

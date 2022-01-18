@@ -27,6 +27,11 @@ package components.domino
 	import utils.CodeXMLUtils;
 	import utils.StringHelperUtils;
 
+	/**
+	* This class backup domino richtext class.
+	* It just for improve the richtext in later.
+	*/
+
 	public class DominoRichText extends ComponentBase implements IDominoRichText
 	{
 		public static const DOMINO_ELEMENT_NAME:String = "richtext";

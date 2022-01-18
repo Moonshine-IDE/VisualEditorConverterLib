@@ -58,7 +58,7 @@ package components.domino
 
 	/** 
 	 * Domino filed element dxl format , more details please view follow url
-	 * https://www.ibm.com/support/knowledgecenter/en/SSVRGU_9.0.1/basic/H_FIELD_ELEMENT_XML.html
+	 * https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_FIELD_ELEMENT_XML.html
 	 */
 
 	/** Domino field
@@ -66,6 +66,21 @@ package components.domino
 	 *Web: onBlur,onChange,onClick,onFocus,onKeyDown,onKeyPress,onKeyUp,onMouseDown,onMouseUp,onMouseMove,OnMouseOut,OnMouseOver,onSelect,
 	 *Client:(option),(Declarations),Entering,Exiting,Initialize,Terminate
 	 */
+
+	/**
+	* This class work for  convert from Visuale field  components to target framework of body format.
+	* Call different methods to convert the component to different target formats.
+	* For now: 
+	* toCode() will convert the Visuale field  calandar to domino calandar  dxl format.
+	* toRoyaleConvertCode() will  convert the Visuale main container components to Rayale button format.
+	* For Test Input&Output: 
+	* Input : Visuale UI field component from Visual Editor
+	* Output example:  Domino -  <field useappletinbrowser="false" allowtabout="false" defaultfocus="false" protected="false" sign="false" storelocally="false" type="text" kind="editable" computeaftervalidation="false" allowmultivalues="false" width="100pt" height="30pt" bgcolor="#ffffff" name="test"/>
+	* 				   Royale - TODO
+	* 					
+	* {@link #components.domino}
+	* {@link #https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_FIELD_ELEMENT_XML.html}
+    */
 
 	public class DominoInputText extends ComponentBase implements IDominoInputText
 	{

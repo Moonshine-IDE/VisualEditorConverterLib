@@ -36,10 +36,25 @@ package components.domino
 	/** 
 	 * Domino text element dxl format 
         dxl example of text 
-        <par def='6'><run><font color='blue'/>
-        example string .....
-        </run></par>
+      
 	*/
+
+
+	/**
+	* This class work for  convert from Visuale input  components to target framework of body format.
+	* Call different methods to convert the component to different target formats.
+	* For now: 
+	* toCode() will convert the Visuale input  calandar to domino calandar  dxl format.
+	* toRoyaleConvertCode() will  convert the Visuale main container components to Rayale button format.
+	* For Test Input&Output: 
+	* Input : Visuale UI input component from Visual Editor
+	* Output example:  Domino -   <par def='6'><run><font color='blue'/>
+    *    						example string .....
+    *    						</run></par>
+	* 				   Royale - TODO
+	* 					
+	* {@link #components.domino}
+    */
 	public class DominoComputedText extends ComponentBase implements IDominoComputedText
 	{
         

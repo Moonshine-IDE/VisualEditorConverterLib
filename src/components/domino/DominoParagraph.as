@@ -33,6 +33,22 @@ package components.domino
 	import global.domino.DominoGlobals;
 	import mx.utils.Base64Decoder;
 	import  flash.utils.ByteArray;
+
+
+	/**
+	* This class work for  convert from paragraph element of Visuale label/text/field  components  to target framework of body format.
+	* Call different methods to convert the component to different target formats.
+	* For now: 
+	* toCode() will convert the  paragraph element    to domino calandar  dxl format.
+	* toRoyaleConvertCode() will  convert the Visuale main container components to Rayale button format.
+	* For Test Input&Output: 
+	* Input : Visuale UI  paragraph element   from Visual Editor
+	* Output example:  Domino - <par def="1019" paragraph="true" dominotype="paragraph" class="flexHorizontalLayout flexHorizontalLayoutLeft flexHorizontalLayoutTop"/>
+	* 				   Royale - TODO
+	* 					
+	* {@link #components.domino}
+		
+	 */
 	
 	public class DominoParagraph extends ComponentBase implements IDominoParagraph
 	{
