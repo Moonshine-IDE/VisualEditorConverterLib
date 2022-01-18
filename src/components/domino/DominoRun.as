@@ -39,7 +39,7 @@ package components.domino
 	* 				   Royale - TODO
 	* 					
 	* {@link #components.domino}
-	* {@see #https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_RUN_ELEMENT_XML.html}
+	* @see https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_RUN_ELEMENT_XML.html}
 	
 	 */
 	public class DominoRun extends ComponentBase implements IDominoRun
