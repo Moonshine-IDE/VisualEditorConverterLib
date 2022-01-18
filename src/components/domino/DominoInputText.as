@@ -79,7 +79,7 @@ package components.domino
 	* 				   Royale - TODO
 	* 					
 	* {@link #components.domino}
-	* {@link #https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_FIELD_ELEMENT_XML.html}
+	* {@see #https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_FIELD_ELEMENT_XML.html}
     */
 
 	public class DominoInputText extends ComponentBase implements IDominoInputText
