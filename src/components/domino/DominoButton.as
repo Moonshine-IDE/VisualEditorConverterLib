@@ -34,14 +34,14 @@ package components.domino
 	* toCode() will convert the Visuale UI Button components to domino button  dxl format.
 	* toRoyaleConvertCode() will  convert the Visuale UI Button components to Rayale button format.
 	* For Test Input&Output: 
-	* Input : Visuale UI Button component from Visual Editor
+	* Input : - [Visuale UI main button component](https://github.com/Moonshine-IDE/MockupVisualEditor/blob/features/issue_675_royale_generate_domino_visual_editor/src/view/domino/surfaceComponents/components/DominoButton.as)
 	* Output example:  Domino - <button width='2in' widthtype='maximum' maxlines='1' wraptext='true' bgcolor='system'>
 	*					<code event='click'><formula>@URLOpen( "http://" + LoadBalancer_VirtualIP_Name + "/netmonitor.nsf/test?openform")</formula>
 	*					</code>Test LB</button>
 	* 				   Royale - <j:Button text="%ViewComponentLabel%" click="{dispatchEvent(new ScreenEvent(ScreenEvent.EVENT_NAVIGATE_TO, %ViewComponentName%.NAME))}" 
 	* 					percentWidth="60"/>
-	* Domino format rule:    * Contained by: %richtext.hot.inline;
-	*						 Contains: <font>, <code> 
+	* Domino format rule:	Contained by: %richtext.hot.inline;
+	*						Contains: <font>, <code> 
 	*/
 
 	public class DominoButton extends ComponentBase implements IDominoButton

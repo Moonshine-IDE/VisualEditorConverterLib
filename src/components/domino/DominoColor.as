@@ -27,24 +27,19 @@ package components.domino
 	import utils.CodeXMLUtils;
 	import utils.StringHelperUtils;
 
-/**
+	/**
 	* This class work for  convert from Visuale   components color property to target framework of body format.
 	* Call different methods to convert the component to different target formats.
 	* For now: 
-	* toCode() will convert the Visuale main container calandar to domino calandar  dxl format.
+	* toCode() will convert the Visuale main container color to domino calandar  dxl format.
 	* toRoyaleConvertCode() will  convert the Visuale main container components to Rayale button format.
 	* For Test Input&Output: 
-	* Input : Visuale UI main calandar component from Visual Editor
-	* Output example:  Domino - <Calendar date="yearmonthday" dateformat="weekdaymonthdayyear" 
-	*					 	dateseparator1=" " dateseparator2="/" dateseparator3="/" 
-	*					  	dayformat="twodigitday" fourdigityearfor21stcentury="true" height="30" 
-	*					   mode="popup" monthformat="twodigitmonth" pattern="MM/dd/yyyy" preference="usersetting" 
-	*					  show="datetime" time="hourminute" timeseparator=":" value="StartDate" weekdayformat="shortname" 
-	*					  width="100" yearformat="fourdigityear" zone="never"/>
-	* 				   Royale - TODO
-	* 					
+	* Input : - Visuale UI main color component from Visual Editor
+	* Output example:  Domino - TODO
+	*						Royale - TODO
+	* 
 	* {@link #components.domino}
-    */
+	*/
 	public class DominoColor extends ComponentBase implements IDominoColor
 	{
 

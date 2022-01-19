@@ -44,17 +44,17 @@ package components.domino
 	* This class work for  convert from Visuale input  components to target framework of body format.
 	* Call different methods to convert the component to different target formats.
 	* For now: 
-	* toCode() will convert the Visuale input  calandar to domino calandar  dxl format.
-	* toRoyaleConvertCode() will  convert the Visuale main container components to Rayale button format.
+	* toCode() will convert the Visuale input  DominoComputedText to domino calandar  dxl format.
+	* toRoyaleConvertCode() will  convert the Visuale main container components to Rayale DominoComputedText format.
 	* For Test Input&Output: 
-	* Input : Visuale UI input component from Visual Editor
+	* Input : - [Visuale UI main DominoComputedText component](https://github.com/Moonshine-IDE/MockupVisualEditor/blob/features/issue_675_royale_generate_domino_visual_editor/src/view/domino/surfaceComponents/components/DominoComputedText.as)
 	* Output example:  Domino -   <par def='6'><run><font color='blue'/>
-    *    						example string .....
-    *    						</run></par>
-	* 				   Royale - TODO
+	* 							example string .....
+	*							</run></par>
+	*					Royale - TODO
 	* 					
 	* {@link #components.domino}
-    */
+	*/
 	public class DominoComputedText extends ComponentBase implements IDominoComputedText
 	{
         

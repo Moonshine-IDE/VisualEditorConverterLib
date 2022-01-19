@@ -38,7 +38,7 @@ package components.domino
 	* 				   Royale - <j:ApplicationMainContent><j:ScrollableSectionConten></j:ScrollableSectionCont></j:ApplicationMainContent>
 	* 					
 	* {@link #components.domino}
-    */
+	*/
 	
 	public class Body extends ComponentBase implements IDominoBody
 	{
