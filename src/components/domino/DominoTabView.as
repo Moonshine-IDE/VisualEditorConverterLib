@@ -425,8 +425,7 @@ package components.domino
             for (var i:int = 0; i < tabCount; i++)
             {
                 var content:Object = component["getElementAt"](i);
-                var contentCount:int = content.numElements;
-				var tabLabel=content.label;
+				var tabLabel:String = content.label;
 
                 str=str+"new TabBarButtonVO(\""+ tabLabel+"\", \""+tabLabel+"\",null)"+"\n";
                
