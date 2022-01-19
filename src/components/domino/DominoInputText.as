@@ -56,17 +56,6 @@ package components.domino
 	import mx.utils.StringUtil;
 
 
-	/** 
-	 * Domino filed element dxl format , more details please view follow url
-	 * https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_FIELD_ELEMENT_XML.html
-	 */
-
-	/** Domino field
-	 *Client: Default value,Input Translation, Input Validation, Input Enabled,HTML attribute
-	 *Web: onBlur,onChange,onClick,onFocus,onKeyDown,onKeyPress,onKeyUp,onMouseDown,onMouseUp,onMouseMove,OnMouseOut,OnMouseOver,onSelect,
-	 *Client:(option),(Declarations),Entering,Exiting,Initialize,Terminate
-	 */
-
 	/**
 	* This class work for  convert from Visuale field  components to target framework of body format.
 	* Call different methods to convert the component to different target formats.
@@ -79,6 +68,9 @@ package components.domino
 	* 				   Royale - TODO
 	* 					
 	* {@link #components.domino}
+	* Client: Default value,Input Translation, Input Validation, Input Enabled,HTML attribute
+	* Web: onBlur,onChange,onClick,onFocus,onKeyDown,onKeyPress,onKeyUp,onMouseDown,onMouseUp,onMouseMove,OnMouseOut,OnMouseOver,onSelect,
+	* Client:(option),(Declarations),Entering,Exiting,Initialize,Terminate	
 	* @see https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_FIELD_ELEMENT_XML.html
     */
 

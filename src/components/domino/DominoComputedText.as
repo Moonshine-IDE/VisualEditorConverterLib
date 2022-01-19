@@ -33,11 +33,6 @@ package components.domino
 
 	import mx.controls.Alert;
 	import global.domino.DominoGlobals;
-	/** 
-	 * Domino text element dxl format 
-        dxl example of text 
-      
-	*/
 
 
 	/**

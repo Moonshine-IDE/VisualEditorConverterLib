@@ -43,12 +43,11 @@ package components.domino
 	* toRoyaleConvertCode() will  convert the Visuale main container components to Rayale button format.
 	* For Test Input&Output: 
 	* Input : Visuale UI  paragraph element   from Visual Editor
-	* Output example:  Domino - <par def="1019" paragraph="true" dominotype="paragraph" class="flexHorizontalLayout flexHorizontalLayoutLeft flexHorizontalLayoutTop"/>
-	* 				   Royale - TODO
+	* Output example:	Domino - <par def="1019" paragraph="true" dominotype="paragraph" class="flexHorizontalLayout flexHorizontalLayoutLeft flexHorizontalLayoutTop"/>
+	* 					Royale - TODO
 	* 					
 	* {@link #components.domino}
-		
-	 */
+	*/
 	
 	public class DominoParagraph extends ComponentBase implements IDominoParagraph
 	{

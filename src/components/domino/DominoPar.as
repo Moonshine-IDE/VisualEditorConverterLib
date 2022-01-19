@@ -35,13 +35,12 @@ package components.domino
 	* toRoyaleConvertCode() will  convert the Visuale main container components to Rayale button format.
 	* For Test Input&Output: 
 	* Input : Visuale UI  par element   from Visual Editor
-	* Output example:  Domino - <par isNewLine="false"></par>
-	* 				   Royale - TODO
+	* Output example:	Domino - <par isNewLine="false"></par>
+	* 					Royale - TODO
 	* 					
 	* {@link #components.domino}
 	* @see https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_PARAGRAPH_ELEMENT_XML.html
-	
-	 */
+	*/
 	public class DominoPar extends ComponentBase implements IDominoPar
 	{
 		public static const DOMINO_ELEMENT_NAME:String = "par";

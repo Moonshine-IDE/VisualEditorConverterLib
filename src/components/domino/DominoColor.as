@@ -35,8 +35,8 @@ package components.domino
 	* toRoyaleConvertCode() will  convert the Visuale main container components to Rayale button format.
 	* For Test Input&Output: 
 	* Input : - Visuale UI main color component from Visual Editor
-	* Output example:  Domino - TODO
-	*						Royale - TODO
+	* Output example:	Domino - TODO
+	*					Royale - TODO
 	* 
 	* {@link #components.domino}
 	*/

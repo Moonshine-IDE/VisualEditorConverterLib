@@ -42,15 +42,15 @@ package components.domino
 	* toRoyaleConvertCode() will  convert the Visuale main container components to Rayale button format.
 	* For Test Input&Output: 
 	* Input : Visuale UI label component from Visual Editor
-	* Output example:  Domino -   <par isNewLine="false">
-    *    								<run>
-    *     								 	<font color="system" size="12pt" style="normal"/>Label
-    *   								 </run>
-    *  								</par>
-	* 				   Royale - TODO
+	* Output example:  Domino -		<par isNewLine="false">
+	* 									<run>
+	*										<font color="system" size="12pt" style="normal"/>Label
+	*									</run>
+	*								</par>
+	*					Royale - TODO
 	* 					
 	* {@link #components.domino}
-	 */
+	*/
 	public class DominoLabel extends ComponentBase implements IDominoLabel
 	{
 		public static const ROYALE_ELEMENT_NAME:String = "Label";

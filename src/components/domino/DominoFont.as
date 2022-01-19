@@ -37,11 +37,11 @@ package components.domino
 	* toRoyaleConvertCode() will  convert the Visuale main container components to Rayale button format.
 	* For Test Input&Output: 
 	* Input : Visuale UI font component from Visual Editor
-	* Output example:  Domino -  <font size='12' color="black"></font>
-	* 				   Royale - TODO
+	* Output example: 	Domino -  <font size='12' color="black"></font>
+	*					Royale - TODO
 	* 					
 	* {@link #components.domino}
-    */
+	*/
 	public class DominoFont extends ComponentBase implements IDominoFont
 	{
 		public static const DOMINO_ELEMENT_NAME:String = "font";

@@ -35,13 +35,12 @@ package components.domino
 	* toRoyaleConvertCode() - not work , the element only work for domino.
 	* For Test Input&Output: 
 	* Input : Visuale UI  run element   from Visual Editor
-	* Output example:  Domino -  <run>{other some domino element}</run>
-	* 				   Royale - TODO
+	* Output example:	Domino -  <run>{other some domino element}</run>
+	*					Royale - TODO
 	* 					
 	* {@link #components.domino}
 	* @see https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_RUN_ELEMENT_XML.html
-	
-	 */
+	*/
 	public class DominoRun extends ComponentBase implements IDominoRun
 	{
 		public static const DOMINO_ELEMENT_NAME:String = "run";
