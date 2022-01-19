@@ -41,7 +41,7 @@ package components.domino
 	* toCode() will convert the Visuale label  calandar to domino calandar  dxl format.
 	* toRoyaleConvertCode() will  convert the Visuale main container components to Rayale button format.
 	* For Test Input&Output: 
-	* Input : Visuale UI label component from Visual Editor
+	* Input : - [Visuale UI main DominoInputText component](https://github.com/Moonshine-IDE/MockupVisualEditor/blob/features/issue_675_royale_generate_domino_visual_editor/src/view/domino/surfaceComponents/components/DominoLabel.as)
 	* Output example:  Domino -		<par isNewLine="false">
 	* 									<run>
 	*										<font color="system" size="12pt" style="normal"/>Label

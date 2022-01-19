@@ -31,14 +31,14 @@ package components.domino
 
 	import components.enum.TableWidthStyle;
 	import interfaces.IComponent;
-	
-	
+
+
 	import converter.DominoConverter;
 	import converter.Converter;
 	import components.primeFaces.Div;
 	import spark.components.Alert;
 	import components.GridItem;
-    import components.GridRow;
+	import components.GridRow;
 	import components.DominoRow;
 	import mx.core.IVisualElement;
 
@@ -55,7 +55,7 @@ package components.domino
 	* toCode() will convert the  Visuale table  components     to domino table  dxl format.
 	* toRoyaleConvertCode() :TODO
 	* For Test Input&Output: 
-	* Input : Visuale UI  table component   from Visual Editor
+	* Input :  - [Visuale UI main DominoTable component](https://github.com/Moonshine-IDE/MockupVisualEditor/blob/features/issue_675_royale_generate_domino_visual_editor/src/view/domino/surfaceComponents/components/DominoTable.as)
 	* Output example:  Domino -  * <table widthtype="fitmargins" cellbordercolor="yellow" 				leftmargin="1in" cellborderstyle="ridge" 						colorstyle="solid" bgcolor="silver" insidewrap="true" 				insidewrapheight="1in"> 
 	*			<border style="solid" width="2px" color="olive" 					dropshadow="true" /> 
 	*			<tablecolumn width="66.58%" /> 
@@ -131,7 +131,7 @@ package components.domino
 
 		private var _component:IComponent;
 		
-        public function DominoTable(component:IComponent = null)
+		public function DominoTable(component:IComponent = null)
 		{
 			super();
 

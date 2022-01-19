@@ -41,7 +41,7 @@ package components.domino
 	* toCode() will convert the  Visuale tabView  components     to domino tabView  dxl format.
 	* toRoyaleConvertCode() :TODO
 	* For Test Input&Output: 
-	* Input : Visuale UI  tabView component   from Visual Editor
+	* Input :  - [Visuale UI main DominoTabView component](https://github.com/Moonshine-IDE/MockupVisualEditor/blob/features/issue_675_royale_generate_domino_visual_editor/src/view/domino/surfaceComponents/components/DominoTabView.as)
 	* Output example:  Domino -  * <table widthtype="fitmargins" cellbordercolor="yellow" 				leftmargin="1in" cellborderstyle="ridge" 						colorstyle="solid" bgcolor="silver" insidewrap="true" 				insidewrapheight="1in"> 
 	*			<border style="solid" width="2px" color="olive" 					dropshadow="true" /> 
 	*			<tablecolumn width="66.58%" /> 
@@ -278,9 +278,7 @@ package components.domino
 		<tablecell></tablecell>
 		</tablerow>
 		</table
-
-
- */
+		*/
 
 		private var _columnProperties:String;
 		public function get columnProperties():String
