@@ -27,7 +27,7 @@ package components.domino
 
 	import mx.controls.Alert;
 
-    /**
+	/**
 	* This class work for  convert from Visuale Button UI components to target framework of button format.
 	* Call different methods to convert the component to different target formats.
 	* For now: 
@@ -36,13 +36,13 @@ package components.domino
 	* For Test Input&Output: 
 	* Input : Visuale UI Button component from Visual Editor
 	* Output example:  Domino - <button width='2in' widthtype='maximum' maxlines='1' wraptext='true' bgcolor='system'>
-    *					<code event='click'><formula>@URLOpen( "http://" + LoadBalancer_VirtualIP_Name + "/netmonitor.nsf/test?openform")</formula>
-    *					</code>Test LB</button>
+	*					<code event='click'><formula>@URLOpen( "http://" + LoadBalancer_VirtualIP_Name + "/netmonitor.nsf/test?openform")</formula>
+	*					</code>Test LB</button>
 	* 				   Royale - <j:Button text="%ViewComponentLabel%" click="{dispatchEvent(new ScreenEvent(ScreenEvent.EVENT_NAVIGATE_TO, %ViewComponentName%.NAME))}" 
 	* 					percentWidth="60"/>
 	* Domino format rule:    * Contained by: %richtext.hot.inline;
-    *						 Contains: <font>, <code> 
-    */
+	*						 Contains: <font>, <code> 
+	*/
 
 	public class DominoButton extends ComponentBase implements IDominoButton
 	{
