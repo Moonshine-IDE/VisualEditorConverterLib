@@ -131,12 +131,6 @@ package components.primeFaces
 			return xml;
 		}
 
-		public function toRoyaleConvertCode():XML
-		{	
-			return null;
-
-		}
-		
 		private function refreshText(value:String):void
 		{
 			if (value == "0" || value == "0.00" || !value)

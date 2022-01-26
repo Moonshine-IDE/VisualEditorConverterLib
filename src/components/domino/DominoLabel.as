@@ -21,19 +21,12 @@ package components.domino
 {
 	import components.ComponentBase;
 
+	import interfaces.IRoyaleComponentConverter;
+
 	import interfaces.dominoComponents.IDominoLabel;
 
-	import utils.CodeMxmlUtils;
-	import utils.CodeXMLUtils;
-	import utils.StringHelperUtils;
-
-	import components.domino.DominoFont;
-	import components.domino.DominoPar;
-	import components.domino.DominoRun;
-
-	import mx.controls.Alert;
-	import global.domino.DominoGlobals;
 	import com.adobe.utils.StringUtil;
+
 	/**
 	* This class work for  convert from Visuale label  components to target framework of body format.
 	* Call different methods to convert the component to different target formats.
@@ -51,7 +44,7 @@ package components.domino
 	* 					
 	* {@link #components.domino}
 	*/
-	public class DominoLabel extends ComponentBase implements IDominoLabel
+	public class DominoLabel extends ComponentBase implements IDominoLabel, IRoyaleComponentConverter
 	{
 		public static const ROYALE_ELEMENT_NAME:String = "Label";
         

@@ -21,13 +21,9 @@ package components.domino
 {
 	import components.ComponentBase;
 
-    import utils.CodeMxmlUtils;
-	import utils.CodeXMLUtils;
-	import utils.StringHelperUtils;
+	import interfaces.IRoyaleComponentConverter;
 
-    import interfaces.dominoComponents.IDominoTableRow;
-
-    import components.enum.CellBackgroundRepeat;
+	import interfaces.dominoComponents.IDominoTableRow;
 
   /**
 	* This class work for  convert from Visuale tableRow  components  to target framework of body format.
@@ -102,7 +98,7 @@ package components.domino
 	* {@link #components.domino}
 	* @see https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_TABLEROW_ELEMENT_XML.html
 	*/
-	public class DominoTableRow extends ComponentBase implements IDominoTableRow
+	public class DominoTableRow extends ComponentBase implements IDominoTableRow, IRoyaleComponentConverter
 	{
         
 		public function DominoTableRow()

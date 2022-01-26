@@ -21,10 +21,5 @@ package components
 		{
 			return null;
 		}
-
-		public function toRoyaleConvertCode():XML
-		{
-			return null;
-		}
 	}
 }

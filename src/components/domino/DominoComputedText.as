@@ -21,19 +21,9 @@ package components.domino
 {
 	import components.ComponentBase;
 
+	import interfaces.IRoyaleComponentConverter;
+
 	import interfaces.dominoComponents.IDominoComputedText;
-
-	import utils.CodeMxmlUtils;
-	import utils.CodeXMLUtils;
-	import utils.StringHelperUtils;
-
-	import components.domino.DominoFont;
-	import components.domino.DominoPar;
-	import components.domino.DominoRun;
-
-	import mx.controls.Alert;
-	import global.domino.DominoGlobals;
-
 
 	/**
 	* This class work for  convert from Visuale input  components to target framework of body format.
@@ -50,7 +40,7 @@ package components.domino
 	* 					
 	* {@link #components.domino}
 	*/
-	public class DominoComputedText extends ComponentBase implements IDominoComputedText
+	public class DominoComputedText extends ComponentBase implements IDominoComputedText, IRoyaleComponentConverter
 	{
         
 		public function DominoComputedText()

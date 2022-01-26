@@ -21,13 +21,11 @@ package components.domino
 {
 	import components.ComponentBase;
 
+	import interfaces.IRoyaleComponentConverter;
+
 	import interfaces.dominoComponents.IDominoFont;
 
 	import utils.CodeMxmlUtils;
-	import utils.CodeXMLUtils;
-	import utils.StringHelperUtils;
-
-	
 
 	/**
 	* This class work for  convert from Visuale font  components to target framework of body format.
@@ -42,7 +40,7 @@ package components.domino
 	* 					
 	* {@link #components.domino}
 	*/
-	public class DominoFont extends ComponentBase implements IDominoFont
+	public class DominoFont extends ComponentBase implements IDominoFont, IRoyaleComponentConverter
 	{
 		public static const DOMINO_ELEMENT_NAME:String = "font";
         public static const ELEMENT_NAME:String = "font";

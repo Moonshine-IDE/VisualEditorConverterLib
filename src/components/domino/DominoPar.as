@@ -21,11 +21,11 @@ package components.domino
 {
 	import components.ComponentBase;
 
+	import interfaces.IRoyaleComponentConverter;
+
 	import interfaces.dominoComponents.IDominoPar;
 
 	import utils.CodeMxmlUtils;
-	import utils.CodeXMLUtils;
-	import utils.StringHelperUtils;
 
 	/**
 	* This class work for  convert from par element of Visuale label/text/field  components  to target framework of body format.
@@ -41,7 +41,7 @@ package components.domino
 	* {@link #components.domino}
 	* @see https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_PARAGRAPH_ELEMENT_XML.html
 	*/
-	public class DominoPar extends ComponentBase implements IDominoPar
+	public class DominoPar extends ComponentBase implements IDominoPar, IRoyaleComponentConverter
 	{
 		public static const DOMINO_ELEMENT_NAME:String = "par";
         public static const ELEMENT_NAME:String = "par";

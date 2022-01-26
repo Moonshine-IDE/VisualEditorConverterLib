@@ -23,14 +23,11 @@ package components.domino
 	import components.NavigatorContent;
 
 	import converter.DominoConverter;
-	import components.primeFaces.Div;
+	import components.common.Div;
 
 	import interfaces.IComponent;
-	import interfaces.IComponent;
-	import interfaces.components.ITabView;
+	import interfaces.IRoyaleComponentConverter;
 	import interfaces.dominoComponents.IDominoTabView;
-
-	import mx.controls.Alert;
 
 	import global.domino.DominoGlobals;
 
@@ -108,7 +105,7 @@ package components.domino
 	* @see https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_TABLEROW_ELEMENT_XML.html
 	*/
 
-	public class DominoTabView extends ComponentBase implements IDominoTabView
+	public class DominoTabView extends ComponentBase implements IDominoTabView, IRoyaleComponentConverter
 	{
 		public static const PRIME_FACES_XML_ELEMENT_NAME:String = "tabView";
         public static const ELEMENT_NAME:String = "TabView";
@@ -199,7 +196,7 @@ package components.domino
 
                 var tab:IComponent = dominoconv.getNewInstanceOfComponent(NavigatorContent.NAVIGATORCONTENT_NAME);
                 if(tab==null){
-					Alert.show("tab is null")
+
 				}else{
 					tab["label"] = tabXML.@title;
 					if (tabChildren.length() == 0)
@@ -892,19 +889,11 @@ package components.domino
 					flag=false
 			}
 
-			if(flag==true){
-				Alert.show("xml.name:"+xml.name());
-				Alert.show("xml.tablabel:"+xml.@tablabel+":");
-
-			}
-
-
 			// if(xml.name()=="table"&&(xml.@rowdisplay==null||xml.@rowdisplay=="")){
 			// 	flag=false
 			// }
 
 			return flag;
-					
 		}
 	}
 }

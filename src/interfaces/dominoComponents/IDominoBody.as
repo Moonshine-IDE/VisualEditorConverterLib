@@ -14,8 +14,5 @@ package interfaces.dominoComponents
 	public interface IDominoBody extends IDominoComponent, IIsSelected
 	{
 
-        	
-	
-		
 	}
 }

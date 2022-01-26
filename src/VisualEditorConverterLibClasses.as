@@ -40,8 +40,8 @@ package
 		
 		//Components classes
 		import components.primeFaces.MainApplication; MainApplication;
-		import components.primeFaces.RootDiv; RootDiv;
-		import components.primeFaces.Div; Div;
+		import components.common.RootDiv; RootDiv;
+		import components.common.Div; Div;
 		import components.primeFaces.TabView; TabView;
 		import components.primeFaces.PanelGrid; PanelGrid;
 		import components.primeFaces.Include; Include;

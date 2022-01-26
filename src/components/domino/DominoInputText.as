@@ -21,40 +21,29 @@ package components.domino
 {
 	import components.ComponentBase;
 
+	import interfaces.IRoyaleComponentConverter;
+
 	import interfaces.dominoComponents.IDominoInputText;
 
 	import utils.CodeMxmlUtils;
-	import utils.CodeXMLUtils;
-	import utils.StringHelperUtils;
 	import flash.utils.ByteArray;
-	import mx.controls.Alert;
-
-	import mx.events.FlexEvent;
 
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
-	import flash.net.URLStream;
 	import flash.net.URLVariables;
 	import flash.net.URLRequestMethod;
 	import flash.net.URLRequestHeader;
 	import flash.events.Event;
 	import flash.net.URLLoaderDataFormat;
 	import flash.events.HTTPStatusEvent
-	//import flash.events.NativeProcessExitEvent;
 	import flash.events.ProgressEvent;
 
 	import 	mx.utils.Base64Encoder;
 
-	import flash.events.EventDispatcher;
 	import flash.events.IOErrorEvent;
 	import flash.events.ErrorEvent
 
 	import org.apache.flex.packageflexsdk.util.ApacheURLLoader;
-
-	import global.domino.DominoGlobals;
-
-	import mx.utils.StringUtil;
-
 
 	/**
 	* This class work for  convert from Visuale field  components to target framework of body format.
@@ -74,7 +63,7 @@ package components.domino
 	* @see https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_FIELD_ELEMENT_XML.html
     */
 
-	public class DominoInputText extends ComponentBase implements IDominoInputText
+	public class DominoInputText extends ComponentBase implements IDominoInputText, IRoyaleComponentConverter
 	{
 		public static const DOMINO_ELEMENT_NAME:String = "field";
         public static const ELEMENT_NAME:String = "Field";
@@ -600,7 +589,7 @@ package components.domino
 		public function fromXML(xml:XML, childFromXMLCallback:Function):void
 		{
 			this.setComponentSize(xml);
-			 //Alert.show("visual xml:"+xml.toXMLString());
+
 			this.text = xml.@value;
 			this.maxLength = xml.@maxlength;
             this.idAttribute = xml.@id;
@@ -640,8 +629,7 @@ package components.domino
 						this.digits= numberFormatNode[0].@digits;
 					}
 				}
-			
-				//Alert.show("this.digits:"+this.digits);
+
                 this.format=xml.@format  ;
                 this.punctuated=xml.@punctuated =="true";
                 this.parens=xml.@parens =="true" ;
@@ -879,7 +867,7 @@ package components.domino
 					keyword_format_xml.@ui=this.keywordui
 					keyword_format_xml.@recalconchange=this.recalonchange.toString();
 					keyword_format_xml.@recalcchoices=this.recalcchoices.toString();
-					//Alert.show("vc numberColumns:"+this.numberColumns);
+
 					if(this.numberColumns){
 						keyword_format_xml.@columns=this.numberColumns.toString();
 					}
@@ -1036,9 +1024,7 @@ package components.domino
 		//</j:beads>
 		//</j:ComboBox>
 		public function toRoyaleConvertCode():XML
-		{	
-
-			//Alert.show("toRoyaleConvertCode tye:"+this.type);
+		{
 			var label_xml:XML ;
 			if(this.type=="text"){
 				label_xml = new XML("<" + ROYALE_ELEMENT_NAME_TEXT + ">"+"</"+ROYALE_ELEMENT_NAME_TEXT+">");
@@ -1080,21 +1066,19 @@ package components.domino
 		}
 		protected function handleFormulaComplete(event:Event):void
 		{
-			try
-			{
-				Alert.show("result:"+event.target.data);
-			}catch(e:Error){
 
-			}	
 		}
+
 		protected function handleFormulaError(e:* = null):void
 		{
-			Alert.show("error:"+e.toString())
+
 		}
+
 		protected function handleFormulaIOError(e:* = null):void
 		{
-					Alert.show("error:"+e.toString())
+
 		}
+
         public function checkFormula(formula:String) : void{
             var req : URLRequest = new URLRequest();
             loader = new URLLoader();
@@ -1104,7 +1088,7 @@ package components.domino
             //encoder.encode(formula);
 			
             params.formula = base64Encode(formula);
-			Alert.show("params.formula:"+params.formula);
+
             req.data = params;
 			req.requestHeaders.push(new URLRequestHeader('Content-Type', 'application/x-www-form-urlencoded'));
 			req.url="http://localhost:8080/dominoFormula/parse?formula="+params.formula;
@@ -1134,33 +1118,32 @@ package components.domino
 			base64.encodeBytes(byte);
 			return base64.toString();
 		}
-		private function httpStatusHandler(event:HTTPStatusEvent):void {
-        	Alert.show("httpStatusHandler: " + event);
+		private function httpStatusHandler(event:HTTPStatusEvent):void
+		{
+
     	}
 
 		protected function onOpen(e:Event):void
 		{
-			Alert.show(e.toString());
+
 		}
 
 		protected function onActivate(e:Event):void
 		{
-			Alert.show(e.toString());
+
 		}
 		protected function ioerror(e:Event):void
 		{
-			Alert.show("Connection Error:"+e.toString());
+
 		}
-        protected function urlLoader_complete(evt:Event):void {
+        protected function urlLoader_complete(evt:Event):void
+		{
             var dataSet:String  = loader.data;
-            Alert.show("dataSet:"+dataSet);
-            
         }
+
         protected function urlStream_progressHandler(event:ProgressEvent):void
 		{
-			//dispatchEvent(event);
-		} 
 
-		
+		}
 	}
 }

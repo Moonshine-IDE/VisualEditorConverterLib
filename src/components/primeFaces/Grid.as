@@ -3,8 +3,9 @@ package components.primeFaces
     import components.ComponentBase;
     import components.GridItem;
     import components.GridRow;
+	import components.common.Div;
 
-    import converter.Converter;
+	import converter.Converter;
 
     import interfaces.IComponent;
     import interfaces.components.IGrid;
@@ -134,12 +135,6 @@ package components.primeFaces
             return xml;
 		}
 
-        public function toRoyaleConvertCode():XML
-		{	
-			return null;
-
-		}
-		
 		private function getClassNameBasedOnColumns(coulumnCountInRow:int):String
         {
             var columnFactor:int = MAX_COLUMN_COUNT / coulumnCountInRow;

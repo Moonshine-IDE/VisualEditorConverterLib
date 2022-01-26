@@ -22,18 +22,14 @@ package components.domino
 	import components.ComponentBase;
 
 	import interfaces.IComponent;
+	import interfaces.IRoyaleComponentConverter;
 	import interfaces.components.IDominoParagraph;
 
 	import utils.CodeMxmlUtils;
-	import utils.CodeXMLUtils;
-
-
-    import mx.controls.Alert;
 
 	import global.domino.DominoGlobals;
 	import mx.utils.Base64Decoder;
 	import  flash.utils.ByteArray;
-
 
 	/**
 	* This class work for  convert from paragraph element of Visuale label/text/field  components  to target framework of body format.
@@ -49,7 +45,7 @@ package components.domino
 	* {@link #components.domino}
 	*/
 	
-	public class DominoParagraph extends ComponentBase implements IDominoParagraph
+	public class DominoParagraph extends ComponentBase implements IDominoParagraph, IRoyaleComponentConverter
 	{
 		private static const PRIME_FACES_XML_ELEMENT_NAME:String = "par";
     	public static var ELEMENT_NAME:String = "Par";

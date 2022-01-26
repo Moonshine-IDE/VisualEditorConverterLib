@@ -21,32 +21,17 @@ package components.domino
 {
 	import components.ComponentBase;
 
-	import interfaces.dominoComponents.IDominoRun;
-
-	import utils.CodeMxmlUtils;
-	import utils.CodeXMLUtils;
-	import utils.StringHelperUtils;
-
+	import interfaces.IRoyaleComponentConverter;
 	import interfaces.dominoComponents.IDominoTable
-
-	import components.enum.TableWidthStyle;
 	import interfaces.IComponent;
 
 
 	import converter.DominoConverter;
-	import converter.Converter;
-	import components.primeFaces.Div;
+	import components.common.Div;
 	import spark.components.Alert;
 	import components.GridItem;
 	import components.GridRow;
-	import components.DominoRow;
-	import mx.core.IVisualElement;
-
-	import flash.utils.getQualifiedClassName;
 	import global.domino.DominoGlobals;
-
-
-	 
 
 	/**
 	* This class work for  convert from Visuale table  components  to target framework of body format.
@@ -121,7 +106,7 @@ package components.domino
 	* {@link #components.domino}
 	* @see https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_TABLE_ELEMENT_XML.html
 	*/
-	public class DominoTable extends ComponentBase implements IDominoTable
+	public class DominoTable extends ComponentBase implements IDominoTable, IRoyaleComponentConverter
 	{
         public static const DOMINO_ELEMENT_NAME:String = "table";
         public static const ELEMENT_NAME:String = "table";

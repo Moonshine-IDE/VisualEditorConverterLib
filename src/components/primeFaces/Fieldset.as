@@ -1,7 +1,8 @@
 package components.primeFaces
 {
 	import components.ComponentBase;
-	
+	import components.common.Div;
+
 	import interfaces.IComponent;
 	import interfaces.components.IFieldset;
 	
@@ -125,12 +126,7 @@ package components.primeFaces
 
 			return xml;
 		}
-		public function toRoyaleConvertCode():XML
-		{	
-			return null;
 
-		}
-		
 		private function createChildren(elements:XMLList):void
 		{
 			if ((!elements || elements.length() == 0) && (thisCallbackXML == null)) return;

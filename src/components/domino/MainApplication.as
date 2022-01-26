@@ -19,11 +19,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package components.domino
 {
-    
-	import components.ComponentBase;
 	import interfaces.dominoComponents.IMainApplication;
-	import interfaces.IRootComponent;
-	import components.primeFaces.RootDiv;
+	import components.common.RootDiv;
 
 	/**
 	* This class work for  convert from Visuale main container components to target framework of body format.

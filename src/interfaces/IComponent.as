@@ -4,6 +4,5 @@ package interfaces
 	{
 		function fromXML(xml:XML, childFromXMLCallback:Function):void;
 		function toCode():XML;
-		function toRoyaleConvertCode():XML;
 	}
 }

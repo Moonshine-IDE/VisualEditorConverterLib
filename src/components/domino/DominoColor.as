@@ -21,11 +21,9 @@ package components.domino
 {
 	import components.ComponentBase;
 
-	import interfaces.dominoComponents.IDominoColor;
+	import interfaces.IRoyaleComponentConverter;
 
-	import utils.CodeMxmlUtils;
-	import utils.CodeXMLUtils;
-	import utils.StringHelperUtils;
+	import interfaces.dominoComponents.IDominoColor;
 
 	/**
 	* This class work for  convert from Visuale   components color property to target framework of body format.
@@ -40,15 +38,13 @@ package components.domino
 	* 
 	* {@link #components.domino}
 	*/
-	public class DominoColor extends ComponentBase implements IDominoColor
+	public class DominoColor extends ComponentBase implements IDominoColor, IRoyaleComponentConverter
 	{
-
         public function DominoColor()
 		{
 			super();
 		}
 
-         
         private var _name:String;
 		public function get name():String
 		{
@@ -59,5 +55,9 @@ package components.domino
 			_name = value;
 		}
 
+		public function toRoyaleConvertCode():XML
+		{
+			return null;
+		}
     }
 }

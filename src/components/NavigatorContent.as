@@ -20,10 +20,5 @@ package components
 		{
 			_label = value;
 		}
-		// public function toRoyaleConvertCode():XML
-		// {	
-		// 	return null;
-
-		// }
 	}
 }

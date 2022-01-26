@@ -1,6 +1,5 @@
 package components
 {
-    
 	import interfaces.IVisualComponent;
 
 	public class ComponentBase implements IVisualComponent

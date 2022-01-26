@@ -21,12 +21,10 @@ package components.domino
 {
     import components.ComponentBase;
 
+	import interfaces.IRoyaleComponentConverter;
+
 	import interfaces.dominoComponents.IDominoSection;
-    import utils.CodeMxmlUtils;
-	import utils.CodeXMLUtils;
-	import utils.StringHelperUtils;
 	import interfaces.IComponent;
-	import spark.components.Alert;
 	import global.domino.DominoGlobals;
 
 	/**
@@ -46,7 +44,7 @@ package components.domino
 	* {@link #components.domino}
 	* @see https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_SECTION_ELEMENT_XML.html
 	*/
-    public class DominoSection extends ComponentBase implements IDominoSection
+    public class DominoSection extends ComponentBase implements IDominoSection, IRoyaleComponentConverter
 	{
 		public static const DOMINO_ELEMENT_NAME:String = "section";
         public static const ELEMENT_NAME:String = "Section";

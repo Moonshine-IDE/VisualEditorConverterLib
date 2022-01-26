@@ -2,6 +2,7 @@ package components.primeFaces
 {
 	import components.ComponentBase;
 	import components.NavigatorContent;
+	import components.common.Div;
 
 	import converter.Converter;
 
@@ -145,11 +146,6 @@ package components.primeFaces
             }
 
             return xml;
-		}
-		public function toRoyaleConvertCode():XML
-		{	
-			return null;
-
 		}
 
 		private function tabFromXML(tab:IComponent, xml:XML, callback:Function):void

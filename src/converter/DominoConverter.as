@@ -46,7 +46,7 @@ package converter
 	import components.DominoRow;
 
 	import components.GridItem;
-	import components.primeFaces.Div;
+	import components.common.Div;
 
 	import mx.controls.Alert;
 	import components.NavigatorContent;

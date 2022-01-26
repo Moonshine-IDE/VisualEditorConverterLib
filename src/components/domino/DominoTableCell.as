@@ -21,11 +21,10 @@ package components.domino
 {
 	import components.ComponentBase;
 
+	import interfaces.IRoyaleComponentConverter;
+
 	import interfaces.dominoComponents.IDominoTableCell;
 
-	import utils.CodeMxmlUtils;
-	import utils.CodeXMLUtils;
-	import utils.StringHelperUtils;
     import components.enum.ColorName;
 
 	/**
@@ -101,7 +100,7 @@ package components.domino
 	* {@link #components.domino}
 	* @see https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_TABLECELL_ELEMENT_XML.html
 	*/
-	public class DominoTableCell extends ComponentBase implements IDominoTableCell
+	public class DominoTableCell extends ComponentBase implements IDominoTableCell, IRoyaleComponentConverter
 	{
         
         public function DominoTableCell()

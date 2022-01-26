@@ -21,6 +21,8 @@ package components.domino
 {
 	import components.ComponentBase;
 
+	import interfaces.IRoyaleComponentConverter;
+
 	import interfaces.dominoComponents.IDominoRichText;
 
 	import utils.CodeMxmlUtils;
@@ -32,7 +34,7 @@ package components.domino
 	* It just for improve the richtext in later.
 	*/
 
-	public class DominoRichText extends ComponentBase implements IDominoRichText
+	public class DominoRichText extends ComponentBase implements IDominoRichText, IRoyaleComponentConverter
 	{
 		public static const DOMINO_ELEMENT_NAME:String = "richtext";
         public static const ELEMENT_NAME:String = "Richtext";

@@ -19,13 +19,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package components.domino
 {
+	import interfaces.IRoyaleComponentConverter;
 	import interfaces.dominoComponents.IDominoButton;
-	import interfaces.IDominoComponent;
 	import components.ComponentBase;
-	import utils.CodeMxmlUtils;
-	import utils.CodeXMLUtils;
-
-	import mx.controls.Alert;
 
 	/**
 	* This class work for  convert from Visuale Button UI components to target framework of button format.
@@ -44,7 +40,7 @@ package components.domino
 	*						Contains: <font>, <code> 
 	*/
 
-	public class DominoButton extends ComponentBase implements IDominoButton
+	public class DominoButton extends ComponentBase implements IDominoButton, IRoyaleComponentConverter
 	{
 		public static const DOMINO_ELEMENT_NAME:String = "button";
 		public static const ELEMENT_NAME:String = "button";

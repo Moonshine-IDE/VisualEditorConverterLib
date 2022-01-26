@@ -21,11 +21,11 @@ package components.domino
 {
 	import components.ComponentBase;
 
+	import interfaces.IRoyaleComponentConverter;
+
 	import interfaces.dominoComponents.IDominoRun;
 
 	import utils.CodeMxmlUtils;
-	import utils.CodeXMLUtils;
-	import utils.StringHelperUtils;
 
 	/**
 	* This class work for  convert from run element of Visuale label/text/field  components  to target framework of body format.
@@ -41,7 +41,7 @@ package components.domino
 	* {@link #components.domino}
 	* @see https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_RUN_ELEMENT_XML.html
 	*/
-	public class DominoRun extends ComponentBase implements IDominoRun
+	public class DominoRun extends ComponentBase implements IDominoRun, IRoyaleComponentConverter
 	{
 		public static const DOMINO_ELEMENT_NAME:String = "run";
         public static const ELEMENT_NAME:String = "run";

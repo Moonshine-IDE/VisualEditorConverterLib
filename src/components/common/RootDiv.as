@@ -1,4 +1,4 @@
-package components.primeFaces
+package components.common
 {
 	import interfaces.components.IRootDiv;
 	import interfaces.IRootComponent;

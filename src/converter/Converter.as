@@ -7,7 +7,7 @@ package converter
 	import components.primeFaces.Button;
 	import components.primeFaces.Calendar;
 	import components.primeFaces.DataTable;
-	import components.primeFaces.Div;
+	import components.common.Div;
 	import components.primeFaces.Fieldset;
 	import components.primeFaces.Grid;
 	import components.primeFaces.Include;
@@ -18,7 +18,7 @@ package converter
 	import components.primeFaces.MainApplication;
 	import components.primeFaces.OutputLabel;
 	import components.primeFaces.PanelGrid;
-	import components.primeFaces.RootDiv;
+	import components.common.RootDiv;
 	import components.primeFaces.SelectBooleanCheckbox;
 	import components.primeFaces.SelectOneListbox;
 	import components.primeFaces.SelectOneMenu;

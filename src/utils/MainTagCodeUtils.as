@@ -1,7 +1,5 @@
 package utils
 {
-	import interfaces.IComponent;
-	import interfaces.IRootComponent;
 	import interfaces.components.IDiv;
 	import interfaces.dominoComponents.IBody;
 

@@ -158,10 +158,5 @@ package components.primeFaces
 			
 			return xml;
 		}
-		public function toRoyaleConvertCode():XML
-		{	
-			return null;
-
-		}
 	}
 }

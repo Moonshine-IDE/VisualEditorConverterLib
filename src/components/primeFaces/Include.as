@@ -45,20 +45,14 @@ package components.primeFaces
 		{
 			var xml:XML = new XML("<" + CodeMxmlUtils.getMXMLTagNameWithSelection(this, PRIME_FACES_XML_ELEMENT_NAME) + "/>");
 			var primeFacesNamespace:Namespace = new Namespace("ui", "http://xmlns.jcp.org/jsf/facelets");
-            xml.addNamespace(primeFacesNamespace);
-            xml.setNamespace(primeFacesNamespace);
+			xml.addNamespace(primeFacesNamespace);
+			xml.setNamespace(primeFacesNamespace);
 
-            CodeXMLUtils.addSizeHtmlStyleToXML(xml, this);
+			CodeXMLUtils.addSizeHtmlStyleToXML(xml, this);
 
 			xml.@src = this.path;
 
 			return xml;
-		}
-
-		public function toRoyaleConvertCode():XML
-		{	
-			return null;
-
 		}
 	}
 }

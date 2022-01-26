@@ -1,7 +1,5 @@
 package components.primeFaces
 {
-	import mx.collections.IList;
-	
 	import components.ComponentBase;
 	
 	import interfaces.components.ISelectOneMenu;
@@ -106,11 +104,6 @@ package components.primeFaces
 			}
 
 			return xml;
-		}
-		public function toRoyaleConvertCode():XML
-		{	
-			return null;
-
 		}
 	}
 }

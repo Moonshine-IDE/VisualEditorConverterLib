@@ -22,6 +22,7 @@ package components.domino
 	import components.ComponentBase;
 
 	import interfaces.IDominoComponent;
+	import interfaces.IRoyaleComponentConverter;
 	import interfaces.dominoComponents.IDominoBody;
 
 	import utils.CodeMxmlUtils;
@@ -40,7 +41,7 @@ package components.domino
 	* {@link #components.domino}
 	*/
 	
-	public class Body extends ComponentBase implements IDominoBody
+	public class Body extends ComponentBase implements IDominoBody, IRoyaleComponentConverter
 	{
 		private static const DOMINO_ELEMENT_NAME:String = "body";
     	public static var ELEMENT_NAME:String = "Body";

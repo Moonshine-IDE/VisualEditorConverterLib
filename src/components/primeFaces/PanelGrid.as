@@ -3,6 +3,7 @@ package components.primeFaces
 	import components.ComponentBase;
 	import components.GridItem;
 	import components.GridRow;
+	import components.common.Div;
 
 	import converter.Converter;
 
@@ -214,11 +215,6 @@ package components.primeFaces
 			toCodeBody(xml);
 
 			return xml;
-		}
-		public function toRoyaleConvertCode():XML
-		{	
-			return null;
-
 		}
 
 		private function toCodeHeader(xml:XML):void

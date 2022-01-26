@@ -20,11 +20,9 @@
 package components.domino
 {
 	import components.ComponentBase;
-	import interfaces.components.ICalendar;
-	import utils.CodeXMLUtils;
-	import utils.CodeMxmlUtils;
-	import interfaces.IDominoComponent;
 
+	import interfaces.IRoyaleComponentConverter;
+	import interfaces.components.ICalendar;
 
 	/**
 	* This class work for  convert from Visuale main calandar components to target framework of body format.
@@ -47,7 +45,7 @@ package components.domino
 
     
                   
-	public class DominoCalendar extends ComponentBase implements ICalendar
+	public class DominoCalendar extends ComponentBase implements ICalendar, IRoyaleComponentConverter
 	{
 		public static const PRIME_FACES_XML_ELEMENT_NAME:String = "Calendar";
         public static const ELEMENT_NAME:String = "Calendar";

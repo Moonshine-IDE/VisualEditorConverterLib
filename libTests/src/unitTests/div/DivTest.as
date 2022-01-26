@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package unitTests.div
 {
-    import components.primeFaces.Div;
+    import components.common.Div;
 
     import events.ConverterErrorEvent;
 

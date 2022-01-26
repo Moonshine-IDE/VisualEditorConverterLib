@@ -1,9 +1,8 @@
 package components.primeFaces
 {
-    
-	import components.ComponentBase;
+	import components.common.RootDiv;
+
 	import interfaces.components.IMainApplication;
-	import interfaces.IRootComponent;
 
 	public class MainApplication extends RootDiv implements IMainApplication
 	{

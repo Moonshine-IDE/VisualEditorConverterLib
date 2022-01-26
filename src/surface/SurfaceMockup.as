@@ -1,10 +1,10 @@
 package surface
 {
+	import interfaces.IRoyaleComponentConverter;
 	import interfaces.ISurface;
 	import interfaces.IComponent;
 	import interfaces.IVisualComponent;
 	import utils.MainTagCodeUtils;
-	import interfaces.IRootComponent;
 	import interfaces.components.IDiv;
 	import interfaces.dominoComponents.IBody;
 
@@ -149,7 +149,7 @@ package surface
                 }
 
 			    XML.ignoreComments = false;
-                var code:XML = item.toRoyaleConvertCode();
+                var code:XML = (item as IRoyaleComponentConverter).toRoyaleConvertCode();
 				var commentOnlyXML:XMLList = (code.elements("primeFacesCommentOnlyTag").length() > 0) ?
 											  code.elements("primeFacesCommentOnlyTag") : null;
                 if (mainContainer)
@@ -164,9 +164,6 @@ package surface
 
 			return xml;
 		}
-
-		
-
 
 		public function toDominoCode():XML
 		{

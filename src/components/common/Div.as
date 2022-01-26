@@ -1,24 +1,16 @@
-package components.primeFaces
+package components.common
 {
 	import components.ComponentBase;
 
 	import interfaces.IComponent;
+	import interfaces.IRoyaleComponentConverter;
 	import interfaces.components.IDiv;
 
 	import utils.CodeMxmlUtils;
 	import utils.CodeXMLUtils;
-	import interfaces.components.IDominoParagraph;
-	//import components.domino.DominoParagraph;
-
-
-	import mx.controls.Alert;
 	import flash.utils.getQualifiedClassName;
 
-
 	import global.domino.DominoGlobals;
-
-	import components.domino.DominoTable;
-	import interfaces.dominoComponents.IDominoTable;
 	
 	public class Div extends ComponentBase implements IDiv
 	{
@@ -247,7 +239,7 @@ package components.primeFaces
             for(var i:int = 0; i < elementCount; i++)
             {
 				var element:IComponent = component["getElementAt"](i) as IComponent;
-                layoutXml.appendChild(element.toRoyaleConvertCode());
+                layoutXml.appendChild((element as IRoyaleComponentConverter).toRoyaleConvertCode());
 
             }
 
