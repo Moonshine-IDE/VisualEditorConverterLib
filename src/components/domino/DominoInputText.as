@@ -38,6 +38,7 @@ package components.domino
 	import mx.utils.Base64Encoder;
 
 	import utils.CodeMxmlUtils;
+	import org.apache.flex.packageflexsdk.util.ApacheURLLoader;
 
 	/**
 	 * This class work for  convert from Visuale field  components to target framework of body format.

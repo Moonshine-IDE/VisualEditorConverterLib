@@ -23,6 +23,7 @@ package components.domino
 
 	import interfaces.IRoyaleComponentConverter;
 	import interfaces.dominoComponents.IDominoLabel;
+	import com.adobe.utils.StringUtil;
 
 	/**
 	 * This class work for  convert from Visuale label  components to target framework of body format.
