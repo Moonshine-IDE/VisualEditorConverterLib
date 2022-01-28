@@ -22,35 +22,34 @@ package components.domino
 	import components.ComponentBase;
 
 	import interfaces.IRoyaleComponentConverter;
-
 	import interfaces.dominoComponents.IDominoPar;
 
 	import utils.CodeMxmlUtils;
 
 	/**
-	* This class work for  convert from par element of Visuale label/text/field  components  to target framework of body format.
-	* Call different methods to convert the component to different target formats.
-	* For now: 
-	* toCode() will convert the  par element    to domino calandar  dxl format.
-	* toRoyaleConvertCode() will  convert the Visuale main container components to Rayale button format.
-	* For Test Input&Output: 
-	* Input : Visuale UI  par element   from Visual Editor
-	* Output example:	Domino - <par isNewLine="false"></par>
-	* 					Royale - TODO
-	* 					
-	* {@link #components.domino}
-	* @see https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_PARAGRAPH_ELEMENT_XML.html
-	*/
+	 * This class work for  convert from par element of Visuale label/text/field  components  to target framework of body format.
+	 * Call different methods to convert the component to different target formats.
+	 * For now:
+	 * toCode() will convert the  par element    to domino calandar  dxl format.
+	 * toRoyaleConvertCode() will  convert the Visuale main container components to Rayale button format.
+	 * For Test Input&Output:
+	 * Input : Visuale UI  par element   from Visual Editor
+	 * Output example:	Domino - <par isNewLine="false"></par>
+	 * 					Royale - TODO
+	 *
+	 * {@link #components.domino}
+	 * @see https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_PARAGRAPH_ELEMENT_XML.html
+	 */
 	public class DominoPar extends ComponentBase implements IDominoPar, IRoyaleComponentConverter
 	{
 		public static const DOMINO_ELEMENT_NAME:String = "par";
-        public static const ELEMENT_NAME:String = "par";
+		public static const ELEMENT_NAME:String = "par";
 
 		public function DominoPar()
 		{
 			super();
 		}
-		
+
 		private var _isSelected:Boolean;
 		public function get isSelected():Boolean
 		{
@@ -61,42 +60,43 @@ package components.domino
 		{
 			_isSelected = value;
 		}
-		
+
 		private var _def:String;
 		public function get def():String
 		{
 			return _def;
 		}
+
 		public function set def(value:String):void
 		{
 			_def = value;
 		}
 
-
 		public function fromXML(xml:XML, childFromXMLCallback:Function):void
 		{
 			this.setComponentSize(xml);
-			if(this.def){
+			if (this.def)
+			{
 				this.def = xml.@def;
 			}
-		
 		}
 
 		public function toCode():XML
 		{
 			var xml:XML = new XML("<" + CodeMxmlUtils.getMXMLTagNameWithSelection(this, DOMINO_ELEMENT_NAME) + "/>");
-		
+
 			if (this.def)
-            {
-                xml.@def = this.def;
-            }
+			{
+				xml.@def = this.def;
+			}
 
 			return xml;
 		}
+
 		public function toRoyaleConvertCode():XML
-		{	
+		{
 			return null;
 
 		}
-    }
+	}
 }

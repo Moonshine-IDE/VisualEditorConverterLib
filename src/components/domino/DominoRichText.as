@@ -22,7 +22,6 @@ package components.domino
 	import components.ComponentBase;
 
 	import interfaces.IRoyaleComponentConverter;
-
 	import interfaces.dominoComponents.IDominoRichText;
 
 	import utils.CodeMxmlUtils;
@@ -30,20 +29,20 @@ package components.domino
 	import utils.StringHelperUtils;
 
 	/**
-	* This class backup domino richtext class.
-	* It just for improve the richtext in later.
-	*/
+	 * This class backup domino richtext class.
+	 * It just for improve the richtext in later.
+	 */
 
 	public class DominoRichText extends ComponentBase implements IDominoRichText, IRoyaleComponentConverter
 	{
 		public static const DOMINO_ELEMENT_NAME:String = "richtext";
-        public static const ELEMENT_NAME:String = "Richtext";
+		public static const ELEMENT_NAME:String = "Richtext";
 
 		public function DominoRichText()
 		{
 			super();
 		}
-		
+
 		private var _isSelected:Boolean;
 		public function get isSelected():Boolean
 		{
@@ -54,7 +53,7 @@ package components.domino
 		{
 			_isSelected = value;
 		}
-		
+
 		private var _text:String;
 		public function get text():String
 		{
@@ -65,7 +64,7 @@ package components.domino
 		{
 			_text = value;
 		}
-		
+
 		private var _maxLength:String;
 		public function get maxLength():String
 		{
@@ -76,7 +75,7 @@ package components.domino
 		{
 			_maxLength = value;
 		}
-		
+
 		private var _idAttribute:String;
 		public function get idAttribute():String
 		{
@@ -88,17 +87,6 @@ package components.domino
 			_idAttribute = value;
 		}
 
-
-		// private var _nameAttribute:String;
-		// public function get nameAttribute():String
-		// {
-		// 	return _nameAttribute;
-		// }
-		// public function set nameAttribute(value:String):void
-		// {
-		// 	_nameAttribute = value;
-		// }
-		
 		private var _required:Boolean;
 		public function get required():Boolean
 		{
@@ -109,57 +97,49 @@ package components.domino
 		{
 			_required = value;
 		}
-		
+
 		public function fromXML(xml:XML, childFromXMLCallback:Function):void
 		{
 			this.setComponentSize(xml);
-			
+
 			this.text = xml.@value;
 			this.maxLength = xml.@maxlength;
-            this.idAttribute = xml.@id;
-            this.required = xml.@required == "true";
+			this.idAttribute = xml.@id;
+			this.required = xml.@required == "true";
 			//this.nameAttribute = xml.@nameAttribute;
 		}
-		
+
 		public function toCode():XML
 		{
 			var xml:XML = new XML("<" + CodeMxmlUtils.getMXMLTagNameWithSelection(this, DOMINO_ELEMENT_NAME) + "/>");
-            // var primeFacesNamespace:Namespace = new Namespace("p", "http://primefaces.org/ui");
-            // xml.addNamespace(primeFacesNamespace);
-            // xml.setNamespace(primeFacesNamespace);
 
 			CodeXMLUtils.addSizeHtmlStyleToXML(xml, this);
-			
-			if (this.text)
-            {
-                xml.@value = this.text;
-            }
 
-            xml.@required = this.required;
+			if (this.text)
+			{
+				xml.@value = this.text;
+			}
+
+			xml.@required = this.required;
 
 			var stringHelper:StringHelperUtils = new StringHelperUtils();
-			
+
 			if ((stringHelper.trim(maxLength, " ").length != 0) && Math.round(Number(maxLength)) != 0)
 			{
 				xml.@maxlength = this.maxLength;
 			}
 
-            if (this.idAttribute)
-            {
-                xml.@id = this.idAttribute;
-            }
+			if (this.idAttribute)
+			{
+				xml.@id = this.idAttribute;
+			}
 
-			// if(this.nameAttribute)
-			// {
-			// 	xml.@name = this.nameAttribute;
-			// }
-
-            return xml;
+			return xml;
 		}
-		public function toRoyaleConvertCode():XML
-		{	
-			return null;
 
+		public function toRoyaleConvertCode():XML
+		{
+			return new XML("");
 		}
 	}
 }

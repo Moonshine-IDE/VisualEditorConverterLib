@@ -82,6 +82,7 @@ package components.domino
 		{
 			super();
 		}
+
 		public var loader:URLLoader;
 
 		private var _width:Number;
@@ -636,15 +637,6 @@ package components.domino
 			_onlyallow = value;
 		}
 
-		//<j:TextInput localId="%localId%" percentWidth="100">%Beads%</j:TextInput>
-		//<j:DateField localId="%localId%" dateFormat="MM/DD/YYYY">%Beads%</j:DateField>
-		//<j:CheckBox text="Not Checked"/>
-		//<j:CheckBox text="Checked" selected="true"/>
-		//<j:ComboBox localId="watchmenComboBox" dataProvider="{listModel.watchmen}">
-		//<j:beads>
-		//<j:ComboBoxTextPrompt prompt="Watchmen Team..."/>
-		//</j:beads>
-
 		/** Domino number field property end */
 
 		public function fromXML(xml:XML, childFromXMLCallback:Function):void
@@ -801,7 +793,6 @@ package components.domino
 				xml.@type = this.type;
 			}
 
-
 			if (this.kind)
 			{
 				xml.@kind = this.kind;
@@ -809,7 +800,6 @@ package components.domino
 				{
 					xml.@computeaftervalidation = "false";
 				}
-
 			}
 
 			//for now ,just default to false,only input text
@@ -829,7 +819,6 @@ package components.domino
 			{
 				xml.@height = this.height + "pt";
 			}
-
 
 			xml.@bgcolor = "#ffffff";
 
@@ -995,7 +984,6 @@ package components.domino
 				{
 					keyword_format_xml.@ui = "checkbox"
 				}
-
 
 				if (this.keyformulachoices == true)
 				{

@@ -22,34 +22,34 @@ package components.domino
 	import components.ComponentBase;
 
 	import interfaces.IRoyaleComponentConverter;
-
 	import interfaces.dominoComponents.IDominoColor;
 
 	/**
-	* This class work for  convert from Visuale   components color property to target framework of body format.
-	* Call different methods to convert the component to different target formats.
-	* For now: 
-	* toCode() will convert the Visuale main container color to domino calandar  dxl format.
-	* toRoyaleConvertCode() will  convert the Visuale main container components to Rayale button format.
-	* For Test Input&Output: 
-	* Input : - Visuale UI main color component from Visual Editor
-	* Output example:	Domino - TODO
-	*					Royale - TODO
-	* 
-	* {@link #components.domino}
-	*/
+	 * This class work for  convert from Visuale   components color property to target framework of body format.
+	 * Call different methods to convert the component to different target formats.
+	 * For now:
+	 * toCode() will convert the Visuale main container color to domino calandar  dxl format.
+	 * toRoyaleConvertCode() will  convert the Visuale main container components to Rayale button format.
+	 * For Test Input&Output:
+	 * Input : - Visuale UI main color component from Visual Editor
+	 * Output example:	Domino - TODO
+	 *					Royale - TODO
+	 *
+	 * {@link #components.domino}
+	 */
 	public class DominoColor extends ComponentBase implements IDominoColor, IRoyaleComponentConverter
 	{
-        public function DominoColor()
+		public function DominoColor()
 		{
 			super();
 		}
 
-        private var _name:String;
+		private var _name:String;
 		public function get name():String
 		{
 			return _name;
 		}
+
 		public function set name(value:String):void
 		{
 			_name = value;
@@ -57,7 +57,7 @@ package components.domino
 
 		public function toRoyaleConvertCode():XML
 		{
-			return null;
+			return new XML("");
 		}
-    }
+	}
 }

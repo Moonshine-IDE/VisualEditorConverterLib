@@ -21,108 +21,127 @@ package components.domino
 {
 	import components.ComponentBase;
 	import components.NavigatorContent;
+	import components.common.Div;
 
 	import converter.DominoConverter;
-	import components.common.Div;
+
+	import global.domino.DominoGlobals;
 
 	import interfaces.IComponent;
 	import interfaces.IRoyaleComponentConverter;
 	import interfaces.dominoComponents.IDominoTabView;
 
-	import global.domino.DominoGlobals;
-
 	/**
-	* This class work for  convert from Visuale tabView  components  to target framework of body format.
-	* Call different methods to convert the component to different target formats.
-	* For now: 
-	* toCode() will convert the  Visuale tabView  components     to domino tabView  dxl format.
-	* toRoyaleConvertCode() :TODO
-	* For Test Input&Output: 
-	* Input :  - [Visuale UI main DominoTabView component](https://github.com/Moonshine-IDE/MockupVisualEditor/blob/features/issue_675_royale_generate_domino_visual_editor/src/view/domino/surfaceComponents/components/DominoTabView.as)
-	* Output example:  Domino -  * <table widthtype="fitmargins" cellbordercolor="yellow" 				leftmargin="1in" cellborderstyle="ridge" 						colorstyle="solid" bgcolor="silver" insidewrap="true" 				insidewrapheight="1in"> 
-	*			<border style="solid" width="2px" color="olive" 					dropshadow="true" /> 
-	*			<tablecolumn width="66.58%" /> 
-	*			<tablecolumn width="33.42%" /> 
-	*			<tablerow> 
-	*				<tablecell bgcolor="#e0ffbf"> 
-	*					<pardef id="3" align="center" 									leftmargin="0.0313in" keepwithnext="true" 							keeptogether="true" /> 
-	*					<par def="3"> 
-	*						<picture height="341px" width="218px" 								alttext="caldesigns white two-piece 								dress"> 
-	*							<imageref name="design1.jpg" /> 
-	*							<caption>CALDesigns</caption>
-	*						</picture> 
-	*					</par> 
-	*				</tablecell> 
-	*				<tablecell colorstyle="vgradient" bgcolor="none" 						altbgcolor="#a1e2ff"> 
-	*					<pardef id="4" align="center" 									leftmargin="0.0313in" keepwithnext="true" 							keeptogether="true" /> 
-	*					<par def="4" /> 
-	*					<pardef id="5" leftmargin="0.0313in" 							keepwithnext="true" keeptogether="true" /> 
-	*					<par def="5"> 
-	*						<run> 
-	*							<font size="24pt" color="blue" /> 
-	*							$250 
-	*						</run> 
-	*					</par> 
-	*				</tablecell> 
-	*			</tablerow> 
-	*			<tablerow> 
-	*				<tablecell bgcolor="#ffe1dc"> 
-	*					<pardef id="6" leftmargin="0.0313in" 							keepwithnext="true" keeptogether="true" /> 
-	*					<par def="6"> 
-	*						<imagemap lastdefaultid="8" 									lastcircleid="1" lastrectangleid="55"> 
-	*							<picture height="341px" width="219px" 									alttext="PERDesigns pink two-piece 									sleeveless dress"> 
-	*								<border style="dot" width="1px" 										color="#ff4040" /> 
-	*								<imageref name="design2.jpg" /> 
-	*								<caption>PERDesigns</caption> 
-	*							</picture> 
-	*							<area type="circle" htmlid="bracelet">
-	*								<point x="5" y="82" /> 
-	*								<point x="81" y="158" /> 
-	*								<urllink href="http://www.PERD
-	*								esigns.com/jewelry" /> 
-	*							</area> 
-	*						</imagemap> 
-	*					</par> 
-	*				</tablecell> 
-	*				<tablecell> 
-	*					<cellbackground repeat="hrepeat"> 
-	*						<imageref name="graphic.gif" /> 
-	*					</cellbackground>
-	*					<par def="5" /> 
-	*					<par> 
-	*						<run> 
-	*							<font size="24pt" color="blue" /> 
-	*							$300 
-	*						</run> 
-	*					</par> 
-	*				</tablecell> 
-	*			</tablerow> 
-	*		</table> 
-	*
-	* Royale - TODO
-	* 					
-	* {@link #components.domino}
-	* @see https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_TABLEROW_ELEMENT_XML.html
-	*/
+	 * This class work for  convert from Visuale tabView  components  to target framework of body format.
+	 * Call different methods to convert the component to different target formats.
+	 * For now:
+	 * toCode() will convert the  Visuale tabView  components     to domino tabView  dxl format.
+	 * toRoyaleConvertCode() :TODO
+	 * For Test Input&Output:
+	 * Input :  - [Visuale UI main DominoTabView component](https://github.com/Moonshine-IDE/MockupVisualEditor/blob/features/issue_675_royale_generate_domino_visual_editor/src/view/domino/surfaceComponents/components/DominoTabView.as)
+	 * Output example:  Domino -  * <table widthtype="fitmargins" cellbordercolor="yellow" 				leftmargin="1in" cellborderstyle="ridge" 						colorstyle="solid" bgcolor="silver" insidewrap="true" 				insidewrapheight="1in">
+	 *			<border style="solid" width="2px" color="olive" 					dropshadow="true" />
+	 *			<tablecolumn width="66.58%" />
+	 *			<tablecolumn width="33.42%" />
+	 *			<tablerow>
+	 *				<tablecell bgcolor="#e0ffbf">
+	 *					<pardef id="3" align="center" 									leftmargin="0.0313in" keepwithnext="true" 							keeptogether="true" />
+	 *					<par def="3">
+	 *						<picture height="341px" width="218px" 								alttext="caldesigns white two-piece 								dress">
+	 *							<imageref name="design1.jpg" />
+	 *							<caption>CALDesigns</caption>
+	 *						</picture>
+	 *					</par>
+	 *				</tablecell>
+	 *				<tablecell colorstyle="vgradient" bgcolor="none" 						altbgcolor="#a1e2ff">
+	 *					<pardef id="4" align="center" 									leftmargin="0.0313in" keepwithnext="true" 							keeptogether="true" />
+	 *					<par def="4" />
+	 *					<pardef id="5" leftmargin="0.0313in" 							keepwithnext="true" keeptogether="true" />
+	 *					<par def="5">
+	 *						<run>
+	 *							<font size="24pt" color="blue" />
+	 *							$250
+	 *						</run>
+	 *					</par>
+	 *				</tablecell>
+	 *			</tablerow>
+	 *			<tablerow>
+	 *				<tablecell bgcolor="#ffe1dc">
+	 *					<pardef id="6" leftmargin="0.0313in" 							keepwithnext="true" keeptogether="true" />
+	 *					<par def="6">
+	 *						<imagemap lastdefaultid="8" 									lastcircleid="1" lastrectangleid="55">
+	 *							<picture height="341px" width="219px" 									alttext="PERDesigns pink two-piece 									sleeveless dress">
+	 *								<border style="dot" width="1px" 										color="#ff4040" />
+	 *								<imageref name="design2.jpg" />
+	 *								<caption>PERDesigns</caption>
+	 *							</picture>
+	 *							<area type="circle" htmlid="bracelet">
+	 *								<point x="5" y="82" />
+	 *								<point x="81" y="158" />
+	 *								<urllink href="http://www.PERD
+	 *								esigns.com/jewelry" />
+	 *							</area>
+	 *						</imagemap>
+	 *					</par>
+	 *				</tablecell>
+	 *				<tablecell>
+	 *					<cellbackground repeat="hrepeat">
+	 *						<imageref name="graphic.gif" />
+	 *					</cellbackground>
+	 *					<par def="5" />
+	 *					<par>
+	 *						<run>
+	 *							<font size="24pt" color="blue" />
+	 *							$300
+	 *						</run>
+	 *					</par>
+	 *				</tablecell>
+	 *			</tablerow>
+	 *		</table>
+	 *
+	 * Royale - TODO
+	 *
+	 * {@link #components.domino}
+	 * @see https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_TABLEROW_ELEMENT_XML.html
+	 */
 
 	public class DominoTabView extends ComponentBase implements IDominoTabView, IRoyaleComponentConverter
 	{
 		public static const PRIME_FACES_XML_ELEMENT_NAME:String = "tabView";
-        public static const ELEMENT_NAME:String = "TabView";
+		public static const ELEMENT_NAME:String = "TabView";
 		public static const Royale_XML_ELEMENT_NAME:String = "TabBar";
-		
-		private var _component:IComponent;
-
-		private var _parDefNum:Number=0;
 
 		public function DominoTabView(component:IComponent = null)
 		{
 			super();
-			
+
 			_component = component;
 		}
-		
+		private var _parDefNum:Number = 0;
+		private var _addpar:Boolean = false;
+		private var _tablecellLayout:String = "";
+
+		private var _width:Number;
+
+		override public function get width():Number
+		{
+			return _width;
+		}
+
+		override public function set width(value:Number):void
+		{
+			_width = value;
+		}
+
+		private var _component:IComponent;
+
+		public function get component():IComponent
+		{
+			return _component ? _component : this;
+		}
+
 		private var _isSelected:Boolean;
+
 		public function get isSelected():Boolean
 		{
 			return _isSelected;
@@ -132,8 +151,9 @@ package components.domino
 		{
 			_isSelected = value;
 		}
-		
+
 		private var _orientation:String;
+
 		public function get orientation():String
 		{
 			return _orientation;
@@ -143,8 +163,9 @@ package components.domino
 		{
 			_orientation = value;
 		}
-		
+
 		private var _scrollable:Boolean;
+
 		public function get scrollable():Boolean
 		{
 			return _scrollable;
@@ -154,7 +175,7 @@ package components.domino
 		{
 			_scrollable = value;
 		}
-		
+
 		private var _selectedIndex:int;
 
 		public function get selectedIndex():int
@@ -166,101 +187,50 @@ package components.domino
 		{
 			_selectedIndex = value;
 		}
-		
-		public function get component():IComponent
-		{
-			return _component ? _component : this;
-		}
-		
-		public function fromXML(xml:XML, childFromXMLCallback:Function):void
-		{
-			this.setComponentSize(xml);
 
-			this.columnProperties=xml.@columsProperty;
-			
-			if ("@orientation" in xml)
-            {
-                this.orientation = xml.@orientation == "" ? "top" : xml.@orientation;
-            }
-            this.scrollable = xml.@scrollable == "true";
-
-            var tabsXML:XMLList = xml.elements("tab");
-            var tabsCount:int = tabsXML.length();
-
-			var dominoconv:DominoConverter = DominoConverter.getInstance();
-			//Alert.show("96:"+tabsCount);
-            for(var i:int = 0; i < tabsCount; i++)
-            {
-                var tabXML:XML = tabsXML[i];
-                var tabChildren:XMLList = tabXML.Div;
-
-                var tab:IComponent = dominoconv.getNewInstanceOfComponent(NavigatorContent.NAVIGATORCONTENT_NAME);
-                if(tab==null){
-
-				}else{
-					tab["label"] = tabXML.@title;
-					if (tabChildren.length() == 0)
-					{
-						var internalDiv:Object = dominoconv.getNewInstanceOfComponent(Div.ELEMENT_NAME);
-						tab["addElement"](internalDiv);
-					}
-					
-					component["addElement"](tab);
-					//Alert.show("111:"+i);
-					this.tabFromXML(tab, tabXML, childFromXMLCallback);
-	
-				}
-			}
-			
-			component["selectedIndex"] = xml.@selectedIndex;
-		}
 		private var _widthtype:String;
+
 		public function get widthtype():String
 		{
 			return _widthtype;
 		}
+
 		public function set widthtype(value:String):void
 		{
 			_widthtype = value;
 		}
 
-
-		private var _width:Number;
-		override public function get width():Number
-		{
-			return _width;
-		}
-		override public function set width(value:Number):void
-		{
-			_width = value;
-		}
-
-
 		private var _minrowheight:String;
+
 		public function get minrowheight():String
 		{
 			return _minrowheight;
 		}
+
 		public function set minrowheight(value:String):void
 		{
 			_minrowheight = value;
 		}
 
 		private var _refwidth:String;
+
 		public function get refwidth():String
 		{
 			return _refwidth;
 		}
+
 		public function set refwidth(value:String):void
 		{
 			_refwidth = value;
 		}
 
-		private var _widthIn:Number=0
+		private var _widthIn:Number = 0
+
 		public function get widthIn():Number
 		{
 			return _widthIn;
 		}
+
 		public function set widthIn(value:Number):void
 		{
 			_widthIn = value;
@@ -275,326 +245,384 @@ package components.domino
 		<tablecell></tablecell>
 		</tablerow>
 		</table
-		*/
+		 */
 
 		private var _columnProperties:String;
+
 		public function get columnProperties():String
 		{
 			return _columnProperties;
 		}
+
 		public function set columnProperties(value:String):void
 		{
 			_columnProperties = value;
 		}
- 		
-		
+
+		public function fromXML(xml:XML, childFromXMLCallback:Function):void
+		{
+			this.setComponentSize(xml);
+
+			this.columnProperties = xml.@columsProperty;
+
+			if ("@orientation" in xml)
+			{
+				this.orientation = xml.@orientation == "" ? "top" : xml.@orientation;
+			}
+			this.scrollable = xml.@scrollable == "true";
+
+			var tabsXML:XMLList = xml.elements("tab");
+			var tabsCount:int = tabsXML.length();
+
+			var dominoconv:DominoConverter = DominoConverter.getInstance();
+			//Alert.show("96:"+tabsCount);
+			for (var i:int = 0; i < tabsCount; i++)
+			{
+				var tabXML:XML = tabsXML[i];
+				var tabChildren:XMLList = tabXML.Div;
+
+				var tab:IComponent = dominoconv.getNewInstanceOfComponent(NavigatorContent.NAVIGATORCONTENT_NAME);
+				if (tab == null)
+				{
+
+				} else
+				{
+					tab["label"] = tabXML.@title;
+					if (tabChildren.length() == 0)
+					{
+						var internalDiv:Object = dominoconv.getNewInstanceOfComponent(Div.ELEMENT_NAME);
+						tab["addElement"](internalDiv);
+					}
+
+					component["addElement"](tab);
+					//Alert.show("111:"+i);
+					this.tabFromXML(tab, tabXML, childFromXMLCallback);
+
+				}
+			}
+
+			component["selectedIndex"] = xml.@selectedIndex;
+		}
+
 		public function toCode():XML
 		{
 			var columnArrTemp:Array = null;
-			if(this.columnProperties!= null && this.columnProperties.length>0){
-				columnArrTemp= this.columnProperties.split(",");
+			if (this.columnProperties != null && this.columnProperties.length > 0)
+			{
+				columnArrTemp = this.columnProperties.split(",");
 			}
-			
+
 			//Alert.show("width:"+this.width);
-			if(this.width&&this.width>0){
-				this.widthIn=(this.width/96) as Number;
+			if (this.width && this.width > 0)
+			{
+				this.widthIn = (this.width / 96) as Number;
 				var m:int = Math.pow(10, 4);
-    			this.widthIn=Math.round(this.widthIn * m) / m;
-				
+				this.widthIn = Math.round(this.widthIn * m) / m;
+
 			}
 
 			//Alert.show("widthIn:"+widthIn);
 
-			if(this.widthIn==0){
-				this.widthIn=4
+			if (this.widthIn == 0)
+			{
+				this.widthIn = 4
 			}
-			
+
 			var xml:XML = new XML("<table rowdisplay='tabs' ></table>");
-			var tableColumnXml:XML = new XML("<tablecolumn width='"+this.widthIn+"in' />");
+			var tableColumnXml:XML = new XML("<tablecolumn width='" + this.widthIn + "in' />");
 			xml.appendChild(tableColumnXml);
-			var tableColumnNumElements:int = 0;
-			
+
 			//add attirive
-			if(this.widthtype != null){
-				xml.@widthtype=this.widthtype.toString();
-			}else{
-				xml.@widthtype="fixedleft"
+			if (this.widthtype != null)
+			{
+				xml.@widthtype = this.widthtype.toString();
+			} else
+			{
+				xml.@widthtype = "fixedleft"
 			}
-			if(this.minrowheight != null){
-				xml.@minrowheight=this.minrowheight;
+			if (this.minrowheight != null)
+			{
+				xml.@minrowheight = this.minrowheight;
 			}
 
-            var tabCount:int = component["numElements"];
-            for (var i:int = 0; i < tabCount; i++)
-            {
-                var content:Object = component["getElementAt"](i);
-                var contentCount:int = content.numElements;
+			var tabCount:int = component["numElements"];
+			for (var i:int = 0; i < tabCount; i++)
+			{
+				var content:Object = component["getElementAt"](i);
+				var contentCount:int = content.numElements;
 
-                var tab:XML = new XML("<tablerow />");
-               
-                tab.@tablabel = content.label;
+				var tab:XML = new XML("<tablerow />");
+
+				tab.@tablabel = content.label;
 
 				var tabcell:XML = new XML("<tablecell />");
 
-                for (var j:int = 0; j < contentCount; j++)
-                {
-                    var component:IComponent = content.getElementAt(j) as IComponent;
-                    if (component === null)
-                    {
-                        continue;
-                    }
+				for (var j:int = 0; j < contentCount; j++)
+				{
+					var component:IComponent = content.getElementAt(j) as IComponent;
+					if (component === null)
+					{
+						continue;
+					}
 
-                    tabcell.appendChild(component.toCode());
-                }
+					tabcell.appendChild(component.toCode());
+				}
 				tab.appendChild(tabcell)
 
-                xml.appendChild(tab);
-            }
-			 xml=this.removeDiv(xml,null);
-			 xml=this.removePar(xml,null);
-			 xml=this.addPar(xml,null);
-			 xml=this.removeBlankPar(xml,null);
-			 //xml=this.fixField(xml,null);
-            return xml;
+				xml.appendChild(tab);
+			}
+			xml = this.removeDiv(xml, null);
+			xml = this.removePar(xml, null);
+			xml = this.addPar(xml, null);
+			xml = this.removeBlankPar(xml, null);
+			//xml=this.fixField(xml,null);
+			return xml;
 		}
-		public function toRoyaleConvertCode():XML
-		{	
-			var xml:XML = new XML("<" +Royale_XML_ELEMENT_NAME+ "/>"); 
-			var royaleNamespace:Namespace = new Namespace("j", "library://ns.apache.org/royale/jewel");
-            xml.setNamespace(royaleNamespace);
-			xml.@width="100%";
-			xml.@className="tabBarVerticalIconItemRenderer";
-			xml.@dataProvider="{tabBarData"+DominoGlobals.RoyaleTabeViewId+"}";
-			xml.@royaleDataVarName="tabBarData"+DominoGlobals.RoyaleTabeViewId;
-			var beadsXml:XML =new XML("<beads/>");
-			beadsXml.setNamespace(royaleNamespace);
-			
-			var assiginXml:XML=new XML("<AssignTabContent/>");
-			assiginXml.setNamespace(royaleNamespace);
-			assiginXml.@selectedContentProperty="label";
 
-			var contenXML:XML=new XML("<content/>");
+		public function toRoyaleConvertCode():XML
+		{
+			var xml:XML = new XML("<" + Royale_XML_ELEMENT_NAME + "/>");
+			var royaleNamespace:Namespace = new Namespace("j", "library://ns.apache.org/royale/jewel");
+			xml.setNamespace(royaleNamespace);
+			xml.@width = "100%";
+			xml.@className = "tabBarVerticalIconItemRenderer";
+			xml.@dataProvider = "{tabBarData" + DominoGlobals.RoyaleTabeViewId + "}";
+			xml.@royaleDataVarName = "tabBarData" + DominoGlobals.RoyaleTabeViewId;
+			var beadsXml:XML = new XML("<beads/>");
+			beadsXml.setNamespace(royaleNamespace);
+
+			var assiginXml:XML = new XML("<AssignTabContent/>");
+			assiginXml.setNamespace(royaleNamespace);
+			assiginXml.@selectedContentProperty = "label";
+
+			var contenXML:XML = new XML("<content/>");
 			contenXML.setNamespace(royaleNamespace);
-			
-			var tabContenXML:XML=new  XML("<TabBarContent/>");
+
+			var tabContenXML:XML = new XML("<TabBarContent/>");
 			tabContenXML.setNamespace(royaleNamespace);
 
 			var tabCount:int = component["numElements"];
 			var labelStr:String = "";
-            for (var i:int = 0; i < tabCount; i++)
-            {
-                var content:Object = component["getElementAt"](i);
-                
+			for (var i:int = 0; i < tabCount; i++)
+			{
+				var content:Object = component["getElementAt"](i);
 
-                var tab:XML = new XML("<SectionContent/>");
-                tab.setNamespace(royaleNamespace);
-                tab.@name = content.label;
-				labelStr=labelStr+content.label+",";
+
+				var tab:XML = new XML("<SectionContent/>");
+				tab.setNamespace(royaleNamespace);
+				tab.@name = content.label;
+				labelStr = labelStr + content.label + ",";
 
 				var label:XML = new XML("<Label/>");
 				label.setNamespace(royaleNamespace);
-				label.@text=content.label;
+				label.@text = content.label;
 
-				//tab.appendChild(label);
 				tabContenXML.appendChild(tab);
-
-
 			}
-			if(labelStr.length>1){
-				labelStr=labelStr.substring(0,labelStr.length-1);
+			if (labelStr.length > 1)
+			{
+				labelStr = labelStr.substring(0, labelStr.length - 1);
 			}
 
 			contenXML.appendChild(tabContenXML);
 			assiginXml.appendChild(contenXML);
 			beadsXml.appendChild(assiginXml);
 			xml.appendChild(beadsXml);
-			xml.@labelString=labelStr;
+			xml.@labelString = labelStr;
 			return xml;
 
 		}
 
-
 		public function getRoyaleDateProvider():String
 		{
 			//	new TabBarButtonVO("Tab 1", "tab1",null),
-			var str:String="";
+			var str:String = "";
 			var tabCount:int = component["numElements"];
-            for (var i:int = 0; i < tabCount; i++)
-            {
-                var content:Object = component["getElementAt"](i);
+			for (var i:int = 0; i < tabCount; i++)
+			{
+				var content:Object = component["getElementAt"](i);
 				var tabLabel:String = content.label;
 
-                str=str+"new TabBarButtonVO(\""+ tabLabel+"\", \""+tabLabel+"\",null)"+"\n";
-               
-               
+				str = str + "new TabBarButtonVO(\"" + tabLabel + "\", \"" + tabLabel + "\",null)" + "\n";
+
+
 			}
 
 			return str;
 		}
 
 		private function tabFromXML(tab:IComponent, xml:XML, callback:Function):void
-        {
-            var elementsXML:XMLList = xml.elements();
-            var childCount:int = elementsXML.length();
-            var container:Object;
-			var dominoconv:DominoConverter = DominoConverter.getInstance();
-            if (tab["numElements"] > 0)
-            {
-                container = tab["getElementAt"](0);
-            }
-            for(var i:int = 0; i < childCount; i++)
-            {
-                var childXML:XML = elementsXML[i];
-                if (container)
-                {
-                    callback(container, childXML);
-                }
-                else
-                {
-                    container = dominoconv.getNewInstanceOfComponent(Div.ELEMENT_NAME);
-                    container.fromXML(childXML, callback);
-
-                    tab["addElement"](container);
-                }
-            }
-        }
-
-		private function removeDiv(xml:XML,rootXML:XML=null):XML{
+		{
 			var elementsXML:XMLList = xml.elements();
-            var childCount:int = elementsXML.length();
+			var childCount:int = elementsXML.length();
+			var container:Object;
+			var dominoconv:DominoConverter = DominoConverter.getInstance();
+			if (tab["numElements"] > 0)
+			{
+				container = tab["getElementAt"](0);
+			}
+			for (var i:int = 0; i < childCount; i++)
+			{
+				var childXML:XML = elementsXML[i];
+				if (container)
+				{
+					callback(container, childXML);
+				} else
+				{
+					container = dominoconv.getNewInstanceOfComponent(Div.ELEMENT_NAME);
+					container.fromXML(childXML, callback);
 
-			
-			
-			
-			if(xml.name()=="div"&& rootXML!=null && rootXML.name()=="tablecell"){
-				
-				if(rootXML.name()=="tablecell"){
+					tab["addElement"](container);
+				}
+			}
+		}
+
+		private function removeDiv(xml:XML, rootXML:XML = null):XML
+		{
+			var elementsXML:XMLList = xml.elements();
+			var childCount:int = elementsXML.length();
+
+
+			if (xml.name() == "div" && rootXML != null && rootXML.name() == "tablecell")
+			{
+
+				if (rootXML.name() == "tablecell")
+				{
 					var divcssstr:String = xml["@class"];
 					var widthtype:String = "fixedright";
-					var rightmargin:String="0";
-					var leftmargin:String="0";
-					var valign:String="";
-					if(divcssstr){
+					var rightmargin:String = "0";
+					var leftmargin:String = "0";
+					var valign:String = "";
+					if (divcssstr)
+					{
 						//Alert.show("divcssstr:"+divcssstr);
-						
-						if(divcssstr.indexOf("flexHorizontalLayoutRight")>=0){
-							widthtype="fixedright"
-							rootXML.@hpostion="right"
+
+						if (divcssstr.indexOf("flexHorizontalLayoutRight") >= 0)
+						{
+							widthtype = "fixedright"
+							rootXML.@hpostion = "right"
 						}
-						if(divcssstr.indexOf("flexHorizontalLayoutLeft")>=0){
-							widthtype="fixedleft"
+						if (divcssstr.indexOf("flexHorizontalLayoutLeft") >= 0)
+						{
+							widthtype = "fixedleft"
 							//rootXML.@leftmargin="0"
-							rootXML.@hpostion="left"
+							rootXML.@hpostion = "left"
 						}
 
-						if(divcssstr.indexOf("flexCenter")>=0){
-							widthtype="fixedcenter"
-							rootXML.@hpostion="center"
+						if (divcssstr.indexOf("flexCenter") >= 0)
+						{
+							widthtype = "fixedcenter"
+							rootXML.@hpostion = "center"
 							//rootXML.@centermargin="0"
 						}
 
 						//Valign -------
 						//Valign Horizonta postion--center
-						if(divcssstr.indexOf("flexVerticalLayout")>=0 &&divcssstr.indexOf("flexMiddle")>=0 ){
-							widthtype="fixedcenter"
-							rootXML.@hpostion="center"
+						if (divcssstr.indexOf("flexVerticalLayout") >= 0 && divcssstr.indexOf("flexMiddle") >= 0)
+						{
+							widthtype = "fixedcenter"
+							rootXML.@hpostion = "center"
 							//rootXML.@centermargin="0"
 						}
 						// Valign Horizonta postion--left
 						//flexVerticalLayout flexVerticalLayoutLeft
-						if(divcssstr.indexOf("flexVerticalLayout")>=0 &&divcssstr.indexOf("flexVerticalLayoutLeft")>=0 ){
-							widthtype="fixedleft"
-							rootXML.@hpostion="left"
+						if (divcssstr.indexOf("flexVerticalLayout") >= 0 && divcssstr.indexOf("flexVerticalLayoutLeft") >= 0)
+						{
+							widthtype = "fixedleft"
+							rootXML.@hpostion = "left"
 						}
 						// Valign Horizonta postion--right
-						//flexVerticalLayout flexVerticalLayoutRight 
-						if(divcssstr.indexOf("flexVerticalLayout")>=0 &&divcssstr.indexOf("flexVerticalLayoutRight")>=0 ){
-							widthtype="fixedright"
-							rootXML.@hpostion="right"
+						//flexVerticalLayout flexVerticalLayoutRight
+						if (divcssstr.indexOf("flexVerticalLayout") >= 0 && divcssstr.indexOf("flexVerticalLayoutRight") >= 0)
+						{
+							widthtype = "fixedright"
+							rootXML.@hpostion = "right"
 						}
 						//valign:top | center | bottom"
 						//flexVerticalLayout flexMiddle flexVerticalLayoutBottom
-						if(divcssstr.indexOf("flexVerticalLayoutBottom")>=0){
-							rootXML.@valign="bottom"
+						if (divcssstr.indexOf("flexVerticalLayoutBottom") >= 0)
+						{
+							rootXML.@valign = "bottom"
 						}
-						if(divcssstr.indexOf("flexVerticalLayoutTop")>=0){
-							rootXML.@valign="top"
+						if (divcssstr.indexOf("flexVerticalLayoutTop") >= 0)
+						{
+							rootXML.@valign = "top"
 						}
-						if(divcssstr.indexOf("flexVerticalLayout")>=0 && divcssstr.indexOf("flexCenter")>=0){
-							rootXML.@valign="center"
+						if (divcssstr.indexOf("flexVerticalLayout") >= 0 && divcssstr.indexOf("flexCenter") >= 0)
+						{
+							rootXML.@valign = "center"
 						}
 
 						//flexVerticalLayoutBottom
-						
-					}
-					//Alert.show("rootXML.@hpostion:"+rootXML.@hpostion);
 
-					rootXML.@direction=xml.@direction;
-					// if(xml.@vpostion!=""){
-					// 	rootXML.@vpostion=xml.@vpostion;
-					// }
-					// if(xml.@hpostion!=""){
-					// 	rootXML.@hpostion=xml.@hpostion
-					// }
+					}
+
+					rootXML.@direction = xml.@direction;
 				}
-				for(var i:int = 0; i < childCount; i++)
+				for (var i:int = 0; i < childCount; i++)
 				{
 					var childXML:XML = elementsXML[i];
-					if(childXML.name()=="table"){
-						childXML.@widthtype=widthtype
-						if(widthtype=="fixedleft"){
+					if (childXML.name() == "table")
+					{
+						childXML.@widthtype = widthtype
+						if (widthtype == "fixedleft")
+						{
 							//childXML.@leftmargin="0";
 							delete childXML.@rightmargin;
 						}
-						if(widthtype=="fixedright"){
+						if (widthtype == "fixedright")
+						{
 							//childXML.@rightmargin="0"
 							delete childXML.@leftmargin;
 						}
 					}
 
-				
+
 					rootXML.appendChild(childXML);
 				}
-			
-			
+
+
 				this.deleteNode(xml);
-				//return rootXML
-				
-			}else{
-				for(var p:int = 0; p < childCount; p++){
+
+			}
+			else
+			{
+				for (var p:int = 0; p < childCount; p++)
+				{
 					var pchildXML:XML = elementsXML[p];
 					//Alert.show("261:"+childXML.name())
-					if(pchildXML.name()=="div"){
-						rootXML=xml;
+					if (pchildXML.name() == "div")
+					{
+						rootXML = xml;
 					}
 					var childelementsXML:XMLList = pchildXML.elements();
 					var childCount2:int = childelementsXML.length();
-					if(childCount2>0){
-						this.removeDiv(pchildXML,rootXML)
+					if (childCount2 > 0)
+					{
+						this.removeDiv(pchildXML, rootXML)
 					}
 				}
 			}
 
-			
 
 			return xml;
-
-			
-
 		}
 
-		private function removePar(xml:XML,rootXML:XML=null):XML{
+		private function removePar(xml:XML, rootXML:XML = null):XML
+		{
 			var elementsXML:XMLList = xml.elements();
-            var childCount:int = elementsXML.length();
+			var childCount:int = elementsXML.length();
 
 			//_addpar=checkTabViewCell(xml)
-			
+
 			// var classProperty:string =;
-			if(xml.name()=="par"&& rootXML!=null && xml.@paragraph!="true"){
+			if (xml.name() == "par" && rootXML != null && xml.@paragraph != "true")
+			{
 				//Alert.show("length:"+xml.attribute("class"));
-				if(_addpar==true){
+				if (_addpar == true)
+				{
 					//Alert.show("paragraph:"+xml.@paragraph);
-					for(var i:int = 0; i < childCount; i++)
+					for (var i:int = 0; i < childCount; i++)
 					{
 						var childXML:XML = elementsXML[i];
 						rootXML.appendChild(childXML);
@@ -602,268 +630,288 @@ package components.domino
 					this.deleteNode(xml);
 				}
 				//return rootXML
-				
-			}else{
-				for(var n:int = 0; n < childCount; n++){
+
+			} else
+			{
+				for (var n:int = 0; n < childCount; n++)
+				{
 					var nchildXML:XML = elementsXML[n];
 					//Alert.show("261:"+childXML.name())
-					if(nchildXML.name()=="tablerow"&&nchildXML.@tablabel.length()>0){
-						_addpar=true
+					if (nchildXML.name() == "tablerow" && nchildXML.@tablabel.length() > 0)
+					{
+						_addpar = true
 					}
-					if(nchildXML.name()=="tablerow"&&nchildXML.@tablabel.length()==0){
-						_addpar=false
-					}
-
-					if(nchildXML.name()=="tablecell"&&nchildXML.@direction=="Horizontal"){
-						_addpar=false
+					if (nchildXML.name() == "tablerow" && nchildXML.@tablabel.length() == 0)
+					{
+						_addpar = false
 					}
 
-					
-					
+					if (nchildXML.name() == "tablecell" && nchildXML.@direction == "Horizontal")
+					{
+						_addpar = false
+					}
+
+
 					//tablabel
-				
+
 					var childelementsXML:XMLList = nchildXML.elements();
 					var childCount2:int = childelementsXML.length();
-					if(childCount2>0){
-						this.removePar(nchildXML,rootXML)
+					if (childCount2 > 0)
+					{
+						this.removePar(nchildXML, rootXML)
 					}
 				}
 			}
 
-			
-
 			return xml;
-
-			
-
 		}
 
-
-
-		private var _addpar:Boolean=false;
-		private function addPar(xml:XML,rootXML:XML=null):XML{
+		private function addPar(xml:XML, rootXML:XML = null):XML
+		{
 			var elementsXML:XMLList = xml.elements();
-            var childCount:int = elementsXML.length();
+			var childCount:int = elementsXML.length();
 
 
-			
-			
-			if(xml.name()=="tablecell"&& rootXML!=null && xml.@direction=="Horizontal"){
+			if (xml.name() == "tablecell" && rootXML != null && xml.@direction == "Horizontal")
+			{
 				//Alert.show(""+elementsXML[0].name());
-				if(_addpar==true||elementsXML[0].name()=="table"){
+				if (_addpar == true || elementsXML[0].name() == "table")
+				{
 					DominoGlobals.PardefId++
 					var pardef:XML;
 
-					if(xml.@hpostion=="center"){
-						pardef = new XML("<pardef id=\""+DominoGlobals.PardefId+"\" align=\"center\" dominotype=\"tabView\"/>");
+					if (xml.@hpostion == "center")
+					{
+						pardef = new XML("<pardef id=\"" + DominoGlobals.PardefId + "\" align=\"center\" dominotype=\"tabView\"/>");
 					}
-					if(xml.@hpostion=="left"){
-						pardef = new XML("<pardef id=\""+DominoGlobals.PardefId+"\" align=\"left\" dominotype=\"tabView\"/>");
+					if (xml.@hpostion == "left")
+					{
+						pardef = new XML("<pardef id=\"" + DominoGlobals.PardefId + "\" align=\"left\" dominotype=\"tabView\"/>");
 					}
-					if(xml.@hpostion=="right"){
-						pardef = new XML("<pardef id=\""+DominoGlobals.PardefId+"\" align=\"right\" dominotype=\"tabView\"/>");
+					if (xml.@hpostion == "right")
+					{
+						pardef = new XML("<pardef id=\"" + DominoGlobals.PardefId + "\" align=\"right\" dominotype=\"tabView\"/>");
 					}
-					if(!pardef){
-						pardef = new XML("<pardef id=\""+DominoGlobals.PardefId+"\" align=\"left\" dominotype=\"tabView\"/>");
-				
+					if (!pardef)
+					{
+						pardef = new XML("<pardef id=\"" + DominoGlobals.PardefId + "\" align=\"left\" dominotype=\"tabView\"/>");
+
 					}
-					
-						var par:XML = new XML("<par def=\""+DominoGlobals.PardefId+"\" />");
+
+					var par:XML = new XML("<par def=\"" + DominoGlobals.PardefId + "\" />");
 					_parDefNum++;
 					xml.appendChild(pardef);
-					for(var i:int = 0; i < childCount; i++)
+					for (var i:int = 0; i < childCount; i++)
 					{
 						var childXML:XML = elementsXML[i];
 
-						if(childXML.name()=="par"){
+						if (childXML.name() == "par")
+						{
 							//Alert.show("paragraph:"+childXML.@paragraph)
 						}
 
-						if(childXML.name()=="par"&& childXML.@paragraph!="true"){
+						if (childXML.name() == "par" && childXML.@paragraph != "true")
+						{
 							var parelementsXML:XMLList = childXML.elements();
-            				var parchildCount:int = parelementsXML.length();
-						
-							for(var j:int = 0; j < parchildCount; j++)
+							var parchildCount:int = parelementsXML.length();
+
+							for (var j:int = 0; j < parchildCount; j++)
 							{
 								var parchildXML:XML = parelementsXML[j];
 								par.appendChild(parchildXML);
 								//this.deleteNode(parchildXML);
 							}
-							
 
-							
+
 						}
 
-						if(childXML.name()=="table"){
-							if(childXML.@widthtype=="fixedcenter"){
+						if (childXML.name() == "table")
+						{
+							if (childXML.@widthtype == "fixedcenter")
+							{
 								//we need setting the parent tablecell hpostion
-								xml.@hpostion="center";
-								var centerAlign:Number=0
-								var tableWidth:String=childXML.@refwidth
-								if(tableWidth){
-									tableWidth=tableWidth.replace("in","")
+								xml.@hpostion = "center";
+								var centerAlign:Number = 0
+								var tableWidth:String = childXML.@refwidth
+								if (tableWidth)
+								{
+									tableWidth = tableWidth.replace("in", "")
 									var tableNumber:Number = Number(tableWidth);
-									var diff:Number=this.widthIn-tableNumber;
-									if(diff<0){
-										diff=0
-									}else{
-										centerAlign=(diff/2) as Number;
+									var diff:Number = this.widthIn - tableNumber;
+									if (diff < 0)
+									{
+										diff = 0
+									} else
+									{
+										centerAlign = (diff / 2) as Number;
 										var m:int = Math.pow(10, 4);
-										centerAlign=Math.round(centerAlign * m) / m;
+										centerAlign = Math.round(centerAlign * m) / m;
 									}
-									childXML.@leftmargin=centerAlign+"in"
-									childXML.@widthtype="fixedleft"
-									childXML.@widthtypecache="fixedcenter"
+									childXML.@leftmargin = centerAlign + "in"
+									childXML.@widthtype = "fixedleft"
+									childXML.@widthtypecache = "fixedcenter"
 								}
 
 								//fix aligh widthIn
 							}
-							//fix center 
+							//fix center
 							//	childXML.@leftmargin="0"
 						}
-					
+
 						//this.deleteNode(childXML);
 					}
 					xml.appendChild(par);
 				}
 				//this.deleteNode(xml);
 				//return rootXML
-				
-			}else{
-				for(var h:int = 0; h < childCount; h++){
+
+			} else
+			{
+				for (var h:int = 0; h < childCount; h++)
+				{
 					var hchildXML:XML = elementsXML[h];
 					//Alert.show("261:"+childXML.name())
-					if(hchildXML.name()=="tablecell"){
-						rootXML=xml;
+					if (hchildXML.name() == "tablecell")
+					{
+						rootXML = xml;
 					}
 
-					
-					if(hchildXML.name()=="tablerow"&&hchildXML.@tablabel.length()>0){
-						_addpar=true
+
+					if (hchildXML.name() == "tablerow" && hchildXML.@tablabel.length() > 0)
+					{
+						_addpar = true
 					}
-					if(hchildXML.name()=="tablerow"&&hchildXML.@tablabel.length()==0){
-						_addpar=false
+					if (hchildXML.name() == "tablerow" && hchildXML.@tablabel.length() == 0)
+					{
+						_addpar = false
 					}
 
-				
-					
+
 					var childelementsXML:XMLList = hchildXML.elements();
 					var childCount2:int = childelementsXML.length();
-					if(childCount2>0){
-						this.addPar(hchildXML,rootXML)
+					if (childCount2 > 0)
+					{
+						this.addPar(hchildXML, rootXML)
 					}
 				}
 			}
 
-			
 
 			return xml;
 
-			
 
 		}
 
-
-		private function removeBlankPar(xml:XML,rootXML:XML=null):XML{
+		private function removeBlankPar(xml:XML, rootXML:XML = null):XML
+		{
 			var elementsXML:XMLList = xml.elements();
-            var childCount:int = elementsXML.length();
+			var childCount:int = elementsXML.length();
 
 			//_addpar=checkTabViewCell(xml)
-			
-			
-			if(xml.name()=="par"&& childCount==0){
+
+
+			if (xml.name() == "par" && childCount == 0)
+			{
 				this.deleteNode(xml);
 				//return rootXML
-				
-			}else{
-				for(var i:int = 0; i < childCount; i++){
+
+			} else
+			{
+				for (var i:int = 0; i < childCount; i++)
+				{
 					var childXML:XML = elementsXML[i];
-					
-				
+
+
 					var childelementsXML:XMLList = childXML.elements();
 					var childCount2:int = childelementsXML.length();
-					if(childXML.name()=="par"&& childCount2==0){
+					if (childXML.name() == "par" && childCount2 == 0)
+					{
 						this.deleteNode(childXML);
-					}else{
-						if(childCount2>0){
-							this.removeBlankPar(childXML,rootXML)
+					} else
+					{
+						if (childCount2 > 0)
+						{
+							this.removeBlankPar(childXML, rootXML)
 						}
 					}
-					
+
 				}
 			}
 
-			
 
 			return xml;
 
-			
 
 		}
-		private var _tablecellLayout:String="";
-		private function fixField(xml:XML,rootXML:XML=null):XML{
-			var elementsXML:XMLList = xml.elements();
-            var childCount:int = elementsXML.length();
 
-			//_addpar=checkTabViewCell(xml)
-			
-			
-			if(xml.name()=="field"&& _tablecellLayout=="Horizontal"&& rootXML!=null){
-				
+		private function fixField(xml:XML, rootXML:XML = null):XML
+		{
+			var elementsXML:XMLList = xml.elements();
+			var childCount:int = elementsXML.length();
+
+			if (xml.name() == "field" && _tablecellLayout == "Horizontal" && rootXML != null)
+			{
+
 				//return rootXML
-				  var run:XML = new XML("<run />");
-				  run.appendChild(xml);
-				  rootXML.appendChild(run);
-				
-			}else{
-				for(var i:int = 0; i < childCount; i++){
+				var run:XML = new XML("<run />");
+				run.appendChild(xml);
+				rootXML.appendChild(run);
+
+			} else
+			{
+				for (var i:int = 0; i < childCount; i++)
+				{
 					var childXML:XML = elementsXML[i];
 					//Alert.show("261:"+childXML.name())
-					if(childXML.name()=="tablecell"){
-						rootXML=xml;
+					if (childXML.name() == "tablecell")
+					{
+						rootXML = xml;
 					}
 
-					if(childXML.name()=="tablecell"&&childXML.@direction=="Horizontal"){
-						_tablecellLayout="Horizontal"
+					if (childXML.name() == "tablecell" && childXML.@direction == "Horizontal")
+					{
+						_tablecellLayout = "Horizontal"
 					}
-					if(childXML.name()=="tablecell"&&childXML.@direction=="Vertical"){
-						_tablecellLayout="Vertical"
+					if (childXML.name() == "tablecell" && childXML.@direction == "Vertical")
+					{
+						_tablecellLayout = "Vertical"
 					}
-					if(childXML.name()=="tablecell"&&childXML.@direction==""){
-						_tablecellLayout="Vertical"
+					if (childXML.name() == "tablecell" && childXML.@direction == "")
+					{
+						_tablecellLayout = "Vertical"
 					}
 
-					if(childXML.name()=="field"&& _tablecellLayout=="Horizontal"){
-				
+					if (childXML.name() == "field" && _tablecellLayout == "Horizontal")
+					{
+
 						//return rootXML
 						var newrun:XML = new XML("<run />");
 						newrun.appendChild(childXML);
 						xml.appendChild(newrun);
 					}
-			
-				
-					
+
+
 					var childelementsXML:XMLList = childXML.elements();
 					var childCount2:int = childelementsXML.length();
-					if(childCount2>0){
-						this.fixField(childXML,rootXML)
+					if (childCount2 > 0)
+					{
+						this.fixField(childXML, rootXML)
 					}
 				}
 			}
 
-			
 
 			return xml;
 		}
 
 		private function deleteNode(value:XML):void
 		{
-			if(value==null)
+			if (value == null)
 			{
 				return;
 			}
 
-			if(value.parent()==null)
+			if (value.parent() == null)
 			{
 				return;
 			}
@@ -871,27 +919,19 @@ package components.domino
 			delete value.parent().children()[value.childIndex()];
 		}
 
-	
 
 		private function checkTabViewCell(xml:XML):Boolean
 		{
-			 //<tablerow tablabel="Tab">
-			 var flag:Boolean=false;
-			// if(xml.name()=="table"&&xml.@rowdisplay=="tabs"){
-			// 		flag=true
-			// }
-		
+			var flag:Boolean = false;
 
-			if(xml.name()=="tablerow"&&xml.@tablabel.length()>0){
-					flag=true
+			if (xml.name() == "tablerow" && xml.@tablabel.length() > 0)
+			{
+				flag = true
 			}
-			if(xml.name()=="tablerow"&&xml.@tablabel.length()==0){
-					flag=false
+			if (xml.name() == "tablerow" && xml.@tablabel.length() == 0)
+			{
+				flag = false
 			}
-
-			// if(xml.name()=="table"&&(xml.@rowdisplay==null||xml.@rowdisplay=="")){
-			// 	flag=false
-			// }
 
 			return flag;
 		}

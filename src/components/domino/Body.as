@@ -27,37 +27,35 @@ package components.domino
 
 	import utils.CodeMxmlUtils;
 	import utils.CodeXMLUtils;
+
 	/**
-	* This class work for  convert from Visuale main container components to target framework of body format.
-	* Call different methods to convert the component to different target formats.
-	* For now: 
-	* toCode() will convert the Visuale main container components to domino button  dxl format.
-	* toRoyaleConvertCode() will  convert the Visuale main container components to Rayale button format.
-	* For Test Input&Output: 
-	* Input : Visuale UI main container component from Visual Editor
-	* Output example:  Domino - <itme name="$Body" sign="true"><richtext></richtext></item>
-	* 				   Royale - <j:ApplicationMainContent><j:ScrollableSectionConten></j:ScrollableSectionCont></j:ApplicationMainContent>
-	* 					
-	* {@link #components.domino}
-	*/
-	
+	 * This class work for  convert from Visuale main container components to target framework of body format.
+	 * Call different methods to convert the component to different target formats.
+	 * For now:
+	 * toCode() will convert the Visuale main container components to domino button  dxl format.
+	 * toRoyaleConvertCode() will  convert the Visuale main container components to Rayale button format.
+	 * For Test Input&Output:
+	 * Input : Visuale UI main container component from Visual Editor
+	 * Output example:  Domino - <itme name="$Body" sign="true"><richtext></richtext></item>
+	 * 				   Royale - <j:ApplicationMainContent><j:ScrollableSectionConten></j:ScrollableSectionCont></j:ApplicationMainContent>
+	 *
+	 * {@link #components.domino}
+	 */
 	public class Body extends ComponentBase implements IDominoBody, IRoyaleComponentConverter
 	{
 		private static const DOMINO_ELEMENT_NAME:String = "body";
-    	public static var ELEMENT_NAME:String = "Body";
+		public static var ELEMENT_NAME:String = "Body";
 
-		private var _component:IDominoComponent;
-
-		private var _xml:XML;
-		
 		public function Body(component:IDominoComponent = null)
 		{
 			super();
-			
+
 			this._component = component;
 		}
+		private var _xml:XML;
 
 		private var _isSelected:Boolean;
+
 		public function get isSelected():Boolean
 		{
 			return _isSelected;
@@ -67,55 +65,49 @@ package components.domino
 		{
 			_isSelected = value;
 		}
-				
-			
-		
-		
-	
+
+		private var _component:IDominoComponent;
+
 		private function get component():IDominoComponent
 		{
 			return _component ? _component : this;
 		}
-		
+
 		public function fromXML(xml:XML, childFromXMLCallback:Function):void
 		{
 			this._xml = xml;
-			
+
 			setComponentSize(xml);
-			
-		
-	
-            var elementsXML:XMLList = xml.elements();
-            var childCount:int = elementsXML.length();
-            for(var i:int = 0; i < childCount; i++)
-            {
-                var childXML:XML = elementsXML[i];
-                childFromXMLCallback(component, childXML);
-            }
+
+			var elementsXML:XMLList = xml.elements();
+			var childCount:int = elementsXML.length();
+			for (var i:int = 0; i < childCount; i++)
+			{
+				var childXML:XML = elementsXML[i];
+				childFromXMLCallback(component, childXML);
+			}
 		}
-		
+
 		public function toCode():XML
 		{
 			var xml:XML = new XML("<" + CodeMxmlUtils.getMXMLTagNameWithSelection(this, DOMINO_ELEMENT_NAME) + "/>");
 
-            CodeXMLUtils.addSizeHtmlStyleToXML(xml, this as IDominoComponent);
+			CodeXMLUtils.addSizeHtmlStyleToXML(xml, this as IDominoComponent);
 
-			
 
-            var elementCount:int = component["numElements"];
-            for(var i:int = 0; i < elementCount; i++)
-            {
-                var element:IDominoComponent = component["getElementAt"](i) as IDominoComponent;
-                xml.appendChild(element.toCode());
-            }
+			var elementCount:int = component["numElements"];
+			for (var i:int = 0; i < elementCount; i++)
+			{
+				var element:IDominoComponent = component["getElementAt"](i) as IDominoComponent;
+				xml.appendChild(element.toCode());
+			}
 
-            return xml;
+			return xml;
 		}
 
 		public function toRoyaleConvertCode():XML
-		{	
-			return null;
-
+		{
+			return new XML("");
 		}
 	}
 }
