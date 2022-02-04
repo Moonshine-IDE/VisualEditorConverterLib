@@ -23,11 +23,9 @@ package components.domino
 	import components.NavigatorContent;
 
 	import converter.DominoConverter;
-	import components.primeFaces.Div;
+	import components.common.Div;
 
 	import interfaces.IComponent;
-	import interfaces.IComponent;
-	import interfaces.components.ITabView;
 	import interfaces.dominoComponents.IDominoTabView;
 
 	import mx.controls.Alert;
