@@ -7,6 +7,7 @@ package surface
 	import utils.MainTagCodeUtils;
 	import interfaces.components.IDiv;
 	import interfaces.dominoComponents.IBody;
+	import mx.controls.Alert;
 
 	public class SurfaceMockup implements ISurface, IVisualComponent, IComponent
 	{
@@ -167,15 +168,20 @@ package surface
 
 		public function toDominoCode():XML
 		{
-			var element:Object = this.getElementAt(0);
-			var xml:XML = MainTagCodeUtils.getDominoParentContent("", element as IBody);
-            var mainContainer:XML = MainTagCodeUtils.getMainContainerTag(xml);
+			
+			// var element:Object = this.getElementAt(0);
+			// if(element==null){
+			// 	Alert.show("element is null")
+			// }
+			var xml:XML=new XML("<root/>");
+			// = MainTagCodeUtils.getDominoParentContent("", element as IBody);
+            //var mainContainer:XML = MainTagCodeUtils.getMainContainerTag(xml);
 
-			var elementCount:int = (element as IVisualComponent).numElements;
+			var elementCount:int = this.numElements;
 			
 			for (var i:int = 0; i < elementCount; i++)
             {
-                var item:IComponent = element.getElementAt(i) as IComponent;
+                var item:IComponent = this.getElementAt(i) as IComponent;
 
                 if (item === null)
                 {
@@ -185,17 +191,12 @@ package surface
 			    XML.ignoreComments = false;
                 var code:XML = item.toCode();
 				
-                if (mainContainer)
-                {
-                    mainContainer.appendChild(code);
-                }
-                else
-                {
-                    xml.appendChild(code);
-                }
+                 xml.appendChild(code);
             }
 
 			return xml;
 		}
+
+		
 	}
 }

@@ -50,6 +50,8 @@ package converter
 
 	import mx.controls.Alert;
 	import components.NavigatorContent;
+	// import view.primeFaces.supportClasses.Container;
+	// import view.primeFaces.supportClasses.GridRow;
 
     [Event(name="conversionCompleted", type="events.ConverterEvent")]
 	public class DominoConverter extends EventDispatcher
@@ -116,7 +118,18 @@ package converter
 			
 			var code:XML = surfaceMockup.toDominoCode();
 			this.dispatchEvent(new ConverterEvent(ConverterEvent.CONVERSION_COMPLETED, code));
-		}		
+		}	
+
+
+		public function fromXMLAutoConvert(xml:XML):SurfaceMockup
+		{	
+			var surfaceMockup:SurfaceMockup = new SurfaceMockup();
+			//this.componentsSurface = surfaceMockup;
+			this.fromXML(surfaceMockup, xml);
+			
+			//var code:XML = surfaceMockup.toDominoCode();
+			return surfaceMockup;
+		}	
 		
 		public function fromXML(surface:ISurface, xml:XML):void
 		{
@@ -211,6 +224,8 @@ package converter
 			this.classLookup[DominoRow.DOMINOROW_NAME] = DominoRow;
 			this.classLookup[GridItem.GRIDITEM_NAME] = GridItem;
 			this.classLookup[Div.ELEMENT_NAME] = Div;
+			// this.classLookup[GridRow.ELEMENT_NAME] = GridRow;
+			// this.classLookup[view.primeFaces.supportClasses.Container.ELEMENT_NAME] = view.primeFaces.supportClasses.Container;
 			this.classLookup[DominoSection.ELEMENT_NAME] = DominoSection;
 			this.classLookup[DominoTabView.ELEMENT_NAME] = DominoTabView;
 			this.classLookup[DominoCalendar.ELEMENT_NAME] = DominoCalendar;

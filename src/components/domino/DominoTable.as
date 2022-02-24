@@ -397,27 +397,33 @@ package components.domino
 
 		public function fromXML(xml:XML, childFromXMLCallback:Function):void
 		{
+			
 			this.setComponentSize(xml);
 			var elementsXML:XMLList = xml.elements();
 			this.refwidth = xml.@refwidth;
 			this.columnProperties = xml.@columsProperty;
-
+		
 			if (xml.@leftmargin)
 			{
 				this.leftmargin = xml.@leftmargin;
 			}
-
+			if(elementsXML==null){
+						Alert.show("elementsXML is null");
+			}
 			if (elementsXML.length() > 0)
 			{
+			
 				var childCount:int = elementsXML.length();
 				for (var row:int = 0; row < childCount; row++)
 				{
 					var rowXML:XML = elementsXML[row];
+					
 					var colListXML:XMLList = rowXML.elements();
+				
 					var dominoconv:DominoConverter = DominoConverter.getInstance();
-
+				
 					var tableRow:Object = dominoconv.getNewInstanceOfComponent(GridRow.GRIDROW_NAME);
-
+		
 					tableRow.percentWidth = tableRow.percentHeight = 100;
 
 					var colCount:int = colListXML.length();
