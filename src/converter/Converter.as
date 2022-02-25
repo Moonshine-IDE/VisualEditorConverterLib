@@ -30,7 +30,6 @@ package converter
 	import events.ConverterErrorEvent;
 	import events.ConverterEvent;
 	
-	import interfaces.IDominoComponent;
 	import interfaces.IComponent;
 	import interfaces.ISurface;
 	
@@ -64,17 +63,6 @@ package converter
 				"Column"
 			];
 	    }
-
-		public function getNewInstanceOfDominoComponent(name:String):IDominoComponent
-		{
-			if ((name in this.classLookup))
-			{
-				var type:Class = this.classLookup[name];
-				return new type() as IDominoComponent;
-			}
-
-			return null;						
-	    }	
 	
 		public function getNewInstanceOfComponent(name:String):IComponent
 		{

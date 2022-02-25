@@ -27,9 +27,7 @@ package components.domino
 
 	import interfaces.IComponent;
 	import interfaces.dominoComponents.IDominoTabView;
-
 	import mx.controls.Alert;
-
 	import global.domino.DominoGlobals;
 
 	/**
