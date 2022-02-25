@@ -166,17 +166,9 @@ package surface
 			return xml;
 		}
 
-		public function toDominoCode():XML
+		public function toDominoCode(mainContainer:XML):XML
 		{
 			
-			// var element:Object = this.getElementAt(0);
-			// if(element==null){
-			// 	Alert.show("element is null")
-			// }
-			var xml:XML=new XML("<root/>");
-			// = MainTagCodeUtils.getDominoParentContent("", element as IBody);
-            //var mainContainer:XML = MainTagCodeUtils.getMainContainerTag(xml);
-
 			var elementCount:int = this.numElements;
 			
 			for (var i:int = 0; i < elementCount; i++)
@@ -191,10 +183,10 @@ package surface
 			    XML.ignoreComments = false;
                 var code:XML = item.toCode();
 				
-                 xml.appendChild(code);
+                 mainContainer.appendChild(code);
             }
 
-			return xml;
+			return mainContainer;
 		}
 
 		

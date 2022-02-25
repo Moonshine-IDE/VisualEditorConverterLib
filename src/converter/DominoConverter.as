@@ -110,15 +110,15 @@ package converter
 	        return _instance;
 	    }
 
-		public function fromXMLOnly(xml:XML):void
-		{	
-			var surfaceMockup:SurfaceMockup = new SurfaceMockup();
+		// public function fromXMLOnly(xml:XML):void
+		// {	
+		// 	var surfaceMockup:SurfaceMockup = new SurfaceMockup();
 
-			this.fromXML(surfaceMockup, xml);
+		// 	this.fromXML(surfaceMockup, xml);
 			
-			var code:XML = surfaceMockup.toDominoCode();
-			this.dispatchEvent(new ConverterEvent(ConverterEvent.CONVERSION_COMPLETED, code));
-		}	
+		// 	var code:XML = surfaceMockup.toDominoCode();
+		// 	this.dispatchEvent(new ConverterEvent(ConverterEvent.CONVERSION_COMPLETED, code));
+		// }	
 
 
 		public function fromXMLAutoConvert(xml:XML):SurfaceMockup
