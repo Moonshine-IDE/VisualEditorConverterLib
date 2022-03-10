@@ -6,8 +6,6 @@ package surface
 	import interfaces.IVisualComponent;
 	import utils.MainTagCodeUtils;
 	import interfaces.components.IDiv;
-	import interfaces.dominoComponents.IBody;
-	import mx.controls.Alert;
 
 	public class SurfaceMockup implements ISurface, IVisualComponent, IComponent
 	{
@@ -18,7 +16,7 @@ package surface
 			_elements = [];	
 		}		
 		
-				private var _width:Number;
+		private var _width:Number;
 		public function get width():Number
 		{
 			return _width;
