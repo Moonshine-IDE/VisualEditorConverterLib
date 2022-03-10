@@ -93,16 +93,17 @@ package components.domino
 			var xml:XML = new XML("<" + CodeMxmlUtils.getMXMLTagNameWithSelection(this, DOMINO_ELEMENT_NAME) + "/>");
 			CodeXMLUtils.addSizeHtmlStyleToXML(xml, this as IDominoComponent);
 			var elementCount:int = component["numElements"];
+			var element:IDominoComponent = null;
 			for (var i:int = 0; i < elementCount; i++)
 			{
-				var element:IDominoComponent = component["getElementAt"](i) as IDominoComponent;
+				element = component["getElementAt"](i) as IDominoComponent;
 				xml.appendChild(element.toCode());
 			}
 
-            var elementCount:int = component["numElements"];
-            for(var i:int = 0; i < elementCount; i++)
+            elementCount = component["numElements"];
+            for(var j:int = 0; j < elementCount; j++)
             {
-                var element:IDominoComponent = component["getElementAt"](i) as IDominoComponent;
+                element = component["getElementAt"](j) as IDominoComponent;
                 xml.appendChild(element.toCode());
             }
 			return xml;
