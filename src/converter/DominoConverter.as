@@ -27,7 +27,6 @@ package converter
 	import events.ConverterEvent;
 	
 	import interfaces.IComponent;
-	import interfaces.IDominoComponent;
 	import interfaces.ISurface;
 	
 	import surface.SurfaceMockup;
@@ -77,17 +76,6 @@ package converter
 				"Column"
 			];
 	    }
-
-		public function getNewInstanceOfDominoComponent(name:String):IDominoComponent
-		{
-			if ((name in this.classLookup))
-			{
-				var type:Class = this.classLookup[name];
-				return new type() as IDominoComponent;
-			}
-
-			return null;						
-	    }	
 	
 		public function getNewInstanceOfComponent(name:String):IComponent
 		{

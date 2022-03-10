@@ -414,16 +414,11 @@ package components.domino
 			return section_xml;
 		}
 
-
 		public function toRoyaleConvertCode():XML
 		{
 			var tab_xml:XML = new XML("");
-
-
 			return tab_xml;
 
 		}
-
-
 	}
 }

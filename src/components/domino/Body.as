@@ -20,12 +20,12 @@
 package components.domino
 {
 	import components.ComponentBase;
-
 	import interfaces.IDominoComponent;
 	import interfaces.IRoyaleComponentConverter;
 	import interfaces.dominoComponents.IDominoBody;
 
 	import utils.CodeMxmlUtils;
+
 	import utils.CodeXMLUtils;
 
 	/**
@@ -91,10 +91,7 @@ package components.domino
 		public function toCode():XML
 		{
 			var xml:XML = new XML("<" + CodeMxmlUtils.getMXMLTagNameWithSelection(this, DOMINO_ELEMENT_NAME) + "/>");
-
 			CodeXMLUtils.addSizeHtmlStyleToXML(xml, this as IDominoComponent);
-
-
 			var elementCount:int = component["numElements"];
 			for (var i:int = 0; i < elementCount; i++)
 			{
@@ -102,6 +99,12 @@ package components.domino
 				xml.appendChild(element.toCode());
 			}
 
+            var elementCount:int = component["numElements"];
+            for(var i:int = 0; i < elementCount; i++)
+            {
+                var element:IDominoComponent = component["getElementAt"](i) as IDominoComponent;
+                xml.appendChild(element.toCode());
+            }
 			return xml;
 		}
 

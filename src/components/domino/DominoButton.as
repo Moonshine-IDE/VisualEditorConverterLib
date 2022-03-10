@@ -40,7 +40,6 @@ package components.domino
 	 * Domino format rule:	Contained by: %richtext.hot.inline;
 	 *						Contains: <font>, <code>
 	 */
-
 	public class DominoButton extends ComponentBase implements IDominoButton, IRoyaleComponentConverter
 	{
 		public static const DOMINO_ELEMENT_NAME:String = "button";

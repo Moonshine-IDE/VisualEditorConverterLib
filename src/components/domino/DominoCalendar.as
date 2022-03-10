@@ -42,8 +42,6 @@ package components.domino
 	 *
 	 * {@link #components.domino}
 	 */
-
-
 	public class DominoCalendar extends ComponentBase implements ICalendar, IRoyaleComponentConverter
 	{
 		public static const PRIME_FACES_XML_ELEMENT_NAME:String = "Calendar";
