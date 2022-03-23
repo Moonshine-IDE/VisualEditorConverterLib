@@ -28,12 +28,13 @@ package components.domino
 	* For now: 
 	* toCode() will convert the Visuale main container components to domino button  dxl format.
 	* toRoyaleConvertCode() will  convert the Visuale main container components to Rayale button format.
-	* For Test Input&Output: 
+	* For Test Input and Output :; 
 	* Input : Visuale UI main container component from Visual Editor
-	* Output example:  Domino - <itme name="$Body" sign="true"><richtext></richtext></item>
-	* 				   Royale - <j:ApplicationMainContent><j:ScrollableSectionConten></j:ScrollableSectionCont></j:ApplicationMainContent>
+	* Output example:  Domino - <item name="$Body" sign="true"><richtext></richtext></item>
+	* 				 
 	* 					
 	* {@link #components.domino}
+	* TODO:This class not work with Domino Visual Editor at now .
     */
 	public class MainApplication extends RootDiv implements IMainApplication
 	{

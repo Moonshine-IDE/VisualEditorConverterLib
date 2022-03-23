@@ -31,6 +31,7 @@ package components.domino
 	/**
 	 * This class backup domino richtext class.
 	 * It just for improve the richtext in later.
+	 * TODO: this class not support in the domino visual editor
 	 */
 
 	public class DominoRichText extends ComponentBase implements IDominoRichText, IRoyaleComponentConverter

@@ -30,7 +30,7 @@ package components.domino
 	 * For now:
 	 * toCode() will convert the Visuale input  DominoComputedText to domino calandar  dxl format.
 	 * toRoyaleConvertCode() will  convert the Visuale main container components to Rayale DominoComputedText format.
-	 * For Test Input&Output:
+	 * For Test Input and Output :;
 	 * Input : - [Visuale UI main DominoComputedText component](https://github.com/Moonshine-IDE/MockupVisualEditor/blob/features/issue_675_royale_generate_domino_visual_editor/src/view/domino/surfaceComponents/components/DominoComputedText.as)
 	 * Output example:  Domino -   <par def='6'><run><font color='blue'/>
 	 * 							example string .....
@@ -38,6 +38,8 @@ package components.domino
 	 *					Royale - TODO
 	 *
 	 * {@link #components.domino}
+	 * @see https://github.com/Moonshine-IDE/VisualEditorConverterLib/blob/master/src/components/domino/DominoComputedText.as
+	 * @see https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_COMPUTEDTEXT_ELEMENT_XML.html
 	 */
 	public class DominoComputedText extends ComponentBase implements IDominoComputedText, IRoyaleComponentConverter
 	{

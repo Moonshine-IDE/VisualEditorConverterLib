@@ -30,7 +30,7 @@ package components.domino
 	 * For now:
 	 * toCode() will convert the  Visuale tableRow  components     to domino tableRow  dxl format.
 	 * toRoyaleConvertCode() :TODO
-	 * For Test Input&Output:
+	 * For Test Input and Output :;
 	 * Input : Visuale UI  tableRow component   from Visual Editor
 	 * Output example:  Domino -  * <table widthtype="fitmargins" cellbordercolor="yellow" 				leftmargin="1in" cellborderstyle="ridge" 						colorstyle="solid" bgcolor="silver" insidewrap="true" 				insidewrapheight="1in">
 	 *			<border style="solid" width="2px" color="olive" 					dropshadow="true" />
@@ -96,6 +96,7 @@ package components.domino
 	 *
 	 * {@link #components.domino}
 	 * @see https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_TABLEROW_ELEMENT_XML.html
+	 * @see https://github.com/Moonshine-IDE/VisualEditorConverterLib/blob/master/src/components/domino/DominoTableRow.as
 	 */
 	public class DominoTableRow extends ComponentBase implements IDominoTableRow, IRoyaleComponentConverter
 	{

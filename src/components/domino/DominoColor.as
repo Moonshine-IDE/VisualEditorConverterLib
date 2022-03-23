@@ -30,12 +30,14 @@ package components.domino
 	 * For now:
 	 * toCode() will convert the Visuale main container color to domino calandar  dxl format.
 	 * toRoyaleConvertCode() will  convert the Visuale main container components to Rayale button format.
-	 * For Test Input&Output:
+	 * For Test Input and Output :;
 	 * Input : - Visuale UI main color component from Visual Editor
 	 * Output example:	Domino - TODO
 	 *					Royale - TODO
 	 *
 	 * {@link #components.domino}
+	 * @see https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_DEFINED_ENTITIES_XML.html
+	 * @see https://github.com/Moonshine-IDE/VisualEditorConverterLib/blob/master/src/components/domino/DominoColor.as
 	 */
 	public class DominoColor extends ComponentBase implements IDominoColor, IRoyaleComponentConverter
 	{

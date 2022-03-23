@@ -32,13 +32,14 @@ package components.domino
 	 * For now:
 	 * toCode() will convert the  par element    to domino calandar  dxl format.
 	 * toRoyaleConvertCode() will  convert the Visuale main container components to Rayale button format.
-	 * For Test Input&Output:
+	 * For Test Input and Output :;
 	 * Input : Visuale UI  par element   from Visual Editor
 	 * Output example:	Domino - <par isNewLine="false"></par>
 	 * 					Royale - TODO
 	 *
 	 * {@link #components.domino}
 	 * @see https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_PARAGRAPH_ELEMENT_XML.html
+	 * @see https://github.com/Moonshine-IDE/VisualEditorConverterLib/blob/master/src/components/domino/DominoPar.as
 	 */
 	public class DominoPar extends ComponentBase implements IDominoPar, IRoyaleComponentConverter
 	{

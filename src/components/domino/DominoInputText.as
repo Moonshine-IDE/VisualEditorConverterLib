@@ -46,7 +46,7 @@ package components.domino
 	 * For now:
 	 * toCode() will convert the Visuale field  calandar to domino calandar  dxl format.
 	 * toRoyaleConvertCode() will  convert the Visuale main container components to Rayale button format.
-	 * For Test Input&Output:
+	 * For Test Input and Output :;
 	 * Input : - [Visuale UI main DominoInputText component](https://github.com/Moonshine-IDE/MockupVisualEditor/blob/features/issue_675_royale_generate_domino_visual_editor/src/view/domino/surfaceComponents/components/DominoInputText.as)
 	 * Output example:  Domino -  <field useappletinbrowser="false" allowtabout="false" defaultfocus="false" protected="false" sign="false" storelocally="false" type="text" kind="editable" computeaftervalidation="false" allowmultivalues="false" width="100pt" height="30pt" bgcolor="#ffffff" name="test"/>
 	 * 				   Royale - TODO
@@ -56,6 +56,7 @@ package components.domino
 	 * Web: onBlur,onChange,onClick,onFocus,onKeyDown,onKeyPress,onKeyUp,onMouseDown,onMouseUp,onMouseMove,OnMouseOut,OnMouseOver,onSelect,
 	 * Client:(option),(Declarations),Entering,Exiting,Initialize,Terminate
 	 * @see https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_FIELD_ELEMENT_XML.html
+	 * @see https://github.com/Moonshine-IDE/VisualEditorConverterLib/blob/master/src/components/domino/DominoInputText.as
 	 */
 	public class DominoInputText extends ComponentBase implements IDominoInputText, IRoyaleComponentConverter
 	{

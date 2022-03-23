@@ -30,15 +30,18 @@ package components.domino
 	 * For now:
 	 * toCode() will convert the Visuale UI Button components to domino button  dxl format.
 	 * toRoyaleConvertCode() will  convert the Visuale UI Button components to Rayale button format.
-	 * For Test Input&Output:
+	 * For Test Input and Output :;
 	 * Input : - [Visuale UI main button component](https://github.com/Moonshine-IDE/MockupVisualEditor/blob/features/issue_675_royale_generate_domino_visual_editor/src/view/domino/surfaceComponents/components/DominoButton.as)
 	 * Output example:  Domino - <button width='2in' widthtype='maximum' maxlines='1' wraptext='true' bgcolor='system'>
-	 *					<code event='click'><formula>@URLOpen( "http://" + LoadBalancer_VirtualIP_Name + "/netmonitor.nsf/test?openform")</formula>
+	 *					<code event='click'><formula>URLOpen( "http://" + LoadBalancer_VirtualIP_Name + "/netmonitor.nsf/test?openform")</formula>
 	 *					</code>Test LB</button>
-	 * 				   Royale - <j:Button text="%ViewComponentLabel%" click="{dispatchEvent(new ScreenEvent(ScreenEvent.EVENT_NAVIGATE_TO, %ViewComponentName%.NAME))}"
-	 * 					percentWidth="60"/>
+	 * 				   Royale - &lt;j:Button text="%ViewComponentLabel%" click="{dispatchEvent(new ScreenEvent(ScreenEvent.EVENT_NAVIGATE_TO, %ViewComponentName%.NAME))}"
+	 * 					percentWidth="60"/&gt;
 	 * Domino format rule:	Contained by: %richtext.hot.inline;
-	 *						Contains: <font>, <code>
+	 *						Contains: &lt;font&gt;, &lt;code &gt;
+	 * {@link #components.domino}
+	 * @see https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_BUTTON_ELEMENT_XML.html
+	 * @see https://github.com/Moonshine-IDE/VisualEditorConverterLib/blob/master/src/components/domino/DominoButton.as
 	 */
 	public class DominoButton extends ComponentBase implements IDominoButton, IRoyaleComponentConverter
 	{
@@ -312,14 +315,7 @@ package components.domino
 
 		}
 
-		/**
-		 *Dxl example :
-		 *<button width='2in' widthtype='maximum' maxlines='1' wraptext='true' bgcolor='system'>
-		 *<code event='click'><formula>@URLOpen( "http://" + LoadBalancer_VirtualIP_Name + "/netmonitor.nsf/test?openform")</formula>
-		 *</code>Test LB</button>
-		 * code event:
-		 * <!ENTITY % code.lotusscript.events "action | onhelp | queryopen | queryrecalc | postopen | querymodechange | querysend | postsend | postmodechange | postrecalc | querysave | postsave | queryclose | click | regiondoubleclick | queryopendocument | queryaddtofolder | querydragdrop | querypaste | postdragdrop | postpaste | onload | onunload | onsubmit | queryentryresize | postentryresize | %code.databasescript.lotusscript.or.formula.events; ">
-		 */
+		
 
 		public function toCode():XML
 		{
@@ -409,11 +405,7 @@ package components.domino
 			return par_xml;
 		}
 
-		/**
-		 * Royale format examples
-		 * <j:Button text="%ViewComponentLabel%" click="{dispatchEvent(new ScreenEvent(ScreenEvent.EVENT_NAVIGATE_TO, %ViewComponentName%.NAME))}"
-		 * percentWidth="60"/>
-		 */
+
 		public function toRoyaleConvertCode():XML
 		{
 			var button_xml:XML = new XML("<" + ROYALE_ELEMENT_NAME + "/>");

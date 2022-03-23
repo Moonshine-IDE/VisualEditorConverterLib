@@ -33,16 +33,18 @@ package components.domino
 	 * For now:
 	 * toCode() will convert the  Visuale section  components     to domino section  dxl format.
 	 * toRoyaleConvertCode() :TODO
-	 * For Test Input&Output:
+	 * For Test Input and Output :;
 	 * Input : Visuale UI  section component   from Visual Editor
 	 * Output example:  Domino -  <section expanded="false" showastext="false">
 	 *    <sectiontitle color="system">
 	 *      <font size="12pt" style="normal"/><text>Default Title</text>
 	 *    </sectiontitle>
+	 *    </section>
 	 * 				   Royale - TODO
 	 *
 	 * {@link #components.domino}
 	 * @see https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_SECTION_ELEMENT_XML.html
+	 * @see https://github.com/Moonshine-IDE/VisualEditorConverterLib/blob/master/src/components/domino/DominoSection.as
 	 */
 	public class DominoSection extends ComponentBase implements IDominoSection, IRoyaleComponentConverter
 	{
@@ -326,11 +328,7 @@ package components.domino
 			}
 
 
-			/**
-			 * <section onread='collapse' onpreview='collapse' onedit='collapse' onprint='collapse'><sectiontitle
- pardef='1' color='teal'><font size='8pt' color='purple' style='bold'/><text
->Common Hidden Fields</text></sectiontitle></section>
-			 */
+			
 
 			var section_title_xml_str:String = "";
 			if (this.titleSize)

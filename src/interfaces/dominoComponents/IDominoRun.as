@@ -4,7 +4,7 @@
  * run dxl details please review follow url: 
  * https://www.ibm.com/support/knowledgecenter/SSVRGU_10.0.1/basic/H_RUN_ELEMENT_XML.html
  * Contained by: %richtext.nonhot.inline;
- * Contains: <font>, %richtext.inline;
+ * Contains: &lt;font&gt;, %richtext.inline;
  */
 package interfaces.dominoComponents
 {

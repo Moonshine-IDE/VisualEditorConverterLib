@@ -32,12 +32,14 @@ package components.domino
 	 * For now:
 	 * toCode() will convert the Visuale font  calandar to domino calandar  dxl format.
 	 * toRoyaleConvertCode() will  convert the Visuale main container components to Rayale button format.
-	 * For Test Input&Output:
+	 * For Test Input and Output :;
 	 * Input : Visuale UI font component from Visual Editor
 	 * Output example: 	Domino -  <font size='12' color="black"></font>
 	 *					Royale - TODO
 	 *
 	 * {@link #components.domino}
+	 * @see https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_FONT_ELEMENT_XML.html
+	 * @see https://github.com/Moonshine-IDE/VisualEditorConverterLib/blob/master/src/components/domino/DominoFont.as
 	 */
 	public class DominoFont extends ComponentBase implements IDominoFont, IRoyaleComponentConverter
 	{

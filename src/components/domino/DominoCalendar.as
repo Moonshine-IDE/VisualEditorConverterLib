@@ -30,7 +30,7 @@ package components.domino
 	 * For now:
 	 * toCode() will convert the Visuale main container calandar to domino calandar  dxl format.
 	 * toRoyaleConvertCode() will  convert the Visuale main container components to Rayale button format.
-	 * For Test Input&Output:
+	 * For Test Input and Output :;
 	 * Input : - [Visuale UI main calandar component](https://github.com/Moonshine-IDE/MockupVisualEditor/blob/features/issue_675_royale_generate_domino_visual_editor/src/view/domino/surfaceComponents/components/DominoCalendar.as)
 	 * Output example:  Domino - <Calendar date="yearmonthday" dateformat="weekdaymonthdayyear"
 	 *					dateseparator1=" " dateseparator2="/" dateseparator3="/"
@@ -41,6 +41,7 @@ package components.domino
 	 *					Royale - TODO
 	 *
 	 * {@link #components.domino}
+	 * @see https://github.com/Moonshine-IDE/VisualEditorConverterLib/blob/master/src/components/domino/DominoCalendar.as
 	 */
 	public class DominoCalendar extends ComponentBase implements ICalendar, IRoyaleComponentConverter
 	{
