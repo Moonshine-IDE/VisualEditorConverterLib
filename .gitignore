@@ -1,6 +1,5 @@
 libTests/.idea
-bin/VisualEditorConverterLib-0.1.0.swc
-bin/VisualEditorConverterLib-0.1.0.swc.cache
+bin/
 obj/VisualEditorConverterLibConfig.xml
 bin-debug/VisualEditorConverterLib.swc
 libTests/libTests.iml

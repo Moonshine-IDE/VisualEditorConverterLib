@@ -91,11 +91,17 @@
 		<echo>Copying ${SWC_NAME} to ${XHTMLCONVERTERCLI_LIBS_PATH}</echo>
 		<copy file="${basedir}/bin/${SWC_NAME}" todir="${LIB_UNITTESTS_PATH}" force="true"/>
 	</target>
-	<target name="documentationDomino">
+	<target name="documentationDomino" depends="build">
 		<echo>Creating documentation for Domino Visual Editor components</echo>
 		<asdoc output="${basedir}/bin/doc/domino" failonerror="false">
 			<compiler.external-library-path file="${basedir}/bin/${SWC_NAME}"/>
 			<doc-sources path-element="${basedir}/src/components/domino/"/>
 		</asdoc>
 	</target>
+
+	<target name="clean">
+		<delete dir="${basedir}/bin" />
+		<mkdir dir="${basedir}/bin" />
+	</target>
+
 </project>
