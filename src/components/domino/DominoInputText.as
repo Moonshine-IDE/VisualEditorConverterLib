@@ -40,24 +40,37 @@ package components.domino
 	import utils.CodeMxmlUtils;
 	import org.apache.flex.packageflexsdk.util.ApacheURLLoader;
 
+
 	/**
-	 * This class work for  convert from Visuale field  components to target framework of body format.
-	 * Call different methods to convert the component to different target formats.
-	 * For now:
-	 * toCode() will convert the Visuale field  calandar to domino calandar  dxl format.
-	 * toRoyaleConvertCode() will  convert the Visuale main container components to Rayale button format.
-	 * For Test Input and Output :;
-	 * Input : - [Visuale UI main DominoInputText component](https://github.com/Moonshine-IDE/MockupVisualEditor/blob/features/issue_675_royale_generate_domino_visual_editor/src/view/domino/surfaceComponents/components/DominoInputText.as)
-	 * Output example:  Domino -  <field useappletinbrowser="false" allowtabout="false" defaultfocus="false" protected="false" sign="false" storelocally="false" type="text" kind="editable" computeaftervalidation="false" allowmultivalues="false" width="100pt" height="30pt" bgcolor="#ffffff" name="test"/>
-	 * 				   Royale - TODO
-	 *
-	 * {@link #components.domino}
+	 *  <p>Representation and converter for Visuale field  components </p>
+	 * 
+	 *  <p> This class work for  convert from Visuale field  components to target framework of domino format.</p>
+	 *  Conversion status<ul>
+	 *   <li>Domino:  Complete</li>
+	 *   <li>Royale:  Partial</li>
+	 *  </ul>
+	 * 
+	 * <p>Input:  view.domino.surfaceComponents.components.DominoInputText</p>
+	 * <p> Example Domino output:</p>
+	 * <pre>
+	 *  &lt;field useappletinbrowser=&quot;false&quot; allowtabout=&quot;false&quot; defaultfocus=&quot;false&quot; protected=&quot;false&quot; sign=&quot;false&quot; storelocally=&quot;false&quot; type=&quot;text&quot; kind=&quot;editable&quot; computeaftervalidation=&quot;false&quot; allowmultivalues=&quot;false&quot; width=&quot;100pt&quot; height=&quot;30pt&quot; bgcolor=&quot;#ffffff&quot; name=&quot;test&quot;/&gt;
+     * </pre>
+	 * <p>Domino event:</p>
+	 * <pre>
 	 * Client: Default value,Input Translation, Input Validation, Input Enabled,HTML attribute
 	 * Web: onBlur,onChange,onClick,onFocus,onKeyDown,onKeyPress,onKeyUp,onMouseDown,onMouseUp,onMouseMove,OnMouseOut,OnMouseOver,onSelect,
 	 * Client:(option),(Declarations),Entering,Exiting,Initialize,Terminate
+	 * </pre>
+	 * <p> Example Royale output:</p>
+	 * <pre>
+	 * TODO
+     * </pre>
+	 *
 	 * @see https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_FIELD_ELEMENT_XML.html
 	 * @see https://github.com/Moonshine-IDE/VisualEditorConverterLib/blob/master/src/components/domino/DominoInputText.as
 	 */
+
+	
 	public class DominoInputText extends ComponentBase implements IDominoInputText, IRoyaleComponentConverter
 	{
 		public static const DOMINO_ELEMENT_NAME:String = "field";

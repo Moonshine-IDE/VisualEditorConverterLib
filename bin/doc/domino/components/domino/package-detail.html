@@ -11,21 +11,414 @@
 					if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("components.domino"); titleBar_setSubNav(false,false,false,false,false,false,false,false,false,false,false	,false,false,false,true,false);}	
 				-->
 			</script><div class="MainContent"><br><br><hr><a name="classSummary"></a><div class="summaryTableTitle">Classes</div><table cellpadding="3" cellspacing="0" class="summaryTable"><tr><th>&nbsp;</th><th width="30%">Class</th><th width="70%">Description</th></tr><tr class="prow1"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="Body.html">Body</a></td><td class="summaryTableLastCol">
-	 This class work for  convert from Visuale main container components to target framework of body format.</td></tr><tr class="prow0"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="DominoButton.html">DominoButton</a></td><td class="summaryTableLastCol">
-	 This class work for  convert from Visuale Button UI components to target framework of button format.</td></tr><tr class="prow1"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="DominoCalendar.html">DominoCalendar</a></td><td class="summaryTableLastCol">
-	 This class work for  convert from Visuale main calandar components to target framework of body format.</td></tr><tr class="prow0"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="DominoColor.html">DominoColor</a></td><td class="summaryTableLastCol">
-	 This class work for  convert from Visuale   components color property to target framework of body format.</td></tr><tr class="prow1"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="DominoComputedText.html">DominoComputedText</a></td><td class="summaryTableLastCol">
-	 This class work for  convert from Visuale input  components to target framework of body format.</td></tr><tr class="prow0"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="DominoFont.html">DominoFont</a></td><td class="summaryTableLastCol">
-	 This class work for  convert from Visuale font  components to target framework of body format.</td></tr><tr class="prow1"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="DominoInputText.html">DominoInputText</a></td><td class="summaryTableLastCol">
+	  Representation and converter for Domino Body
+	 
+	  This class work for  convert from Visuale main container components to target framework of body format.
+	  Conversion status
+	   Domino:  Complete
+	   Royale:  TODO
+	 
+	 
+	 Input:  Visuale UI main container component from Visual Editor
+	  Example Domino output:
+	 
+	  &lt;item name=&quot;$Body&quot; sign=&quot;true&quot;&gt;&lt;richtext&gt;&lt;/richtext&gt;&lt;/item&gt;
+     
+	 
+	  Example Royale output:
+	 
+	 &lt;j:ApplicationMainContent&gt;&lt;j:ScrollableSectionConten&gt;&lt;/j:ScrollableSectionConten&gt;&lt;/j:ApplicationMainContent&gt;
+     
+	 	 </td></tr><tr class="prow0"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="DominoButton.html">DominoButton</a></td><td class="summaryTableLastCol">
+	  Representation and converter for Visuale Button UI component
+	 
+	  This class work for  convert from Visuale Button UI components to target framework of button format.
+	  Conversion status
+	   Domino:  Complete
+	   Royale:  Partial
+	 
+	 
+	 Input:  view.domino.surfaceComponents.components.DominoButton
+	  Example Domino output:
+	 
+	 &lt;button width=&#39;2in&#39; widthtype=&#39;maximum&#39; maxlines=&#39;1&#39; wraptext=&#39;true&#39; bgcolor=&#39;system&#39;&gt;
+	 &lt;code event=&#39;click&#39;&gt;&lt;formula&gt;URLOpen( &quot;http://&quot; + LoadBalancer_VirtualIP_Name + &quot;/netmonitor.nsf/test?openform&quot;)&lt;/formula&gt;
+	 &lt;/code&gt;Test LB&lt;/button&gt;
+     
+	 
+	  Example Royale output:
+	 
+	 &lt;j:Button text="%ViewComponentLabel%" click="{dispatchEvent(new ScreenEvent(ScreenEvent.EVENT_NAVIGATE_TO, %ViewComponentName%.NAME))}"
+	 	percentWidth="60"/&gt;
+     
+	 	 </td></tr><tr class="prow1"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="DominoCalendar.html">DominoCalendar</a></td><td class="summaryTableLastCol">
+	  Representation and converter for Visuale calandar UI component
+	 
+	  his class work for  convert from Visuale main calandar components to target framework of body format
+	  Conversion status
+	   Domino:  Complete
+	   Royale:  TODO
+	 
+	 
+	 Input:  view.domino.surfaceComponents.components.DominoCalendar
+	  Example Domino output:
+	 
+	 &lt;Calendar date=&quot;yearmonthday&quot; dateformat=&quot;weekdaymonthdayyear&quot;
+	 				dateseparator1=&quot; &quot; dateseparator2=&quot;/&quot; dateseparator3=&quot;/&quot;
+	 				dayformat=&quot;twodigitday&quot; fourdigityearfor21stcentury=&quot;true&quot; height=&quot;30&quot;
+	 				mode=&quot;popup&quot; monthformat=&quot;twodigitmonth&quot; pattern=&quot;MM/dd/yyyy&quot; preference=&quot;usersetting&quot;
+	 				show=&quot;datetime&quot; time=&quot;hourminute&quot; timeseparator=&quot;:&quot; value=&quot;StartDate&quot; weekdayformat=&quot;shortname&quot;
+	 				width=&quot;100&quot; yearformat=&quot;fourdigityear&quot; zone=&quot;never&quot;/&gt;
+     
+	 
+	  Example Royale output:
+	 
+	 TODO
+     
+	 	 </td></tr><tr class="prow0"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="DominoColor.html">DominoColor</a></td><td class="summaryTableLastCol">
+	  Representation and converter for Visuale  component color property
+	 
+	   This class work for  convert from Visuale   components color property to target framework of domino dxl format.
+	  Conversion status
+	   Domino:  TODO
+	   Royale:  TODO
+	 
+	 
+	 Input:  view.domino.surfaceComponents.components.DominoColor
+	  Example Domino output:
+	 
+	 TODO
+     
+	 
+	  Example Royale output:
+	 
+	 TODO
+     
+	 	 </td></tr><tr class="prow1"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="DominoComputedText.html">DominoComputedText</a></td><td class="summaryTableLastCol">
+	  Representation and converter for Visuale computed text  components 
+	 
+	  This class work for  convert from Visuale input  components to target framework of body format.
+	  Conversion status
+	   Domino:  Complete
+	   Royale:  TODO
+	 
+	 
+	 Input:  view.domino.surfaceComponents.components.DominoComputedText
+	  Example Domino output:
+	 
+	  &lt;par def=&#39;6&#39;&gt;&lt;run&gt;&lt;font color=&#39;blue&#39;/&gt;example string .....&lt;/run&gt;&lt;/par&gt;
+     
+	 
+	  Example Royale output:
+	 
+	 TODO
+     
+	 	 </td></tr><tr class="prow0"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="DominoFont.html">DominoFont</a></td><td class="summaryTableLastCol">
+	  Representation and converter for Visuale components of font property 
+	 
+	  This class work for  convert from Visuale components of font property to target framework of domino dxl.
+	  Conversion status
+	   Domino:  Complete
+	   Royale:  TODO
+	 
+	 
+	 Input:  view.domino.surfaceComponents.components.DominoFont
+	  Example Domino output:
+	 
+	   &lt;font size=&#39;12&#39; color=&quot;black&quot;&gt;&lt;/font&gt;
+     
+	 
+	  Example Royale output:
+	 
+	 TODO
+     
+	 	 </td></tr><tr class="prow1"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="DominoInputText.html">DominoInputText</a></td><td class="summaryTableLastCol">
 	 This class work for  convert from Visuale field  components to target framework of body format.</td></tr><tr class="prow0"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="DominoLabel.html">DominoLabel</a></td><td class="summaryTableLastCol">
-	 This class work for  convert from Visuale label  components to target framework of body format.</td></tr><tr class="prow1"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="DominoPar.html">DominoPar</a></td><td class="summaryTableLastCol">
-	 This class work for  convert from par element of Visuale label/text/field  components  to target framework of body format.</td></tr><tr class="prow0"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="DominoParagraph.html">DominoParagraph</a></td><td class="summaryTableLastCol">
-	 This class work for  convert from paragraph element of Visuale label/text/field  components  to target framework of body format.</td></tr><tr class="prow1"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="DominoRichText.html">DominoRichText</a></td><td class="summaryTableLastCol">
-	 This class backup domino richtext class.</td></tr><tr class="prow0"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="DominoRun.html">DominoRun</a></td><td class="summaryTableLastCol">
-	 This class work for  convert from run element of Visuale label/text/field  components  to target framework of body format.</td></tr><tr class="prow1"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="DominoSection.html">DominoSection</a></td><td class="summaryTableLastCol">
-	 This class work for  convert from Visuale section  components  to target framework of body format.</td></tr><tr class="prow0"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="DominoTable.html">DominoTable</a></td><td class="summaryTableLastCol">
-	 This class work for  convert from Visuale table  components  to target framework of body format.</td></tr><tr class="prow1"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="DominoTableCell.html">DominoTableCell</a></td><td class="summaryTableLastCol">
-	 This class work for  convert from Visuale tableCell  components  to target framework of body format.</td></tr><tr class="prow0"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="DominoTableRow.html">DominoTableRow</a></td><td class="summaryTableLastCol">
-	 This class work for  convert from Visuale tableRow  components  to target framework of body format.</td></tr><tr class="prow1"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="DominoTabView.html">DominoTabView</a></td><td class="summaryTableLastCol">
-	This class work for  convert from Visuale tabView  components  to target framework of body format.</td></tr><tr class="prow0"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="MainApplication.html">MainApplication</a></td><td class="summaryTableLastCol">
-	This class work for  convert from Visuale main container components to target framework of body format.</td></tr></table><p></p><div><p></p><center class="copyright"><footer></footer><br/>Wed Mar 23 2022, 06:53 PM +02:00  </center></div></div></body></html><!--<br/>Wed Mar 23 2022, 06:53 PM +02:00  -->
+	  Representation and converter for Visuale label  components 
+	 
+	  This class work for  convert from Visuale label  components to target framework of domino format.
+	  Conversion status
+	   Domino:  Complete
+	   Royale:  Partial
+	 
+	 
+	 Input:  view.domino.surfaceComponents.components.DominoLabel
+	  Example Domino output:
+	 
+	 &lt;par isNewLine=&quot;false&quot;&gt;
+	 	&lt;run&gt;
+	  &lt;font color=&quot;system&quot; size=&quot;12pt&quot; style=&quot;normal&quot;/&gt;Label
+	 &lt;/run&gt;
+	 &lt;/par&gt;
+	  
+	 	  Example Royale output:
+	 
+	 TODO
+     
+	 	 </td></tr><tr class="prow1"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="DominoPar.html">DominoPar</a></td><td class="summaryTableLastCol">
+	  Representation and converter from par element of Visuale label/text/field  components  to target framework of body format 
+	 
+	  This class work for  convert from par element of Visuale label/text/field  components  to target framework of body format.
+	  Conversion status
+	   Domino:  Complete
+	   Royale:  TODO
+	 
+	 
+	 Input:  view.domino.surfaceComponents.components.DominoPar
+	  Example Domino output:
+	 
+	  &lt;par isNewLine=&quot;false&quot;&gt;&lt;/par&gt;
+	  
+	 	  Example Royale output:
+	 
+	 TODO
+     
+	 	 </td></tr><tr class="prow0"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="DominoParagraph.html">DominoParagraph</a></td><td class="summaryTableLastCol">
+	  Representation and converter from paragraph element  
+	 
+	  This class work for  convert from paragraph element of Visuale label/text/field  components  to target framework of body format.
+	  Conversion status
+	   Domino:  Complete
+	   Royale:  TODO
+	 
+	 
+	 Input:  view.domino.surfaceComponents.components.DominoParagraph
+	  Example Domino output:
+	 
+	  &lt;par def=&quot;1019&quot; paragraph=&quot;true&quot; dominotype=&quot;paragraph&quot; class=&quot;flexHorizontalLayout flexHorizontalLayoutLeft flexHorizontalLayoutTop&quot;/&gt;
+	  
+	 	  Example Royale output:
+	 
+	 TODO
+     
+	 	 </td></tr><tr class="prow1"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="DominoRichText.html">DominoRichText</a></td><td class="summaryTableLastCol">
+	  Representation and converter from domino richtext class  
+	 
+	  This class work for  convert fromdomino richtext class  to target framework of body format.
+	  Conversion status
+	   Domino:  TODO
+	   Royale:  TODO
+	 
+	 
+	 Input:  view.domino.surfaceComponents.components.DominoRichText
+	  Example Domino output:
+	 
+	 TODO
+	  
+	 	  Example Royale output:
+	 
+	 TODO
+     
+	 	 </td></tr><tr class="prow0"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="DominoRun.html">DominoRun</a></td><td class="summaryTableLastCol">
+	  Representation and converter from  run element of Visuale label/text/field   
+	 
+	  This class work for  convert from run element of Visuale label/text/field  components  to target framework of body format.
+	  Conversion status
+	   Domino:  Complete
+	   Royale:  TODO
+	 
+	 
+	 Input:  view.domino.surfaceComponents.components.DominoRun
+	  Example Domino output:
+	 
+	 &lt;run&gt;{other some domino element}&lt;/run&gt;
+	  
+	 	  Example Royale output:
+	 
+	 TODO
+     
+	 	 </td></tr><tr class="prow1"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="DominoSection.html">DominoSection</a></td><td class="summaryTableLastCol">
+	  Representation and converter from  Visuale section  components   
+	 
+	  This class work for  convert from Visuale section  components  to target framework of body format.
+	  Conversion status
+	   Domino:  Complete
+	   Royale:  TODO
+	 
+	 
+	 Input:  view.domino.surfaceComponents.components.DominoSection
+	  Example Domino output:
+	 
+	 &lt;section expanded=&quot;false&quot; showastext=&quot;false&quot;&gt;
+	    &lt;sectiontitle color=&quot;system&quot;&gt;
+	      &lt;font size=&quot;12pt&quot; style=&quot;normal&quot;/&gt;&lt;text&gt;Default Title&lt;/text&gt;
+	    &lt;/sectiontitle&gt;
+	 &lt;/section&gt;
+	  
+	 	  Example Royale output:
+	 
+	 TODO
+     
+	 	 </td></tr><tr class="prow0"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="DominoTable.html">DominoTable</a></td><td class="summaryTableLastCol">
+	  Representation and converter from  Visuale table  components  
+	 
+	  This class work for  convert from Visuale table  components  to target framework of body format.
+	  Conversion status
+	   Domino:  Complete
+	   Royale:  TODO
+	 
+	 
+	 Input:  view.domino.surfaceComponents.components.DominoTable
+	  Example Domino output:
+	 
+	   &lt;table widthtype=&quot;fitmargins&quot; cellbordercolor=&quot;yellow&quot; 				leftmargin=&quot;1in&quot; cellborderstyle=&quot;ridge&quot; 						colorstyle=&quot;solid&quot; bgcolor=&quot;silver&quot; insidewrap=&quot;true&quot; 				insidewrapheight=&quot;1in&quot;&gt;
+	 		&lt;border style=&quot;solid&quot; width=&quot;2px&quot; color=&quot;olive&quot; 					dropshadow=&quot;true&quot; /&gt;
+	 		&lt;tablecolumn width=&quot;66.58%&quot; /&gt;
+	 		&lt;tablecolumn width=&quot;33.42%&quot; /&gt;
+	 		&lt;tablerow&gt;
+	 			&lt;tablecell bgcolor=&quot;#e0ffbf&quot;&gt;
+	 				&lt;pardef id=&quot;3&quot; align=&quot;center&quot; 									leftmargin=&quot;0.0313in&quot; keepwithnext=&quot;true&quot; 							keeptogether=&quot;true&quot; /&gt;
+	 				&lt;par def=&quot;3&quot;&gt;
+	 					&lt;picture height=&quot;341px&quot; width=&quot;218px&quot; 								alttext=&quot;caldesigns white two-piece 								dress&quot;&gt;
+	 						&lt;imageref name=&quot;design1.jpg&quot; /&gt;
+	 						&lt;caption&gt;CALDesigns&lt;/caption&gt;
+	 					&lt;/picture&gt;
+	 				&lt;/par&gt;
+	 			&lt;/tablecell&gt;
+	 			&lt;tablecell colorstyle=&quot;vgradient&quot; bgcolor=&quot;none&quot; 						altbgcolor=&quot;#a1e2ff&quot;&gt;
+	 				&lt;pardef id=&quot;4&quot; align=&quot;center&quot; 									leftmargin=&quot;0.0313in&quot; keepwithnext=&quot;true&quot; 							keeptogether=&quot;true&quot; /&gt;
+	 				&lt;par def=&quot;4&quot; /&gt;
+	 				&lt;pardef id=&quot;5&quot; leftmargin=&quot;0.0313in&quot; 							keepwithnext=&quot;true&quot; keeptogether=&quot;true&quot; /&gt;
+	 				&lt;par def=&quot;5&quot;&gt;
+	 					&lt;run&gt;
+	 						&lt;font size=&quot;24pt&quot; color=&quot;blue&quot; /&gt;
+	 						$250
+	 					&lt;/run&gt;
+	 				&lt;/par&gt;
+	 			&lt;/tablecell&gt;
+	 		&lt;/tablerow&gt;
+	 		&lt;tablerow&gt;
+	 			&lt;tablecell bgcolor=&quot;#ffe1dc&quot;&gt;
+	 				&lt;pardef id=&quot;6&quot; leftmargin=&quot;0.0313in&quot; 							keepwithnext=&quot;true&quot; keeptogether=&quot;true&quot; /&gt;
+	 				&lt;par def=&quot;6&quot;&gt;
+	 					&lt;imagemap lastdefaultid=&quot;8&quot; 									lastcircleid=&quot;1&quot; lastrectangleid=&quot;55&quot;&gt;
+	 						&lt;picture height=&quot;341px&quot; width=&quot;219px&quot; 									alttext=&quot;PERDesigns pink two-piece 									sleeveless dress&quot;&gt;
+	 							&lt;border style=&quot;dot&quot; width=&quot;1px&quot; 										color=&quot;#ff4040&quot; /&gt;
+	 							&lt;imageref name=&quot;design2.jpg&quot; /&gt;
+	 							&lt;caption&gt;PERDesigns&lt;/caption&gt;
+	 						&lt;/picture&gt;
+	 						&lt;area type=&quot;circle&quot; htmlid=&quot;bracelet&quot;&gt;
+	 							&lt;point x=&quot;5&quot; y=&quot;82&quot; /&gt;
+	 							&lt;point x=&quot;81&quot; y=&quot;158&quot; /&gt;
+	 							&lt;urllink href=&quot;http://www.PERD
+	 							esigns.com/jewelry&quot; /&gt;
+	 						&lt;/area&gt;
+	 					&lt;/imagemap&gt;
+	 				&lt;/par&gt;
+	 			&lt;/tablecell&gt;
+	 			&lt;tablecell&gt;
+	 				&lt;cellbackground repeat=&quot;hrepeat&quot;&gt;
+	 					&lt;imageref name=&quot;graphic.gif&quot; /&gt;
+	 				&lt;/cellbackground&gt;
+	 				&lt;par def=&quot;5&quot; /&gt;
+	 				&lt;par&gt;
+	 					&lt;run&gt;
+	 						&lt;font size=&quot;24pt&quot; color=&quot;blue&quot; /&gt;
+	 						$300
+	 					&lt;/run&gt;
+	 				&lt;/par&gt;
+	 			&lt;/tablecell&gt;
+	 		&lt;/tablerow&gt;
+	 	&lt;/table&gt;
+	  
+	 	  Example Royale output:
+	 
+	 TODO
+     
+	 	 </td></tr><tr class="prow1"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="DominoTableCell.html">DominoTableCell</a></td><td class="summaryTableLastCol">
+	  Representation and converter from  Visuale tableCell  components  
+	 
+	  This class work for  convert from Visuale tableCell  components  to target framework of body format.
+	  Conversion status
+	   Domino:  Complete
+	   Royale:  TODO
+	 
+	 
+	 Input:  view.domino.surfaceComponents.components.DominoTableCell
+	  Example Domino output:
+	 
+	  &lt;tablecell bgcolor=&quot;#e0ffbf&quot;&gt;
+	 				&lt;pardef id=&quot;3&quot; align=&quot;center&quot; 									leftmargin=&quot;0.0313in&quot; keepwithnext=&quot;true&quot; 							keeptogether=&quot;true&quot; /&gt;
+	 				&lt;par def=&quot;3&quot;&gt;
+	 					&lt;picture height=&quot;341px&quot; width=&quot;218px&quot; 								alttext=&quot;caldesigns white two-piece 								dress&quot;&gt;
+	 						&lt;imageref name=&quot;design1.jpg&quot; /&gt;
+	 						&lt;caption&gt;CALDesigns&lt;/caption&gt;
+	 					&lt;/picture&gt;
+	 				&lt;/par&gt;
+	 &lt;/tablecell&gt;
+	  
+	 	  Example Royale output:
+	 
+	 TODO
+     
+	 	 </td></tr><tr class="prow0"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="DominoTableRow.html">DominoTableRow</a></td><td class="summaryTableLastCol">
+	  Representation and converter from  Visuale tableRow  components  
+	 
+	  This class work for  convert fromVisuale tableRow  components  to target framework of body format.
+	  Conversion status
+	   Domino:  Complete
+	   Royale:  TODO
+	 
+	 
+	 Input:  view.domino.surfaceComponents.components.DominoTableRow
+	  Example Domino output:
+	 
+	 lt;tablerow&gt;
+	 			&lt;tablecell bgcolor=&quot;#e0ffbf&quot;&gt;
+	 				&lt;pardef id=&quot;3&quot; align=&quot;center&quot; 									leftmargin=&quot;0.0313in&quot; keepwithnext=&quot;true&quot; 							keeptogether=&quot;true&quot; /&gt;
+	 				&lt;par def=&quot;3&quot;&gt;
+	 					&lt;picture height=&quot;341px&quot; width=&quot;218px&quot; 								alttext=&quot;caldesigns white two-piece 								dress&quot;&gt;
+	 						&lt;imageref name=&quot;design1.jpg&quot; /&gt;
+	 						&lt;caption&gt;CALDesigns&lt;/caption&gt;
+	 					&lt;/picture&gt;
+	 				&lt;/par&gt;
+	 			&lt;/tablecell&gt;
+	  &lt;/tablerow&gt;
+	  
+	 	  Example Royale output:
+	 
+	 TODO
+     
+	 	 </td></tr><tr class="prow1"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="DominoTabView.html">DominoTabView</a></td><td class="summaryTableLastCol">
+	  Representation and converter from  Visuale tabView  components 
+	 
+	  This class work for  convert from  Visuale tabView  components  to target framework of body format.
+	  Conversion status
+	   Domino:  Complete
+	   Royale:  TODO
+	 
+	 
+	 Input:  view.domino.surfaceComponents.components.DominoTabView
+	  Example Domino output:
+	 
+	 &lt;table rowdisplay=&#39;tabs&#39; leftmargin=&#39;0.0104in&#39; widthtype=&#39;fixedleft&#39; refwidth=&#39;8.8528in&#39;&gt;
+	 &lt;tablecolumn width=&#39;8.8528in&#39;/&gt;
+	 &lt;tablerow tablabel=&#39;Company&#39;&gt;
+	 &lt;tablecell&gt;&lt;/tablecell&gt;
+	 &lt;/tablerow&gt;
+	  &lt;/tablecolumn&gt;
+	 &lt;/table&gt;
+	  
+	 	  Example Royale output:
+	 
+	 TODO
+     
+	 	 </td></tr><tr class="prow0"><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSecondCol"><a href="MainApplication.html">MainApplication</a></td><td class="summaryTableLastCol">
+	  Representation and converter from Visuale main container components 
+	 
+	  This class work for  convert from Visuale main container components  to target framework of body format.
+	  Conversion status
+	   Domino:  TODO
+	   Royale:  TODO
+	 
+	 
+	 Input:  view.domino.surfaceComponents.components.MainApplication
+	  Example Domino output:
+	 
+	 TODO
+	  
+	 	  Example Royale output:
+	 
+	 TODO
+     
+	 	 </td></tr></table><p></p><div><p></p><center class="copyright"><footer></footer><br/>Thu Mar 24 2022, 02:59 PM +02:00  </center></div></div></body></html><!--<br/>Thu Mar 24 2022, 02:59 PM +02:00  -->

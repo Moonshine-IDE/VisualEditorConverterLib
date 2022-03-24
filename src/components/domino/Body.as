@@ -29,17 +29,27 @@ package components.domino
 	import utils.CodeXMLUtils;
 
 	/**
-	 * This class work for  convert from Visuale main container components to target framework of body format.
-	 * Call different methods to convert the component to different target formats.
-	 * For now:
-	 * toCode() will convert the Visuale main container components to domino button  dxl format.
-	 * toRoyaleConvertCode() will  convert the Visuale main container components to Rayale button format.
-	 * For Test Input and Output :;
-	 * Input : Visuale UI main container component from Visual Editor
-	 * Output example:  Domino - <item name="$Body" sign="true"><richtext></richtext> </item>
-	 * 				 
+	 *  <p>Representation and converter for Domino Body</p>
+	 * 
+	 *  <p>This class work for  convert from Visuale main container components to target framework of body format.</p>
+	 *  Conversion status<ul>
+	 *   <li>Domino:  Complete</li>
+	 *   <li>Royale:  TODO</li>
+	 * </ul>
+	 * 
+	 * <p>Input:  Visuale UI main container component from Visual Editor</p>
+	 * <p> Example Domino output:</p>
+	 * <pre>
+	 *  &lt;item name=&quot;$Body&quot; sign=&quot;true&quot;&gt;&lt;richtext&gt;&lt;/richtext&gt;&lt;/item&gt;
+     * </pre>
+	 * 
+	 * <p> Example Royale output:</p>
+	 * <pre>
+	 * &lt;j:ApplicationMainContent&gt;&lt;j:ScrollableSectionConten&gt;&lt;/j:ScrollableSectionConten&gt;&lt;/j:ApplicationMainContent&gt;
+     * </pre>
 	 *
-	 * {@link #components.domino}
+	 * @see https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_BODY_ELEMENT_XML.html
+	 * @see https://github.com/Moonshine-IDE/VisualEditorConverterLib/blob/master/src/components/domino/Body.as
 	 */
 	public class Body extends ComponentBase implements IDominoBody, IRoyaleComponentConverter
 	{

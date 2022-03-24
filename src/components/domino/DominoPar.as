@@ -27,20 +27,29 @@ package components.domino
 	import utils.CodeMxmlUtils;
 
 	/**
-	 * This class work for  convert from par element of Visuale label/text/field  components  to target framework of body format.
-	 * Call different methods to convert the component to different target formats.
-	 * For now:
-	 * toCode() will convert the  par element    to domino calandar  dxl format.
-	 * toRoyaleConvertCode() will  convert the Visuale main container components to Rayale button format.
-	 * For Test Input and Output :;
-	 * Input : Visuale UI  par element   from Visual Editor
-	 * Output example:	Domino - <par isNewLine="false"></par>
-	 * 					Royale - TODO
+	 *  <p>Representation and converter from par element of Visuale label/text/field  components  to target framework of body format </p>
+	 * 
+	 *  <p>This class work for  convert from par element of Visuale label/text/field  components  to target framework of body format.</p>
+	 *  Conversion status<ul>
+	 *   <li>Domino:  Complete</li>
+	 *   <li>Royale:  TODO</li>
+	 * </ul>
+	 * 
+	 * <p>Input:  view.domino.surfaceComponents.components.DominoPar</p>
+	 * <p> Example Domino output:</p>
+	 * <pre>
+	 *  &lt;par isNewLine=&quot;false&quot;&gt;&lt;/par&gt;
+	 * </pre> 
 	 *
-	 * {@link #components.domino}
+	 * <p> Example Royale output:</p>
+	 * <pre>
+	 * TODO
+     * </pre>
+	 *
 	 * @see https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_PARAGRAPH_ELEMENT_XML.html
 	 * @see https://github.com/Moonshine-IDE/VisualEditorConverterLib/blob/master/src/components/domino/DominoPar.as
 	 */
+
 	public class DominoPar extends ComponentBase implements IDominoPar, IRoyaleComponentConverter
 	{
 		public static const DOMINO_ELEMENT_NAME:String = "par";

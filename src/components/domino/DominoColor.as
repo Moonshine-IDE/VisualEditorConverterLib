@@ -25,20 +25,30 @@ package components.domino
 	import interfaces.dominoComponents.IDominoColor;
 
 	/**
-	 * This class work for  convert from Visuale   components color property to target framework of body format.
-	 * Call different methods to convert the component to different target formats.
-	 * For now:
-	 * toCode() will convert the Visuale main container color to domino calandar  dxl format.
-	 * toRoyaleConvertCode() will  convert the Visuale main container components to Rayale button format.
-	 * For Test Input and Output :;
-	 * Input : - Visuale UI main color component from Visual Editor
-	 * Output example:	Domino - TODO
-	 *					Royale - TODO
+	 *  <p>Representation and converter for Visuale  component color property</p>
+	 * 
+	 *  <p> This class work for  convert from Visuale   components color property to target framework of domino dxl format.</p>
+	 *  Conversion status<ul>
+	 *   <li>Domino:  TODO</li>
+	 *   <li>Royale:  TODO</li>
+	 * </ul>
+	 * 
+	 * <p>Input:  view.domino.surfaceComponents.components.DominoColor</p>
+	 * <p> Example Domino output:</p>
+	 * <pre>
+	 * TODO
+     * </pre>
+	 * 
+	 * <p> Example Royale output:</p>
+	 * <pre>
+	 * TODO
+     * </pre>
 	 *
-	 * {@link #components.domino}
 	 * @see https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_DEFINED_ENTITIES_XML.html
 	 * @see https://github.com/Moonshine-IDE/VisualEditorConverterLib/blob/master/src/components/domino/DominoColor.as
 	 */
+
+
 	public class DominoColor extends ComponentBase implements IDominoColor, IRoyaleComponentConverter
 	{
 		public function DominoColor()

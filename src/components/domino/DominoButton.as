@@ -25,23 +25,30 @@ package components.domino
 	import interfaces.dominoComponents.IDominoButton;
 
 	/**
-	 * This class work for  convert from Visuale Button UI components to target framework of button format.
-	 * Call different methods to convert the component to different target formats.
-	 * For now:
-	 * toCode() will convert the Visuale UI Button components to domino button  dxl format.
-	 * toRoyaleConvertCode() will  convert the Visuale UI Button components to Rayale button format.
-	 * For Test Input and Output :;
-	 * Input : - [Visuale UI main button component](https://github.com/Moonshine-IDE/MockupVisualEditor/blob/features/issue_675_royale_generate_domino_visual_editor/src/view/domino/surfaceComponents/components/DominoButton.as)
-	 * Output example:  Domino - <button width='2in' widthtype='maximum' maxlines='1' wraptext='true' bgcolor='system'>
-	 *					<code event='click'><formula>URLOpen( "http://" + LoadBalancer_VirtualIP_Name + "/netmonitor.nsf/test?openform")</formula>
-	 *					</code>Test LB</button>
-	 * 				   Royale - &lt;j:Button text="%ViewComponentLabel%" click="{dispatchEvent(new ScreenEvent(ScreenEvent.EVENT_NAVIGATE_TO, %ViewComponentName%.NAME))}"
-	 * 					percentWidth="60"/&gt;
-	 * Domino format rule:	Contained by: %richtext.hot.inline;
-	 *						Contains: &lt;font&gt;, &lt;code &gt;
-	 * {@link #components.domino}
-	 * @see https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_BUTTON_ELEMENT_XML.html
-	 * @see https://github.com/Moonshine-IDE/VisualEditorConverterLib/blob/master/src/components/domino/DominoButton.as
+	 *  <p>Representation and converter for Visuale Button UI component</p>
+	 * 
+	 *  <p>This class work for  convert from Visuale Button UI components to target framework of button format.</p>
+	 *  Conversion status<ul>
+	 *   <li>Domino:  Complete</li>
+	 *   <li>Royale:  Partial</li>
+	 * </ul>
+	 * 
+	 * <p>Input:  view.domino.surfaceComponents.components.DominoButton</p>
+	 * <p> Example Domino output:</p>
+	 * <pre>
+	 * &lt;button width=&#39;2in&#39; widthtype=&#39;maximum&#39; maxlines=&#39;1&#39; wraptext=&#39;true&#39; bgcolor=&#39;system&#39;&gt;
+	 *	&lt;code event=&#39;click&#39;&gt;&lt;formula&gt;URLOpen( &quot;http://&quot; + LoadBalancer_VirtualIP_Name + &quot;/netmonitor.nsf/test?openform&quot;)&lt;/formula&gt;
+	 *	&lt;/code&gt;Test LB&lt;/button&gt;
+     * </pre>
+	 * 
+	 * <p> Example Royale output:</p>
+	 * <pre>
+	 * &lt;j:Button text="%ViewComponentLabel%" click="{dispatchEvent(new ScreenEvent(ScreenEvent.EVENT_NAVIGATE_TO, %ViewComponentName%.NAME))}"
+	 * 	percentWidth="60"/&gt;
+     * </pre>
+	 *
+	 * @see https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_BODY_ELEMENT_XML.html
+	 * @see https://github.com/Moonshine-IDE/VisualEditorConverterLib/blob/master/src/components/domino/Body.as
 	 */
 	public class DominoButton extends ComponentBase implements IDominoButton, IRoyaleComponentConverter
 	{

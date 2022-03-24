@@ -34,80 +34,89 @@ package components.domino
 
 	import spark.components.Alert;
 
+
 	/**
-	 * This class work for  convert from Visuale table  components  to target framework of body format.
-	 * Call different methods to convert the component to different target formats.
-	 * For now:
-	 * toCode() will convert the  Visuale table  components     to domino table  dxl format.
-	 * toRoyaleConvertCode() :TODO
-	 * For Test Input and Output :;
-	 * Input :  - [Visuale UI main DominoTable component](https://github.com/Moonshine-IDE/MockupVisualEditor/blob/features/issue_675_royale_generate_domino_visual_editor/src/view/domino/surfaceComponents/components/DominoTable.as)
-	 * Output example:  Domino -  * <table widthtype="fitmargins" cellbordercolor="yellow" 				leftmargin="1in" cellborderstyle="ridge" 						colorstyle="solid" bgcolor="silver" insidewrap="true" 				insidewrapheight="1in">
-	 *			<border style="solid" width="2px" color="olive" 					dropshadow="true" />
-	 *			<tablecolumn width="66.58%" />
-	 *			<tablecolumn width="33.42%" />
-	 *			<tablerow>
-	 *				<tablecell bgcolor="#e0ffbf">
-	 *					<pardef id="3" align="center" 									leftmargin="0.0313in" keepwithnext="true" 							keeptogether="true" />
-	 *					<par def="3">
-	 *						<picture height="341px" width="218px" 								alttext="caldesigns white two-piece 								dress">
-	 *							<imageref name="design1.jpg" />
-	 *							<caption>CALDesigns</caption>
-	 *						</picture>
-	 *					</par>
-	 *				</tablecell>
-	 *				<tablecell colorstyle="vgradient" bgcolor="none" 						altbgcolor="#a1e2ff">
-	 *					<pardef id="4" align="center" 									leftmargin="0.0313in" keepwithnext="true" 							keeptogether="true" />
-	 *					<par def="4" />
-	 *					<pardef id="5" leftmargin="0.0313in" 							keepwithnext="true" keeptogether="true" />
-	 *					<par def="5">
-	 *						<run>
-	 *							<font size="24pt" color="blue" />
+	 *  <p>Representation and converter from  Visuale table  components  </p>
+	 * 
+	 *  <p>This class work for  convert from Visuale table  components  to target framework of body format.</p>
+	 *  Conversion status<ul>
+	 *   <li>Domino:  Complete</li>
+	 *   <li>Royale:  TODO</li>
+	 * </ul>
+	 * 
+	 * <p>Input:  view.domino.surfaceComponents.components.DominoTable</p>
+	 * <p> Example Domino output:</p>
+	 * <pre>
+	 *   &lt;table widthtype=&quot;fitmargins&quot; cellbordercolor=&quot;yellow&quot; 				leftmargin=&quot;1in&quot; cellborderstyle=&quot;ridge&quot; 						colorstyle=&quot;solid&quot; bgcolor=&quot;silver&quot; insidewrap=&quot;true&quot; 				insidewrapheight=&quot;1in&quot;&gt;
+	 *			&lt;border style=&quot;solid&quot; width=&quot;2px&quot; color=&quot;olive&quot; 					dropshadow=&quot;true&quot; /&gt;
+	 *			&lt;tablecolumn width=&quot;66.58%&quot; /&gt;
+	 *			&lt;tablecolumn width=&quot;33.42%&quot; /&gt;
+	 *			&lt;tablerow&gt;
+	 *				&lt;tablecell bgcolor=&quot;#e0ffbf&quot;&gt;
+	 *					&lt;pardef id=&quot;3&quot; align=&quot;center&quot; 									leftmargin=&quot;0.0313in&quot; keepwithnext=&quot;true&quot; 							keeptogether=&quot;true&quot; /&gt;
+	 *					&lt;par def=&quot;3&quot;&gt;
+	 *						&lt;picture height=&quot;341px&quot; width=&quot;218px&quot; 								alttext=&quot;caldesigns white two-piece 								dress&quot;&gt;
+	 *							&lt;imageref name=&quot;design1.jpg&quot; /&gt;
+	 *							&lt;caption&gt;CALDesigns&lt;/caption&gt;
+	 *						&lt;/picture&gt;
+	 *					&lt;/par&gt;
+	 *				&lt;/tablecell&gt;
+	 *				&lt;tablecell colorstyle=&quot;vgradient&quot; bgcolor=&quot;none&quot; 						altbgcolor=&quot;#a1e2ff&quot;&gt;
+	 *					&lt;pardef id=&quot;4&quot; align=&quot;center&quot; 									leftmargin=&quot;0.0313in&quot; keepwithnext=&quot;true&quot; 							keeptogether=&quot;true&quot; /&gt;
+	 *					&lt;par def=&quot;4&quot; /&gt;
+	 *					&lt;pardef id=&quot;5&quot; leftmargin=&quot;0.0313in&quot; 							keepwithnext=&quot;true&quot; keeptogether=&quot;true&quot; /&gt;
+	 *					&lt;par def=&quot;5&quot;&gt;
+	 *						&lt;run&gt;
+	 *							&lt;font size=&quot;24pt&quot; color=&quot;blue&quot; /&gt;
 	 *							$250
-	 *						</run>
-	 *					</par>
-	 *				</tablecell>
-	 *			</tablerow>
-	 *			<tablerow>
-	 *				<tablecell bgcolor="#ffe1dc">
-	 *					<pardef id="6" leftmargin="0.0313in" 							keepwithnext="true" keeptogether="true" />
-	 *					<par def="6">
-	 *						<imagemap lastdefaultid="8" 									lastcircleid="1" lastrectangleid="55">
-	 *							<picture height="341px" width="219px" 									alttext="PERDesigns pink two-piece 									sleeveless dress">
-	 *								<border style="dot" width="1px" 										color="#ff4040" />
-	 *								<imageref name="design2.jpg" />
-	 *								<caption>PERDesigns</caption>
-	 *							</picture>
-	 *							<area type="circle" htmlid="bracelet">
-	 *								<point x="5" y="82" />
-	 *								<point x="81" y="158" />
-	 *								<urllink href="http://www.PERD
-	 *								esigns.com/jewelry" />
-	 *							</area>
-	 *						</imagemap>
-	 *					</par>
-	 *				</tablecell>
-	 *				<tablecell>
-	 *					<cellbackground repeat="hrepeat">
-	 *						<imageref name="graphic.gif" />
-	 *					</cellbackground>
-	 *					<par def="5" />
-	 *					<par>
-	 *						<run>
-	 *							<font size="24pt" color="blue" />
+	 *						&lt;/run&gt;
+	 *					&lt;/par&gt;
+	 *				&lt;/tablecell&gt;
+	 *			&lt;/tablerow&gt;
+	 *			&lt;tablerow&gt;
+	 *				&lt;tablecell bgcolor=&quot;#ffe1dc&quot;&gt;
+	 *					&lt;pardef id=&quot;6&quot; leftmargin=&quot;0.0313in&quot; 							keepwithnext=&quot;true&quot; keeptogether=&quot;true&quot; /&gt;
+	 *					&lt;par def=&quot;6&quot;&gt;
+	 *						&lt;imagemap lastdefaultid=&quot;8&quot; 									lastcircleid=&quot;1&quot; lastrectangleid=&quot;55&quot;&gt;
+	 *							&lt;picture height=&quot;341px&quot; width=&quot;219px&quot; 									alttext=&quot;PERDesigns pink two-piece 									sleeveless dress&quot;&gt;
+	 *								&lt;border style=&quot;dot&quot; width=&quot;1px&quot; 										color=&quot;#ff4040&quot; /&gt;
+	 *								&lt;imageref name=&quot;design2.jpg&quot; /&gt;
+	 *								&lt;caption&gt;PERDesigns&lt;/caption&gt;
+	 *							&lt;/picture&gt;
+	 *							&lt;area type=&quot;circle&quot; htmlid=&quot;bracelet&quot;&gt;
+	 *								&lt;point x=&quot;5&quot; y=&quot;82&quot; /&gt;
+	 *								&lt;point x=&quot;81&quot; y=&quot;158&quot; /&gt;
+	 *								&lt;urllink href=&quot;http://www.PERD
+	 *								esigns.com/jewelry&quot; /&gt;
+	 *							&lt;/area&gt;
+	 *						&lt;/imagemap&gt;
+	 *					&lt;/par&gt;
+	 *				&lt;/tablecell&gt;
+	 *				&lt;tablecell&gt;
+	 *					&lt;cellbackground repeat=&quot;hrepeat&quot;&gt;
+	 *						&lt;imageref name=&quot;graphic.gif&quot; /&gt;
+	 *					&lt;/cellbackground&gt;
+	 *					&lt;par def=&quot;5&quot; /&gt;
+	 *					&lt;par&gt;
+	 *						&lt;run&gt;
+	 *							&lt;font size=&quot;24pt&quot; color=&quot;blue&quot; /&gt;
 	 *							$300
-	 *						</run>
-	 *					</par>
-	 *				</tablecell>
-	 *			</tablerow>
-	 *		</table>
+	 *						&lt;/run&gt;
+	 *					&lt;/par&gt;
+	 *				&lt;/tablecell&gt;
+	 *			&lt;/tablerow&gt;
+	 *		&lt;/table&gt;
+	 * </pre> 
 	 *
-	 * 				   Royale - TODO
+	 * <p> Example Royale output:</p>
+	 * <pre>
+	 * TODO
+     * </pre>
 	 *
-	 * {@link #components.domino}
 	 * @see https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_TABLE_ELEMENT_XML.html
 	 * @see https://github.com/Moonshine-IDE/VisualEditorConverterLib/blob/master/src/components/domino/DominoTable.as
 	 */
+
 	public class DominoTable extends ComponentBase implements IDominoTable, IRoyaleComponentConverter
 	{
 		public static const DOMINO_ELEMENT_NAME:String = "table";

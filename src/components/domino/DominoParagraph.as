@@ -34,20 +34,29 @@ package components.domino
 	import utils.CodeMxmlUtils;
 
 	/**
-	 * This class work for  convert from paragraph element of Visuale label/text/field  components  to target framework of body format.
-	 * Call different methods to convert the component to different target formats.
-	 * For now:
-	 * toCode() will convert the  paragraph element    to domino calandar  dxl format.
-	 * toRoyaleConvertCode() will  convert the Visuale main container components to Rayale button format.
-	 * For Test Input and Output :;
-	 * Input : - [Visuale UI main DominoParagraph component](https://github.com/Moonshine-IDE/MockupVisualEditor/blob/features/issue_675_royale_generate_domino_visual_editor/src/view/domino/surfaceComponents/components/DominoParagraph.as)
-	 * Output example:	Domino - <par def="1019" paragraph="true" dominotype="paragraph" class="flexHorizontalLayout flexHorizontalLayoutLeft flexHorizontalLayoutTop"/>
-	 * 					Royale - TODO
+	 *  <p>Representation and converter from paragraph element  </p>
+	 * 
+	 *  <p>This class work for  convert from paragraph element of Visuale label/text/field  components  to target framework of body format.</p>
+	 *  Conversion status<ul>
+	 *   <li>Domino:  Complete</li>
+	 *   <li>Royale:  TODO</li>
+	 * </ul>
+	 * 
+	 * <p>Input:  view.domino.surfaceComponents.components.DominoParagraph</p>
+	 * <p> Example Domino output:</p>
+	 * <pre>
+	 *  &lt;par def=&quot;1019&quot; paragraph=&quot;true&quot; dominotype=&quot;paragraph&quot; class=&quot;flexHorizontalLayout flexHorizontalLayoutLeft flexHorizontalLayoutTop&quot;/&gt;
+	 * </pre> 
 	 *
-	 * {@link #components.domino}
+	 * <p> Example Royale output:</p>
+	 * <pre>
+	 * TODO
+     * </pre>
+	 *
 	 * @see https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_PARAGRAPH_ELEMENT_XML.html
 	 * @see https://github.com/Moonshine-IDE/VisualEditorConverterLib/blob/master/src/components/domino/DominoParagraph.as
 	 */
+
 
 	public class DominoParagraph extends ComponentBase implements IDominoParagraph, IRoyaleComponentConverter
 	{

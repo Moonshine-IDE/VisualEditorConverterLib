@@ -26,21 +26,31 @@ package components.domino
 
 	import utils.CodeMxmlUtils;
 
+
 	/**
-	 * This class work for  convert from run element of Visuale label/text/field  components  to target framework of body format.
-	 * Call different methods to convert the component to different target formats.
-	 * For now:
-	 * toCode() will convert the  run element    to domino calandar  dxl format.
-	 * toRoyaleConvertCode() - not work , the element only work for domino.
-	 * For Test Input and Output :;
-	 * Input : Visuale UI  run element   from Visual Editor
-	 * Output example:	Domino -  <run>{other some domino element}</run>
-	 *					Royale - TODO
+	 *  <p>Representation and converter from  run element of Visuale label/text/field   </p>
+	 * 
+	 *  <p>This class work for  convert from run element of Visuale label/text/field  components  to target framework of body format.</p>
+	 *  Conversion status<ul>
+	 *   <li>Domino:  Complete</li>
+	 *   <li>Royale:  TODO</li>
+	 * </ul>
+	 * 
+	 * <p>Input:  view.domino.surfaceComponents.components.DominoRun</p>
+	 * <p> Example Domino output:</p>
+	 * <pre>
+	 * &lt;run&gt;{other some domino element}&lt;/run&gt;
+	 * </pre> 
 	 *
-	 * {@link #components.domino}
+	 * <p> Example Royale output:</p>
+	 * <pre>
+	 * TODO
+     * </pre>
+	 *
 	 * @see https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_RUN_ELEMENT_XML.html
 	 * @see https://github.com/Moonshine-IDE/VisualEditorConverterLib/blob/master/src/components/domino/DominoRun.as
 	 */
+
 	public class DominoRun extends ComponentBase implements IDominoRun, IRoyaleComponentConverter
 	{
 		public static const DOMINO_ELEMENT_NAME:String = "run";

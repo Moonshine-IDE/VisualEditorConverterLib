@@ -26,24 +26,34 @@ package components.domino
 	import com.adobe.utils.StringUtil;
 
 	/**
-	 * This class work for  convert from Visuale label  components to target framework of body format.
-	 * Call different methods to convert the component to different target formats.
-	 * For now:
-	 * toCode() will convert the Visuale label  calandar to domino calandar  dxl format.
-	 * toRoyaleConvertCode() will  convert the Visuale main container components to Rayale button format.
-	 * For Test Input and Output :;
-	 * Input : - [Visuale UI main DominoInputText component](https://github.com/Moonshine-IDE/MockupVisualEditor/blob/features/issue_675_royale_generate_domino_visual_editor/src/view/domino/surfaceComponents/components/DominoLabel.as)
-	 * Output example:  Domino -		<par isNewLine="false">
-	 * 									<run>
-	 *										<font color="system" size="12pt" style="normal"/>Label
-	 *									</run>
-	 *								</par>
-	 *					Royale - TODO
+	 *  <p>Representation and converter for Visuale label  components </p>
+	 * 
+	 *  <p>This class work for  convert from Visuale label  components to target framework of domino format.</p>
+	 *  Conversion status<ul>
+	 *   <li>Domino:  Complete</li>
+	 *   <li>Royale:  Partial</li>
+	 * </ul>
+	 * 
+	 * <p>Input:  view.domino.surfaceComponents.components.DominoLabel</p>
+	 * <p> Example Domino output:</p>
+	 * <pre>
+	 * &lt;par isNewLine=&quot;false&quot;&gt;
+	 * 	&lt;run&gt;
+	 *	 &lt;font color=&quot;system&quot; size=&quot;12pt&quot; style=&quot;normal&quot;/&gt;Label
+	 *	&lt;/run&gt;
+	 *	&lt;/par&gt;
+	 * </pre> 
 	 *
-	 * {@link #components.domino}
+	 * <p> Example Royale output:</p>
+	 * <pre>
+	 * TODO
+     * </pre>
+	 *
 	 * @see https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_TEXT_ELEMENT_XML.html
 	 * @see https://github.com/Moonshine-IDE/VisualEditorConverterLib/blob/master/src/components/domino/DominoLabel.as
 	 */
+
+	
 	public class DominoLabel extends ComponentBase implements IDominoLabel, IRoyaleComponentConverter
 	{
 		public static const ROYALE_ELEMENT_NAME:String = "Label";

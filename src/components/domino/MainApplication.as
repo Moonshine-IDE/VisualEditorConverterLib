@@ -23,19 +23,29 @@ package components.domino
 	import components.common.RootDiv;
 
 	/**
-	* This class work for  convert from Visuale main container components to target framework of body format.
-	* Call different methods to convert the component to different target formats.
-	* For now: 
-	* toCode() will convert the Visuale main container components to domino button  dxl format.
-	* toRoyaleConvertCode() will  convert the Visuale main container components to Rayale button format.
-	* For Test Input and Output :; 
-	* Input : Visuale UI main container component from Visual Editor
-	* Output example:  Domino - <item name="$Body" sign="true"><richtext></richtext></item>
-	* 				 
-	* 					
-	* {@link #components.domino}
-	* TODO:This class not work with Domino Visual Editor at now .
-    */
+	 *  <p>Representation and converter from Visuale main container components </p>
+	 * 
+	 *  <p>This class work for  convert from Visuale main container components  to target framework of body format.</p>
+	 *  Conversion status<ul>
+	 *   <li>Domino:  TODO</li>
+	 *   <li>Royale:  TODO</li>
+	 * </ul>
+	 * 
+	 * <p>Input:  view.domino.surfaceComponents.components.MainApplication</p>
+	 * <p> Example Domino output:</p>
+	 * <pre>
+	 * TODO
+	 * </pre> 
+	 *
+	 * <p> Example Royale output:</p>
+	 * <pre>
+	 * TODO
+     * </pre>
+	 *
+	 * @see https://github.com/Moonshine-IDE/MockupVisualEditor/blob/master/src/view/domino/surfaceComponents/components/MainApplication.as
+	 */
+
+
 	public class MainApplication extends RootDiv implements IMainApplication
 	{
 		public function MainApplication()

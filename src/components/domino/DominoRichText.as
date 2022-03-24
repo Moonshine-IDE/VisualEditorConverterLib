@@ -29,10 +29,28 @@ package components.domino
 	import utils.StringHelperUtils;
 
 	/**
-	 * This class backup domino richtext class.
-	 * It just for improve the richtext in later.
-	 * TODO: this class not support in the domino visual editor
+	 *  <p>Representation and converter from domino richtext class  </p>
+	 * 
+	 *  <p>This class work for  convert fromdomino richtext class  to target framework of body format.</p>
+	 *  Conversion status<ul>
+	 *   <li>Domino:  TODO</li>
+	 *   <li>Royale:  TODO</li>
+	 * </ul>
+	 * 
+	 * <p>Input:  view.domino.surfaceComponents.components.DominoRichText</p>
+	 * <p> Example Domino output:</p>
+	 * <pre>
+	 * TODO
+	 * </pre> 
+	 *
+	 * <p> Example Royale output:</p>
+	 * <pre>
+	 * TODO
+     * </pre>
+	 *
+	 * @see https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_RICHTEXT_ROOT_ELEMENT_XML.html
 	 */
+
 
 	public class DominoRichText extends ComponentBase implements IDominoRichText, IRoyaleComponentConverter
 	{

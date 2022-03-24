@@ -25,22 +25,29 @@ package components.domino
 	import interfaces.dominoComponents.IDominoComputedText;
 
 	/**
-	 * This class work for  convert from Visuale input  components to target framework of body format.
-	 * Call different methods to convert the component to different target formats.
-	 * For now:
-	 * toCode() will convert the Visuale input  DominoComputedText to domino calandar  dxl format.
-	 * toRoyaleConvertCode() will  convert the Visuale main container components to Rayale DominoComputedText format.
-	 * For Test Input and Output :;
-	 * Input : - [Visuale UI main DominoComputedText component](https://github.com/Moonshine-IDE/MockupVisualEditor/blob/features/issue_675_royale_generate_domino_visual_editor/src/view/domino/surfaceComponents/components/DominoComputedText.as)
-	 * Output example:  Domino -   <par def='6'><run><font color='blue'/>
-	 * 							example string .....
-	 *							</run></par>
-	 *					Royale - TODO
+	 *  <p>Representation and converter for Visuale computed text  components </p>
+	 * 
+	 *  <p>This class work for  convert from Visuale input  components to target framework of body format.</p>
+	 *  Conversion status<ul>
+	 *   <li>Domino:  Complete</li>
+	 *   <li>Royale:  TODO</li>
+	 * </ul>
+	 * 
+	 * <p>Input:  view.domino.surfaceComponents.components.DominoComputedText</p>
+	 * <p> Example Domino output:</p>
+	 * <pre>
+	 *  &lt;par def=&#39;6&#39;&gt;&lt;run&gt;&lt;font color=&#39;blue&#39;/&gt;example string .....&lt;/run&gt;&lt;/par&gt;
+     * </pre>
+	 * 
+	 * <p> Example Royale output:</p>
+	 * <pre>
+	 * TODO
+     * </pre>
 	 *
-	 * {@link #components.domino}
 	 * @see https://github.com/Moonshine-IDE/VisualEditorConverterLib/blob/master/src/components/domino/DominoComputedText.as
 	 * @see https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_COMPUTEDTEXT_ELEMENT_XML.html
 	 */
+
 	public class DominoComputedText extends ComponentBase implements IDominoComputedText, IRoyaleComponentConverter
 	{
 

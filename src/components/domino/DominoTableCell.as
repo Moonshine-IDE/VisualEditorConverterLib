@@ -25,80 +25,40 @@ package components.domino
 	import interfaces.IRoyaleComponentConverter;
 	import interfaces.dominoComponents.IDominoTableCell;
 
+
 	/**
-	 * This class work for  convert from Visuale tableCell  components  to target framework of body format.
-	 * Call different methods to convert the component to different target formats.
-	 * For now:
-	 * toCode() will convert the  Visuale tableCell  components     to domino tableCell  dxl format.
-	 * toRoyaleConvertCode() :TODO
-	 * For Test Input and Output :;
-	 * Input : Visuale UI  tableCell component   from Visual Editor
-	 * Output example:  Domino -  * <table widthtype="fitmargins" cellbordercolor="yellow" 				leftmargin="1in" cellborderstyle="ridge" 						colorstyle="solid" bgcolor="silver" insidewrap="true" 				insidewrapheight="1in">
-	 *			<border style="solid" width="2px" color="olive" 					dropshadow="true" />
-	 *			<tablecolumn width="66.58%" />
-	 *			<tablecolumn width="33.42%" />
-	 *			<tablerow>
-	 *				<tablecell bgcolor="#e0ffbf">
-	 *					<pardef id="3" align="center" 									leftmargin="0.0313in" keepwithnext="true" 							keeptogether="true" />
-	 *					<par def="3">
-	 *						<picture height="341px" width="218px" 								alttext="caldesigns white two-piece 								dress">
-	 *							<imageref name="design1.jpg" />
-	 *							<caption>CALDesigns</caption>
-	 *						</picture>
-	 *					</par>
-	 *				</tablecell>
-	 *				<tablecell colorstyle="vgradient" bgcolor="none" 						altbgcolor="#a1e2ff">
-	 *					<pardef id="4" align="center" 									leftmargin="0.0313in" keepwithnext="true" 							keeptogether="true" />
-	 *					<par def="4" />
-	 *					<pardef id="5" leftmargin="0.0313in" 							keepwithnext="true" keeptogether="true" />
-	 *					<par def="5">
-	 *						<run>
-	 *							<font size="24pt" color="blue" />
-	 *							$250
-	 *						</run>
-	 *					</par>
-	 *				</tablecell>
-	 *			</tablerow>
-	 *			<tablerow>
-	 *				<tablecell bgcolor="#ffe1dc">
-	 *					<pardef id="6" leftmargin="0.0313in" 							keepwithnext="true" keeptogether="true" />
-	 *					<par def="6">
-	 *						<imagemap lastdefaultid="8" 									lastcircleid="1" lastrectangleid="55">
-	 *							<picture height="341px" width="219px" 									alttext="PERDesigns pink two-piece 									sleeveless dress">
-	 *								<border style="dot" width="1px" 										color="#ff4040" />
-	 *								<imageref name="design2.jpg" />
-	 *								<caption>PERDesigns</caption>
-	 *							</picture>
-	 *							<area type="circle" htmlid="bracelet">
-	 *								<point x="5" y="82" />
-	 *								<point x="81" y="158" />
-	 *								<urllink href="http://www.PERD
-	 *								esigns.com/jewelry" />
-	 *							</area>
-	 *						</imagemap>
-	 *					</par>
-	 *				</tablecell>
-	 *				<tablecell>
-	 *					<cellbackground repeat="hrepeat">
-	 *						<imageref name="graphic.gif" />
-	 *					</cellbackground>
-	 *					<par def="5" />
-	 *					<par>
-	 *						<run>
-	 *							<font size="24pt" color="blue" />
-	 *							$300
-	 *						</run>
-	 *					</par>
-	 *				</tablecell>
-	 *			</tablerow>
-	 *		</table>
+	 *  <p>Representation and converter from  Visuale tableCell  components  </p>
+	 * 
+	 *  <p>This class work for  convert from Visuale tableCell  components  to target framework of body format.</p>
+	 *  Conversion status<ul>
+	 *   <li>Domino:  Complete</li>
+	 *   <li>Royale:  TODO</li>
+	 * </ul>
+	 * 
+	 * <p>Input:  view.domino.surfaceComponents.components.DominoTableCell</p>
+	 * <p> Example Domino output:</p>
+	 * <pre>
+	 *  &lt;tablecell bgcolor=&quot;#e0ffbf&quot;&gt;
+	 *					&lt;pardef id=&quot;3&quot; align=&quot;center&quot; 									leftmargin=&quot;0.0313in&quot; keepwithnext=&quot;true&quot; 							keeptogether=&quot;true&quot; /&gt;
+	 *					&lt;par def=&quot;3&quot;&gt;
+	 *						&lt;picture height=&quot;341px&quot; width=&quot;218px&quot; 								alttext=&quot;caldesigns white two-piece 								dress&quot;&gt;
+	 *							&lt;imageref name=&quot;design1.jpg&quot; /&gt;
+	 *							&lt;caption&gt;CALDesigns&lt;/caption&gt;
+	 *						&lt;/picture&gt;
+	 *					&lt;/par&gt;
+	 *	&lt;/tablecell&gt;
+	 * </pre> 
 	 *
-	 * 				   Royale - TODO
+	 * <p> Example Royale output:</p>
+	 * <pre>
+	 * TODO
+     * </pre>
 	 *
-	 * {@link #components.domino}
 	 * @see https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_TABLECELL_ELEMENT_XML.html
 	 * @see https://github.com/Moonshine-IDE/VisualEditorConverterLib/blob/master/src/components/domino/DominoTableCell.as
 	 */
+
+	
 	public class DominoTableCell extends ComponentBase implements IDominoTableCell, IRoyaleComponentConverter
 	{
 

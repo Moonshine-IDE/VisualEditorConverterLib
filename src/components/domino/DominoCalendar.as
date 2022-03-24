@@ -24,25 +24,36 @@ package components.domino
 	import interfaces.IRoyaleComponentConverter;
 	import interfaces.components.ICalendar;
 
+
 	/**
-	 * This class work for  convert from Visuale main calandar components to target framework of body format.
-	 * Call different methods to convert the component to different target formats.
-	 * For now:
-	 * toCode() will convert the Visuale main container calandar to domino calandar  dxl format.
-	 * toRoyaleConvertCode() will  convert the Visuale main container components to Rayale button format.
-	 * For Test Input and Output :;
-	 * Input : - [Visuale UI main calandar component](https://github.com/Moonshine-IDE/MockupVisualEditor/blob/features/issue_675_royale_generate_domino_visual_editor/src/view/domino/surfaceComponents/components/DominoCalendar.as)
-	 * Output example:  Domino - <Calendar date="yearmonthday" dateformat="weekdaymonthdayyear"
-	 *					dateseparator1=" " dateseparator2="/" dateseparator3="/"
-	 *					dayformat="twodigitday" fourdigityearfor21stcentury="true" height="30"
-	 *					mode="popup" monthformat="twodigitmonth" pattern="MM/dd/yyyy" preference="usersetting"
-	 *					show="datetime" time="hourminute" timeseparator=":" value="StartDate" weekdayformat="shortname"
-	 *					width="100" yearformat="fourdigityear" zone="never"/>
-	 *					Royale - TODO
+	 *  <p>Representation and converter for Visuale calandar UI component</p>
+	 * 
+	 *  <p>his class work for  convert from Visuale main calandar components to target framework of body format</p>
+	 *  Conversion status<ul>
+	 *   <li>Domino:  Complete</li>
+	 *   <li>Royale:  TODO</li>
+	 * </ul>
+	 * 
+	 * <p>Input:  view.domino.surfaceComponents.components.DominoCalendar</p>
+	 * <p> Example Domino output:</p>
+	 * <pre>
+	 &lt;Calendar date=&quot;yearmonthday&quot; dateformat=&quot;weekdaymonthdayyear&quot;
+	 *					dateseparator1=&quot; &quot; dateseparator2=&quot;/&quot; dateseparator3=&quot;/&quot;
+	 *					dayformat=&quot;twodigitday&quot; fourdigityearfor21stcentury=&quot;true&quot; height=&quot;30&quot;
+	 *					mode=&quot;popup&quot; monthformat=&quot;twodigitmonth&quot; pattern=&quot;MM/dd/yyyy&quot; preference=&quot;usersetting&quot;
+	 *					show=&quot;datetime&quot; time=&quot;hourminute&quot; timeseparator=&quot;:&quot; value=&quot;StartDate&quot; weekdayformat=&quot;shortname&quot;
+	 *					width=&quot;100&quot; yearformat=&quot;fourdigityear&quot; zone=&quot;never&quot;/&gt;
+     * </pre>
+	 * 
+	 * <p> Example Royale output:</p>
+	 * <pre>
+	 * TODO
+     * </pre>
 	 *
-	 * {@link #components.domino}
 	 * @see https://github.com/Moonshine-IDE/VisualEditorConverterLib/blob/master/src/components/domino/DominoCalendar.as
 	 */
+
+	
 	public class DominoCalendar extends ComponentBase implements ICalendar, IRoyaleComponentConverter
 	{
 		public static const PRIME_FACES_XML_ELEMENT_NAME:String = "Calendar";

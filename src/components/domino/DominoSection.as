@@ -28,24 +28,33 @@ package components.domino
 	import interfaces.dominoComponents.IDominoSection;
 
 	/**
-	 * This class work for  convert from Visuale section  components  to target framework of body format.
-	 * Call different methods to convert the component to different target formats.
-	 * For now:
-	 * toCode() will convert the  Visuale section  components     to domino section  dxl format.
-	 * toRoyaleConvertCode() :TODO
-	 * For Test Input and Output :;
-	 * Input : Visuale UI  section component   from Visual Editor
-	 * Output example:  Domino -  <section expanded="false" showastext="false">
-	 *    <sectiontitle color="system">
-	 *      <font size="12pt" style="normal"/><text>Default Title</text>
-	 *    </sectiontitle>
-	 *    </section>
-	 * 				   Royale - TODO
+	 *  <p>Representation and converter from  Visuale section  components   </p>
+	 * 
+	 *  <p>This class work for  convert from Visuale section  components  to target framework of body format.</p>
+	 *  Conversion status<ul>
+	 *   <li>Domino:  Complete</li>
+	 *   <li>Royale:  TODO</li>
+	 * </ul>
+	 * 
+	 * <p>Input:  view.domino.surfaceComponents.components.DominoSection</p>
+	 * <p> Example Domino output:</p>
+	 * <pre>
+	 * &lt;section expanded=&quot;false&quot; showastext=&quot;false&quot;&gt;
+	 *    &lt;sectiontitle color=&quot;system&quot;&gt;
+	 *      &lt;font size=&quot;12pt&quot; style=&quot;normal&quot;/&gt;&lt;text&gt;Default Title&lt;/text&gt;
+	 *    &lt;/sectiontitle&gt;
+	 * &lt;/section&gt;
+	 * </pre> 
 	 *
-	 * {@link #components.domino}
+	 * <p> Example Royale output:</p>
+	 * <pre>
+	 * TODO
+     * </pre>
+	 *
 	 * @see https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_SECTION_ELEMENT_XML.html
 	 * @see https://github.com/Moonshine-IDE/VisualEditorConverterLib/blob/master/src/components/domino/DominoSection.as
 	 */
+
 	public class DominoSection extends ComponentBase implements IDominoSection, IRoyaleComponentConverter
 	{
 		public static const DOMINO_ELEMENT_NAME:String = "section";
