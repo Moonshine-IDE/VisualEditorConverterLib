@@ -1,3 +1,0 @@
-Text for description in components.domino:DominoTabView is not valid.
-org.xml.sax.SAXParseException; lineNumber: 18; columnNumber: 11; The end-tag for element type "table" must end with a '>' delimiter.
-

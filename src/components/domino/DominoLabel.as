@@ -20,10 +20,12 @@
 package components.domino
 {
 	import components.ComponentBase;
+	import components.DominoConponentHideBase;
 
 	import interfaces.IRoyaleComponentConverter;
 	import interfaces.dominoComponents.IDominoLabel;
 	import com.adobe.utils.StringUtil;
+	import interfaces.IDominoVisualHideOption;
 
 	/**
 	 *  <p>Representation and converter for Visuale label  components </p>
@@ -54,7 +56,7 @@ package components.domino
 	 */
 
 	
-	public class DominoLabel extends ComponentBase implements IDominoLabel, IRoyaleComponentConverter
+	public class DominoLabel extends DominoConponentHideBase implements IDominoLabel, IRoyaleComponentConverter
 	{
 		public static const ROYALE_ELEMENT_NAME:String = "Label";
 		public static const AMPERSAND:String = "&amp;"
