@@ -20,6 +20,7 @@
 package components.domino
 {
 	import components.ComponentBase;
+	import components.DominoConponentHideBase;
 	import components.NavigatorContent;
 
 	import converter.DominoConverter;
@@ -63,7 +64,7 @@ package components.domino
 
 	
 
-	public class DominoTabView extends ComponentBase implements IDominoTabView
+	public class DominoTabView extends DominoConponentHideBase implements IDominoTabView
 	{
 		public static const PRIME_FACES_XML_ELEMENT_NAME:String = "tabView";
         public static const ELEMENT_NAME:String = "TabView";

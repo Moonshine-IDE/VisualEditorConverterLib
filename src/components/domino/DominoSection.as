@@ -20,6 +20,7 @@
 package components.domino
 {
 	import components.ComponentBase;
+	import components.DominoConponentHideBase;
 
 	import global.domino.DominoGlobals;
 
@@ -55,7 +56,7 @@ package components.domino
 	 * @see https://github.com/Moonshine-IDE/VisualEditorConverterLib/blob/master/src/components/domino/DominoSection.as
 	 */
 
-	public class DominoSection extends ComponentBase implements IDominoSection, IRoyaleComponentConverter
+	public class DominoSection extends DominoConponentHideBase implements IDominoSection, IRoyaleComponentConverter
 	{
 		public static const DOMINO_ELEMENT_NAME:String = "section";
 		public static const ELEMENT_NAME:String = "Section";

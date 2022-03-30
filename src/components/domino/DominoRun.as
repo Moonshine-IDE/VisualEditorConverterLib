@@ -20,6 +20,7 @@
 package components.domino
 {
 	import components.ComponentBase;
+	import components.DominoConponentHideBase;
 
 	import interfaces.IRoyaleComponentConverter;
 	import interfaces.dominoComponents.IDominoRun;
@@ -51,7 +52,7 @@ package components.domino
 	 * @see https://github.com/Moonshine-IDE/VisualEditorConverterLib/blob/master/src/components/domino/DominoRun.as
 	 */
 
-	public class DominoRun extends ComponentBase implements IDominoRun, IRoyaleComponentConverter
+	public class DominoRun extends DominoConponentHideBase implements IDominoRun, IRoyaleComponentConverter
 	{
 		public static const DOMINO_ELEMENT_NAME:String = "run";
 		public static const ELEMENT_NAME:String = "run";

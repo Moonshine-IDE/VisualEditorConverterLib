@@ -20,6 +20,7 @@
 package components.domino
 {
 	import components.ComponentBase;
+	import components.DominoConponentHideBase;
 
 	import flash.utils.ByteArray;
 
@@ -58,7 +59,7 @@ package components.domino
 	 */
 
 
-	public class DominoParagraph extends ComponentBase implements IDominoParagraph, IRoyaleComponentConverter
+	public class DominoParagraph extends DominoConponentHideBase implements IDominoParagraph, IRoyaleComponentConverter
 	{
 		private static const PRIME_FACES_XML_ELEMENT_NAME:String = "par";
 		public static var ELEMENT_NAME:String = "Par";

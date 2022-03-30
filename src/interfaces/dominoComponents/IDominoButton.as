@@ -2,8 +2,9 @@ package interfaces.dominoComponents
 {
 	import interfaces.IComponent;
     import interfaces.IIsSelected;
+	import interfaces.IDominoVisualHideOption;
 
-    public interface IDominoButton extends IComponent, IIsSelected
+    public interface IDominoButton extends IDominoVisualHideOption,IComponent, IIsSelected
 	{
 		function get label():String;
 		function set label(value:String):void;	

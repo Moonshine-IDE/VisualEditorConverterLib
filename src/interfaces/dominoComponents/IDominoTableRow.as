@@ -1,6 +1,7 @@
 package interfaces.dominoComponents
 {
     import interfaces.IComponent;
+    import interfaces.IDominoVisualHideOption;
 
     /**
      * Domino table row dxl format ,more detail please view follow url
@@ -9,7 +10,7 @@ package interfaces.dominoComponents
      * Contains: <tablecell>
      */
 
-    public interface IDominoTableRow  extends IComponent
+    public interface IDominoTableRow  extends IDominoVisualHideOption,IComponent
     {  
         /**
          * tablabel

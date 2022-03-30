@@ -23,6 +23,7 @@ package components.domino
 	import components.GridItem;
 	import components.GridRow;
 	import components.common.Div;
+	import components.DominoConponentHideBase;
 
 	import converter.DominoConverter;
 
@@ -117,7 +118,7 @@ package components.domino
 	 * @see https://github.com/Moonshine-IDE/VisualEditorConverterLib/blob/master/src/components/domino/DominoTable.as
 	 */
 
-	public class DominoTable extends ComponentBase implements IDominoTable, IRoyaleComponentConverter
+	public class DominoTable extends DominoConponentHideBase implements IDominoTable, IRoyaleComponentConverter
 	{
 		public static const DOMINO_ELEMENT_NAME:String = "table";
 		public static const ELEMENT_NAME:String = "table";

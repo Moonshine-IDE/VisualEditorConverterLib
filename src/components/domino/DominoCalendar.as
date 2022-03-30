@@ -20,6 +20,7 @@
 package components.domino
 {
 	import components.ComponentBase;
+	import components.DominoConponentHideBase;
 
 	import interfaces.IRoyaleComponentConverter;
 	import interfaces.components.ICalendar;

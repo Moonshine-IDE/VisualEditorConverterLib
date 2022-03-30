@@ -2,6 +2,7 @@ package interfaces.dominoComponents
 {
     import interfaces.IComponent;
     import components.enum.ColorName;
+    import interfaces.IDominoVisualHideOption;
 
     /**
      * Domino table cell dxl format ,more detail please view follow url
@@ -10,7 +11,7 @@ package interfaces.dominoComponents
      * Contains: <cellbackground>, %richtext.block;
      */
 
-    public interface IDominoTableCell  extends IComponent
+    public interface IDominoTableCell  extends IDominoVisualHideOption,IComponent
     {  
 
         function get bgcolor():ColorName

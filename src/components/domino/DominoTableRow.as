@@ -20,6 +20,7 @@
 package components.domino
 {
 	import components.ComponentBase;
+	import components.DominoConponentHideBase;
 
 	import interfaces.IRoyaleComponentConverter;
 	import interfaces.dominoComponents.IDominoTableRow;
@@ -60,7 +61,7 @@ package components.domino
 	 */
 
 	
-	public class DominoTableRow extends ComponentBase implements IDominoTableRow, IRoyaleComponentConverter
+	public class DominoTableRow extends DominoConponentHideBase implements IDominoTableRow, IRoyaleComponentConverter
 	{
 
 		public function DominoTableRow()

@@ -10,8 +10,9 @@
 package interfaces.dominoComponents
 {
     import interfaces.IComponent;
+    import interfaces.IDominoVisualHideOption;
         
-    public interface IDominoPar  extends IComponent
+    public interface IDominoPar  extends IDominoVisualHideOption,IComponent
     {  
         function get def():String;
         function set def(value:String):void;

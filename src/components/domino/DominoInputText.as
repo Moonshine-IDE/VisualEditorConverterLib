@@ -39,6 +39,7 @@ package components.domino
 
 	import utils.CodeMxmlUtils;
 	import org.apache.flex.packageflexsdk.util.ApacheURLLoader;
+	import components.DominoConponentHideBase;
 
 
 	/**
@@ -71,7 +72,7 @@ package components.domino
 	 */
 
 	
-	public class DominoInputText extends ComponentBase implements IDominoInputText, IRoyaleComponentConverter
+	public class DominoInputText extends DominoConponentHideBase implements IDominoInputText, IRoyaleComponentConverter
 	{
 		public static const DOMINO_ELEMENT_NAME:String = "field";
 		public static const ELEMENT_NAME:String = "Field";

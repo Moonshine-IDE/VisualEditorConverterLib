@@ -20,6 +20,7 @@
 package components.domino
 {
 	import components.ComponentBase;
+	import components.DominoConponentHideBase;
 	import components.enum.ColorName;
 
 	import interfaces.IRoyaleComponentConverter;
@@ -59,7 +60,7 @@ package components.domino
 	 */
 
 	
-	public class DominoTableCell extends ComponentBase implements IDominoTableCell, IRoyaleComponentConverter
+	public class DominoTableCell extends DominoConponentHideBase implements IDominoTableCell, IRoyaleComponentConverter
 	{
 
 		public function DominoTableCell()

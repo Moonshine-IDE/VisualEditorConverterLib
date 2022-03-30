@@ -20,6 +20,7 @@
 package components.domino
 {
 	import components.ComponentBase;
+	import components.DominoConponentHideBase;
 
 	import interfaces.IRoyaleComponentConverter;
 	import interfaces.dominoComponents.IDominoComputedText;
@@ -48,7 +49,7 @@ package components.domino
 	 * @see https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_COMPUTEDTEXT_ELEMENT_XML.html
 	 */
 
-	public class DominoComputedText extends ComponentBase implements IDominoComputedText, IRoyaleComponentConverter
+	public class DominoComputedText extends DominoConponentHideBase implements IDominoComputedText, IRoyaleComponentConverter
 	{
 
 		public static const AMPERSAND:String = "&amp;"

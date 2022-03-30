@@ -20,6 +20,7 @@
 package components.domino
 {
 	import components.ComponentBase;
+	import components.DominoConponentHideBase;
 
 	import interfaces.IRoyaleComponentConverter;
 	import interfaces.dominoComponents.IDominoFont;
@@ -50,7 +51,7 @@ package components.domino
 	 * @see https://github.com/Moonshine-IDE/VisualEditorConverterLib/blob/master/src/components/domino/DominoFont.as
 	 */
 
-	public class DominoFont extends ComponentBase implements IDominoFont, IRoyaleComponentConverter
+	public class DominoFont extends DominoConponentHideBase implements IDominoFont, IRoyaleComponentConverter
 	{
 		public static const DOMINO_ELEMENT_NAME:String = "font";
 		public static const ELEMENT_NAME:String = "font";

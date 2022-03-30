@@ -26,6 +26,7 @@ package components.domino
 	import interfaces.dominoComponents.IDominoLabel;
 	import com.adobe.utils.StringUtil;
 	import interfaces.IDominoVisualHideOption;
+	
 
 	/**
 	 *  <p>Representation and converter for Visuale label  components </p>

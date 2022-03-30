@@ -2,8 +2,9 @@ package interfaces.dominoComponents
 {
 	import interfaces.IDominoComponent;
     import interfaces.IIsSelected;
+	import interfaces.IDominoVisualHideOption;
 
-    public interface IDominoTabView extends IDominoComponent, IIsSelected
+    public interface IDominoTabView extends IDominoVisualHideOption,IDominoComponent, IIsSelected
 	{
 		function get orientation():String;
 		function set orientation(value:String):void;

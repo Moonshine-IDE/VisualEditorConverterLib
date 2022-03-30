@@ -20,6 +20,7 @@
 package components.domino
 {
 	import components.ComponentBase;
+	import components.DominoConponentHideBase;
 
 	import interfaces.IRoyaleComponentConverter;
 	import interfaces.dominoComponents.IDominoPar;
@@ -50,7 +51,7 @@ package components.domino
 	 * @see https://github.com/Moonshine-IDE/VisualEditorConverterLib/blob/master/src/components/domino/DominoPar.as
 	 */
 
-	public class DominoPar extends ComponentBase implements IDominoPar, IRoyaleComponentConverter
+	public class DominoPar extends DominoConponentHideBase implements IDominoPar, IRoyaleComponentConverter
 	{
 		public static const DOMINO_ELEMENT_NAME:String = "par";
 		public static const ELEMENT_NAME:String = "par";

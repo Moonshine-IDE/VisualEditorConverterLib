@@ -2,13 +2,14 @@ package interfaces.dominoComponents
 {
     import interfaces.IComponent;
     import interfaces.IIsSelected;
+    import interfaces.IDominoVisualHideOption;
     /** dxl example of text 
     <par def='6'><run><font color='blue'/>
     Example string...
     </run></par>
         */
 
-    public interface IDominoLabel extends IComponent, IIsSelected
+    public interface IDominoLabel extends IDominoVisualHideOption,IComponent, IIsSelected
     {
         function get text():String;
         function set text(value:String):void;

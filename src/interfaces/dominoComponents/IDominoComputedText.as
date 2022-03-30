@@ -2,13 +2,14 @@ package interfaces.dominoComponents
 {
     import interfaces.IComponent;
     import interfaces.IIsSelected;
+    import interfaces.IDominoVisualHideOption;
     /** dxl example of text 
     <par def='6'><run><font color='blue'/>
     Example string...
     </run></par>
         */
 
-    public interface IDominoComputedText extends IComponent, IIsSelected
+    public interface IDominoComputedText extends IDominoVisualHideOption,IComponent, IIsSelected
     {
         function get formula():String;
         function set formula(value:String):void;

@@ -2,8 +2,9 @@ package interfaces.dominoComponents
 {
 	import interfaces.IComponent;
     import interfaces.IIsSelected;
+	import interfaces.IDominoVisualHideOption;
 
-    public interface IDominoInputText extends IComponent, IIsSelected
+    public interface IDominoInputText extends IDominoVisualHideOption,IComponent, IIsSelected
 	{
 		function get text():String;
 		function set text(value:String):void;

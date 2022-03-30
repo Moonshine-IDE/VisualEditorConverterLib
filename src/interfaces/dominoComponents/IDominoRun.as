@@ -9,8 +9,9 @@
 package interfaces.dominoComponents
 {
     import interfaces.IComponent;
+    import interfaces.IDominoVisualHideOption;
 
-    public interface IDominoRun  extends IComponent
+    public interface IDominoRun  extends IComponent,IDominoVisualHideOption
     {  
         //If true, the block of text is in passthru HTML format. 
         function get html():Boolean;

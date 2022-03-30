@@ -20,6 +20,7 @@
 package components.domino
 {
 	import components.ComponentBase;
+	import components.DominoConponentHideBase;
 
 	import interfaces.IRoyaleComponentConverter;
 	import interfaces.dominoComponents.IDominoButton;
@@ -50,7 +51,7 @@ package components.domino
 	 * @see https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_BODY_ELEMENT_XML.html
 	 * @see https://github.com/Moonshine-IDE/VisualEditorConverterLib/blob/master/src/components/domino/Body.as
 	 */
-	public class DominoButton extends ComponentBase implements IDominoButton, IRoyaleComponentConverter
+	public class DominoButton extends DominoConponentHideBase implements IDominoButton, IRoyaleComponentConverter
 	{
 		public static const DOMINO_ELEMENT_NAME:String = "button";
 		public static const ELEMENT_NAME:String = "button";

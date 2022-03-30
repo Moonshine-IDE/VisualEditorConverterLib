@@ -20,6 +20,7 @@
 package components.domino
 {
 	import components.ComponentBase;
+	import components.DominoConponentHideBase;
 
 	import interfaces.IRoyaleComponentConverter;
 	import interfaces.dominoComponents.IDominoRichText;
@@ -52,7 +53,7 @@ package components.domino
 	 */
 
 
-	public class DominoRichText extends ComponentBase implements IDominoRichText, IRoyaleComponentConverter
+	public class DominoRichText extends DominoConponentHideBase implements IDominoRichText, IRoyaleComponentConverter
 	{
 		public static const DOMINO_ELEMENT_NAME:String = "richtext";
 		public static const ELEMENT_NAME:String = "Richtext";
