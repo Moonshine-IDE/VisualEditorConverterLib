@@ -456,6 +456,13 @@ package components.domino
 				parXML.@dominotype = "label";
 			}
 
+			if (this.hide)
+			{
+				parXML.@hide = this.hide;
+			}
+
+
+
 			return parXML;
 		}
 

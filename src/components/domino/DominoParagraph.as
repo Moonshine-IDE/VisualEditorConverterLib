@@ -180,11 +180,17 @@ package components.domino
 				xml.@hidewhen = this.hidewhenFormula;
 			}
 
+			if (this.hide)
+			{
+				xml.@hide = this.hide;
+			}
+
 			for (var i:int = 0; i < elementCount; i++)
 			{
 				var element:IComponent = component["getElementAt"](i) as IComponent;
 				var exml:XML = element.toCode();
 				var hidewhen:String = exml.@hidewhen;
+				var hide:String = exml.@hide;
 				//Alert.show("exml:"+exml.toXMLString());
 				if (exml.name() == "par")
 				{
@@ -197,6 +203,11 @@ package components.domino
 						xml.@hidewhen = hidewhen;
 					}
 
+				}
+
+				if(hide)
+				{
+					xml.@hide = hide;
 				}
 				xml.appendChild(exml);
 			}

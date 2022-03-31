@@ -304,6 +304,10 @@ package components.common
 				}
 
 			} 
+
+			if(xml.@hide&& xml.@hide!=""){
+				pardefXml.@hide=xml.@hide;
+			}
 			return pardefXml;
 		}
 	}
