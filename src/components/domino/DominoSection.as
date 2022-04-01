@@ -283,6 +283,13 @@ package components.domino
 				section_xml.@onedit = this.onedit
 			}
 
+			if (this.hide)
+			{
+				section_xml.@hide = this.hide
+			}
+
+			
+
 			if (this.onpreview)
 			{
 				section_xml.@onpreview = this.onpreview

@@ -169,6 +169,20 @@ package components.common
 					
 					xml.appendChild(toPerDefCode(element.toCode()));
 				}
+
+				if(className=="view.domino.surfaceComponents.components::DominoLabel" || 
+				className=="view.domino.surfaceComponents.components::DominoInputText" ||
+				className=="view.domino.surfaceComponents.components::DominoButton" ||
+				className=="view.domino.surfaceComponents.components::DominoComputedText" ||
+				className=="view.domino.surfaceComponents.components::DominoSection" ||
+				className=="view.domino.surfaceComponents.components::DominoTable"){
+					xml.appendChild(toHidePerDefCode(element.toCode()));
+					
+				}
+
+				
+
+				
 				//fix domino table postin with the div
 				if(className=="view.domino.surfaceComponents.components::DominoTable"){
 					if(xml.@hpostion=="left"){
@@ -308,6 +322,19 @@ package components.common
 			if(xml.@hide&& xml.@hide!=""){
 				pardefXml.@hide=xml.@hide;
 			}
+			return pardefXml;
+		}
+
+		public function toHidePerDefCode( xml:XML):XML
+		{
+			if(xml!=null){
+				var pardefXml:XML = new XML("<pardef id=\""+DominoGlobals.PardefDivId+"\" "+" dominotype=\"domino\"/>" );
+				if(xml.@hide&& xml.@hide!=""){
+					pardefXml.@hide=xml.@hide;
+					xml.@def=DominoGlobals.PardefDivId;
+				}
+			}
+
 			return pardefXml;
 		}
 	}

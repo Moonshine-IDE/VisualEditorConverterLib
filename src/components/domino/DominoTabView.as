@@ -262,6 +262,8 @@ package components.domino
 				
 			}
 
+			
+
 			//Alert.show("widthIn:"+widthIn);
 
 			if(this.widthIn==0){
@@ -281,6 +283,10 @@ package components.domino
 			}
 			if(this.minrowheight != null){
 				xml.@minrowheight=this.minrowheight;
+			}
+
+			if(this.hide){
+				xml.@hide= this.hide;
 			}
 
             var tabCount:int = component["numElements"];

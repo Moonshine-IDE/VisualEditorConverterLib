@@ -199,6 +199,10 @@ package components.domino
 				this.formula = " "
 			}
 
+			if(this.hide){
+				xml.@hide=this.hide;
+			}
+
 			var code_xml:XML = new XML("<code event=\"value\"/>");
 			var formula_xml:XML = new XML("<formula>" + this.formula + "</formula>");
 			code_xml.appendChild(formula_xml);

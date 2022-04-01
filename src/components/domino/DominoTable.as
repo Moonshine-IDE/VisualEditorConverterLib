@@ -507,6 +507,10 @@ package components.domino
 				xml.@leftmargin = this.leftmargin;
 			}
 
+			if(this.hide){
+				xml.@hide = this.hide;
+			}
+
 			var tableColumnNumElements:int = 0;
 			//widthtype='fixedleft' refwidth='2.5000in'
 			//add attirive

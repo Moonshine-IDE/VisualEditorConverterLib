@@ -392,6 +392,10 @@ package components.domino
 				xml.appendChild(font_xml);
 			}
 
+			if(this.hide){
+				xml.@hide= this.hide;
+			}
+
 			if (this.code)
 			{
 				if (this.codeEvent == null)

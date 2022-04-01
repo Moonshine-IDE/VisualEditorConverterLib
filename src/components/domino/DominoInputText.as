@@ -689,6 +689,7 @@ package components.domino
 			this.keywordsformula = xml.@keywordsformula;
 			this.inputvalidation = xml.@inputvalidation;
 			this.inputtranslation = xml.@inputtranslation;
+			this.hide = xml.@hide;
 			//this.formula=xml.@formula;
 
 			if (this.type == "number")
@@ -785,6 +786,12 @@ package components.domino
 			{
 				xml.@hidewhen = this.hidewhen;
 				par_xml.@hidewhen = this.hidewhen;
+			}
+
+			if (this.hide)
+			{
+				xml.@hide = this.hide;
+				par_xml.@hide = this.hide;
 			}
 			if (this.inputvalidation)
 			{
