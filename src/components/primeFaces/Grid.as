@@ -5,7 +5,7 @@ package components.primeFaces
     import components.GridRow;
 	import components.common.Div;
 
-	import converter.Converter;
+	import converter.PrimeFacesConverter;
 
     import interfaces.IComponent;
     import interfaces.components.IGrid;
@@ -60,7 +60,7 @@ package components.primeFaces
                     var rowXML:XML = elementsXML[row];
                     var colListXML:XMLList = rowXML.elements();
 					
-					var conv:Converter = Converter.getInstance();
+					var conv:PrimeFacesConverter = PrimeFacesConverter.getInstance();
                     var gridRow:Object = conv.getNewInstanceOfComponent(GridRow.GRIDROW_NAME);
  					gridRow.percentWidth = gridRow.percentHeight = 100;
 

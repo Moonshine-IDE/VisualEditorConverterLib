@@ -2,54 +2,29 @@
 package converter
 {
 	import flash.events.EventDispatcher;
-	
-	import components.primeFaces.AutoCompleteDropDownList;
-	import components.primeFaces.Button;
-	import components.primeFaces.Calendar;
-	import components.primeFaces.DataTable;
-	import components.common.Div;
-	import components.primeFaces.Fieldset;
-	import components.primeFaces.Grid;
-	import components.primeFaces.Include;
-	import components.primeFaces.InputMask;
-	import components.primeFaces.InputNumber;
-	import components.primeFaces.InputText;
-	import components.primeFaces.InputTextarea;
-	import components.primeFaces.MainApplication;
-	import components.primeFaces.OutputLabel;
-	import components.primeFaces.PanelGrid;
-	import components.common.RootDiv;
-	import components.primeFaces.SelectBooleanCheckbox;
-	import components.primeFaces.SelectOneListbox;
-	import components.primeFaces.SelectOneMenu;
-	import components.primeFaces.SelectOneRadio;
-	import components.primeFaces.TabView;
-	import components.primeFaces.TextEditor;
-	import components.primeFaces.Tree;
-	
+
 	import events.ConverterErrorEvent;
 	import events.ConverterEvent;
 	
 	import interfaces.IComponent;
+	import interfaces.ILookup;
 	import interfaces.ISurface;
-	
+
+	import surface.PrimeFacesLookup;
+
 	import surface.SurfaceMockup;
-	import components.Container;
-	import components.GridRow;
-	import components.GridItem;
-	import components.NavigatorContent;
 
 	[Event(name="conversionCompleted", type="events.ConverterEvent")]
-	public class Converter extends EventDispatcher
+	public class PrimeFacesConverter extends EventDispatcher
 	{
-		private static var _instance:Converter;
+		private static var _instance:PrimeFacesConverter;
 		
-		public var classLookup:Object;
+		public var classLookup:ILookup;
 		private var componentsSurface:ISurface;
 		
 		private var unknownItemsExceptions:Array;
 		
-		public function Converter(classLookup:Object = null)
+		public function PrimeFacesConverter(classLookup:ILookup = null)
 		{
 	        if(_instance)
 			{
@@ -66,20 +41,20 @@ package converter
 	
 		public function getNewInstanceOfComponent(name:String):IComponent
 		{
-			if ((name in this.classLookup))
+			if ((name in this.classLookup.lookup))
 			{
-				var type:Class = this.classLookup[name];
+				var type:Class = this.classLookup.lookup[name];
 				return new type() as IComponent;
 			}
 
 			return null;						
 	    }		
 	
-	    public static function getInstance(classLookup:Object = null):Converter  
+	    public static function getInstance(classLookup:ILookup = null):PrimeFacesConverter
 	    {
 	        if(!_instance)
 	        {
-	            new Converter(classLookup);
+	            new PrimeFacesConverter(classLookup);
 	        } 
 
 	        return _instance;
@@ -111,7 +86,7 @@ package converter
 		private function itemFromXML(parent:Object, itemXML:XML):IComponent
 		{
 			var name:String = itemXML.localName();
-			if(!(name in this.classLookup))
+			if(!(name in this.classLookup.lookup))
 			{
 				if (!this.unknownItemsExceptions.some(function(itemName:String, index:int, arr:Array):Boolean {
 						return itemName == name;
@@ -143,17 +118,23 @@ package converter
 			return item;
 		}
 		
-		private function fillClassLookupWidthData(classLookup:Object):void
+		private function fillClassLookupWidthData(classLookup:ILookup):void
 		{
 			if (classLookup)
 			{
 				this.classLookup = classLookup;
 				return;
 			}
-			
-			this.classLookup = {};
-			this.classLookup["RootDiv"] = RootDiv;
+
+			this.classLookup = new PrimeFacesLookup();
+
+			/*this.classLookup["RootDiv"] = RootDiv;
 			this.classLookup["MainApplication"] = MainApplication;
+			this.classLookup[Container.ELEMENT_NAME] = Container;
+			this.classLookup[GridRow.GRIDROW_NAME] = GridRow;
+			this.classLookup[GridItem.GRIDITEM_NAME] = GridItem;
+			this.classLookup[NavigatorContent.NAVIGATORCONTENT_NAME] = NavigatorContent;
+
 			this.classLookup[Div.ELEMENT_NAME] = Div;
 			this.classLookup[TabView.ELEMENT_NAME] = TabView;
 			this.classLookup[PanelGrid.ELEMENT_NAME] = PanelGrid;
@@ -174,11 +155,7 @@ package converter
 			this.classLookup[InputNumber.ELEMENT_NAME] = InputNumber;
 			this.classLookup[Tree.ELEMENT_NAME] = Tree;
 			this.classLookup[AutoCompleteDropDownList.ELEMENT_NAME] = AutoCompleteDropDownList;
-			this.classLookup[SelectOneListbox.ELEMENT_NAME] = SelectOneListbox;
-			this.classLookup[Container.ELEMENT_NAME] = Container;
-			this.classLookup[GridRow.GRIDROW_NAME] = GridRow;
-			this.classLookup[GridItem.GRIDITEM_NAME] = GridItem;
-			this.classLookup[NavigatorContent.NAVIGATORCONTENT_NAME] = NavigatorContent;
+			this.classLookup[SelectOneListbox.ELEMENT_NAME] = SelectOneListbox;*/
 		}
 	}
 }

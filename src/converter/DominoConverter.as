@@ -20,49 +20,27 @@
 package converter
 {
     import flash.events.EventDispatcher;
-    
-   
-
-    import events.ConverterErrorEvent;
 	import events.ConverterEvent;
 	
 	import interfaces.IComponent;
+	import interfaces.ILookup;
 	import interfaces.ISurface;
-	
+
+	import surface.DominoLookup;
+
 	import surface.SurfaceMockup;
-	import components.Container;
-	import components.GridRow;
-	import components.GridItem;
-	import components.NavigatorContent;
-
-    import components.domino.Body;
-    import components.domino.DominoInputText;
-	import components.domino.DominoTable;
-	import components.domino.DominoLabel;
-	import components.domino.DominoSection;
-	import components.domino.DominoTabView;
-	import components.domino.DominoCalendar;
-	import components.DominoRow;
-
-	import components.GridItem;
-	import components.common.Div;
-
-	import mx.controls.Alert;
-	import components.NavigatorContent;
-	// import view.primeFaces.supportClasses.Container;
-	// import view.primeFaces.supportClasses.GridRow;
 
     [Event(name="conversionCompleted", type="events.ConverterEvent")]
 	public class DominoConverter extends EventDispatcher
 	{
 		private static var _instance:DominoConverter;
 		
-		public var classLookup:Object;
+		public var classLookup:ILookup;
 		private var componentsSurface:ISurface;
 		
 		private var unknownItemsExceptions:Array;
 		
-		public function DominoConverter(classLookup:Object = null)
+		public function DominoConverter(classLookup:ILookup = null)
 		{
 	        if(_instance)
 			{
@@ -79,16 +57,16 @@ package converter
 	
 		public function getNewInstanceOfComponent(name:String):IComponent
 		{
-			if ((name in this.classLookup))
+			if ((name in this.classLookup.lookup))
 			{
-				var type:Class = this.classLookup[name];
+				var type:Class = this.classLookup.lookup[name];
 				return new type() as IComponent;
 			}
 
 			return null;						
 	    }		
 	
-	    public static function getInstance(classLookup:Object = null):DominoConverter  
+	    public static function getInstance(classLookup:ILookup = null):DominoConverter
 	    {
 	        if(!_instance)
 	        {
@@ -97,17 +75,6 @@ package converter
 
 	        return _instance;
 	    }
-
-		// public function fromXMLOnly(xml:XML):void
-		// {	
-		// 	var surfaceMockup:SurfaceMockup = new SurfaceMockup();
-
-		// 	this.fromXML(surfaceMockup, xml);
-			
-		// 	var code:XML = surfaceMockup.toDominoCode();
-		// 	this.dispatchEvent(new ConverterEvent(ConverterEvent.CONVERSION_COMPLETED, code));
-		// }	
-
 
 		public function fromXMLAutoConvert(xml:XML):SurfaceMockup
 		{	
@@ -143,7 +110,7 @@ package converter
 		{
 			var name:String = itemXML.localName();
 			//we don't need handel "<div>" in the domino visual editor
-			if(!(name in this.classLookup))
+			if(!(name in this.classLookup.lookup))
 			{
 				if (!this.unknownItemsExceptions.some(function(itemName:String, index:int, arr:Array):Boolean {
 						return itemName == name;
@@ -186,22 +153,22 @@ package converter
 			
 		}
 		
-		private function fillClassLookupWidthData(classLookup:Object):void
+		private function fillClassLookupWidthData(classLookup:ILookup):void
 		{
 			if (classLookup)
 			{
 				this.classLookup = classLookup;
 				return;
 			}
-			
-			this.classLookup = {};
+
+			this.classLookup = new DominoLookup();
+			//this.classLookup = {};
             /**
              * For let the xml format can work with old code 
              * we need setting the root as domino body .
              */
-            this.classLookup["RootDiv"] = Body;
+           /* this.classLookup["RootDiv"] = Body;
 			this.classLookup["MainApplication"] = Body;
-			
 			this.classLookup["Body"] = Body;
 
             this.classLookup[DominoTable.PRIMEFACE_ELEMENT_NAME] = DominoTable;
@@ -212,12 +179,10 @@ package converter
 			this.classLookup[DominoRow.DOMINOROW_NAME] = DominoRow;
 			this.classLookup[GridItem.GRIDITEM_NAME] = GridItem;
 			this.classLookup[Div.ELEMENT_NAME] = Div;
-			// this.classLookup[GridRow.ELEMENT_NAME] = GridRow;
-			// this.classLookup[view.primeFaces.supportClasses.Container.ELEMENT_NAME] = view.primeFaces.supportClasses.Container;
 			this.classLookup[DominoSection.ELEMENT_NAME] = DominoSection;
 			this.classLookup[DominoTabView.ELEMENT_NAME] = DominoTabView;
 			this.classLookup[DominoCalendar.ELEMENT_NAME] = DominoCalendar;
-			this.classLookup[NavigatorContent.NAVIGATORCONTENT_NAME] = NavigatorContent;
+			this.classLookup[NavigatorContent.NAVIGATORCONTENT_NAME] = NavigatorContent;*/
 			
 		}
 	}

@@ -45,6 +45,7 @@ package components.domino
 	public class DominoLabel extends ComponentBase implements IDominoLabel, IRoyaleComponentConverter
 	{
 		public static const ROYALE_ELEMENT_NAME:String = "Label";
+		public static const ELEMENT_NAME:String = "Label";
 		public static const AMPERSAND:String = "&amp;"
 		public static const APOSTROPHE:String = "&apos;"
 		public static const DBL_QUOTES:String = "&quot;"

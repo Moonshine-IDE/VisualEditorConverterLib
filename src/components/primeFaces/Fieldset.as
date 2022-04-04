@@ -8,7 +8,7 @@ package components.primeFaces
 	
 	import utils.CodeMxmlUtils;
 	import utils.CodeXMLUtils;
-	import converter.Converter;
+	import converter.PrimeFacesConverter;
 	
 	public class Fieldset extends ComponentBase implements IFieldset
 	{
@@ -141,7 +141,7 @@ package components.primeFaces
 			}
 			else
 			{
-				item = Converter.getInstance().getNewInstanceOfComponent(Div.ELEMENT_NAME);
+				item = PrimeFacesConverter.getInstance().getNewInstanceOfComponent(Div.ELEMENT_NAME);
 			}
 			
 			for (var itemIndex:int; itemIndex < childCount; itemIndex++)

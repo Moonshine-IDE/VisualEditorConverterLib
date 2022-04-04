@@ -64,7 +64,7 @@ package
 		import components.primeFaces.AutoCompleteDropDownList; AutoCompleteDropDownList;
 
 		//Other classes
-		import converter.Converter; Converter;
+		import converter.PrimeFacesConverter; PrimeFacesConverter;
 		import components.Container; Container;
 		import surface.SurfaceMockup; SurfaceMockup;
 		import vo.SelectItem; SelectItem;

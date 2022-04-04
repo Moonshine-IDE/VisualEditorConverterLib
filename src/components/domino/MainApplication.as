@@ -37,6 +37,8 @@ package components.domino
     */
 	public class MainApplication extends RootDiv implements IMainApplication
 	{
+		public static const ELEMENT_NAME:String = "MainApplication";
+
 		public function MainApplication()
 		{
 			super();

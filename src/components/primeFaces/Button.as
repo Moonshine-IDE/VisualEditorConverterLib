@@ -1,7 +1,6 @@
 package components.primeFaces
 {
 	import interfaces.components.IButton;
-	import interfaces.IComponent;
 	import components.ComponentBase;
 	import utils.CodeMxmlUtils;
 	import utils.CodeXMLUtils;
