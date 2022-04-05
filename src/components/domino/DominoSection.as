@@ -27,6 +27,7 @@ package components.domino
 	import interfaces.IComponent;
 	import interfaces.IRoyaleComponentConverter;
 	import interfaces.dominoComponents.IDominoSection;
+	import global.domino.DominoGlobals;
 
 	/**
 	 *  <p>Representation and converter from  Visuale section  components   </p>
@@ -269,6 +270,10 @@ package components.domino
 		public function toCode():XML
 		{
 
+			var par_xml:XML;
+			if(this.hide){
+				par_xml = new XML("<par dominotype=\"computedtext\" def=\""+DominoGlobals.PardefDivId+"\" hide=\""+this.hide+"\"/>");
+			}
 			//for domino input field element must contain into par node
 			//var code_string:String=fixSpecailCharacter(this.text)
 			var section_xml:XML = new XML("<section/>");
@@ -424,6 +429,9 @@ package components.domino
 						section_xml.appendChild(exml);
 					}
 				}
+			}
+			if(this.hide){
+				section_xml=par_xml.appendChild(section_xml);
 			}
 
 			return section_xml;

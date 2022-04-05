@@ -40,6 +40,7 @@ package components.domino
 	import utils.CodeMxmlUtils;
 	import org.apache.flex.packageflexsdk.util.ApacheURLLoader;
 	import components.DominoConponentHideBase;
+	import global.domino.DominoGlobals;
 
 
 	/**
@@ -766,7 +767,13 @@ package components.domino
 		public function toCode():XML
 		{
 			//for domino input field element must contain into par node
-			var par_xml:XML = new XML("<par type=\"dominoField\"/>");
+			var par_xml:XML;
+			if(this.hide){
+				par_xml = new XML("<par dominotype=\"computedtext\" def=\""+DominoGlobals.PardefDivId+"\"/>");
+			}else{
+				par_xml = new XML("<par dominotype=\"computedtext\"/>");
+			}
+			
 			var xml:XML = new XML("<" + CodeMxmlUtils.getMXMLTagNameWithSelection(this, DOMINO_ELEMENT_NAME) + "/>");
 
 			/** Domino specified Propertys start

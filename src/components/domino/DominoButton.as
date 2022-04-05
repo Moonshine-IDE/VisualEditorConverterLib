@@ -24,6 +24,7 @@ package components.domino
 
 	import interfaces.IRoyaleComponentConverter;
 	import interfaces.dominoComponents.IDominoButton;
+	import global.domino.DominoGlobals;
 
 	/**
 	 *  <p>Representation and converter for Visuale Button UI component</p>
@@ -327,7 +328,15 @@ package components.domino
 
 		public function toCode():XML
 		{
-			var par_xml:XML = new XML("<par type=\"dominoField\"/>");
+			var par_xml:XML 
+
+			if(this.hide){
+				par_xml	= new XML("<par type=\"dominoField\" def=\""+DominoGlobals.PardefDivId+"\" hide=\""+this.hide+"\"/>");
+			}else{
+				par_xml	= new XML("<par type=\"dominoField\" />");		
+			}
+			
+		
 			if (this.label == null)
 			{
 				this.label = "default";

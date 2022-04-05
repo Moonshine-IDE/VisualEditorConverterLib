@@ -21,6 +21,7 @@ package components.domino
 {
 	import components.ComponentBase;
 	import components.DominoConponentHideBase;
+	import global.domino.DominoGlobals;
 
 	import interfaces.IRoyaleComponentConverter;
 	import interfaces.dominoComponents.IDominoComputedText;
@@ -192,7 +193,13 @@ package components.domino
 
 			//for domino input field element must contain into par node
 			//var code_string:String=fixSpecailCharacter(this.text)
-			var par_xml:XML = new XML("<par dominotype=\"computedtext\"/>");
+			var par_xml:XML
+			if(this.hide){
+				par_xml = new XML("<par dominotype=\"computedtext\" def=\""+DominoGlobals.PardefDivId+"\" hide=\""+this.hide+"\"/>");
+			}else{
+				par_xml = new XML("<par dominotype=\"computedtext\"/>");
+			}
+			
 			var xml:XML = new XML("<computedtext/>");
 			if (this.formula == null || this.formula == "")
 			{

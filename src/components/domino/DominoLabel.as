@@ -26,6 +26,7 @@ package components.domino
 	import interfaces.dominoComponents.IDominoLabel;
 	import com.adobe.utils.StringUtil;
 	import interfaces.IDominoVisualHideOption;
+	import global.domino.DominoGlobals;
 	
 
 	/**
@@ -459,6 +460,7 @@ package components.domino
 			if (this.hide)
 			{
 				parXML.@hide = this.hide;
+				parXML.@def = DominoGlobals.PardefDivId;
 			}
 
 

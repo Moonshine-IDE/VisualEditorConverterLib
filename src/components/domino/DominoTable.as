@@ -34,6 +34,7 @@ package components.domino
 	import interfaces.dominoComponents.IDominoTable;
 
 	import spark.components.Alert;
+	import global.domino.DominoGlobals;
 
 
 	/**
@@ -479,6 +480,10 @@ package components.domino
 		public function toCode():XML
 		{
 			var xml:XML = new XML("<table/>");
+			var par_xml:XML;
+			if(this.hide){
+				par_xml = new XML("<par dominotype=\"computedtext\" def=\""+DominoGlobals.PardefDivId+"\"/>");
+			}
 
 			var widthIn:Number = 0
 
@@ -594,6 +599,10 @@ package components.domino
 				}
 
 				xml.appendChild(rowXML);
+			}
+
+			if(this.hide){
+				par_xml.appendChild(xml);
 			}
 
 			return xml;
