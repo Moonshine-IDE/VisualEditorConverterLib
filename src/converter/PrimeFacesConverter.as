@@ -20,8 +20,7 @@ package converter
 		private static var _instance:PrimeFacesConverter;
 		
 		public var classLookup:ILookup;
-		private var componentsSurface:ISurface;
-		
+
 		private var unknownItemsExceptions:Array;
 		
 		public function PrimeFacesConverter(classLookup:ILookup = null)
@@ -63,23 +62,22 @@ package converter
 		public function fromXMLOnly(xml:XML):void
 		{	
 			var surfaceMockup:SurfaceMockup = new SurfaceMockup();
-
 			this.fromXML(surfaceMockup, xml);
-			
+
 			var code:XML = surfaceMockup.toCode();
 			this.dispatchEvent(new ConverterEvent(ConverterEvent.CONVERSION_COMPLETED, code));
 		}		
 		
 		public function fromXML(surface:ISurface, xml:XML):void
 		{
-			this.componentsSurface = surface;
-			
 			var elements:XMLList = xml.elements();
 			var elementCount:int = elements.length();
+			var localSurface:ISurface = surface;
 			for(var i:int = 0; i < elementCount; i++)
 			{
 				var elementXML:XML = elements[i];
-				itemFromXML(surface, elementXML);
+				var component:IComponent = itemFromXML(surface, elementXML);
+				localSurface.addItem(component);
 			}
 		}
 		
@@ -114,7 +112,7 @@ package converter
 			}
 			item.fromXML(itemXML, this.itemFromXML);
 			parent.addElement(item);
-			componentsSurface.addItem(item);
+
 			return item;
 		}
 		

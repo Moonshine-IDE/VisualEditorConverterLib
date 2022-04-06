@@ -21,7 +21,9 @@ package converter
 {
     import flash.events.EventDispatcher;
 	import events.ConverterEvent;
-	
+
+	import interfaces.IComponent;
+
 	import interfaces.IComponent;
 	import interfaces.ILookup;
 	import interfaces.ISurface;
@@ -34,9 +36,7 @@ package converter
 	public class DominoConverter extends EventDispatcher
 	{
 		private static var _instance:DominoConverter;
-		
 		public var classLookup:ILookup;
-		private var componentsSurface:ISurface;
 		
 		private var unknownItemsExceptions:Array;
 		
@@ -76,31 +76,30 @@ package converter
 	        return _instance;
 	    }
 
-		public function fromXMLAutoConvert(xml:XML):SurfaceMockup
+		public function fromXMLOnly(xml:XML):SurfaceMockup
 		{	
 			var surfaceMockup:SurfaceMockup = new SurfaceMockup();
-			//this.componentsSurface = surfaceMockup;
 			this.fromXML(surfaceMockup, xml);
-			
-			//var code:XML = surfaceMockup.toDominoCode();
+
 			return surfaceMockup;
 		}	
 		
 		public function fromXML(surface:ISurface, xml:XML):void
 		{
-		
-			if(xml!=null){
-				this.componentsSurface = surface;
-				
+			if(xml != null)
+			{
+				var localSurface:ISurface = surface;
 				var elements:XMLList = xml.elements();
-				if(elements!=null){
+				if(elements!=null)
+				{
 					var elementCount:int = elements.length();
 			
 					for(var i:int = 0; i < elementCount; i++)
 					{
 						var elementXML:XML = elements[i];
 					
-						itemFromXML(surface, elementXML);
+						var component:IComponent = itemFromXML(surface, elementXML);
+						localSurface.addItem(component);
 					}
 				}
 			}
@@ -136,21 +135,17 @@ package converter
 				//dispatchEvent(new ConverterErrorEvent(errorMessage));
 				//throw new Error(errorMessage);
 				return null;
-			}else{
+			}
+			else
+			{
 				 item.fromXML(itemXML, this.itemFromXML);
-				 if(parent!=null){
+				 if(parent!=null)
+				 {
 					 parent.addElement(item);
 				 }
-				 if(componentsSurface!=null){
-					componentsSurface.addItem(item);
-				 }
-				 
-			
-				return item;
 
+				return item;
 			}
-			
-			
 		}
 		
 		private function fillClassLookupWidthData(classLookup:ILookup):void
