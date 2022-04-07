@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package unitTests
 {
-    import converter.Converter;
+    import converter.PrimeFacesConverter;
 
     import events.ConverterErrorEvent;
 
@@ -30,14 +30,14 @@ package unitTests
 
     public class BaseTest
     {
-        protected var componentsConverter:Converter;
+        protected var componentsConverter:PrimeFacesConverter;
 
         protected var conversionCompletedHandler:Function;
         protected var conversionFailedHandler:Function;
 
         public function setUpTest():void
         {
-            componentsConverter = Converter.getInstance();
+            componentsConverter = PrimeFacesConverter.getInstance();
         }
 
         public function tearDownTest():void

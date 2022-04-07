@@ -52,7 +52,7 @@ package components.domino
 
 	public class DominoComputedText extends DominoConponentHideBase implements IDominoComputedText, IRoyaleComponentConverter
 	{
-
+		public static const ELEMENT_NAME:String = "ComputedText";
 		public static const AMPERSAND:String = "&amp;"
 		public static const APOSTROPHE:String = "&apos;"
 		public static const DBL_QUOTES:String = "&quot;"

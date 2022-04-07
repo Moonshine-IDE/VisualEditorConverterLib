@@ -4,7 +4,7 @@ package components.primeFaces
 	import components.NavigatorContent;
 	import components.common.Div;
 
-	import converter.Converter;
+	import converter.PrimeFacesConverter;
 
 	import interfaces.IComponent;
 	import interfaces.components.ITabView;
@@ -93,11 +93,11 @@ package components.primeFaces
                 var tabXML:XML = tabsXML[i];
                 var tabChildren:XMLList = tabXML.Div;
 
-                var tab:IComponent = Converter.getInstance().getNewInstanceOfComponent(NavigatorContent.NAVIGATORCONTENT_NAME);
+                var tab:IComponent = PrimeFacesConverter.getInstance().getNewInstanceOfComponent(NavigatorContent.NAVIGATORCONTENT_NAME);
                 tab["label"] = tabXML.@title;
                 if (tabChildren.length() == 0)
                 {
-					var internalDiv:Object = Converter.getInstance().getNewInstanceOfComponent(Div.ELEMENT_NAME);
+					var internalDiv:Object = PrimeFacesConverter.getInstance().getNewInstanceOfComponent(Div.ELEMENT_NAME);
 			 		tab["addEelement"](internalDiv);
                 }
 				
@@ -166,7 +166,7 @@ package components.primeFaces
                 }
                 else
                 {
-                    container = Converter.getInstance().getNewInstanceOfComponent(Div.ELEMENT_NAME);
+                    container = PrimeFacesConverter.getInstance().getNewInstanceOfComponent(Div.ELEMENT_NAME);
                     container.fromXML(childXML, callback);
 
                     tab["addElement"](container);
