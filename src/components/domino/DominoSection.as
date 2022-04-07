@@ -271,9 +271,7 @@ package components.domino
 		{
 
 			var par_xml:XML;
-			if(this.hide){
-				par_xml = new XML("<par dominotype=\"dominoSection\" def=\""+DominoGlobals.PardefDivId+"\" hide=\""+this.hide+"\"/>");
-			}
+			
 			//for domino input field element must contain into par node
 			//var code_string:String=fixSpecailCharacter(this.text)
 			var section_xml:XML = new XML("<section/>");
@@ -361,11 +359,17 @@ package components.domino
 				section_title_xml_str = "<sectiontitle>" + "<font  ";
 			}
 
+			
+
 
 			section_title_xml_str = section_title_xml_str + "  style=\"" + this.titleFontStyle + "\" />" + "<text>" + this.title + "</text></sectiontitle>";
 
 
 			var section_title_xml:XML = new XML(section_title_xml_str);
+			if(this.hide){
+				section_title_xml.@pardef=DominoGlobals.PardefDivId;
+			}
+			
 			// section_title_xml.appendChild(section_title_text_str);
 			if (this.titleColor)
 			{
@@ -422,17 +426,15 @@ package components.domino
 
 						if (exml.name() == "run")
 						{
-							var par_xml:XML = new XML("<par/>");
-							exml = par_xml.appendChild(exml);
+							var par_xml_run:XML = new XML("<par/>");
+							exml = par_xml_run.appendChild(exml);
 						}
 
 						section_xml.appendChild(exml);
 					}
 				}
 			}
-			if(this.hide){
-				section_xml=par_xml.appendChild(section_xml);
-			}
+			
 
 			return section_xml;
 		}
