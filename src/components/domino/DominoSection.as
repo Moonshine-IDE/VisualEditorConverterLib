@@ -272,7 +272,7 @@ package components.domino
 
 			var par_xml:XML;
 			if(this.hide){
-				par_xml = new XML("<par dominotype=\"computedtext\" def=\""+DominoGlobals.PardefDivId+"\" hide=\""+this.hide+"\"/>");
+				par_xml = new XML("<par dominotype=\"dominoSection\" def=\""+DominoGlobals.PardefDivId+"\" hide=\""+this.hide+"\"/>");
 			}
 			//for domino input field element must contain into par node
 			//var code_string:String=fixSpecailCharacter(this.text)

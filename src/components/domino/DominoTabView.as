@@ -320,6 +320,12 @@ package components.domino
 			 xml=this.addPar(xml,null);
 			 xml=this.removeBlankPar(xml,null);
 			 //xml=this.fixField(xml,null);
+			var par_xml:XML;
+			if(this.hide){
+				par_xml = new XML("<par dominotype=\"dominoTabView\" def=\""+DominoGlobals.PardefDivId+"\"  hide=\""+this.hide+"\"/>");
+			    par_xml.appendChild(xml);
+				xml=par_xml;
+			}
             return xml;
 		}
 		public function toRoyaleConvertCode():XML

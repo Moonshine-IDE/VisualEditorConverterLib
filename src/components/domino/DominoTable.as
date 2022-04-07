@@ -482,7 +482,7 @@ package components.domino
 			var xml:XML = new XML("<table/>");
 			var par_xml:XML;
 			if(this.hide){
-				par_xml = new XML("<par dominotype=\"computedtext\" def=\""+DominoGlobals.PardefDivId+"\"/>");
+				par_xml = new XML("<par dominotype=\"dominoTable\" def=\""+DominoGlobals.PardefDivId+"\"/>");
 			}
 
 			var widthIn:Number = 0

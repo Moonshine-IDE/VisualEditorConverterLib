@@ -331,9 +331,9 @@ package components.domino
 			var par_xml:XML 
 
 			if(this.hide){
-				par_xml	= new XML("<par type=\"dominoField\" def=\""+DominoGlobals.PardefDivId+"\" hide=\""+this.hide+"\"/>");
+				par_xml	= new XML("<par type=\"dominoButton\" def=\""+DominoGlobals.PardefDivId+"\" hide=\""+this.hide+"\"/>");
 			}else{
-				par_xml	= new XML("<par type=\"dominoField\" />");		
+				par_xml	= new XML("<par type=\"dominoButton\" />");		
 			}
 			
 		

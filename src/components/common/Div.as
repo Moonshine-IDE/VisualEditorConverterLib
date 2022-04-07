@@ -175,7 +175,8 @@ package components.common
 				className=="view.domino.surfaceComponents.components::DominoButton" ||
 				className=="view.domino.surfaceComponents.components::DominoComputedText" ||
 				className=="view.domino.surfaceComponents.components::DominoSection" ||
-				className=="view.domino.surfaceComponents.components::DominoTable"){
+				className=="view.domino.surfaceComponents.components::DominoTable"||
+				className=="view.domino.surfaceComponents.components::DominoTabView"){
 					xml.appendChild(toHidePerDefCode(element.toCode()));
 					// if(xml.name()!=="par" ){
 					// 	var parXml:XML = new XML("<par def= \""+DominoGlobals.PardefDivId+"\"/>");

@@ -769,9 +769,9 @@ package components.domino
 			//for domino input field element must contain into par node
 			var par_xml:XML;
 			if(this.hide){
-				par_xml = new XML("<par dominotype=\"computedtext\" def=\""+DominoGlobals.PardefDivId+"\"/>");
+				par_xml = new XML("<par dominotype=\"dominoInputText\" def=\""+DominoGlobals.PardefDivId+"\"/>");
 			}else{
-				par_xml = new XML("<par dominotype=\"computedtext\"/>");
+				par_xml = new XML("<par dominotype=\"dominoInputText\"/>");
 			}
 			
 			var xml:XML = new XML("<" + CodeMxmlUtils.getMXMLTagNameWithSelection(this, DOMINO_ELEMENT_NAME) + "/>");
