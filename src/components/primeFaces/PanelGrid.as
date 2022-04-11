@@ -8,6 +8,7 @@ package components.primeFaces
 	import converter.PrimeFacesConverter;
 
 	import interfaces.IComponent;
+	import interfaces.ILookup;
 	import interfaces.components.IDiv;
 	import interfaces.components.IPanelGrid;
 
@@ -116,7 +117,7 @@ package components.primeFaces
 		/**
 		 * Complexity of this component requires separate implementation of this method on client sight
 		 */
-		public function fromXML(xml:XML, childFromXMLCallback:Function):void
+		public function fromXML(xml:XML, childFromXMLCallback:Function, lookup:ILookup = null):void
 		{
 			this.setComponentSize(xml);
 
@@ -195,7 +196,7 @@ package components.primeFaces
 			
 			if (component == null)
 			{
-				createBodyChildren();
+				createBodyChildren(lookup);
 			}
 		}
 		
@@ -285,7 +286,7 @@ package components.primeFaces
 			return headerRowTitles[selectedRowIndex][selectedColumnIndex];
 		}
 			
-		private function createBodyChildren():void
+		private function createBodyChildren(lookup:ILookup = null):void
 		{
 			if (!bodyRowsXML && callbackXML == null) return;
 			
@@ -293,15 +294,15 @@ package components.primeFaces
 			{
 				var rowXML:XML = bodyRowsXML[rowIndex];
 				var columnsXML:XMLList = bodyRowsXML[rowIndex].Column;
-				var container:Object = PrimeFacesConverter.getInstance().getNewInstanceOfComponent(GridRow.GRIDROW_NAME);
+				var container:Object = PrimeFacesConverter.getNewInstanceOfComponent(lookup, GridRow.GRIDROW_NAME);
 				
 				for (var colIndex:int = 0; colIndex < this.columnCount; colIndex++)
                 {
                     var colXML:XML = columnsXML[colIndex];
                     var divs:XMLList = colXML.Div;
 	
-					var item:IComponent = PrimeFacesConverter.getInstance().getNewInstanceOfComponent(GridItem.GRIDITEM_NAME);
-					var div:IDiv = PrimeFacesConverter.getInstance().getNewInstanceOfComponent(Div.ELEMENT_NAME) as IDiv;
+					var item:IComponent = PrimeFacesConverter.getNewInstanceOfComponent(lookup, GridItem.GRIDITEM_NAME);
+					var div:IDiv = PrimeFacesConverter.getNewInstanceOfComponent(lookup, Div.ELEMENT_NAME) as IDiv;
 					
 					if (divs.length() > 0)
                     {

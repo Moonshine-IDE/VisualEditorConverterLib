@@ -30,6 +30,7 @@ package components.domino
 	import global.domino.DominoGlobals;
 
 	import interfaces.IComponent;
+	import interfaces.ILookup;
 	import interfaces.IRoyaleComponentConverter;
 	import interfaces.dominoComponents.IDominoTable;
 
@@ -407,7 +408,7 @@ package components.domino
 			return _component ? _component : this;
 		}
 
-		public function fromXML(xml:XML, childFromXMLCallback:Function):void
+		public function fromXML(xml:XML, childFromXMLCallback:Function, lookup:ILookup = null):void
 		{
 			
 			this.setComponentSize(xml);
@@ -431,10 +432,8 @@ package components.domino
 					var rowXML:XML = elementsXML[row];
 					
 					var colListXML:XMLList = rowXML.elements();
-				
-					var dominoconv:DominoConverter = DominoConverter.getInstance();
-				
-					var tableRow:Object = dominoconv.getNewInstanceOfComponent(GridRow.GRIDROW_NAME);
+
+					var tableRow:Object = DominoConverter.getNewInstanceOfComponent(lookup, GridRow.GRIDROW_NAME);
 		
 					tableRow.percentWidth = tableRow.percentHeight = 100;
 
@@ -444,14 +443,14 @@ package components.domino
 						var colXML:XML = colListXML[col];
 						if (colXML.length() > 0)
 						{
-							var tableItem:Object = dominoconv.getNewInstanceOfComponent(GridItem.GRIDITEM_NAME);
+							var tableItem:Object = DominoConverter.getNewInstanceOfComponent(lookup, GridItem.GRIDITEM_NAME);
 
 							tableItem.percentWidth = tableRow.percentHeight = 100;
 
 							var divXMLList:XMLList = colXML.elements();
 							var divXML:XML = divXMLList[0];
 
-							var div:Object = dominoconv.getNewInstanceOfComponent(Div.ELEMENT_NAME);
+							var div:Object = DominoConverter.getNewInstanceOfComponent(lookup, Div.ELEMENT_NAME);
 							div.percentWidth = div.percentHeight = 100;
 
 							tableItem.addElement(div);

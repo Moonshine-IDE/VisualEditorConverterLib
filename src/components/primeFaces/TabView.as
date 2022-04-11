@@ -7,6 +7,7 @@ package components.primeFaces
 	import converter.PrimeFacesConverter;
 
 	import interfaces.IComponent;
+	import interfaces.ILookup;
 	import interfaces.components.ITabView;
 
 	import utils.CodeMxmlUtils;
@@ -76,7 +77,7 @@ package components.primeFaces
 			return _component ? _component : this;
 		}
 		
-		public function fromXML(xml:XML, childFromXMLCallback:Function):void
+		public function fromXML(xml:XML, childFromXMLCallback:Function, lookup:ILookup = null):void
 		{
 			this.setComponentSize(xml);
 			
@@ -93,16 +94,16 @@ package components.primeFaces
                 var tabXML:XML = tabsXML[i];
                 var tabChildren:XMLList = tabXML.Div;
 
-                var tab:IComponent = PrimeFacesConverter.getInstance().getNewInstanceOfComponent(NavigatorContent.NAVIGATORCONTENT_NAME);
+                var tab:IComponent = PrimeFacesConverter.getNewInstanceOfComponent(lookup, NavigatorContent.NAVIGATORCONTENT_NAME);
                 tab["label"] = tabXML.@title;
                 if (tabChildren.length() == 0)
                 {
-					var internalDiv:Object = PrimeFacesConverter.getInstance().getNewInstanceOfComponent(Div.ELEMENT_NAME);
+					var internalDiv:Object = PrimeFacesConverter.getNewInstanceOfComponent(lookup, Div.ELEMENT_NAME);
 			 		tab["addEelement"](internalDiv);
                 }
 				
 				component["addElement"](tab);
-                this.tabFromXML(tab, tabXML, childFromXMLCallback);
+                this.tabFromXML(tab, tabXML, childFromXMLCallback, lookup);
             }
 			
 			component["selectedIndex"] = xml.@selectedIndex;
@@ -148,7 +149,7 @@ package components.primeFaces
             return xml;
 		}
 
-		private function tabFromXML(tab:IComponent, xml:XML, callback:Function):void
+		private function tabFromXML(tab:IComponent, xml:XML, callback:Function, lookup:ILookup = null):void
         {
             var elementsXML:XMLList = xml.elements();
             var childCount:int = elementsXML.length();
@@ -166,7 +167,7 @@ package components.primeFaces
                 }
                 else
                 {
-                    container = PrimeFacesConverter.getInstance().getNewInstanceOfComponent(Div.ELEMENT_NAME);
+                    container = PrimeFacesConverter.getNewInstanceOfComponent(lookup, Div.ELEMENT_NAME);
                     container.fromXML(childXML, callback);
 
                     tab["addElement"](container);

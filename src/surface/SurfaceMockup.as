@@ -1,5 +1,6 @@
 package surface
 {
+	import interfaces.ILookup;
 	import interfaces.IRoyaleComponentConverter;
 	import interfaces.ISurface;
 	import interfaces.IComponent;
@@ -90,7 +91,7 @@ package surface
 			return null;
 		}
 			
-		public function fromXML(xml:XML, childFromXMLCallback:Function):void
+		public function fromXML(xml:XML, childFromXMLCallback:Function, lookup:ILookup = null):void
 		{
 			throw new Error("Surface doesn't implement fromXML method!");
 		}

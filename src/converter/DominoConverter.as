@@ -19,72 +19,25 @@
 ////////////////////////////////////////////////////////////////////////////////
 package converter
 {
-    import flash.events.EventDispatcher;
-	import events.ConverterEvent;
-
-	import interfaces.IComponent;
-
 	import interfaces.IComponent;
 	import interfaces.ILookup;
 	import interfaces.ISurface;
 
-	import surface.DominoLookup;
-
 	import surface.SurfaceMockup;
 
-    [Event(name="conversionCompleted", type="events.ConverterEvent")]
-	public class DominoConverter extends EventDispatcher
+	public class DominoConverter
 	{
-		private static var _instance:DominoConverter;
-		public var classLookup:ILookup;
-		
-		private var unknownItemsExceptions:Array;
-		
-		public function DominoConverter(classLookup:ILookup = null)
-		{
-	        if(_instance)
-			{
-	            throw new Error("Use getInstance()");
-	        } 
-	        _instance = this;
+		//private var unknownItemsExceptions:Array;
 
-			fillClassLookupWidthData(classLookup);
-						
-			this.unknownItemsExceptions = [
-				"Column"
-			];
-	    }
-	
-		public function getNewInstanceOfComponent(name:String):IComponent
-		{
-			if ((name in this.classLookup.lookup))
-			{
-				var type:Class = this.classLookup.lookup[name];
-				return new type() as IComponent;
-			}
-
-			return null;						
-	    }		
-	
-	    public static function getInstance(classLookup:ILookup = null):DominoConverter
-	    {
-	        if(!_instance)
-	        {
-	            new DominoConverter(classLookup);
-	        } 
-
-	        return _instance;
-	    }
-
-		public function fromXMLOnly(xml:XML):SurfaceMockup
+		public static function fromXMLOnly(lookup:ILookup, xml:XML):SurfaceMockup
 		{	
 			var surfaceMockup:SurfaceMockup = new SurfaceMockup();
-			this.fromXML(surfaceMockup, xml);
+			fromXML(surfaceMockup, lookup, xml);
 
 			return surfaceMockup;
 		}	
 		
-		public function fromXML(surface:ISurface, xml:XML):void
+		public static function fromXML(surface:ISurface, lookup:ILookup, xml:XML):void
 		{
 			if(xml != null)
 			{
@@ -98,37 +51,37 @@ package converter
 					{
 						var elementXML:XML = elements[i];
 					
-						var component:IComponent = itemFromXML(surface, elementXML);
+						var component:IComponent = itemFromXML(surface, lookup, elementXML);
 						localSurface.addItem(component);
 					}
 				}
 			}
 		}
 		
-		private function itemFromXML(parent:Object, itemXML:XML):IComponent
+		private static function itemFromXML(parent:Object, lookup:ILookup, itemXML:XML):IComponent
 		{
 			var name:String = itemXML.localName();
 			//we don't need handel "<div>" in the domino visual editor
-			if(!(name in this.classLookup.lookup))
+			if(!(name in lookup.lookup))
 			{
-				if (!this.unknownItemsExceptions.some(function(itemName:String, index:int, arr:Array):Boolean {
+				/*if (!this.unknownItemsExceptions.some(function(itemName:String, index:int, arr:Array):Boolean {
 						return itemName == name;
 					}))
 				{				
 					dispatchEvent(new ConverterEvent(ConverterEvent.UNKNOWN_CONVERSION_ITEM, null, name));
-				}
+				}*/
 				
                 var elements:XMLList = itemXML.elements();
                 var elementCount:int = elements.length();
                 for(var i:int = 0; i < elementCount; i++)
                 {
                    var elementXML:XML = elements[i];
-                   this.itemFromXML(parent, elementXML);
+                   itemFromXML(parent, lookup, elementXML);
                 }
 				return null;
 			}
 			//Alert.show("domino convert name:"+name);
-			var item:IComponent = getNewInstanceOfComponent(name);
+			var item:IComponent = getNewInstanceOfComponent(lookup, name);
 			if(item === null)
 			{
 				//var errorMessage:String = "Failed to create surface component: " + name;
@@ -138,7 +91,7 @@ package converter
 			}
 			else
 			{
-				 item.fromXML(itemXML, this.itemFromXML);
+				 item.fromXML(itemXML, itemFromXML, lookup);
 				 if(parent!=null)
 				 {
 					 parent.addElement(item);
@@ -147,38 +100,16 @@ package converter
 				return item;
 			}
 		}
-		
-		private function fillClassLookupWidthData(classLookup:ILookup):void
+
+		public static function getNewInstanceOfComponent(lookup:ILookup, name:String):IComponent
 		{
-			if (classLookup)
+			if ((name in lookup.lookup))
 			{
-				this.classLookup = classLookup;
-				return;
+				var type:Class = lookup.lookup[name];
+				return new type() as IComponent;
 			}
 
-			this.classLookup = new DominoLookup();
-			//this.classLookup = {};
-            /**
-             * For let the xml format can work with old code 
-             * we need setting the root as domino body .
-             */
-           /* this.classLookup["RootDiv"] = Body;
-			this.classLookup["MainApplication"] = Body;
-			this.classLookup["Body"] = Body;
-
-            this.classLookup[DominoTable.PRIMEFACE_ELEMENT_NAME] = DominoTable;
-			this.classLookup[DominoTable.ELEMENT_NAME] = DominoTable;
-			//Domino label have specified format ,it not a signal tag name, it contain 3 tag, so this myabe a trouble in here
-			//this.classLookup[DominoLabel.ELEMENT_NAME] = DominoLabel;
-			this.classLookup[DominoInputText.ELEMENT_NAME] = DominoInputText;
-			this.classLookup[DominoRow.DOMINOROW_NAME] = DominoRow;
-			this.classLookup[GridItem.GRIDITEM_NAME] = GridItem;
-			this.classLookup[Div.ELEMENT_NAME] = Div;
-			this.classLookup[DominoSection.ELEMENT_NAME] = DominoSection;
-			this.classLookup[DominoTabView.ELEMENT_NAME] = DominoTabView;
-			this.classLookup[DominoCalendar.ELEMENT_NAME] = DominoCalendar;
-			this.classLookup[NavigatorContent.NAVIGATORCONTENT_NAME] = NavigatorContent;*/
-			
+			return null;
 		}
 	}
 }

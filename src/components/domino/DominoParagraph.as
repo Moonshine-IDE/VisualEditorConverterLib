@@ -27,6 +27,7 @@ package components.domino
 	import global.domino.DominoGlobals;
 
 	import interfaces.IComponent;
+	import interfaces.ILookup;
 	import interfaces.IRoyaleComponentConverter;
 	import interfaces.components.IDominoParagraph;
 
@@ -139,7 +140,7 @@ package components.domino
 			return _component ? _component : this;
 		}
 
-		public function fromXML(xml:XML, childFromXMLCallback:Function):void
+		public function fromXML(xml:XML, childFromXMLCallback:Function, lookup:ILookup = null):void
 		{
 			this._xml = xml;
 

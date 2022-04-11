@@ -22,6 +22,8 @@ package components.domino
 	import components.ComponentBase;
 	import components.DominoConponentHideBase;
 
+	import interfaces.ILookup;
+
 	import interfaces.IRoyaleComponentConverter;
 	import interfaces.dominoComponents.IDominoFont;
 
@@ -150,7 +152,7 @@ package components.domino
 			_pitch = value;
 		}
 
-		public function fromXML(xml:XML, childFromXMLCallback:Function):void
+		public function fromXML(xml:XML, childFromXMLCallback:Function, lookup:ILookup = null):void
 		{
 			this.setComponentSize(xml);
 			if (xml.@color)

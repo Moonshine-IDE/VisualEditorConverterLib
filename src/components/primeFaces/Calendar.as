@@ -1,10 +1,11 @@
 package components.primeFaces
 {
 	import components.ComponentBase;
+
+	import interfaces.ILookup;
 	import interfaces.components.ICalendar;
 	import utils.CodeXMLUtils;
 	import utils.CodeMxmlUtils;
-	import interfaces.IComponent;
 
 	public class Calendar extends ComponentBase implements ICalendar
 	{
@@ -82,7 +83,7 @@ package components.primeFaces
 			_mode = value;
 		}
 		
-		public function fromXML(xml:XML, childFromXMLCallback:Function):void
+		public function fromXML(xml:XML, childFromXMLCallback:Function, lookup:ILookup = null):void
 		{
 			setComponentSize(xml);
 			
