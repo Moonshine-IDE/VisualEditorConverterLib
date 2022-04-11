@@ -26,6 +26,7 @@ package components.domino
 	import components.common.Div;
 
 	import interfaces.IComponent;
+	import interfaces.ILookup;
 	import interfaces.dominoComponents.IDominoTabView;
 	import mx.controls.Alert;
 	import global.domino.DominoGlobals;
@@ -171,7 +172,7 @@ package components.domino
 			return _component ? _component : this;
 		}
 		
-		public function fromXML(xml:XML, childFromXMLCallback:Function):void
+		public function fromXML(xml:XML, childFromXMLCallback:Function, lookup:ILookup = null):void
 		{
 			this.setComponentSize(xml);
 
@@ -186,21 +187,20 @@ package components.domino
             var tabsXML:XMLList = xml.elements("tab");
             var tabsCount:int = tabsXML.length();
 
-			var dominoconv:DominoConverter = DominoConverter.getInstance();
 			//Alert.show("96:"+tabsCount);
             for(var i:int = 0; i < tabsCount; i++)
             {
                 var tabXML:XML = tabsXML[i];
                 var tabChildren:XMLList = tabXML.Div;
 
-                var tab:IComponent = dominoconv.getNewInstanceOfComponent(NavigatorContent.NAVIGATORCONTENT_NAME);
+                var tab:IComponent = DominoConverter.getNewInstanceOfComponent(lookup, NavigatorContent.NAVIGATORCONTENT_NAME);
                 if(tab==null){
 					Alert.show("tab is null")
 				}else{
 					tab["label"] = tabXML.@title;
 					if (tabChildren.length() == 0)
 					{
-						var internalDiv:Object = dominoconv.getNewInstanceOfComponent(Div.ELEMENT_NAME);
+						var internalDiv:Object = DominoConverter.getNewInstanceOfComponent(lookup, Div.ELEMENT_NAME);
 						tab["addElement"](internalDiv);
 					}
 					
@@ -443,12 +443,12 @@ package components.domino
 			return str;
 		}
 
-		private function tabFromXML(tab:IComponent, xml:XML, callback:Function):void
+		private function tabFromXML(tab:IComponent, xml:XML, callback:Function, lookup:ILookup = null):void
         {
             var elementsXML:XMLList = xml.elements();
             var childCount:int = elementsXML.length();
             var container:Object;
-			var dominoconv:DominoConverter = DominoConverter.getInstance();
+
             if (tab["numElements"] > 0)
             {
                 container = tab["getElementAt"](0);
@@ -462,7 +462,7 @@ package components.domino
                 }
                 else
                 {
-                    container = dominoconv.getNewInstanceOfComponent(Div.ELEMENT_NAME);
+                    container = DominoConverter.getNewInstanceOfComponent(lookup, Div.ELEMENT_NAME);
                     container.fromXML(childXML, callback);
 
                     tab["addElement"](container);

@@ -32,6 +32,8 @@ package components.domino
 	import flash.net.URLVariables;
 	import flash.utils.ByteArray;
 
+	import interfaces.ILookup;
+
 	import interfaces.IRoyaleComponentConverter;
 	import interfaces.dominoComponents.IDominoInputText;
 
@@ -640,7 +642,7 @@ package components.domino
 
 		/** Domino number field property end */
 
-		public function fromXML(xml:XML, childFromXMLCallback:Function):void
+		public function fromXML(xml:XML, childFromXMLCallback:Function, lookup:ILookup = null):void
 		{
 			this.setComponentSize(xml);
 

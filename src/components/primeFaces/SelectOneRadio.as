@@ -1,7 +1,9 @@
 package components.primeFaces
 {
     import components.ComponentBase;
-    import interfaces.components.ISelectOneRadio;
+
+	import interfaces.ILookup;
+	import interfaces.components.ISelectOneRadio;
     import vo.SelectItem;
     import utils.CodeXMLUtils;
     import interfaces.IComponent;
@@ -62,7 +64,7 @@ package components.primeFaces
 			_items = value;
 		}
 		
-		public function fromXML(xml:XML, childFromXMLCallback:Function):void
+		public function fromXML(xml:XML, childFromXMLCallback:Function, lookup:ILookup = null):void
 		{
 			this.setComponentSize(xml);
 

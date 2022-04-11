@@ -21,6 +21,8 @@ package components.domino
 {
 	import components.ComponentBase;
 
+	import interfaces.ILookup;
+
 	import interfaces.IRoyaleComponentConverter;
 	import interfaces.dominoComponents.IDominoRichText;
 
@@ -98,7 +100,7 @@ package components.domino
 			_required = value;
 		}
 
-		public function fromXML(xml:XML, childFromXMLCallback:Function):void
+		public function fromXML(xml:XML, childFromXMLCallback:Function, lookup:ILookup = null):void
 		{
 			this.setComponentSize(xml);
 

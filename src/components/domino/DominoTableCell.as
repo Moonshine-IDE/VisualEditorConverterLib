@@ -22,6 +22,8 @@ package components.domino
 	import components.ComponentBase;
 	import components.enum.ColorName;
 
+	import interfaces.ILookup;
+
 	import interfaces.IRoyaleComponentConverter;
 	import interfaces.dominoComponents.IDominoTableCell;
 
@@ -150,7 +152,7 @@ package components.domino
 			_colorstyle = value;
 		}
 
-		public function fromXML(xml:XML, childFromXMLCallback:Function):void
+		public function fromXML(xml:XML, childFromXMLCallback:Function, lookup:ILookup = null):void
 		{
 			this.setComponentSize(xml);
 		}

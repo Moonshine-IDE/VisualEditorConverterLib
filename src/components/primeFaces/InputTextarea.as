@@ -1,5 +1,7 @@
 package components.primeFaces
 {
+	import interfaces.ILookup;
+
 	import mx.utils.StringUtil;
 	
 	import components.ComponentBase;
@@ -106,7 +108,7 @@ package components.primeFaces
 			_isSelected = value;
 		}
 
-		public function fromXML(xml:XML, childFromXMLCallback:Function):void
+		public function fromXML(xml:XML, childFromXMLCallback:Function, lookup:ILookup = null):void
 		{
 			this.setComponentSize(xml);
 			

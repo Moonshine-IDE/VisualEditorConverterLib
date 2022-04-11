@@ -8,7 +8,8 @@ package components.primeFaces
 	import converter.PrimeFacesConverter;
 
     import interfaces.IComponent;
-    import interfaces.components.IGrid;
+	import interfaces.ILookup;
+	import interfaces.components.IGrid;
 
     import utils.CodeMxmlUtils;
     import utils.CodeXMLUtils;
@@ -47,7 +48,7 @@ package components.primeFaces
 		/**
 		 * Complexity of this component requires separate implementation of this method on client sight
 		 */
-		public function fromXML(xml:XML, childFromXMLCallback:Function):void
+		public function fromXML(xml:XML, childFromXMLCallback:Function, lookup:ILookup = null):void
 		{
 			this.setComponentSize(xml);
 
@@ -59,9 +60,8 @@ package components.primeFaces
                 {
                     var rowXML:XML = elementsXML[row];
                     var colListXML:XMLList = rowXML.elements();
-					
-					var conv:PrimeFacesConverter = PrimeFacesConverter.getInstance();
-                    var gridRow:Object = conv.getNewInstanceOfComponent(GridRow.GRIDROW_NAME);
+
+                    var gridRow:Object = PrimeFacesConverter.getNewInstanceOfComponent(lookup, GridRow.GRIDROW_NAME);
  					gridRow.percentWidth = gridRow.percentHeight = 100;
 
                     var colCount:int = colListXML.length();
@@ -70,13 +70,13 @@ package components.primeFaces
                         var colXML:XML = colListXML[col];
                         if (colXML.length() > 0)
                         {
-                            var gridItem:Object = conv.getNewInstanceOfComponent(GridItem.GRIDITEM_NAME);
+                            var gridItem:Object = PrimeFacesConverter.getNewInstanceOfComponent(lookup, GridItem.GRIDITEM_NAME);
      						gridItem.percentWidth = gridRow.percentHeight = 100;
 
                             var divXMLList:XMLList = colXML.elements();
                             var divXML:XML = divXMLList[0];
 
-                            var div:Object = conv.getNewInstanceOfComponent(Div.ELEMENT_NAME);
+                            var div:Object = PrimeFacesConverter.getNewInstanceOfComponent(lookup, Div.ELEMENT_NAME);
                             div.percentWidth = div.percentHeight = 100;
 
                             gridItem.addElement(div);

@@ -21,6 +21,7 @@ package components.domino
 {
 	import components.ComponentBase;
 	import interfaces.IDominoComponent;
+	import interfaces.ILookup;
 	import interfaces.IRoyaleComponentConverter;
 	import interfaces.dominoComponents.IDominoBody;
 
@@ -73,7 +74,7 @@ package components.domino
 			return _component ? _component : this;
 		}
 
-		public function fromXML(xml:XML, childFromXMLCallback:Function):void
+		public function fromXML(xml:XML, childFromXMLCallback:Function, lookup:ILookup = null):void
 		{
 			this._xml = xml;
 

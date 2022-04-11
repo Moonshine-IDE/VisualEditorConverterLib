@@ -1,7 +1,9 @@
 package components.primeFaces
 {
     import components.ComponentBase;
-    import interfaces.components.IAutoCompleteDropDownList;
+
+	import interfaces.ILookup;
+	import interfaces.components.IAutoCompleteDropDownList;
     import utils.CodeMxmlUtils;
     import utils.CodeXMLUtils;
 
@@ -109,7 +111,7 @@ package components.primeFaces
 			return _isDropDown;
 		}
 		
-		public function fromXML(xml:XML, childFromXMLCallback:Function):void
+		public function fromXML(xml:XML, childFromXMLCallback:Function, lookup:ILookup = null):void
 		{
 			this.setComponentSize(xml);
 			

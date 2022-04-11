@@ -4,6 +4,7 @@ package components.primeFaces
 	import components.common.Div;
 
 	import interfaces.IComponent;
+	import interfaces.ILookup;
 	import interfaces.components.IFieldset;
 	
 	import utils.CodeMxmlUtils;
@@ -76,7 +77,7 @@ package components.primeFaces
 		/**
 		 * Complexity of this component requires separate implementation of this method on client sight
 		 */
-		public function fromXML(xml:XML, childFromXMLCallback:Function):void
+		public function fromXML(xml:XML, childFromXMLCallback:Function, lookup:ILookup = null):void
 		{
 			this.setComponentSize(xml);
 
@@ -93,7 +94,7 @@ package components.primeFaces
 			}
 			
 			thisCallbackXML = childFromXMLCallback;
-			createChildren(xml.elements());
+			createChildren(xml.elements(), lookup);
 		}
 		
 		/**
@@ -127,7 +128,7 @@ package components.primeFaces
 			return xml;
 		}
 
-		private function createChildren(elements:XMLList):void
+		private function createChildren(elements:XMLList, lookup:ILookup = null):void
 		{
 			if ((!elements || elements.length() == 0) && (thisCallbackXML == null)) return;
 			
@@ -141,7 +142,7 @@ package components.primeFaces
 			}
 			else
 			{
-				item = PrimeFacesConverter.getInstance().getNewInstanceOfComponent(Div.ELEMENT_NAME);
+				item = PrimeFacesConverter.getNewInstanceOfComponent(lookup, Div.ELEMENT_NAME);
 			}
 			
 			for (var itemIndex:int; itemIndex < childCount; itemIndex++)

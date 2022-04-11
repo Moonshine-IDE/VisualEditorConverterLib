@@ -1,7 +1,7 @@
 package components
 {
-    import components.ComponentBase;
     import interfaces.IComponent;
+	import interfaces.ILookup;
 
 	public class Container extends ComponentBase implements IComponent
 	{
@@ -12,7 +12,7 @@ package components
 			super();
 		}
 	
-		public function fromXML(xml:XML, childFromXMLCallback:Function):void
+		public function fromXML(xml:XML, childFromXMLCallback:Function, lookup:ILookup = null):void
 		{
 			
 		}
