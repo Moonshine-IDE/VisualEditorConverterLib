@@ -85,7 +85,7 @@ package components.domino
 			for (var i:int = 0; i < childCount; i++)
 			{
 				var childXML:XML = elementsXML[i];
-				childFromXMLCallback(component, childXML);
+				childFromXMLCallback(component, lookup, childXML);
 			}
 		}
 
