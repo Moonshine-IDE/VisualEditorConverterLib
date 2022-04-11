@@ -155,6 +155,12 @@ package components.domino
 				this.hidewhenFormula = base64Decode(xml.@["hidewhen"]);
 			}
 
+			if (xml.@["hide"]){
+				this.hide = xml.@["hide"];
+			}
+
+
+
 			var elementsXML:XMLList = xml.elements();
 			var childCount:int = elementsXML.length();
 			for (var i:int = 0; i < childCount; i++)

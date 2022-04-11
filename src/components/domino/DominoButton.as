@@ -314,6 +314,7 @@ package components.domino
 			this.bgcolor = xml.@bgcolor;
 			this.code = xml.@code;
 			this.font = xml.@font;
+			this.hide = xml.@hide;
 
 			this.color = xml.@color;
 			this.size = xml.@size;

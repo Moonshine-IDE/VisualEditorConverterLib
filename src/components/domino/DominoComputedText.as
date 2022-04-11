@@ -186,6 +186,7 @@ package components.domino
 
 			this.formula = xml.@formula;
 			this.hidewhen = xml.@hidewhen;
+			this.hide =  xml.@hide;
 		}
 
 		public function toCode():XML

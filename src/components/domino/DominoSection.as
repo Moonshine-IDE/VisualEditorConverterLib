@@ -253,6 +253,8 @@ package components.domino
 			this.showastext = xml.@showastext == "true";
 			this.accessfieldkind = xml.@accessfieldkind;
 			this.accessfieldname = xml.@accessfieldname;
+			this.hide = xml.@hide;
+
 
 			var elementsXML:XMLList = xml.elements();
 			var childCount:int = elementsXML.length();

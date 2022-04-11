@@ -329,6 +329,7 @@ package components.domino
 
 			this.formula = xml.@formula;
 			this.hidewhen = xml.@hidewhen;
+			this.hide = xml.@hide;
 
 			this.isUrlLink = xml.@isUrlLink;
 			this.urlLinkHref = xml.@urlLinkHref;
