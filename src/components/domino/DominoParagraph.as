@@ -50,8 +50,8 @@ package components.domino
 
 	public class DominoParagraph extends ComponentBase implements IDominoParagraph, IRoyaleComponentConverter
 	{
-		private static const PRIME_FACES_XML_ELEMENT_NAME:String = "par";
-		public static var ELEMENT_NAME:String = "Par";
+		public static const DOMINO_ELEMENT_NAME:String = "par";
+		public static var ELEMENT_NAME:String = "Paragraph";
 
 		private static function base64Decode(str:String, charset:String = "UTF-8"):String
 		{
@@ -150,13 +150,13 @@ package components.domino
 			{
 				var childXML:XML = elementsXML[i];
 				//Alert.show("100:"+childXML.@size);
-				childFromXMLCallback(component, childXML);
+				childFromXMLCallback(component, lookup, childXML);
 			}
 		}
 
 		public function toCode():XML
 		{
-			var xml:XML = new XML("<" + CodeMxmlUtils.getMXMLTagNameWithSelection(this, PRIME_FACES_XML_ELEMENT_NAME) + " def=\"" + DominoGlobals.PardefDivId + "\"  paragraph=\"true\" />");
+			var xml:XML = new XML("<" + CodeMxmlUtils.getMXMLTagNameWithSelection(this, DOMINO_ELEMENT_NAME) + " def=\"" + DominoGlobals.PardefDivId + "\"  paragraph=\"true\" />");
 			//flexHorizontalLayoutRight flexHorizontalLayoutLeft flexCenter
 			xml.@dominotype = "paragraph";
 

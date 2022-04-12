@@ -1,9 +1,9 @@
 package interfaces.dominoComponents
 {
-	import interfaces.IDominoComponent;
+	import interfaces.IComponent;
     import interfaces.IIsSelected;
 
-    public interface IDominoTabView extends IDominoComponent, IIsSelected
+    public interface IDominoTabView extends IComponent, IIsSelected
 	{
 		function get orientation():String;
 		function set orientation(value:String):void;

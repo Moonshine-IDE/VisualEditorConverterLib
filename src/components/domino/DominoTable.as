@@ -448,7 +448,7 @@ package components.domino
 							divXML.@percentWidth = 100;
 							divXML.@percentHeight = 100;
 
-							div.fromXML(divXML, lookup, childFromXMLCallback);
+							div.fromXML(divXML, childFromXMLCallback, lookup);
 						}
 					}
 
