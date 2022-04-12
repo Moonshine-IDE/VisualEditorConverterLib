@@ -20,7 +20,8 @@
 package components.domino
 {
 	import components.ComponentBase;
-	import interfaces.IDominoComponent;
+
+	import interfaces.IComponent;
 	import interfaces.ILookup;
 	import interfaces.IRoyaleComponentConverter;
 	import interfaces.dominoComponents.IDominoBody;
@@ -57,7 +58,7 @@ package components.domino
 		private static const DOMINO_ELEMENT_NAME:String = "body";
 		public static var ELEMENT_NAME:String = "Body";
 
-		public function Body(component:IDominoComponent = null)
+		public function Body(component:IComponent = null)
 		{
 			super();
 
@@ -77,9 +78,9 @@ package components.domino
 			_isSelected = value;
 		}
 
-		private var _component:IDominoComponent;
+		private var _component:IComponent;
 
-		private function get component():IDominoComponent
+		private function get component():IComponent
 		{
 			return _component ? _component : this;
 		}
@@ -102,19 +103,19 @@ package components.domino
 		public function toCode():XML
 		{
 			var xml:XML = new XML("<" + CodeMxmlUtils.getMXMLTagNameWithSelection(this, DOMINO_ELEMENT_NAME) + "/>");
-			CodeXMLUtils.addSizeHtmlStyleToXML(xml, this as IDominoComponent);
+			CodeXMLUtils.addSizeHtmlStyleToXML(xml, this as IComponent);
 			var elementCount:int = component["numElements"];
-			var element:IDominoComponent = null;
+			var element:IComponent = null;
 			for (var i:int = 0; i < elementCount; i++)
 			{
-				element = component["getElementAt"](i) as IDominoComponent;
+				element = component["getElementAt"](i) as IComponent;
 				xml.appendChild(element.toCode());
 			}
 
             elementCount = component["numElements"];
             for(var j:int = 0; j < elementCount; j++)
             {
-                element = component["getElementAt"](j) as IDominoComponent;
+                element = component["getElementAt"](j) as IComponent;
                 xml.appendChild(element.toCode());
             }
 			return xml;

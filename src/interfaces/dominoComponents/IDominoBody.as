@@ -7,11 +7,11 @@ package interfaces.dominoComponents
 	 * Contained by: <form>, <subform>, <page>, <helpaboutdocument>, <helpusingdocument>
 	 * Contains: <richtext>
 	 */
-	
-	import interfaces.IDominoComponent;
+
+	import interfaces.IComponent;
     import interfaces.IIsSelected;
 
-	public interface IDominoBody extends IDominoComponent, IIsSelected
+	public interface IDominoBody extends IComponent, IIsSelected
 	{
 
 	}

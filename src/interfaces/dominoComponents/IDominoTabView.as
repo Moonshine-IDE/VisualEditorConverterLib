@@ -1,10 +1,10 @@
 package interfaces.dominoComponents
 {
-	import interfaces.IDominoComponent;
+	import interfaces.IComponent;
     import interfaces.IIsSelected;
 	import interfaces.IDominoVisualHideOption;
 
-    public interface IDominoTabView extends IDominoVisualHideOption,IDominoComponent, IIsSelected
+    public interface IDominoTabView extends IComponent, IIsSelected
 	{
 		function get orientation():String;
 		function set orientation(value:String):void;

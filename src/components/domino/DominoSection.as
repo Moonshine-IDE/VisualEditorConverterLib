@@ -263,12 +263,9 @@ package components.domino
 			{
 				var childXML:XML = elementsXML[i];
 				//Alert.show("100:"+childXML.@size);
-				childFromXMLCallback(component, childXML);
+				childFromXMLCallback(component, lookup, childXML);
 			}
-
-
 		}
-
 
 		public function toCode():XML
 		{
