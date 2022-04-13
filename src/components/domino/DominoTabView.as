@@ -166,7 +166,7 @@ package components.domino
 					
 					component["addElement"](tab);
 					//Alert.show("111:"+i);
-					this.tabFromXML(tab, tabXML, childFromXMLCallback);
+					this.tabFromXML(tab, tabXML, childFromXMLCallback, lookup);
 	
 				}
 			}
