@@ -134,7 +134,7 @@ package surface
 		public function toRoyaleConvertCode():XML
 		{
 			var element:Object = this.getElementAt(0);
-			var xml:XML = MainTagCodeUtils.getParentContent("", element as IDiv);
+			var xml:XML = MainTagCodeUtils.getParentContent("", element as IComponent);
             var mainContainer:XML = MainTagCodeUtils.getMainContainerTag(xml);
 
 			var elementCount:int = (element as IVisualComponent).numElements;
