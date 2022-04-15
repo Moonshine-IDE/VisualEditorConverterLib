@@ -8,6 +8,7 @@ package surface
 	import utils.MainTagCodeUtils;
 	import interfaces.components.IDiv;
 
+
 	public class SurfaceMockup implements ISurface, IVisualComponent, IComponent
 	{
 		private var _elements:Array;
@@ -181,6 +182,7 @@ package surface
 
 			    XML.ignoreComments = false;
                 var code:XML = item.toCode();
+				var name:String = code.localName();
 				
                  mainContainer.appendChild(code);
             }

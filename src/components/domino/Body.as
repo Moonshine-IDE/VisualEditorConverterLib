@@ -30,6 +30,12 @@ package components.domino
 
 	import utils.CodeXMLUtils;
 
+	import flash.utils.getQualifiedClassName;
+
+	import global.domino.DominoGlobals;
+
+	import mx.controls.Alert;
+
 	/**
 	 *  <p>Representation and converter for Domino Body</p>
 	 * 
@@ -108,22 +114,108 @@ package components.domino
 			var element:IComponent = null;
 			for (var i:int = 0; i < elementCount; i++)
 			{
+				DominoGlobals.PardefDivId++;
 				element = component["getElementAt"](i) as IComponent;
+				
+				var className:String=getQualifiedClassName(element);
+
+				//Alert.show("className:"+className);
+             
+				if(className=="components.domino::DominoParagraph"){
+					
+					xml.appendChild(toPerDefCode(element.toCode()));
+				}
+
+				if(className=="components.domino::DominoLabel" || 
+				className=="components.domino::DominoInputText" ||
+				className=="components.domino::DominoButton" ||
+				className=="components.domino::DominoComputedText" ||
+				className=="components.domino::DominoSection" ||
+				className=="components.domino::DominoTable"||
+				className=="components.domino::DominoTabView"){
+					xml.appendChild(toHidePerDefCode(element.toCode()));
+					
+				}
+				
 				xml.appendChild(element.toCode());
 			}
-
-            elementCount = component["numElements"];
-            for(var j:int = 0; j < elementCount; j++)
-            {
-                element = component["getElementAt"](j) as IComponent;
-                xml.appendChild(element.toCode());
-            }
 			return xml;
 		}
 
 		public function toRoyaleConvertCode():XML
 		{
 			return new XML("");
+		}
+
+		public function toPerDefCode( xml:XML):XML
+		{
+			var prefdef_str:String="";
+			var vprefdef_str:String="";
+		
+			//Alert.show("toPerDefCode:"+xml.toXMLString());
+			if(xml!=null){
+				var cssstr:String=xml.@["class"];
+				if(cssstr.indexOf("flexHorizontalLayoutRight")>=0){
+					prefdef_str=" align=\"right\""
+				}
+				if(cssstr.indexOf("flexHorizontalLayoutLeft")>=0){
+					prefdef_str=" align=\"left\""
+				}
+				//flexHorizontalLayout
+				if(cssstr.indexOf("flexCenter")>=0){
+					prefdef_str=" align=\"center\""
+				}
+
+				if(cssstr.indexOf("flexVerticalLayoutBottom")>=0){
+					vprefdef_str=" valign=\"bottom\""
+				}
+				if(cssstr.indexOf("flexVerticalLayoutTop")>=0){
+					vprefdef_str=" valign=\"top\""
+				}
+				if(cssstr.indexOf("flexVerticalLayout")>=0&&cssstr.indexOf("flexCenter")>=0){
+					vprefdef_str=" valign=\"center\""
+				}
+				//flexVerticalLayoutBottom
+				//flexVerticalLayoutTop
+				//flexCenter && flexVerticalLayout
+
+
+			}else{
+				prefdef_str=" align=\"left\" "
+				vprefdef_str=" valign=\"top\""
+			}
+
+			var pardefXml:XML = new XML("<pardef id=\""+DominoGlobals.PardefDivId+"\" "+prefdef_str+" "+vprefdef_str+" dominotype=\"domino\"/>" );
+			if(xml.@hidewhen&& xml.@hidewhen!=""){
+				//Alert.show("xml.@hidewhen:"+xml.@hidewhen+":"+xml.@hidewhen.length());
+				if(xml.@hidewhen.length()>0){
+					var code_xml:XML = new XML("<code event=\"hidewhen\" />");
+					var formula_xml:XML = new XML("<formula>"+xml.@hidewhen+"</formula>");
+					code_xml.appendChild(formula_xml);
+					pardefXml.appendChild(code_xml);
+				}
+
+			} 
+
+			if(xml.@hide&& xml.@hide!=""){
+				pardefXml.@hide=xml.@hide;
+			}
+			return pardefXml;
+		}
+
+		public function toHidePerDefCode( xml:XML):XML
+		{
+			if(xml!=null){
+				var pardefXml:XML = new XML("<pardef id=\""+DominoGlobals.PardefDivId+"\" "+" dominotype=\"domino\" keeptogether=\"true\" keepwithnext=\"true\"/>" );
+				if(xml.@hide&& xml.@hide!=""){
+					pardefXml.@hide=xml.@hide;
+					xml.@def=DominoGlobals.PardefDivId;
+					//arond a new par for the traget element 
+					
+				}
+			}
+
+			return pardefXml;
 		}
 	}
 }
