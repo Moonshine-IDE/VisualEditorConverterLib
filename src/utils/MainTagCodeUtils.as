@@ -73,6 +73,21 @@ package utils
 			return xml;
 		}
 
+		public static function getRoyaleViewParentContent(element:IComponent):XML
+		{
+			var xml:XML = new XML("<VGroup></VGroup>");
+
+			xml.@itemsVerticalAlign = "itemsCentered";
+
+			var mxmlNamespace:Namespace = new Namespace("fx", "http://ns.adobe.com/mxml/2009");
+			xml.addNamespace(mxmlNamespace);
+
+			var jNamespace:Namespace = new Namespace("j", "library://ns.apache.org/royale/jewel");
+			xml.addNamespace(jNamespace);
+			xml.setNamespace(jNamespace);
+
+			return xml;
+		}
 
 		public static function getDominoParentContent(title:String, element:IBody):XML
 		{

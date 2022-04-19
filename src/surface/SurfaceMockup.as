@@ -134,32 +134,22 @@ package surface
 		public function toRoyaleConvertCode():XML
 		{
 			var element:Object = this.getElementAt(0);
-			var xml:XML = MainTagCodeUtils.getParentContent("", element as IComponent);
-            var mainContainer:XML = MainTagCodeUtils.getMainContainerTag(xml);
+			var xml:XML = MainTagCodeUtils.getRoyaleViewParentContent(element as IComponent);
 
 			var elementCount:int = (element as IVisualComponent).numElements;
 			
 			for (var i:int = 0; i < elementCount; i++)
             {
-                var item:IComponent = element.getElementAt(i) as IComponent;
+                var item:IRoyaleComponentConverter = element.getElementAt(i) as IRoyaleComponentConverter;
 
                 if (item === null)
                 {
-                        continue;
+					continue;
                 }
 
 			    XML.ignoreComments = false;
                 var code:XML = (item as IRoyaleComponentConverter).toRoyaleConvertCode();
-				var commentOnlyXML:XMLList = (code.elements("primeFacesCommentOnlyTag").length() > 0) ?
-											  code.elements("primeFacesCommentOnlyTag") : null;
-                if (mainContainer)
-                {
-                    mainContainer.appendChild(!commentOnlyXML ? code : commentOnlyXML.children());
-                }
-                else
-                {
-                    xml.appendChild(!commentOnlyXML ? code : commentOnlyXML.children());
-                }
+				xml.appendChild(code);
             }
 
 			return xml;
