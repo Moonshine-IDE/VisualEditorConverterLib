@@ -79,6 +79,19 @@ package components.domino
 			_width = value;
 		}
 
+
+		private var _height:Number;
+
+		override public function get height():Number
+		{
+			return _height;
+		}
+
+		override public function set height(value:Number):void
+		{
+			_height = value;
+		}
+
 		private var _isSelected:Boolean;
 
 		public function get isSelected():Boolean
@@ -324,6 +337,7 @@ package components.domino
 
 			this.formula = xml.@formula;
 			this.codeEvent = xml.@codeEvent;
+			this.height = xml.@height;
 
 		}
 
@@ -348,6 +362,10 @@ package components.domino
 			if (this.width)
 			{
 				xml.@width = this.width + "pt";
+			}
+			if (this.height)
+			{
+				xml.@height = this.height + "pt";
 			}
 
 			if (this.widthtype)
