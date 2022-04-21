@@ -147,7 +147,7 @@ package components.domino
 			return new XML("");
 		}
 
-		public function toPerDefCode( xml:XML):XML
+		private function toPerDefCode( xml:XML):XML
 		{
 			var prefdef_str:String="";
 			var vprefdef_str:String="";
