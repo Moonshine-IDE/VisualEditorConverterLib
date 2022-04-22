@@ -1,11 +1,12 @@
 package utils
 {
+	import interfaces.IComponent;
 	import interfaces.components.IDiv;
 	import interfaces.dominoComponents.IBody;
 
 	public class MainTagCodeUtils  
 	{
-		public static function getParentContent(title:String, element:IDiv):XML
+		public static function getParentContent(title:String, element:IComponent):XML
 		{
 			var xml:XML = new XML("<html/>");
 
@@ -57,7 +58,11 @@ package utils
 
 			var mainDiv:XML = new XML("<div/>");
 
-            mainDiv["@class"] = element.cssClass;
+			if (element is IDiv)
+			{
+				mainDiv["@class"] = (element as IDiv).cssClass;
+			}
+
             CodeXMLUtils.addSizeHtmlStyleToXML(mainDiv, element);
 			
 			bodyXML.appendChild(mainDiv);
@@ -68,6 +73,21 @@ package utils
 			return xml;
 		}
 
+		public static function getRoyaleViewParentContent(element:IComponent):XML
+		{
+			var xml:XML = new XML("<VGroup></VGroup>");
+
+			xml.@itemsVerticalAlign = "itemsCentered";
+
+			var mxmlNamespace:Namespace = new Namespace("fx", "http://ns.adobe.com/mxml/2009");
+			xml.addNamespace(mxmlNamespace);
+
+			var jNamespace:Namespace = new Namespace("j", "library://ns.apache.org/royale/jewel");
+			xml.addNamespace(jNamespace);
+			xml.setNamespace(jNamespace);
+
+			return xml;
+		}
 
 		public static function getDominoParentContent(title:String, element:IBody):XML
 		{
