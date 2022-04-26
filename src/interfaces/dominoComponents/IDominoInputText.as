@@ -124,5 +124,10 @@ package interfaces.dominoComponents
 		function get firstdisplay():String
 		function set firstdisplay(value:String):void
 
+		function get helpDescription():String;
+		function set helpDescription(value:String):void;
+		function get fieldHint():String;
+		function set fieldHint(value:String):void;
+
 	}
 }

@@ -656,6 +656,31 @@ package components.domino
 			_onlyallow = value;
 		}
 
+
+		private var _helpDescription:String;
+
+		public function get helpDescription():String
+		{
+			return _helpDescription;
+		}
+
+		public function set helpDescription(value:String):void
+		{
+			_helpDescription = value;
+		}
+
+		private var _fieldHint:String;
+
+		public function get fieldHint():String
+		{
+			return _fieldHint;
+		}
+
+		public function set fieldHint(value:String):void
+		{
+			_fieldHint = value;
+		}
+
 		/** Domino number field property end */
 
 		public function fromXML(xml:XML, childFromXMLCallback:Function, lookup:ILookup = null):void
@@ -693,6 +718,8 @@ package components.domino
 			this.inputvalidation = xml.@inputvalidation;
 			this.inputtranslation = xml.@inputtranslation;
 			this.hide = xml.@hide;
+			this.helpDescription = xml.@helpDescription;
+			this.fieldHint = xml.@fieldHint;
 			//this.formula=xml.@formula;
 
 			if (this.type == "number")
@@ -850,6 +877,14 @@ package components.domino
 			if (this.height)
 			{
 				xml.@height = this.height + "pt";
+			}
+
+			if(this.helpDescription){
+				xml.@helpDescription = this.helpDescription
+			}
+
+			if(this.fieldHint){
+				xml.@fieldHint = this.fieldHint
 			}
 
 			xml.@bgcolor = "#ffffff";
