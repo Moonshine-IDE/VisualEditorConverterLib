@@ -116,6 +116,9 @@ package components.domino
 			_enabled = value;
 		}
 
+
+		
+
 		private var _label:String;
 
 		public function get label():String
@@ -339,6 +342,8 @@ package components.domino
 			this.codeEvent = xml.@codeEvent;
 			this.height = xml.@height;
 
+	
+
 		}
 
 		
@@ -397,6 +402,8 @@ package components.domino
 			{
 				xml.@maxlines = this.maxlines;
 			}
+
+			
 
 			var font_xml:XML = new XML("<font/>");
 			var font_exist:Boolean = false;

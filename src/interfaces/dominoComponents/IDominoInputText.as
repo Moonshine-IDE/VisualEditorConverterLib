@@ -129,5 +129,14 @@ package interfaces.dominoComponents
 		function get fieldHint():String;
 		function set fieldHint(value:String):void;
 
+
+		//for security options setting 
+		function get inputProtected():Boolean;
+		function set inputProtected(value:Boolean):void;
+		function get inputSeal():Boolean;
+		function set inputSeal(value:Boolean):void;
+		function get inputSign():Boolean;
+		function set inputSign(value:Boolean):void;
+
 	}
 }

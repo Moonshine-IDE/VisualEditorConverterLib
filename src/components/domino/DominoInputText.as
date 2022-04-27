@@ -559,6 +559,44 @@ package components.domino
 			_keywordui = value;
 		}
 
+
+		private var _inputProtected:Boolean;
+
+		public function get inputProtected():Boolean
+		{
+			return _inputProtected;
+		}
+
+		public function set inputProtected(value:Boolean):void
+		{
+			_inputProtected = value;
+		}
+
+		private var _inputSeal:Boolean;
+
+		public function get inputSeal():Boolean
+		{
+			return _inputSeal;
+		}
+
+		public function set inputSeal(value:Boolean):void
+		{
+			_inputSeal = value;
+		}
+
+
+		private var _inputSign:Boolean;
+
+		public function get inputSign():Boolean
+		{
+			return _inputSign;
+		}
+
+		public function set inputSign(value:Boolean):void
+		{
+			_inputSign = value;
+		}
+
 		//-------------names type-----------------
 		private var _choicesdialog:String;
 
@@ -721,6 +759,9 @@ package components.domino
 			this.helpDescription = xml.@helpDescription;
 			this.fieldHint = xml.@fieldHint;
 			//this.formula=xml.@formula;
+			this.inputProtected = xml.@inputProtected;
+			this.inputSeal = xml.@inputSeal;
+			this.inputSign = xml.@inputSign;
 
 			if (this.type == "number")
 			{
@@ -850,6 +891,20 @@ package components.domino
 			if (this.type)
 			{
 				xml.@type = this.type;
+			}
+			if(this.inputProtected)
+			{
+				xml.@protected = this.inputProtected;
+			}
+
+			if(this.inputSign)
+			{
+				xml.@sign = this.inputSign;
+			}
+
+			if(this.inputSeal)
+			{
+				xml.@seeal = this.inputSeal;
 			}
 
 			if (this.kind)
