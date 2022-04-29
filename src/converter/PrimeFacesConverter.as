@@ -22,19 +22,21 @@ package converter
 		
 		public static function fromXML(surface:ISurface, lookup:ILookup, xml:XML):void
 		{
+			var localSurface:ISurface = surface;
 			var elements:XMLList = xml.elements();
 			var elementCount:int = elements.length();
-			var localSurface:ISurface = surface;
+
 			for(var i:int = 0; i < elementCount; i++)
 			{
 				var elementXML:XML = elements[i];
-				var component:IComponent = itemFromXML(surface, lookup, elementXML);
+				var component:IComponent = itemFromXML(localSurface, lookup, elementXML, localSurface);
 				localSurface.addItem(component);
 			}
 		}
 		
-		private static function itemFromXML(parent:Object, lookup:ILookup, itemXML:XML):IComponent
+		private static function itemFromXML(parent:Object, lookup:ILookup, itemXML:XML, surface:ISurface):IComponent
 		{
+			var localSurface:ISurface = surface;
 			var name:String = itemXML.localName();
 			if(!(name in lookup.lookup))
 			{
@@ -50,7 +52,7 @@ package converter
                 for(var i:int = 0; i < elementCount; i++)
                 {
                    var elementXML:XML = elements[i];
-                   itemFromXML(parent, lookup, elementXML);
+                   itemFromXML(parent, lookup, elementXML, localSurface);
                 }
 				return null;
 			}
@@ -62,8 +64,9 @@ package converter
 				//dispatchEvent(new ConverterErrorEvent(errorMessage));
 				throw new Error(errorMessage);
 			}
-			item.fromXML(itemXML, itemFromXML, lookup);
+			item.fromXML(itemXML, itemFromXML, localSurface, lookup);
 			parent.addElement(item);
+			localSurface.addItem(item);
 
 			return item;
 		}

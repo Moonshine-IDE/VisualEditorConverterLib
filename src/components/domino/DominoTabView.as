@@ -27,6 +27,7 @@ package components.domino
 
 	import interfaces.IComponent;
 	import interfaces.ILookup;
+	import interfaces.ISurface;
 	import interfaces.dominoComponents.IDominoTabView;
 	import mx.controls.Alert;
 	import global.domino.DominoGlobals;
@@ -172,7 +173,7 @@ package components.domino
 			return _component ? _component : this;
 		}
 		
-		public function fromXML(xml:XML, childFromXMLCallback:Function, lookup:ILookup = null):void
+		public function fromXML(xml:XML, childFromXMLCallback:Function, surface:ISurface, lookup:ILookup):void
 		{
 			this.setComponentSize(xml);
 

@@ -26,6 +26,7 @@ package components.domino
 	import interfaces.IComponent;
 	import interfaces.ILookup;
 	import interfaces.IRoyaleComponentConverter;
+	import interfaces.ISurface;
 	import interfaces.dominoComponents.IDominoSection;
 
 	/**
@@ -223,8 +224,10 @@ package components.domino
 			return _component ? _component : this;
 		}
 
-		public function fromXML(xml:XML, childFromXMLCallback:Function, lookup:ILookup = null):void
+		public function fromXML(xml:XML, childFromXMLCallback:Function, surface:ISurface,  lookup:ILookup):void
 		{
+			var localSurface:ISurface = surface;
+
 			this.setComponentSize(xml);
 			this.title = xml.@title;
 			this.titleColor = xml.@titleColor;
@@ -248,7 +251,7 @@ package components.domino
 			{
 				var childXML:XML = elementsXML[i];
 				//Alert.show("100:"+childXML.@size);
-				childFromXMLCallback(component, lookup, childXML);
+				childFromXMLCallback(component, lookup, childXML, localSurface);
 			}
 		}
 

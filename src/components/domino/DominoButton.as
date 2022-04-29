@@ -24,6 +24,7 @@ package components.domino
 	import interfaces.ILookup;
 
 	import interfaces.IRoyaleComponentConverter;
+	import interfaces.ISurface;
 	import interfaces.dominoComponents.IDominoButton;
 
 	/**
@@ -290,7 +291,7 @@ package components.domino
 		//domino button still support html core property ,
 		//%html.core.attrs; htmlid, htmlclass,htmlstyle,htmltitle,extrahtmlattrs
 
-		public function fromXML(xml:XML, childFromXMLCallback:Function, lookup:ILookup = null):void
+		public function fromXML(xml:XML, childFromXMLCallback:Function, surface:ISurface,  lookup:ILookup):void
 		{
 			this.setComponentSize(xml);
 

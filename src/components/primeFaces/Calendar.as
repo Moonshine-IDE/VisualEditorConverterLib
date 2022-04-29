@@ -3,6 +3,7 @@ package components.primeFaces
 	import components.ComponentBase;
 
 	import interfaces.ILookup;
+	import interfaces.ISurface;
 	import interfaces.components.ICalendar;
 	import utils.CodeXMLUtils;
 	import utils.CodeMxmlUtils;
@@ -83,7 +84,7 @@ package components.primeFaces
 			_mode = value;
 		}
 		
-		public function fromXML(xml:XML, childFromXMLCallback:Function, lookup:ILookup = null):void
+		public function fromXML(xml:XML, childFromXMLCallback:Function, surface:ISurface, lookup:ILookup):void
 		{
 			setComponentSize(xml);
 			

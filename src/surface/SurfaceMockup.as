@@ -91,7 +91,7 @@ package surface
 			return null;
 		}
 			
-		public function fromXML(xml:XML, childFromXMLCallback:Function, lookup:ILookup = null):void
+		public function fromXML(xml:XML, childFromXMLCallback:Function, surface:ISurface, lookup:ILookup):void
 		{
 			throw new Error("Surface doesn't implement fromXML method!");
 		}

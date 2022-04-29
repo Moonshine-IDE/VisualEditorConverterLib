@@ -35,6 +35,7 @@ package components.domino
 	import interfaces.ILookup;
 
 	import interfaces.IRoyaleComponentConverter;
+	import interfaces.ISurface;
 	import interfaces.dominoComponents.IDominoInputText;
 
 	import mx.utils.Base64Encoder;
@@ -642,7 +643,7 @@ package components.domino
 
 		/** Domino number field property end */
 
-		public function fromXML(xml:XML, childFromXMLCallback:Function, lookup:ILookup = null):void
+		public function fromXML(xml:XML, childFromXMLCallback:Function, surface:ISurface,  lookup:ILookup):void
 		{
 			this.setComponentSize(xml);
 

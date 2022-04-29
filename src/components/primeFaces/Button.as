@@ -1,6 +1,7 @@
 package components.primeFaces
 {
 	import interfaces.ILookup;
+	import interfaces.ISurface;
 	import interfaces.components.IButton;
 	import components.ComponentBase;
 	import utils.CodeMxmlUtils;
@@ -83,7 +84,7 @@ package components.primeFaces
 			_actionListener = value;
 		}
 	
-		public function fromXML(xml:XML, childFromXMLCallback:Function, lookup:ILookup = null):void
+		public function fromXML(xml:XML, childFromXMLCallback:Function, surface:ISurface, lookup:ILookup):void
 		{
 			this.setComponentSize(xml);
 			
