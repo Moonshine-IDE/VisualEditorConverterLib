@@ -823,9 +823,16 @@ package components.domino
 			if (this.type == "names")
 			{
 				this.choicesdialog = xml.@choicesdialog
+			
+			}
+			if(xml.@listinputseparators){
 				this.listinputseparators = xml.@listinputseparators
+			}
+			if(xml.@listdisplayseparator){
 				this.listdisplayseparator = xml.@listdisplayseparator
 			}
+			
+			
 
 			if (this.type == "richtextlite")
 			{
@@ -1057,6 +1064,7 @@ package components.domino
 				//fix xml
 				xml.@allowtabout = "false"
 				xml.@borderstyle = "inset"
+				
 				xml.@listdisplayseparator = "comma"
 				xml.@listinputseparators = "comma"
 				xml.@lookupaddressonrefresh = "false"
