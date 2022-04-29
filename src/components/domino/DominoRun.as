@@ -25,6 +25,7 @@ package components.domino
 	import interfaces.ILookup;
 
 	import interfaces.IRoyaleComponentConverter;
+	import interfaces.ISurface;
 	import interfaces.dominoComponents.IDominoRun;
 
 	import utils.CodeMxmlUtils;
@@ -99,7 +100,7 @@ package components.domino
 		}
 
 
-		public function fromXML(xml:XML, childFromXMLCallback:Function, lookup:ILookup = null):void
+		public function fromXML(xml:XML, childFromXMLCallback:Function, surface:ISurface, lookup:ILookup):void
 		{
 			this.setComponentSize(xml);
 			if (this.html)

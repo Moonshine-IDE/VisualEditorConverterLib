@@ -2,7 +2,7 @@ package interfaces
 {
 	public interface IComponent 
 	{
-		function fromXML(xml:XML, childFromXMLCallback:Function, lookup:ILookup = null):void;
+		function fromXML(xmlNode:XML, childFromXMLCallback:Function, surface:ISurface, lookup:ILookup):void;
 		function toCode():XML;
 	}
 }

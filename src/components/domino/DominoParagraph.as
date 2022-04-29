@@ -29,6 +29,7 @@ package components.domino
 	import interfaces.IComponent;
 	import interfaces.ILookup;
 	import interfaces.IRoyaleComponentConverter;
+	import interfaces.ISurface;
 	import interfaces.components.IDominoParagraph;
 
 	import mx.utils.Base64Decoder;
@@ -140,7 +141,7 @@ package components.domino
 			return _component ? _component : this;
 		}
 
-		public function fromXML(xml:XML, childFromXMLCallback:Function, lookup:ILookup = null):void
+		public function fromXML(xml:XML, childFromXMLCallback:Function, surface:ISurface, lookup:ILookup):void
 		{
 			this._xml = xml;
 

@@ -32,6 +32,7 @@ package components.domino
 	import interfaces.IComponent;
 	import interfaces.ILookup;
 	import interfaces.IRoyaleComponentConverter;
+	import interfaces.ISurface;
 	import interfaces.dominoComponents.IDominoTable;
 
 	import spark.components.Alert;
@@ -408,9 +409,10 @@ package components.domino
 			return _component ? _component : this;
 		}
 
-		public function fromXML(xml:XML, childFromXMLCallback:Function, lookup:ILookup = null):void
+		public function fromXML(xml:XML, childFromXMLCallback:Function, surface:ISurface, lookup:ILookup):void
 		{
-			
+			var localSurface:ISurface = surface;
+
 			this.setComponentSize(xml);
 			var elementsXML:XMLList = xml.elements();
 			this.refwidth = xml.@refwidth;
@@ -460,7 +462,7 @@ package components.domino
 							divXML.@percentWidth = 100;
 							divXML.@percentHeight = 100;
 
-							div.fromXML(divXML, childFromXMLCallback, lookup);
+							div.fromXML(divXML, childFromXMLCallback, localSurface, lookup);
 						}
 					}
 

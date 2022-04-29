@@ -2,6 +2,7 @@ package components
 {
     import interfaces.IComponent;
 	import interfaces.ILookup;
+	import interfaces.ISurface;
 
 	public class Container extends ComponentBase implements IComponent
 	{
@@ -12,7 +13,7 @@ package components
 			super();
 		}
 	
-		public function fromXML(xml:XML, childFromXMLCallback:Function, lookup:ILookup = null):void
+		public function fromXML(xml:XML, childFromXMLCallback:Function, surface:ISurface, lookup:ILookup):void
 		{
 			
 		}

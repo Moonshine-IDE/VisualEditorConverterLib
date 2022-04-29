@@ -9,6 +9,7 @@ package components.primeFaces
 
 	import interfaces.IComponent;
 	import interfaces.ILookup;
+	import interfaces.ISurface;
 	import interfaces.components.IDiv;
 	import interfaces.components.IPanelGrid;
 
@@ -117,8 +118,9 @@ package components.primeFaces
 		/**
 		 * Complexity of this component requires separate implementation of this method on client sight
 		 */
-		public function fromXML(xml:XML, childFromXMLCallback:Function, lookup:ILookup = null):void
+		public function fromXML(xml:XML, childFromXMLCallback:Function, surface:ISurface, lookup:ILookup):void
 		{
+			var localSurface:ISurface = surface;
 			this.setComponentSize(xml);
 
 			_bodyRowsXML = xml.Row;
@@ -196,7 +198,7 @@ package components.primeFaces
 			
 			if (component == null)
 			{
-				createBodyChildren(lookup);
+				createBodyChildren(localSurface, lookup);
 			}
 		}
 		
@@ -286,8 +288,9 @@ package components.primeFaces
 			return headerRowTitles[selectedRowIndex][selectedColumnIndex];
 		}
 			
-		private function createBodyChildren(lookup:ILookup = null):void
+		private function createBodyChildren(surface:ISurface, lookup:ILookup = null):void
 		{
+			var localSurface:ISurface = surface;
 			if (!bodyRowsXML && callbackXML == null) return;
 			
 			for (var rowIndex:int; rowIndex < rowCount; rowIndex++)
@@ -316,7 +319,7 @@ package components.primeFaces
                                 delete divXML.@percentHeight;
                             }
 							
-                            div.fromXML(divXML, callbackXML);
+                            div.fromXML(divXML, callbackXML, localSurface, lookup);
                         }
 					}
 					else

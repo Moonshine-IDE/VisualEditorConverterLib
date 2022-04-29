@@ -25,6 +25,7 @@ package components.domino
 	import interfaces.ILookup;
 
 	import interfaces.IRoyaleComponentConverter;
+	import interfaces.ISurface;
 	import interfaces.components.ICalendar;
 
 
@@ -369,7 +370,7 @@ package components.domino
 			_zone = value;
 		}
 
-		public function fromXML(xml:XML, childFromXMLCallback:Function, lookup:ILookup = null):void
+		public function fromXML(xml:XML, childFromXMLCallback:Function, surface:ISurface, lookup:ILookup):void
 		{
 			setComponentSize(xml);
 

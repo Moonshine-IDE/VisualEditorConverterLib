@@ -5,6 +5,7 @@ package components.common
 	import interfaces.IComponent;
 	import interfaces.ILookup;
 	import interfaces.IRoyaleComponentConverter;
+	import interfaces.ISurface;
 	import interfaces.components.IDiv;
 
 	import utils.CodeMxmlUtils;
@@ -104,8 +105,10 @@ package components.common
 			return _component ? _component : this;
 		}
 		
-		public function fromXML(xml:XML, childFromXMLCallback:Function, lookup:ILookup = null):void
+		public function fromXML(xml:XML, childFromXMLCallback:Function, surface:ISurface,  lookup:ILookup):void
 		{
+			var localSurface:ISurface = surface;
+
 			this._xml = xml;
 			
 			setComponentSize(xml);
@@ -121,7 +124,7 @@ package components.common
             for(var i:int = 0; i < childCount; i++)
             {
                 var childXML:XML = elementsXML[i];
-                childFromXMLCallback(component, lookup, childXML);
+                childFromXMLCallback(component, lookup, childXML, localSurface);
             }
 		}
 		

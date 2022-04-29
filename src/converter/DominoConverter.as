@@ -51,15 +51,16 @@ package converter
 					{
 						var elementXML:XML = elements[i];
 					
-						var component:IComponent = itemFromXML(surface, lookup, elementXML);
+						var component:IComponent = itemFromXML(localSurface, lookup, elementXML, localSurface);
 						localSurface.addItem(component);
 					}
 				}
 			}
 		}
 		
-		private static function itemFromXML(parent:Object, lookup:ILookup, itemXML:XML):IComponent
+		private static function itemFromXML(parent:Object, lookup:ILookup, itemXML:XML, surface:ISurface):IComponent
 		{
+			var localSurface:ISurface = surface;
 			var name:String = itemXML.localName();
 			//we don't need handel "<div>" in the domino visual editor
 			if(!(name in lookup.lookup))
@@ -76,7 +77,7 @@ package converter
                 for(var i:int = 0; i < elementCount; i++)
                 {
                    var elementXML:XML = elements[i];
-                   itemFromXML(parent, lookup, elementXML);
+                   itemFromXML(parent, lookup, elementXML, localSurface);
                 }
 				return null;
 			}
@@ -91,13 +92,15 @@ package converter
 			}
 			else
 			{
-				 item.fromXML(itemXML, itemFromXML, lookup);
+				 item.fromXML(itemXML, itemFromXML, localSurface, lookup);
 				 if(parent!=null)
 				 {
 					 parent.addElement(item);
 				 }
 
-				return item;
+				 localSurface.addItem(item);
+
+				 return item;
 			}
 		}
 

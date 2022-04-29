@@ -5,6 +5,7 @@ package components.primeFaces
 
 	import interfaces.IComponent;
 	import interfaces.ILookup;
+	import interfaces.ISurface;
 	import interfaces.components.IFieldset;
 	
 	import utils.CodeMxmlUtils;
@@ -77,8 +78,10 @@ package components.primeFaces
 		/**
 		 * Complexity of this component requires separate implementation of this method on client sight
 		 */
-		public function fromXML(xml:XML, childFromXMLCallback:Function, lookup:ILookup = null):void
+		public function fromXML(xml:XML, childFromXMLCallback:Function, surface:ISurface, lookup:ILookup):void
 		{
+			var localSurface:ISurface = surface;
+
 			this.setComponentSize(xml);
 
 			this.title = xml.@legend;
@@ -94,7 +97,7 @@ package components.primeFaces
 			}
 			
 			thisCallbackXML = childFromXMLCallback;
-			createChildren(xml.elements(), lookup);
+			createChildren(xml.elements(), localSurface, lookup);
 		}
 		
 		/**
@@ -128,8 +131,9 @@ package components.primeFaces
 			return xml;
 		}
 
-		private function createChildren(elements:XMLList, lookup:ILookup = null):void
+		private function createChildren(elements:XMLList, surface:ISurface, lookup:ILookup = null):void
 		{
+			var localSurface:ISurface = surface;
 			if ((!elements || elements.length() == 0) && (thisCallbackXML == null)) return;
 			
 			var divXML:XML = elements[0];
@@ -148,7 +152,7 @@ package components.primeFaces
 			for (var itemIndex:int; itemIndex < childCount; itemIndex++)
 			{
 				var itemXML:XML = divXML[itemIndex];
-				item.fromXML(itemXML, thisCallbackXML);
+				item.fromXML(itemXML, thisCallbackXML, localSurface, lookup);
 			}
 			
 			if (component["numElements"] == 0)

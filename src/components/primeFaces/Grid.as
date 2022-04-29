@@ -9,6 +9,8 @@ package components.primeFaces
 
     import interfaces.IComponent;
 	import interfaces.ILookup;
+	import interfaces.ISurface;
+	import interfaces.components.IDiv;
 	import interfaces.components.IGrid;
 
     import utils.CodeMxmlUtils;
@@ -48,8 +50,10 @@ package components.primeFaces
 		/**
 		 * Complexity of this component requires separate implementation of this method on client sight
 		 */
-		public function fromXML(xml:XML, childFromXMLCallback:Function, lookup:ILookup = null):void
+		public function fromXML(xml:XML, childFromXMLCallback:Function, surface:ISurface, lookup:ILookup):void
 		{
+			var localSurface:ISurface = surface;
+
 			this.setComponentSize(xml);
 
 			var elementsXML:XMLList = xml.elements();
@@ -85,7 +89,7 @@ package components.primeFaces
                             divXML.@percentWidth = 100;
                             divXML.@percentHeight = 100;
 
-                            div.fromXML(divXML, childFromXMLCallback, lookup);
+                            div.fromXML(divXML, childFromXMLCallback, localSurface, lookup);
                         }
                     }
 
