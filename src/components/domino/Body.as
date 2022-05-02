@@ -122,8 +122,12 @@ package components.domino
 			if (direction == "Horizontal")
 			{
 				mainContainer = new XML("<HGroup></HGroup>");
+				mainContainer.@itemsHorizontalAlign = getAlignmentHorizontal();
 			}
-			//mainContainer.@itemsVerticalAlign = "itemsCentered";
+			else
+			{
+				mainContainer.@itemsVerticalAlign = getAlignmentVertical();
+			}
 
 			var mxmlNamespace:Namespace = new Namespace("fx", "http://ns.adobe.com/mxml/2009");
 			mainContainer.addNamespace(mxmlNamespace);
@@ -133,6 +137,44 @@ package components.domino
 			mainContainer.setNamespace(jNamespace);
 
 			return mainContainer;
+		}
+
+		private function getAlignmentHorizontal():String
+		{
+			var alignment:String = String(_xml["@class"]);
+
+			var findAlignmentIndex:int = alignment.lastIndexOf("flexHorizontalLayoutRight");
+			if (findAlignmentIndex > -1)
+			{
+				return "itemsRight";
+			}
+
+			findAlignmentIndex = alignment.lastIndexOf("flexCenter");
+			if (findAlignmentIndex > -1)
+			{
+				return "itemsCenter";
+			}
+
+			return "itemsLeft";
+		}
+
+		private function getAlignmentVertical():String
+		{
+			var alignment:String = String(_xml["@class"]);
+
+			var findAlignmentIndex:int = alignment.lastIndexOf("itemsTop");
+			if (findAlignmentIndex > -1)
+			{
+				return "itemsBottom";
+			}
+
+			findAlignmentIndex = alignment.lastIndexOf("flexCenter");
+			if (findAlignmentIndex > -1)
+			{
+				return "itemsCenter";
+			}
+
+			return "itemsTop";
 		}
 	}
 }
