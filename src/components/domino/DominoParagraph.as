@@ -143,6 +143,8 @@ package components.domino
 
 		public function fromXML(xml:XML, childFromXMLCallback:Function, surface:ISurface, lookup:ILookup):void
 		{
+			var localSurface:ISurface = surface;
+
 			this._xml = xml;
 
 			setComponentSize(xml);
@@ -169,7 +171,7 @@ package components.domino
 			{
 				var childXML:XML = elementsXML[i];
 				//Alert.show("100:"+childXML.@size);
-				childFromXMLCallback(component, lookup, childXML);
+				childFromXMLCallback(component, lookup, childXML, localSurface);
 			}
 		}
 

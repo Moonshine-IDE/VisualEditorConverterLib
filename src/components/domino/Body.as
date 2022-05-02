@@ -94,6 +94,8 @@ package components.domino
 
 		public function fromXML(xml:XML, childFromXMLCallback:Function, surface:ISurface, lookup:ILookup):void
 		{
+			var localSurface:ISurface = surface;
+
 			this._xml = xml;
 
 			setComponentSize(xml);
@@ -103,7 +105,7 @@ package components.domino
 			for (var i:int = 0; i < childCount; i++)
 			{
 				var childXML:XML = elementsXML[i];
-				childFromXMLCallback(component, lookup, childXML);
+				childFromXMLCallback(component, lookup, childXML, localSurface);
 			}
 		}
 
@@ -145,7 +147,23 @@ package components.domino
 
 		public function toRoyaleConvertCode():XML
 		{
-			return new XML("");
+			var mainContainer:XML = new XML("<VGroup></VGroup>");
+
+			var direction:String = _xml.@direction;
+			if (direction == "Horizontal")
+			{
+				mainContainer = new XML("<HGroup></HGroup>");
+			}
+			//mainContainer.@itemsVerticalAlign = "itemsCentered";
+
+			var mxmlNamespace:Namespace = new Namespace("fx", "http://ns.adobe.com/mxml/2009");
+			mainContainer.addNamespace(mxmlNamespace);
+
+			var jNamespace:Namespace = new Namespace("j", "library://ns.apache.org/royale/jewel");
+			mainContainer.addNamespace(jNamespace);
+			mainContainer.setNamespace(jNamespace);
+
+			return mainContainer;
 		}
 
 		private function toPerDefCode( xml:XML):XML
