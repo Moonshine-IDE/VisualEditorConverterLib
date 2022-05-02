@@ -131,16 +131,17 @@ package components.common
 		public function toCode():XML
 		{
 			var xml:XML 
-			if(isDomino){
-					xml = new XML("<" + CodeMxmlUtils.getMXMLTagNameWithSelection(this, Domino_XML_ELEMENT_NAME) + "/>");
+			if(isDomino)
+			{
+				xml = new XML("<" + CodeMxmlUtils.getMXMLTagNameWithSelection(this, Domino_XML_ELEMENT_NAME) + "/>");
+			}
+			else
+			{
+				xml = new XML("<" + CodeMxmlUtils.getMXMLTagNameWithSelection(this, PRIME_FACES_XML_ELEMENT_NAME) + "/>");
+				CodeXMLUtils.addSizeHtmlStyleToXML(xml, this as IComponent);
 
-			}else{
-					xml = new XML("<" + CodeMxmlUtils.getMXMLTagNameWithSelection(this, PRIME_FACES_XML_ELEMENT_NAME) + "/>");
-					CodeXMLUtils.addSizeHtmlStyleToXML(xml, this as IComponent);
-
-					///TODO: Adjust for Visual Editor
-					xml["@class"] = _cssClass;
-
+				///TODO: Adjust for Visual Editor
+				xml["@class"] = _cssClass;
 			}
 
 			
@@ -155,10 +156,7 @@ package components.common
 			}else{
 				xml.@vdirection=vdirection
 			}
-			
-			
-		
-	
+
             var elementCount:int = component["numElements"];
             for(var i:int = 0; i < elementCount; i++)
             {
