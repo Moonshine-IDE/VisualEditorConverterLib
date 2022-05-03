@@ -859,6 +859,15 @@ package components.domino
 			 * these all propertys will default  to "false"
 			 *
 			 */
+			if(this.listdisplayseparator){
+				 xml.@listdisplayseparator = this.listdisplayseparator;
+			}
+
+			if(this.listinputseparators){
+				 xml.@listinputseparators = this.listinputseparators;
+			}
+			
+
 
 			xml.@useappletinbrowser = "false";
 			xml.@allowtabout = "false";
@@ -878,7 +887,7 @@ package components.domino
 				xml.@hide = this.hide;
 				par_xml.@hide = this.hide;
 			}
-			if (this.inputvalidation)
+			if (this.inputvalidation!=null)
 			{
 				xml.@inputvalidation = this.inputvalidation;
 			}
@@ -1066,8 +1075,7 @@ package components.domino
 				xml.@allowtabout = "false"
 				xml.@borderstyle = "inset"
 				
-				xml.@listdisplayseparator = "comma"
-				xml.@listinputseparators = "comma"
+				
 				xml.@lookupaddressonrefresh = "false"
 				xml.@lookupeachchar = "false"
 				xml.@protected = "false"
@@ -1090,7 +1098,7 @@ package components.domino
 
 					if (this.keywordui == "checkbox")
 					{
-						//xml.@allowmultivalues="true"
+						xml.@allowmultivalues="true"
 					} else if (this.keywordui == "radiobutton")
 					{
 						xml.@allowmultivalues = "false"
@@ -1180,18 +1188,12 @@ package components.domino
 			if (this.type == "names")
 			{
 				xml.@choicesdialog = this.choicesdialog;
-				if (this.listinputseparators)
-				{
-					xml.@listinputseparators = this.listinputseparators;
-				} else
+				if (!this.listinputseparators)
 				{
 					xml.@listinputseparators = "comma semicolon newline"
 				}
 
-				if (this.listdisplayseparator)
-				{
-					xml.@listdisplayseparator = this.listdisplayseparator;
-				} else
+				if (!this.listdisplayseparator)
 				{
 					xml.@listdisplayseparator = "newline"
 				}
