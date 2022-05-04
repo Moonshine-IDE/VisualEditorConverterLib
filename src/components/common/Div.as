@@ -14,14 +14,14 @@ package components.common
 
 	import global.domino.DominoGlobals;
 	
-	public class Div extends ComponentBase implements IDiv
+	public class Div extends ComponentBase implements IDiv, IRoyaleComponentConverter
 	{
 		private static const PRIME_FACES_XML_ELEMENT_NAME:String = "div";
 		private static const Domino_XML_ELEMENT_NAME:String = "par";
     	public static var ELEMENT_NAME:String = "Div";
-		private static const Royale_XML_ELEMENT_NAME:String="ApplicationMainContent";
-		private static const Royale_SELECT_ELEMENT_NAME:String="ScrollableSectionContent";
-		public  var isDomino:Boolean =false;
+		private static const ROYALE_HORIZONTAL_XML_ELEMENT_NAME:String="HGroup";
+		private static const ROYALE_VERTICAL_XML_ELEMENT_NAME:String="VGroup";
+		public  var isDomino:Boolean = false;
 
 		private var _component:IComponent;
 
@@ -56,7 +56,7 @@ package components.common
 			_cssClass = value;	
 		}
 
-		private var _direction:String;
+		private var _direction:String = "Horizontal";
 		public function get direction():String
 		{
 			return _direction;
@@ -194,67 +194,35 @@ package components.common
 				}
 			   
 			    xml.appendChild(element.toCode());
-
-				
-				
             }
 
             return xml;
 		}
 
 		public function toRoyaleConvertCode():XML
-		{	
-			
-			var xml:XML = new XML("<" +Royale_XML_ELEMENT_NAME+ "/>"); 
-            var sleclXMLContoner:XML= new XML("<" +Royale_SELECT_ELEMENT_NAME+ "/>"); //Royale_SELECT_ELEMENT_NAME
-			//       <j:ScrollableSectionContent name="ItemsListing" className="sectionCenter">
-			//hasTopAppBar="false" hasFooterBar="false" selectedContent="ItemsListing"
+		{
+			var componentXML:XML = new XML("<" + ROYALE_HORIZONTAL_XML_ELEMENT_NAME + "/>");
+
 			var royaleNamespace:Namespace = new Namespace("j", "library://ns.apache.org/royale/jewel");
-            xml.setNamespace(royaleNamespace);
-			sleclXMLContoner.setNamespace(royaleNamespace);
-			xml.@id="mainContent";
-			xml.@hasTopAppBar="false";
-			xml.@hasFooterBar="false";
-			xml.@selectedContent="ItemsListing";
+            componentXML.setNamespace(royaleNamespace);
 
-			sleclXMLContoner.@name="ItemsListing";
-			sleclXMLContoner.@className="sectionCenter";
-
-			
-			
-			if(!direction){
-				direction="Horizontal"
+			if(direction == "Vertical")
+			{
+				componentXML = new XML("<" + ROYALE_VERTICAL_XML_ELEMENT_NAME + "/>");
 			}
-			var layoutXml:XML; 
-			if(direction=="Horizontal"){
-				layoutXml= new XML("<HGroup/>"); 
-			}else{
-				layoutXml= new XML("<VGroup/>"); 
-			}
-			layoutXml.@localId="vg";
-			layoutXml.@className="wrapper";
 
-			layoutXml.setNamespace(royaleNamespace);
-			
-			
 			var elementCount:int = component["numElements"];
             for(var i:int = 0; i < elementCount; i++)
             {
-				var element:IComponent = component["getElementAt"](i) as IComponent;
-                layoutXml.appendChild((element as IRoyaleComponentConverter).toRoyaleConvertCode());
-
+				var element:IRoyaleComponentConverter = component["getElementAt"](i) as IRoyaleComponentConverter;
+				if (element == null)
+				{
+					continue;
+				}
+				componentXML.appendChild((element as IRoyaleComponentConverter).toRoyaleConvertCode());
             }
 
-			sleclXMLContoner.appendChild(layoutXml);
-			xml.appendChild(sleclXMLContoner);
-
-			//<j:HGroup localId="hg" gap="3" className="wrapper">
-			//<j:VGroup localId="vg" gap="3" className="wrapper">
-			//Alert.show("div xml 253:"+xml.toXMLString());
-
-
-			 return xml;
-
+			return componentXML;
 		}
 
 		public function toPerDefCode( xml:XML):XML

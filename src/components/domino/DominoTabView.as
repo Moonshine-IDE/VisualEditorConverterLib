@@ -399,10 +399,10 @@ package components.domino
 
             for (var i:int = 0; i < tabCount; i++)
             {
-                var content:Object = component["getElementAt"](i);
+                var content:IComponent = component["getElementAt"](i);
 
 				var dpObjXML:XML = new XML("<Object />");
-					dpObjXML.@label = content.label;
+					dpObjXML.@label = content["label"];
 					dpObjXML.@hash = prefixTab + i;
 					dpObjXML.setNamespace(dpNamespace);
 
@@ -412,8 +412,17 @@ package components.domino
                 tab.setNamespace(royaleNamespace);
                 tab.@name = prefixTab + i;
 
-				var tabContent:XML = (content as IRoyaleComponentConverter).toRoyaleConvertCode();
-				tab.appendChild(tabContent);
+				var contentCount:int = content["numElements"];
+				for (var j:int = 0; j < contentCount; j++)
+				{
+					var component:IRoyaleComponentConverter = content["getElementAt"](j) as IRoyaleComponentConverter;
+					if (component === null)
+					{
+						continue;
+					}
+
+					tab.appendChild(component.toRoyaleConvertCode());
+				}
 
 				tabContenXML.appendChild(tab);
 			}
