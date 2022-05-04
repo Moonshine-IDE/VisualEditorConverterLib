@@ -419,18 +419,18 @@ package components.domino
 		 */
 		public function toRoyaleConvertCode():XML
 		{
-			var button_xml:XML = new XML("<" + ROYALE_ELEMENT_NAME + "/>");
+			var buttonXML:XML = new XML("<" + ROYALE_ELEMENT_NAME + "/>");
 			var royaleNamespace:Namespace = new Namespace("j", "library://ns.apache.org/royale/jewel");
-			button_xml.addNamespace(royaleNamespace);
-			button_xml.setNamespace(royaleNamespace);
+			buttonXML.addNamespace(royaleNamespace);
+			buttonXML.setNamespace(royaleNamespace);
 
 			if (this.label == null)
 			{
 				this.label = "default";
 			}
 
-			button_xml.@text = this.label
-			return button_xml;
+			buttonXML.@text = this.label
+			return buttonXML;
 		}
 	}
 }

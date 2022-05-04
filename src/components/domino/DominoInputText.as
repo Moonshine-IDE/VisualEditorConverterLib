@@ -1084,33 +1084,29 @@ package components.domino
 		//</j:ComboBox>
 		public function toRoyaleConvertCode():XML
 		{
-			var label_xml:XML;
-			if (this.type == "text")
-			{
-				label_xml = new XML("<" + ROYALE_ELEMENT_NAME_TEXT + ">" + "</" + ROYALE_ELEMENT_NAME_TEXT + ">");
-				label_xml.@text = this.text;
-			}
+			var componentXML:XML = new XML("<" + ROYALE_ELEMENT_NAME_TEXT + ">" + "</" + ROYALE_ELEMENT_NAME_TEXT + ">");
+				componentXML.@text = this.text;
 
 			if (this.type == "datetime")
 			{
-				label_xml = new XML("<" + ROYALE_ELEMENT_NAME_DATE + ">" + "</" + ROYALE_ELEMENT_NAME_DATE + ">");
-				label_xml.@dateFormat = "MM/DD/YYYY";
+				componentXML = new XML("<" + ROYALE_ELEMENT_NAME_DATE + ">" + "</" + ROYALE_ELEMENT_NAME_DATE + ">");
+				componentXML.@dateFormat = "MM/DD/YYYY";
 			}
 
 			if (this.type == "keyword")
 			{
 				if (this.keywordui == "checkbox")
 				{
-					label_xml = new XML("<" + ROYALE_ELEMENT_NAME_CHECKBOX + ">" + "</" + ROYALE_ELEMENT_NAME_CHECKBOX + ">");
-					label_xml.@text = this.text;
+					componentXML = new XML("<" + ROYALE_ELEMENT_NAME_CHECKBOX + ">" + "</" + ROYALE_ELEMENT_NAME_CHECKBOX + ">");
+					componentXML.@text = this.text;
 				}
 			}
 
 			var royaleNamespace:Namespace = new Namespace("j", "library://ns.apache.org/royale/jewel");
-			label_xml.addNamespace(royaleNamespace);
-			label_xml.setNamespace(royaleNamespace);
+			componentXML.addNamespace(royaleNamespace);
+			componentXML.setNamespace(royaleNamespace);
 
-			return label_xml;
+			return componentXML;
 
 		}
 

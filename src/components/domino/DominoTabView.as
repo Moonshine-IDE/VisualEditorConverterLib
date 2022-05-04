@@ -27,9 +27,9 @@ package components.domino
 
 	import interfaces.IComponent;
 	import interfaces.ILookup;
+	import interfaces.IRoyaleComponentConverter;
 	import interfaces.ISurface;
 	import interfaces.dominoComponents.IDominoTabView;
-	import mx.controls.Alert;
 	import global.domino.DominoGlobals;
 
 	/**
@@ -106,11 +106,11 @@ package components.domino
 	* @see https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_TABLEROW_ELEMENT_XML.html
 	*/
 
-	public class DominoTabView extends ComponentBase implements IDominoTabView
+	public class DominoTabView extends ComponentBase implements IDominoTabView, IRoyaleComponentConverter
 	{
 		public static const PRIME_FACES_XML_ELEMENT_NAME:String = "tabView";
         public static const ELEMENT_NAME:String = "TabView";
-		public static const Royale_XML_ELEMENT_NAME:String = "TabBar";
+		public static const ROYALE_XML_ELEMENT:String = "TabBar";
 		
 		private var _component:IComponent;
 
@@ -175,6 +175,8 @@ package components.domino
 		
 		public function fromXML(xml:XML, childFromXMLCallback:Function, surface:ISurface, lookup:ILookup):void
 		{
+			var localSurface:ISurface = surface;
+
 			this.setComponentSize(xml);
 
 			this.columnProperties=xml.@columsProperty;
@@ -195,9 +197,8 @@ package components.domino
                 var tabChildren:XMLList = tabXML.Div;
 
                 var tab:IComponent = DominoConverter.getNewInstanceOfComponent(lookup, NavigatorContent.NAVIGATORCONTENT_NAME);
-                if(tab==null){
-					Alert.show("tab is null")
-				}else{
+               	if (tab)
+				{
 					tab["label"] = tabXML.@title;
 					if (tabChildren.length() == 0)
 					{
@@ -206,9 +207,7 @@ package components.domino
 					}
 					
 					component["addElement"](tab);
-					//Alert.show("111:"+i);
-					this.tabFromXML(tab, tabXML, childFromXMLCallback, lookup);
-	
+					this.tabFromXML(tab, tabXML, childFromXMLCallback, localSurface, lookup);
 				}
 			}
 			
@@ -318,7 +317,7 @@ package components.domino
 			if(this.widthtype != null){
 				xml.@widthtype=this.widthtype.toString();
 			}else{
-				xml.@widthtype="fixedleft"
+				xml.@widthtype="fixedleft";
 			}
 			if(this.minrowheight != null){
 				xml.@minrowheight=this.minrowheight;
@@ -357,95 +356,81 @@ package components.domino
 			 //xml=this.fixField(xml,null);
             return xml;
 		}
+
 		public function toRoyaleConvertCode():XML
 		{	
-			var xml:XML = new XML("<" +Royale_XML_ELEMENT_NAME+ "/>"); 
+			var tabBarXML:XML = new XML("<" +ROYALE_XML_ELEMENT+ "/>");
 			var royaleNamespace:Namespace = new Namespace("j", "library://ns.apache.org/royale/jewel");
-            xml.setNamespace(royaleNamespace);
-			xml.@width="100%";
-			
-			
-			xml.@dataProvider="{tabBarData"+DominoGlobals.RoyaleTabeViewId+"}";
-			xml.@royaleDataVarName="tabBarData"+DominoGlobals.RoyaleTabeViewId;
-			var beadsXml:XML =new XML("<beads/>");
-			beadsXml.setNamespace(royaleNamespace);
-			
-			var assiginXml:XML=new XML("<AssignTabContent/>");
-			assiginXml.setNamespace(royaleNamespace);
-			assiginXml.@selectedContentProperty="label";
+            	tabBarXML.setNamespace(royaleNamespace);
+				tabBarXML.@width="100%";
 
-			var contenXML:XML=new XML("<content/>");
-			contenXML.setNamespace(royaleNamespace);
+			var beadsXml:XML = new XML("<beads/>");
+				beadsXml.setNamespace(royaleNamespace);
 			
-			var tabContenXML:XML=new  XML("<TabBarContent/>");
+			var assiginXml:XML = new XML("<AssignTabContent/>");
+				assiginXml.setNamespace(royaleNamespace);
+				assiginXml.@selectedContentProperty="hash";
+
+			var contenXML:XML = new XML("<content/>");
+				contenXML.setNamespace(royaleNamespace);
+
+			var tabsDpXML:XML = new XML("<dataProvider/>");
+				tabsDpXML.setNamespace(royaleNamespace);
+			var dpNamespace:Namespace = new Namespace("fx", "http://ns.adobe.com/mxml/2009");
+			var dpXML:XML = new XML("<Array />");
+				dpXML.setNamespace(dpNamespace);
+
+			var tabContenXML:XML = new XML("<TabBarContent/>");
 			tabContenXML.setNamespace(royaleNamespace);
 
-			if(this.orientation){
+			/*if(this.orientation){
 				if(this.orientation=="top"){
-					xml.@className="tabBarHorizontalIconItemRenderer";
+					tabBarXML.@className="tabBarHorizontalIconItemRenderer";
 				}else if(this.orientation=="left"){
-					xml.@className="tabBarVerticalIconItemRenderer";
+					tabBarXML.@className="tabBarVerticalIconItemRenderer";
 					tabContenXML.@className="side-tab-content"
 				}
 			}else{
-				xml.@className="tabBarVerticalIconItemRenderer";
-			}
+				tabBarXML.@className="tabBarVerticalIconItemRenderer";
+			}*/
 
 			var tabCount:int = component["numElements"];
-			var labelStr:String = "";
+			var prefixTab:String = "tab";
+
             for (var i:int = 0; i < tabCount; i++)
             {
                 var content:Object = component["getElementAt"](i);
-                
+
+				var dpObjXML:XML = new XML("<Object />");
+					dpObjXML.@label = content.label;
+					dpObjXML.@hash = prefixTab + i;
+					dpObjXML.setNamespace(dpNamespace);
+
+				dpXML.appendChild(dpObjXML);
 
                 var tab:XML = new XML("<SectionContent/>");
                 tab.setNamespace(royaleNamespace);
-                tab.@name = content.label;
-				labelStr=labelStr+content.label+",";
+                tab.@name = prefixTab + i;
 
-				var label:XML = new XML("<Label/>");
-				label.setNamespace(royaleNamespace);
-				label.@text=content.label;
+				var tabContent:XML = (content as IRoyaleComponentConverter).toRoyaleConvertCode();
+				tab.appendChild(tabContent);
 
-				//tab.appendChild(label);
 				tabContenXML.appendChild(tab);
-
-
-			}
-			if(labelStr.length>1){
-				labelStr=labelStr.substring(0,labelStr.length-1);
 			}
 
+			tabBarXML.appendChild(dpXML);
 			contenXML.appendChild(tabContenXML);
 			assiginXml.appendChild(contenXML);
 			beadsXml.appendChild(assiginXml);
-			xml.appendChild(beadsXml);
-			xml.@labelString=labelStr;
-			return xml;
+			tabBarXML.appendChild(beadsXml);
 
+			return tabBarXML;
 		}
 
-
-		public function getRoyaleDateProvider():String
-		{
-			//	new TabBarButtonVO("Tab 1", "tab1",null),
-			var str:String="";
-			var tabCount:int = component["numElements"];
-            for (var i:int = 0; i < tabCount; i++)
-            {
-                var content:Object = component["getElementAt"](i);
-				var tabLabel:String = content.label;
-
-                str=str+"new TabBarButtonVO(\""+ tabLabel+"\", \""+tabLabel+"\",null)"+"\n";
-               
-               
-			}
-
-			return str;
-		}
-
-		private function tabFromXML(tab:IComponent, xml:XML, callback:Function, lookup:ILookup = null):void
+		private function tabFromXML(tab:IComponent, xml:XML, callback:Function, surface:ISurface, lookup:ILookup):void
         {
+			var localSurface:ISurface = surface;
+
             var elementsXML:XMLList = xml.elements();
             var childCount:int = elementsXML.length();
             var container:Object;
@@ -464,28 +449,24 @@ package components.domino
                 else
                 {
                     container = DominoConverter.getNewInstanceOfComponent(lookup, Div.ELEMENT_NAME);
-                    container.fromXML(childXML, callback);
+                    container.fromXML(childXML, callback, localSurface, lookup);
 
                     tab["addElement"](container);
                 }
             }
         }
 
-		private function removeDiv(xml:XML,rootXML:XML=null):XML{
+		private function removeDiv(xml:XML,rootXML:XML=null):XML
+		{
 			var elementsXML:XMLList = xml.elements();
             var childCount:int = elementsXML.length();
 
-			
-			
-			
 			if(xml.name()=="div"&& rootXML!=null && rootXML.name()=="tablecell"){
 				
 				if(rootXML.name()=="tablecell"){
 					var divcssstr:String = xml["@class"];
 					var widthtype:String = "fixedright";
-					var rightmargin:String="0";
-					var leftmargin:String="0";
-					var valign:String="";
+
 					if(divcssstr){
 						//Alert.show("divcssstr:"+divcssstr);
 						
@@ -586,13 +567,7 @@ package components.domino
 					}
 				}
 			}
-
-			
-
 			return xml;
-
-			
-
 		}
 
 		private function removePar(xml:XML,rootXML:XML=null):XML{
@@ -642,24 +617,14 @@ package components.domino
 				}
 			}
 
-			
-
 			return xml;
-
-			
-
 		}
-
-
 
 		private var _addpar:Boolean=false;
 		private function addPar(xml:XML,rootXML:XML=null):XML{
 			var elementsXML:XMLList = xml.elements();
             var childCount:int = elementsXML.length();
 
-
-			
-			
 			if(xml.name()=="tablecell"&& rootXML!=null && xml.@direction=="Horizontal"){
 				//Alert.show(""+elementsXML[0].name());
 				if(_addpar==true||elementsXML[0].name()=="table"){
@@ -863,8 +828,6 @@ package components.domino
 				}
 			}
 
-			
-
 			return xml;
 		}
 
@@ -901,19 +864,7 @@ package components.domino
 					flag=false
 			}
 
-			if(flag==true){
-				Alert.show("xml.name:"+xml.name());
-				Alert.show("xml.tablabel:"+xml.@tablabel+":");
-
-			}
-
-
-			// if(xml.name()=="table"&&(xml.@rowdisplay==null||xml.@rowdisplay=="")){
-			// 	flag=false
-			// }
-
 			return flag;
-					
 		}
 	}
 }
