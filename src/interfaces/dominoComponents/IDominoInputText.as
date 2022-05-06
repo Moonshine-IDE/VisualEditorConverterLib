@@ -137,6 +137,20 @@ package interfaces.dominoComponents
 		function set inputSeal(value:Boolean):void;
 		function get inputSign():Boolean;
 		function set inputSign(value:Boolean):void;
+		function get securityOptionsInput():String;
+		function set securityOptionsInput(value:String):void;
+
+		
+
+		//font size color  
+		function get size():String;
+        function set size(value:String):void;
+        function get color():String;
+        function set color(value:String):void;
+        function get fontStyle():String;
+        function set fontStyle(value:String):void;
+        function get fontName():String;
+        function set fontName(value:String):void;
 
 	}
 }

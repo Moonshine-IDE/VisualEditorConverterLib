@@ -683,6 +683,17 @@ package components.domino
 			_firstdisplay = value;
 		}
 
+		private var _securityOptionsInput:String;
+
+		public function get securityOptionsInput():String
+		{
+			return _securityOptionsInput;
+		}
+		public function set securityOptionsInput(value:String):void
+		{
+			_securityOptionsInput = value;
+		}
+
 		private var _onlyallow:String;
 
 		public function get onlyallow():String
@@ -720,6 +731,55 @@ package components.domino
 			_fieldHint = value;
 		}
 
+		//---------font /size  /color--------------------------------------------------------
+		private var _size:String;
+
+		public function get size():String
+		{
+			return _size;
+		}
+
+		public function set size(value:String):void
+		{
+			_size = value;
+		}
+
+		private var _color:String;
+
+		public function get color():String
+		{
+			return _color;
+		}
+
+		public function set color(value:String):void
+		{
+			_color = value;
+		}
+
+		private var _fontStyle:String;
+
+		public function get fontStyle():String
+		{
+			return _fontStyle;
+		}
+
+		public function set fontStyle(value:String):void
+		{
+			_fontStyle = value;
+		}
+
+		private var _fontName:String;
+
+		public function get fontName():String
+		{
+			return _fontName;
+		}
+
+		public function set fontName(value:String):void
+		{
+			_fontName = value;
+		}
+
 		/** Domino number field property end */
 
 		public function fromXML(xml:XML, childFromXMLCallback:Function, surface:ISurface,  lookup:ILookup):void
@@ -736,6 +796,11 @@ package components.domino
 			this.allowmultivalues = xml.@allowmultivalues == "true";
 			this.type = xml.@type;
 			this.kind = xml.@kind;
+			this.color = xml.@color;
+			this.size = xml.@size;
+			this.fontName = xml.@fontName;
+			this.fontStyle = xml.@fontStyle;
+
 			this.numberColumns = xml.@numberColumns;
 			if (xml.@keyformulachoices)
 			{
@@ -763,7 +828,7 @@ package components.domino
 			this.inputProtected = xml.@inputProtected;
 			this.inputSeal = xml.@inputSeal;
 			this.inputSign = xml.@inputSign;
-
+			this.securityOptionsInput=xml.@securityOptionsInput;
 			if (this.type == "number")
 			{
 
@@ -866,6 +931,26 @@ package components.domino
 			if(this.listinputseparators){
 				 xml.@listinputseparators = this.listinputseparators;
 			}
+
+			if (this.color)
+			{
+				xml.@bgcolor = this.color;
+			}
+
+			if (this.size)
+			{
+				xml.@size = this.size + "pt";
+			}
+
+			if (this.fontStyle)
+			{
+				xml.@fontStyle = this.fontStyle;
+			}
+
+			if (this.fontName)
+			{
+				xml.@fontName = this.fontName;
+			}
 			
 
 
@@ -873,8 +958,6 @@ package components.domino
 			xml.@allowtabout = "false";
 			//xml.@dataconnectionfield="false";
 			xml.@defaultfocus = "false";
-			xml.@protected = "false";
-			xml.@sign = "false";
 			xml.@storelocally = "false";
 			if (this.hidewhen)
 			{
@@ -909,20 +992,7 @@ package components.domino
 			{
 				xml.@type = this.type;
 			}
-			if(this.inputProtected)
-			{
-				xml.@protected = this.inputProtected;
-			}
-
-			if(this.inputSign)
-			{
-				xml.@sign = this.inputSign;
-			}
-
-			if(this.inputSeal)
-			{
-				xml.@seeal = this.inputSeal;
-			}
+		
 
 			if (this.kind)
 			{
@@ -952,7 +1022,7 @@ package components.domino
 			}
 
 			if(this.helpDescription){
-				xml.@helpDescription = this.helpDescription
+				xml.@description = this.helpDescription
 			}
 
 			if(this.fieldHint){
@@ -1080,7 +1150,7 @@ package components.domino
 				xml.@lookupeachchar = "false"
 				xml.@protected = "false"
 				xml.@showdelimiters = "true"
-				xml.@sign = "false"
+			
 				xml.@storelocally = "false"
 				xml.@useappletinbrowser = "false"
 
@@ -1203,6 +1273,26 @@ package components.domino
 			{
 				xml.@firstdisplay = firstdisplay
 				xml.@onlyallow = onlyallow
+			}
+
+			if(this.securityOptionsInput&& this.securityOptionsInput.length>0){
+				if(this.securityOptionsInput.indexOf("sign")>=0){
+					xml.@sign = "true";
+				}else{
+					xml.@sign = "false";
+				}
+				if(this.securityOptionsInput.indexOf("seal")>=0){
+					xml.@seal = "true";
+				}else{
+					xml.@seal = "false";
+				}
+
+				if(this.securityOptionsInput.indexOf("protected")>=0){
+					xml.@protected = "true";
+				}else{
+					xml.@protected = "false";
+				}
+				
 			}
 
 			par_xml.appendChild(xml);
