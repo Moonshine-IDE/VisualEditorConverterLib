@@ -136,6 +136,9 @@ package components.domino
 			mainContainer.addNamespace(jNamespace);
 			mainContainer.setNamespace(jNamespace);
 
+			var jsNamespace:Namespace = new Namespace("js", "library://ns.apache.org/royale/basic");
+			mainContainer.addNamespace(jsNamespace);
+
 			return mainContainer;
 		}
 

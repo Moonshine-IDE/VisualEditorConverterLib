@@ -358,59 +358,63 @@ package components.domino
 		}
 
 		public function toRoyaleConvertCode():XML
-		{	
-			var tabBarXML:XML = new XML("<" +ROYALE_XML_ELEMENT+ "/>");
-			var royaleNamespace:Namespace = new Namespace("j", "library://ns.apache.org/royale/jewel");
-            	tabBarXML.setNamespace(royaleNamespace);
-				tabBarXML.@width="100%";
+		{
+			var jewelNamespace:Namespace = new Namespace("j", "library://ns.apache.org/royale/jewel");
+			var fxNamespace:Namespace = new Namespace("fx", "http://ns.adobe.com/mxml/2009");
+			var jsNamespace:Namespace = new Namespace("js", "library://ns.apache.org/royale/basic");
 
-			var beadsXml:XML = new XML("<beads/>");
-				beadsXml.setNamespace(royaleNamespace);
-			
-			var assiginXml:XML = new XML("<AssignTabContent/>");
-				assiginXml.setNamespace(royaleNamespace);
-				assiginXml.@selectedContentProperty="hash";
+			var rootContainerXML:XML = new XML("<VGroup />");
+				rootContainerXML.setNamespace(jewelNamespace);
+				rootContainerXML.@itemsVerticalAlign = "itemsCenter";
 
-			var contenXML:XML = new XML("<content/>");
-				contenXML.setNamespace(royaleNamespace);
+			var tabsRootXML:XML = new XML("<" +ROYALE_XML_ELEMENT+ "/>");
+            	tabsRootXML.setNamespace(jewelNamespace);
+
+			rootContainerXML.appendChild(tabsRootXML);
 
 			var tabsDpXML:XML = new XML("<dataProvider/>");
-				tabsDpXML.setNamespace(royaleNamespace);
-			var dpNamespace:Namespace = new Namespace("fx", "http://ns.adobe.com/mxml/2009");
-			var dpXML:XML = new XML("<Array />");
-				dpXML.setNamespace(dpNamespace);
+				tabsDpXML.setNamespace(jewelNamespace);
 
-			var tabContenXML:XML = new XML("<TabBarContent/>");
-			tabContenXML.setNamespace(royaleNamespace);
+			var tabsDpArrayListXML:XML = new XML("<ArrayList />");
+				tabsDpArrayListXML.setNamespace(jsNamespace);
 
-			/*if(this.orientation){
-				if(this.orientation=="top"){
-					tabBarXML.@className="tabBarHorizontalIconItemRenderer";
-				}else if(this.orientation=="left"){
-					tabBarXML.@className="tabBarVerticalIconItemRenderer";
-					tabContenXML.@className="side-tab-content"
-				}
-			}else{
-				tabBarXML.@className="tabBarVerticalIconItemRenderer";
-			}*/
+			tabsDpXML.appendChild(tabsDpArrayListXML);
+			tabsRootXML.appendChild(tabsDpXML);
+
+			var beadsXml:XML = new XML("<beads/>");
+				beadsXml.setNamespace(jewelNamespace);
+			
+			var tabsAssignTabRootXML:XML = new XML("<AssignTabContent/>");
+				tabsAssignTabRootXML.setNamespace(jewelNamespace);
+				tabsAssignTabRootXML.@selectedContentProperty="hash";
+
+			beadsXml.appendChild(tabsAssignTabRootXML);
+
+			var tabBarContentRootXML:XML = new XML("<content/>");
+				tabBarContentRootXML.setNamespace(jewelNamespace);
+
+			tabsAssignTabRootXML.appendChild(tabBarContentRootXML);
+
+			var tabsContentXML:XML = new XML("<TabBarContent/>");
+			tabsContentXML.setNamespace(jewelNamespace);
 
 			var tabCount:int = component["numElements"];
 			var prefixTab:String = "tab";
 
-            for (var i:int = 0; i < tabCount; i++)
+			for (var i:int = 0; i < tabCount; i++)
             {
                 var content:IComponent = component["getElementAt"](i);
 
 				var dpObjXML:XML = new XML("<Object />");
 					dpObjXML.@label = content["label"];
 					dpObjXML.@hash = prefixTab + i;
-					dpObjXML.setNamespace(dpNamespace);
+					dpObjXML.setNamespace(fxNamespace);
 
-				dpXML.appendChild(dpObjXML);
+				tabsDpArrayListXML.appendChild(dpObjXML);
 
-                var tab:XML = new XML("<SectionContent/>");
-                tab.setNamespace(royaleNamespace);
-                tab.@name = prefixTab + i;
+                var tabSection:XML = new XML("<SectionContent/>");
+                tabSection.setNamespace(jewelNamespace);
+                tabSection.@name = prefixTab + i;
 
 				var contentCount:int = content["numElements"];
 				for (var j:int = 0; j < contentCount; j++)
@@ -421,19 +425,16 @@ package components.domino
 						continue;
 					}
 
-					tab.appendChild(component.toRoyaleConvertCode());
+					tabSection.appendChild(component.toRoyaleConvertCode());
 				}
 
-				tabContenXML.appendChild(tab);
+				tabsContentXML.appendChild(tabSection);
 			}
 
-			tabBarXML.appendChild(dpXML);
-			contenXML.appendChild(tabContenXML);
-			assiginXml.appendChild(contenXML);
-			beadsXml.appendChild(assiginXml);
-			tabBarXML.appendChild(beadsXml);
+			tabBarContentRootXML.appendChild(tabsContentXML);
+			tabsRootXML.appendChild(beadsXml);
 
-			return tabBarXML;
+			return rootContainerXML;
 		}
 
 		private function tabFromXML(tab:IComponent, xml:XML, callback:Function, surface:ISurface, lookup:ILookup):void
@@ -565,7 +566,7 @@ package components.domino
 			}else{
 				for(var p:int = 0; p < childCount; p++){
 					var pchildXML:XML = elementsXML[p];
-					//Alert.show("261:"+childXML.name())
+
 					if(pchildXML.name()=="div"){
 						rootXML=xml;
 					}
