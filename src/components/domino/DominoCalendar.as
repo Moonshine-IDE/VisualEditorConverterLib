@@ -60,6 +60,8 @@ package components.domino
 	
 	public class DominoCalendar extends ComponentBase implements ICalendar, IRoyaleComponentConverter
 	{
+		public static const ROYALE_DATEFIELD_ELEMENT_NAME:String = "DateField";
+		public static const ROYALE_DATECHOOSER_ELEMENT_NAME:String = "DateChooser";
 		public static const PRIME_FACES_XML_ELEMENT_NAME:String = "Calendar";
 		public static const ELEMENT_NAME:String = "Calendar";
 
@@ -514,7 +516,20 @@ package components.domino
 
 		public function toRoyaleConvertCode():XML
 		{
-			return new XML("");
+			var componentXML:XML = new XML("<" + ROYALE_DATEFIELD_ELEMENT_NAME + ">" + "</" + ROYALE_DATEFIELD_ELEMENT_NAME + ">");
+
+			if (this.mode == "inline")
+			{
+				componentXML = new XML("<" + ROYALE_DATECHOOSER_ELEMENT_NAME + ">" + "</" + ROYALE_DATECHOOSER_ELEMENT_NAME + ">");
+			}
+
+			componentXML.@dateFormat = "MM/DD/YYYY";
+
+			var royaleNamespace:Namespace = new Namespace("j", "library://ns.apache.org/royale/jewel");
+			componentXML.addNamespace(royaleNamespace);
+			componentXML.setNamespace(royaleNamespace);
+
+			return componentXML;
 		}
 	}
 }
