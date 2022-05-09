@@ -439,6 +439,7 @@ package components.domino
 
 		private function tabFromXML(tab:IComponent, xml:XML, callback:Function, surface:ISurface, lookup:ILookup):void
         {
+			var localLookup:ILookup = lookup;
 			var localSurface:ISurface = surface;
 
             var elementsXML:XMLList = xml.elements();
@@ -454,7 +455,7 @@ package components.domino
                 var childXML:XML = elementsXML[i];
                 if (container)
                 {
-                    callback(container, childXML);
+                    callback(container, localLookup, childXML, localSurface);
                 }
                 else
                 {
