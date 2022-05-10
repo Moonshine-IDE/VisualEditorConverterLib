@@ -128,16 +128,18 @@ package components.domino
 			{
 				mainContainer.@itemsVerticalAlign = getAlignmentVertical();
 			}
-
-			var mxmlNamespace:Namespace = new Namespace("fx", "http://ns.adobe.com/mxml/2009");
-			mainContainer.addNamespace(mxmlNamespace);
-
 			var jNamespace:Namespace = new Namespace("j", "library://ns.apache.org/royale/jewel");
 			mainContainer.addNamespace(jNamespace);
 			mainContainer.setNamespace(jNamespace);
 
+			var mxmlNamespace:Namespace = new Namespace("fx", "http://ns.adobe.com/mxml/2009");
+			mainContainer.addNamespace(mxmlNamespace);
+
 			var jsNamespace:Namespace = new Namespace("js", "library://ns.apache.org/royale/basic");
 			mainContainer.addNamespace(jsNamespace);
+
+			var htmlNamespace:Namespace = new Namespace("html", "library://ns.apache.org/royale/html");
+			mainContainer.addNamespace(htmlNamespace);
 
 			return mainContainer;
 		}

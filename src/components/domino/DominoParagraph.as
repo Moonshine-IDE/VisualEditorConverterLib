@@ -51,6 +51,7 @@ package components.domino
 
 	public class DominoParagraph extends ComponentBase implements IDominoParagraph, IRoyaleComponentConverter
 	{
+		public static const ROYALE_XML_ELEMENT:String = "P";
 		public static const DOMINO_ELEMENT_NAME:String = "par";
 		public static var ELEMENT_NAME:String = "Paragraph";
 
@@ -198,7 +199,25 @@ package components.domino
 
 		public function toRoyaleConvertCode():XML
 		{
-			return new XML("");
+			var htmlNamespace:Namespace = new Namespace("html", "library://ns.apache.org/royale/html");
+
+			var paragraphXML:XML = new XML("<" +ROYALE_XML_ELEMENT+ "/>");
+			paragraphXML.setNamespace(htmlNamespace);
+
+			var elementCount:int = component["numElements"];
+			for (var i:int = 0; i < elementCount; i++)
+			{
+				var element:IRoyaleComponentConverter = component[i];
+				if (element == null)
+				{
+					continue;
+				}
+
+				var elementXML:XML = element.toRoyaleConvertCode();
+				paragraphXML.appendChild(elementXML);
+			}
+
+			return paragraphXML;
 		}
 	}
 }

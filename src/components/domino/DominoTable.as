@@ -577,8 +577,6 @@ package components.domino
 		public function toRoyaleConvertCode():XML
 		{
 			var jewelNamespace:Namespace = new Namespace("j", "library://ns.apache.org/royale/jewel");
-			var fxNamespace:Namespace = new Namespace("fx", "http://ns.adobe.com/mxml/2009");
-			var jsNamespace:Namespace = new Namespace("js", "library://ns.apache.org/royale/basic");
 
 			var tableRootXML:XML = new XML("<" +ROYALE_XML_ELEMENT+ "/>");
 				tableRootXML.setNamespace(jewelNamespace);
