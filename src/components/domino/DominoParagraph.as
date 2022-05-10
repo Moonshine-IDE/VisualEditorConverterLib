@@ -207,7 +207,7 @@ package components.domino
 			var elementCount:int = component["numElements"];
 			for (var i:int = 0; i < elementCount; i++)
 			{
-				var element:IRoyaleComponentConverter = component[i];
+				var element:IRoyaleComponentConverter = component["getElementAt"](i);
 				if (element == null)
 				{
 					continue;
