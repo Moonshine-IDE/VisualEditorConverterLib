@@ -173,6 +173,59 @@ package components.domino
 			return mainContainer;
 		}
 
+		private function getAlignmentHorizontal():String
+		{
+			var alignment:String = String(_xml["@class"]);
+
+			var findAlignmentIndex:int = alignment.lastIndexOf("flexHorizontalLayoutRight");
+			if (findAlignmentIndex > -1)
+			{
+				return "itemsRight";
+			}
+
+			findAlignmentIndex = alignment.lastIndexOf("flexCenter");
+			if (findAlignmentIndex > -1)
+			{
+				return "itemsCenter";
+			}
+
+			return "itemsLeft";
+		}
+
+		private function getAlignmentVertical():String
+		{
+			var alignment:String = String(_xml["@class"]);
+
+			var findAlignmentIndex:int = alignment.lastIndexOf("itemsTop");
+			if (findAlignmentIndex > -1)
+			{
+				return "itemsBottom";
+			}
+
+			findAlignmentIndex = alignment.lastIndexOf("flexCenter");
+			if (findAlignmentIndex > -1)
+			{
+				return "itemsCenter";
+			}
+
+			return "itemsTop";
+		}
+
+		public function toHidePerDefCode( xml:XML):XML
+		{
+			if(xml!=null){
+				var pardefXml:XML = new XML("<pardef id=\""+DominoGlobals.PardefDivId+"\" "+" dominotype=\"domino\" keeptogether=\"true\" keepwithnext=\"true\"/>" );
+				if(xml.@hide&& xml.@hide!=""){
+					pardefXml.@hide=xml.@hide;
+					xml.@def=DominoGlobals.PardefDivId;
+					//arond a new par for the traget element 
+					
+				}
+			}
+
+			return pardefXml;
+		}
+
 		private function toPerDefCode( xml:XML):XML
 		{
 			var prefdef_str:String="";
@@ -226,21 +279,6 @@ package components.domino
 			if(xml.@hide&& xml.@hide!=""){
 				pardefXml.@hide=xml.@hide;
 			}
-			return pardefXml;
-		}
-
-		public function toHidePerDefCode( xml:XML):XML
-		{
-			if(xml!=null){
-				var pardefXml:XML = new XML("<pardef id=\""+DominoGlobals.PardefDivId+"\" "+" dominotype=\"domino\" keeptogether=\"true\" keepwithnext=\"true\"/>" );
-				if(xml.@hide&& xml.@hide!=""){
-					pardefXml.@hide=xml.@hide;
-					xml.@def=DominoGlobals.PardefDivId;
-					//arond a new par for the traget element 
-					
-				}
-			}
-
 			return pardefXml;
 		}
 	}

@@ -108,7 +108,7 @@ package components.domino
 	* @see https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_TABLEROW_ELEMENT_XML.html
 	*/
 
-	public class DominoTabView extends ComponentBase implements IDominoTabView, IRoyaleComponentConverter
+	public class DominoTabView extends DominoConponentHideBase implements IDominoTabView, IRoyaleComponentConverter
 	{
 		public static const PRIME_FACES_XML_ELEMENT_NAME:String = "tabView";
         public static const ELEMENT_NAME:String = "TabView";
