@@ -388,10 +388,6 @@ package components.domino
 				fontXml.@familyid = this.familyid;
 			}
 
-			var xml:XML = new XML();
-
-			//CodeXMLUtils.addSizeHtmlStyleToXML(xml, this);
-			//Alert.show("code_string 2:"+code_string+":");
 			var runXml:XML = new XML("<run>" + fontXml.toXMLString() + code_string + "</run>");
 			var rex:RegExp = /(\t|\n|\r)/gi;
 			if (this.par != null)
