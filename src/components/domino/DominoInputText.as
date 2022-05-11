@@ -800,6 +800,7 @@ package components.domino
 			this.size = xml.@size;
 			this.fontName = xml.@fontName;
 			this.fontStyle = xml.@fontStyle;
+			
 
 			this.numberColumns = xml.@numberColumns;
 			if (xml.@keyformulachoices)
@@ -916,6 +917,12 @@ package components.domino
 			}else{
 				par_xml = new XML("<par dominotype=\"dominoInputText\"/>");
 			}
+
+			var runXML:XML = new XML("<run/>");
+
+			var fontXml:XML = new XML("<font/>");
+
+			
 			
 			var xml:XML = new XML("<" + CodeMxmlUtils.getMXMLTagNameWithSelection(this, DOMINO_ELEMENT_NAME) + "/>");
 
@@ -931,26 +938,29 @@ package components.domino
 			if(this.listinputseparators){
 				 xml.@listinputseparators = this.listinputseparators;
 			}
+			
 
 			if (this.color)
 			{
-				xml.@bgcolor = this.color;
+				fontXml.@color = this.color;
 			}
 
 			if (this.size)
 			{
-				xml.@size = this.size + "pt";
+				fontXml.@size = this.size + "pt";
 			}
 
 			if (this.fontStyle)
 			{
-				xml.@fontStyle = this.fontStyle;
+				fontXml.@fontStyle = this.fontStyle;
 			}
 
 			if (this.fontName)
 			{
-				xml.@fontName = this.fontName;
+				fontXml.@fontName = this.fontName;
 			}
+
+			
 			
 
 
@@ -1295,7 +1305,14 @@ package components.domino
 				
 			}
 
-			par_xml.appendChild(xml);
+			if(this.color || this.size || this.fontStyle || this.fontName)
+			{
+				runXML.appendChild(fontXml);
+				runXML.appendChild(xml);
+				par_xml.appendChild(runXML);
+			}else{
+				par_xml.appendChild(xml);
+			}
 
 			return par_xml;
 		}
