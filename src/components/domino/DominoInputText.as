@@ -796,10 +796,19 @@ package components.domino
 			this.allowmultivalues = xml.@allowmultivalues == "true";
 			this.type = xml.@type;
 			this.kind = xml.@kind;
-			this.color = xml.@color;
-			this.size = xml.@size;
-			this.fontName = xml.@fontName;
-			this.fontStyle = xml.@fontStyle;
+			if(xml.@color){
+				this.color = xml.@color;
+			}
+			if(xml.@size){
+				this.size = xml.@size;
+			}
+			if(xml.@fontName){
+				this.fontName = xml.@fontName;
+			}
+			if(xml.@fontStyle){
+				this.fontStyle = xml.@fontStyle;
+			}
+
 			
 
 			this.numberColumns = xml.@numberColumns;
@@ -940,22 +949,22 @@ package components.domino
 			}
 			
 
-			if (this.color)
+			if (this.color!=null)
 			{
 				fontXml.@color = this.color;
 			}
 
-			if (this.size)
+			if (this.size!=null)
 			{
 				fontXml.@size = this.size + "pt";
 			}
 
-			if (this.fontStyle)
+			if (this.fontStyle!=null)
 			{
 				fontXml.@fontStyle = this.fontStyle;
 			}
 
-			if (this.fontName)
+			if (this.fontName!=null)
 			{
 				fontXml.@fontName = this.fontName;
 			}
