@@ -961,12 +961,12 @@ package components.domino
 
 			if (this.fontStyle!=null)
 			{
-				fontXml.@fontStyle = this.fontStyle;
+				fontXml.@style = this.fontStyle;
 			}
 
 			if (this.fontName!=null)
 			{
-				fontXml.@fontName = this.fontName;
+				fontXml.@name = this.fontName;
 			}
 
 			
