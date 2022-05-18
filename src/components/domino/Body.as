@@ -141,6 +141,9 @@ package components.domino
 			var htmlNamespace:Namespace = new Namespace("html", "library://ns.apache.org/royale/html");
 			mainContainer.addNamespace(htmlNamespace);
 
+			var joditEditor:Namespace = new Namespace("joditeditor", "classes.joditeditor.*");
+			mainContainer.addNamespace(joditEditor);
+
 			return mainContainer;
 		}
 

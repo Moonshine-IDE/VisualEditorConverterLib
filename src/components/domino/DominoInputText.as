@@ -67,6 +67,7 @@ package components.domino
 		public static const ROYALE_ELEMENT_NAME_TEXT:String = "TextInput";
 		public static const ROYALE_ELEMENT_NAME_DATE:String = "DateField";
 		public static const ROYALE_ELEMENT_NAME_CHECKBOX:String = "CheckBox";
+		public static const ROYALE_ELEMENT_NAME_JODIT:String = "JoditEditor";
 
 		public static function base64Encode(str:String, charset:String = "UTF-8"):String
 		{
@@ -1072,8 +1073,8 @@ package components.domino
 
 			if (this.type == "richtextlite")
 			{
-				xml.@firstdisplay = firstdisplay
-				xml.@onlyallow = onlyallow
+				xml.@firstdisplay = firstdisplay;
+				xml.@onlyallow = onlyallow;
 			}
 
 			par_xml.appendChild(xml);
@@ -1084,6 +1085,7 @@ package components.domino
 		//</j:ComboBox>
 		public function toRoyaleConvertCode():XML
 		{
+			var componentNamespace:Namespace = new Namespace("j", "library://ns.apache.org/royale/jewel");
 			var componentXML:XML = new XML("<" + ROYALE_ELEMENT_NAME_TEXT + ">" + "</" + ROYALE_ELEMENT_NAME_TEXT + ">");
 				componentXML.@text = this.text;
 
@@ -1102,9 +1104,15 @@ package components.domino
 				}
 			}
 
-			var royaleNamespace:Namespace = new Namespace("j", "library://ns.apache.org/royale/jewel");
-			componentXML.addNamespace(royaleNamespace);
-			componentXML.setNamespace(royaleNamespace);
+			if (this.type == "richtext")
+			{
+				componentXML = new XML("<" + ROYALE_ELEMENT_NAME_JODIT  + ">" + "</" + ROYALE_ELEMENT_NAME_JODIT + ">");
+				componentXML.@data = this.text;
+				componentNamespace = new Namespace("joditeditor", "classes.joditeditor.*");
+			}
+
+			componentXML.addNamespace(componentNamespace);
+			componentXML.setNamespace(componentNamespace);
 
 			return componentXML;
 
