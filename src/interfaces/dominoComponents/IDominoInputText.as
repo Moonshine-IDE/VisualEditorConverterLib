@@ -151,6 +151,12 @@ package interfaces.dominoComponents
         function set fontStyle(value:String):void;
         function get fontName():String;
         function set fontName(value:String):void;
+		function get pitches():String;
+        function set pitches(value:String):void;
+		function get familyid():String;
+        function set familyid(value:String):void;
+		function get truetype():String;
+        function set truetype(value:String):void;
 
 	}
 }

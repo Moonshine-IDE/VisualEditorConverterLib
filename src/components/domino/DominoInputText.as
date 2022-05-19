@@ -780,6 +780,47 @@ package components.domino
 			_fontName = value;
 		}
 
+		private var _pitches:String;
+
+		public function get pitches():String
+		{
+			return _pitches;
+		}
+
+		public function set pitches(value:String):void
+		{
+			_pitches = value;
+		}
+
+		private var _familyid:String;
+
+		public function get familyid():String
+		{
+			return _familyid;
+		}
+
+		public function set familyid(value:String):void
+		{
+			_familyid = value;
+		
+		}
+
+		private var _truetype:String;
+
+		public function get truetype():String
+		{
+			return _truetype;
+		}
+
+		public function set truetype(value:String):void
+		{
+			_truetype = value;
+		}
+
+
+
+		
+
 		/** Domino number field property end */
 
 		public function fromXML(xml:XML, childFromXMLCallback:Function, surface:ISurface,  lookup:ILookup):void
@@ -798,6 +839,16 @@ package components.domino
 			this.kind = xml.@kind;
 			if(xml.@color){
 				this.color = xml.@color;
+			}
+
+			if(xml.@pitches){
+				this.pitches = xml.@pitches;
+			}
+			if(xml.@familyid){
+				this.familyid = xml.@familyid;
+			}
+			if(xml.@truetype){
+				this.truetype = xml.@truetype;
 			}
 			if(xml.@size){
 				this.size = xml.@size;
@@ -967,6 +1018,17 @@ package components.domino
 			if (this.fontName!=null)
 			{
 				fontXml.@name = this.fontName;
+			}
+
+			if(this.pitches){
+				fontXml.@pitch = this.pitches;
+			}
+			if(this.familyid){
+				fontXml.@familyid = this.familyid;
+			}
+
+			if(this.truetype){
+				fontXml.@truetype = this.truetype;
 			}
 
 			
