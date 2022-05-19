@@ -65,13 +65,16 @@ package components.domino
 	{
 		public static const ROYALE_ELEMENT_NAME:String = "Label";
 		public static const ELEMENT_NAME:String = "Label";
-		public static const AMPERSAND:String = "&amp;"
-		public static const APOSTROPHE:String = "&apos;"
-		public static const DBL_QUOTES:String = "&quot;"
-		public static const GT:String = "&gt;"
-		public static const LT:String = "&lt;"
-		public static const SPEACE:String = "&#160;"
-		public static const TAB:String = "&#9;"
+
+		private static const AMPERSAND:String = "&amp;";
+		private static const APOSTROPHE:String = "&apos;";
+		private static const DBL_QUOTES:String = "&quot;";
+		private static const GT:String = "&gt;";
+		private static const LT:String = "&lt;";
+		private static const SPACE:String = "&#160;";
+		private static const TAB:String = "&#tab;";
+		private static const LEFT_CURLY_BRACKET:String = "&#123;";
+		private static const RIGHT_CURLY_BRACKET:String = "&#125;";
 
 		public function DominoLabel()
 		{
@@ -365,7 +368,7 @@ package components.domino
 
 		public function toCode():XML
 		{
-			var code_string:String = fixSpecailCharacter(unescape(this.text));
+			var codeString:String = escapeSpecialCharactersDomino(unescape(this.text));
 
 			var parXML:XML = new XML("<par/>");
 
@@ -405,11 +408,7 @@ package components.domino
 				fontXml.@familyid = this.familyid;
 			}
 
-			var xml:XML = new XML();
-
-			//CodeXMLUtils.addSizeHtmlStyleToXML(xml, this);
-			//Alert.show("code_string 2:"+code_string+":");
-			var runXml:XML = new XML("<run>" + fontXml.toXMLString() + code_string + "</run>");
+			var runXml:XML = new XML("<run>" + fontXml.toXMLString() + codeString + "</run>");
 			var rex:RegExp = /(\t|\n|\r)/gi;
 			if (this.par != null)
 			{
@@ -426,7 +425,7 @@ package components.domino
 				linkXml.@href = this.urlLinkHref;
 				linkXml.@showborder = this.showBorder;
 
-				var linkText:String = StringUtil.trim(fontXml.toXMLString()) + code_string;
+				var linkText:String = StringUtil.trim(fontXml.toXMLString()) + codeString;
 
 				linkText = linkText.replace(rex, '');
 				var linkRunXML:XML = new XML("<run>" + linkText + "</run>");
@@ -480,8 +479,21 @@ package components.domino
 			labelXML.addNamespace(royaleNamespace);
 			labelXML.setNamespace(royaleNamespace);
 
-			var labelText:String = fixSpecailCharacter(unescape(this.text));
-			labelXML.@text = labelText;
+			var originalLabelText:String = this.text;
+			var escapedLabelText:String = this.escapeSpecialCharactersRoyale(this.text);
+
+			if (originalLabelText == escapedLabelText)
+			{
+				labelXML.@text = originalLabelText;
+			}
+			else
+			{
+				var htmlXML:XML = new XML("<html><![CDATA[" + escapedLabelText + "]]></html>");
+					htmlXML.setNamespace(royaleNamespace);
+
+				labelXML.appendChild(htmlXML);
+			}
+
 			labelXML.@className = "cursor-pointer";
 			labelXML.@multiline = "true";
 
@@ -489,41 +501,62 @@ package components.domino
 
 		}
 
-		private function fixSpecailCharacter(text:String):String
+		private function escapeSpecialCharactersDomino(text:String):String
 		{
-			var amppattern:RegExp = /&/g;
-			text = text.replace(amppattern, AMPERSAND);
+			var ampPattern:RegExp = /&/g;
+			text = text.replace(ampPattern, AMPERSAND);
 
-			var ltpattern:RegExp = /</g;
-			text = text.replace(ltpattern, LT);
-			var gtpattern:RegExp = />/g;
-			text = text.replace(gtpattern, GT);
+			var ltPattern:RegExp = /</g;
+			text = text.replace(ltPattern, LT);
+			var gtPattern:RegExp = />/g;
+			text = text.replace(gtPattern, GT);
 
-			var qtpattern:RegExp = /"/g;
-			text = text.replace(qtpattern, DBL_QUOTES);
+			var quotesPattern:RegExp = /"/g;
+			text = text.replace(quotesPattern, DBL_QUOTES);
 
-
-			var tabpattern:RegExp = /\t/g;
-			text = text.replace(tabpattern, "&#tab;");
-			var aposattern:RegExp = /'/g;
-			text = text.replace(aposattern, APOSTROPHE);
+			var tabPattern:RegExp = /\t/g;
+			text = text.replace(tabPattern, TAB);
+			var aposPattern:RegExp = /'/g;
+			text = text.replace(aposPattern, APOSTROPHE);
 
 			//The first characters is space will lost in the format , because xml will auto remove the first space,
 			//I guess any text content of node , will auto execute a trim() function.
 			//So, in here , I convert the first normal space to non-break space.
-			var speace:RegExp = / /g;
-			var lastspeace:RegExp = /.$/;
+			var space:RegExp = / /g;
+			var lastSpace:RegExp = /.$/;
 			if (text.substring(0, 1) == " ")
 			{
-				text = text.replace(speace, SPEACE);
+				text = text.replace(space, SPACE);
 			}
 
 			if (text.substring(text.length - 1) == " ")
 			{
-				text = text.replace(lastspeace, SPEACE);
+				text = text.replace(lastSpace, SPACE);
 			}
 
 			return text
+		}
+
+		private function escapeSpecialCharactersRoyale(text:String):String
+		{
+			var ampPattern:RegExp = /&/g;
+			text = text.replace(ampPattern, AMPERSAND);
+
+			var ltPattern:RegExp = /</g;
+			text = text.replace(ltPattern, LT);
+			var gtPattern:RegExp = />/g;
+			text = text.replace(gtPattern, GT);
+
+			var quotesPattern:RegExp = /"/g;
+			text = text.replace(quotesPattern, DBL_QUOTES);
+
+			var leftCurlyBracketPattern:RegExp = /{/g;
+			text = text.replace(leftCurlyBracketPattern, LEFT_CURLY_BRACKET);
+
+			var rightCurlyBracketPattern:RegExp = /}/g;
+			text = text.replace(rightCurlyBracketPattern, RIGHT_CURLY_BRACKET);
+
+			return text;
 		}
 	}
 }

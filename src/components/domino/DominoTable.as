@@ -123,11 +123,8 @@ package components.domino
 
 	public class DominoTable extends DominoConponentHideBase implements IDominoTable, IRoyaleComponentConverter
 	{
-		public static const DOMINO_ELEMENT_NAME:String = "table";
+		public static const ROYALE_XML_ELEMENT:String = "SimpleTable";
 		public static const ELEMENT_NAME:String = "table";
-		public static const PRIMEFACE_ELEMENT_NAME:String = "Grid";
-
-		private static const MAX_COLUMN_COUNT:int = 12;
 
 		public function DominoTable(component:IComponent = null)
 		{
@@ -422,9 +419,7 @@ package components.domino
 			{
 				this.leftmargin = xml.@leftmargin;
 			}
-			if(elementsXML==null){
-						Alert.show("elementsXML is null");
-			}
+
 			if (elementsXML.length() > 0)
 			{
 			
@@ -470,9 +465,6 @@ package components.domino
 					{
 						component["addElement"](tableRow);
 
-					} else
-					{
-						Alert.show("tableRow 376 is null")
 					}
 				}
 			}
@@ -576,7 +568,7 @@ package components.domino
 					var div:Object = tableCol.getElementAt(0);
 
 					var divNumElements:int = div["numElements"];
-					//Alert.show("divNumElements:"+divNumElements);
+
 					var rowCellXML:XML = new XML("<tablecell/>");
 
 					if (divNumElements > 0)
@@ -588,11 +580,10 @@ package components.domino
 							var cellChildXml:XML = tableCellElement.toCode();
 							rowCellXML.appendChild(cellChildXml);
 						}
-						//Alert.show("rowCellXML:"+rowCellXML.toXMLString());
 					}
 
 					//var divXML:XML = tableCol[0];
-					//Alert.show("divXML:"+div
+
 					//we need handel div align in here,base on the class of div ,we need seting the align with tabcell
 
 					rowCellXML = fixDominoTableAlign(div, rowCellXML)
@@ -611,7 +602,44 @@ package components.domino
 
 		public function toRoyaleConvertCode():XML
 		{
-			return null;
+			var jewelNamespace:Namespace = new Namespace("j", "library://ns.apache.org/royale/jewel");
+
+			var tableRootXML:XML = new XML("<" +ROYALE_XML_ELEMENT+ "/>");
+				tableRootXML.setNamespace(jewelNamespace);
+
+			var tBodyXML:XML = new XML("<TBody/>");
+				tBodyXML.setNamespace(jewelNamespace);
+
+			tableRootXML.appendChild(tBodyXML);
+
+			var rowCount:int = component["numElements"];
+
+			for (var i:int = 0; i < rowCount; i++)
+			{
+				var tableRow:IComponent = component["getElementAt"](i);
+				var cellCount:int = tableRow["numElements"];
+
+				var tableRowXML:XML = new XML("<TableRow/>");
+					tableRowXML.setNamespace(jewelNamespace);
+
+				for (var j:int = 0; j < cellCount; j++)
+				{
+					var tableCell:IComponent = tableRow["getElementAt"](j);
+					var tableCellContainer:IRoyaleComponentConverter = tableCell["getElementAt"](0);
+
+					var tableCellXML:XML = new XML("<TableCell/>");
+						tableCellXML.setNamespace(jewelNamespace);
+
+					var tableCellContent:XML = tableCellContainer.toRoyaleConvertCode();
+					tableCellXML.appendChild(tableCellContent);
+
+					tableRowXML.appendChild(tableCellXML);
+				}
+
+				tBodyXML.appendChild(tableRowXML);
+			}
+
+			return tableRootXML;
 		}
 
 		private function fixDominoTableAlign(div:Object, rowCellXML:XML):XML
@@ -626,8 +654,6 @@ package components.domino
 				var valign:String = "";
 				if (divcssstr)
 				{
-					//Alert.show("divcssstr:"+divcssstr);
-
 					if (divcssstr.indexOf("flexHorizontalLayoutRight") >= 0)
 					{
 						widthtype = "fixedright"

@@ -63,6 +63,8 @@ package components.domino
 
 	public class DominoParagraph extends DominoConponentHideBase implements IDominoParagraph, IRoyaleComponentConverter
 	{
+		public static const ROYALE_XML_HORIZONTAL_ELEMENT:String = "HGroup";
+		public static const ROYALE_XML_VERTICAL_ELEMENT:String = "VGroup";
 		public static const DOMINO_ELEMENT_NAME:String = "par";
 		public static var ELEMENT_NAME:String = "Paragraph";
 
@@ -227,7 +229,29 @@ package components.domino
 
 		public function toRoyaleConvertCode():XML
 		{
-			return new XML("");
+			var htmlNamespace:Namespace = new Namespace("j", "library://ns.apache.org/royale/jewel");
+
+			var paragraphXML:XML = new XML("<" + ROYALE_XML_HORIZONTAL_ELEMENT + "/>");
+			if (cssClass.indexOf("flexVerticalLayout") > -1)
+			{
+				paragraphXML = new XML("<" + ROYALE_XML_VERTICAL_ELEMENT + "/>");
+			}
+			paragraphXML.setNamespace(htmlNamespace);
+
+			var elementCount:int = component["numElements"];
+			for (var i:int = 0; i < elementCount; i++)
+			{
+				var element:IRoyaleComponentConverter = component["getElementAt"](i);
+				if (element == null)
+				{
+					continue;
+				}
+
+				var elementXML:XML = element.toRoyaleConvertCode();
+				paragraphXML.appendChild(elementXML);
+			}
+
+			return paragraphXML;
 		}
 	}
 }
