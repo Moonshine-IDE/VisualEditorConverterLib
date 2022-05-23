@@ -429,7 +429,18 @@ package components.domino
 				this.label = "default";
 			}
 
-			buttonXML.@text = this.label
+			buttonXML.@text = this.label;
+
+			var beadsXML:XML = new XML("<beads />");
+				beadsXML.setNamespace(royaleNamespace);
+
+			var disabledXML:XML = new XML("<Disabled/>");
+				disabledXML.setNamespace(royaleNamespace);
+				disabledXML.@disabled = "{isDisabled}";
+
+			beadsXML.appendChild(disabledXML);
+			buttonXML.appendChild(beadsXML);
+
 			return buttonXML;
 		}
 	}
