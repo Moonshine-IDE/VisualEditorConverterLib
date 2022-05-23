@@ -1021,16 +1021,16 @@ package components.domino
 				fontXml.@name = this.fontName;
 			}
 
-			if(this.pitches){
-				fontXml.@pitch = this.pitches;
-			}
-			if(this.familyid){
-				fontXml.@familyid = this.familyid;
-			}
+			// if(this.pitches){
+			// 	fontXml.@pitch = this.pitches;
+			// }
+			// if(this.familyid){
+			// 	fontXml.@familyid = this.familyid;
+			// }
 
-			if(this.truetype){
-				fontXml.@truetype = this.truetype;
-			}
+			// if(this.truetype){
+			// 	fontXml.@truetype = this.truetype;
+			// }
 
 			
 			
