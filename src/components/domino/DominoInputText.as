@@ -1393,6 +1393,7 @@ package components.domino
 		public function toRoyaleConvertCode():XML
 		{
 			var componentNamespace:Namespace = new Namespace("j", "library://ns.apache.org/royale/jewel");
+
 			var componentXML:XML = new XML("<" + ROYALE_ELEMENT_NAME_TEXT + ">" + "</" + ROYALE_ELEMENT_NAME_TEXT + ">");
 				componentXML.@text = this.text;
 
@@ -1411,10 +1412,20 @@ package components.domino
 				}
 			}
 
+			var beadsXML:XML = new XML("<beads />");
+				beadsXML.setNamespace(componentNamespace);
+			var disabledXML:XML = new XML("<Disabled/>");
+				disabledXML.setNamespace(componentNamespace);
+				disabledXML.@disabled = "{isDisabled}";
+
+			beadsXML.appendChild(disabledXML);
+			componentXML.appendChild(beadsXML);
+
 			if (this.type == "richtext")
 			{
 				componentXML = new XML("<" + ROYALE_ELEMENT_NAME_JODIT  + ">" + "</" + ROYALE_ELEMENT_NAME_JODIT + ">");
 				componentXML.@data = this.text;
+				componentXML.@readonly = "{isDisabled}";
 				componentNamespace = new Namespace("joditeditor", "classes.joditeditor.*");
 			}
 
