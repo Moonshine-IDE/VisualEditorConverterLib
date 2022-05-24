@@ -180,12 +180,7 @@ package components.common
 				className=="view.domino.surfaceComponents.components::DominoTable"||
 				className=="view.domino.surfaceComponents.components::DominoTabView"){
 					xml.appendChild(toHidePerDefCode(element.toCode()));
-					// if(xml.name()!=="par" ){
-					// 	var parXml:XML = new XML("<par def= \""+DominoGlobals.PardefDivId+"\"/>");
-					// 	xml=parXml.appendChild(xml);
-					// }else{
-					// 	xml.@def=DominoGlobals.PardefDivId;
-					// }
+				
 				}
 
 				
@@ -304,7 +299,7 @@ package components.common
 		public function toHidePerDefCode( xml:XML):XML
 		{
 			if(xml!=null){
-				var pardefXml:XML = new XML("<pardef id=\""+DominoGlobals.PardefDivId+"\" "+" dominotype=\"domino\" keeptogether=\"true\" keepwithnext=\"true\"/>" );
+				var pardefXml:XML = new XML("<pardef id=\""+DominoGlobals.PardefDivId+"\" "+" dominotype=\"dominoHide\" keeptogether=\"true\" keepwithnext=\"true\"/>" );
 				if(xml.@hide&& xml.@hide!=""){
 					pardefXml.@hide=xml.@hide;
 					xml.@def=DominoGlobals.PardefDivId;

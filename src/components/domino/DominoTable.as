@@ -759,17 +759,21 @@ package components.domino
 
 							parelementsXML = childXML.elements();
 							parchildCount = parelementsXML.length();
-
-							for (var n:int = 0; n < parchildCount; n++)
-							{
-								parchildXML = parelementsXML[n];
-
-								if (parchildXML.@hidewhen.length() > 0)
-								{
-
-									pardef.@hidewhen = parchildXML.@hidewhen;
-								}
+							var selectedHideElemens:XMLList = childXML.descendants().(hasOwnProperty("@hide")); 
+							
+							for each (var hideElement:XML in selectedHideElemens){
+							 pardef.@hide =pardef.@hide + hideElement.@hide;
+								
 							}
+
+							var selectedHideWhenElemens:XMLList = childXML.descendants().(hasOwnProperty("@hidewhen"));
+							for each (var hideWhenElement:XML in selectedHideWhenElemens){
+							 if (hideWhenElement.@hidewhen.length() > 0){
+								  childXML.@hidewhen= hideWhenElement.@hidewhen;
+							 }
+								
+							}
+							
 							if (parchildCount == 0)
 							{
 								this.deleteNode(childXML)

@@ -236,7 +236,7 @@ package components.domino
 		public function toHidePerDefCode( xml:XML):XML
 		{
 			if(xml!=null){
-				var pardefXml:XML = new XML("<pardef id=\""+DominoGlobals.PardefDivId+"\" "+" dominotype=\"domino\" keeptogether=\"true\" keepwithnext=\"true\"/>" );
+				var pardefXml:XML = new XML("<pardef id=\""+DominoGlobals.PardefDivId+"\" "+" dominotype=\"dominoHide\" keeptogether=\"true\" keepwithnext=\"true\"/>" );
 				if(xml.@hide&& xml.@hide!=""){
 					pardefXml.@hide=xml.@hide;
 					xml.@def=DominoGlobals.PardefDivId;
