@@ -330,8 +330,8 @@ package components.domino
 
 			this.color = xml.@color;
 			this.size = xml.@size;
-			this.fontStyle = xml.@style;
-			this.fontName = xml.@name;
+			this.fontStyle = xml.@fontStyle;
+			this.fontName = xml.@fontName;
 
 			this.formula = xml.@formula;
 			this.hidewhen = xml.@hidewhen;
