@@ -373,22 +373,22 @@ package components.domino
 			var parXML:XML = new XML("<par/>");
 
 			var fontXml:XML = new XML("<font/>");
-			if (this.color)
+			if (this.color!=null && this.color.length>0)
 			{
 				fontXml.@color = this.color;
 			}
 
-			if (this.size)
+			if (this.size!= null && this.size.length>0)
 			{
 				fontXml.@size = this.size + "pt";
 			}
 
-			if (this.fontStyle)
+			if (this.fontStyle !=null && this.fontStyle.length>0)
 			{
 				fontXml.@style = this.fontStyle;
 			}
 
-			if (this.fontName)
+			if (this.fontName != null && this.fontName.length>0)
 			{
 				fontXml.@name = this.fontName;
 			}

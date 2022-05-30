@@ -1086,22 +1086,22 @@ package components.domino
 
 			
 
-			if (this.color!=null)
+			if (this.color!=null&&this.color.length>0)
 			{
 				fontXml.@color = this.color;
 			}
 
-			if (this.size!=null)
+			if (this.size!=null&&this.size.length>0)
 			{
 				fontXml.@size = this.size + "pt";
 			}
 
-			if (this.fontStyle!=null)
+			if (this.fontStyle!=null&&this.fontStyle.length>0)
 			{
 				fontXml.@style = this.fontStyle;
 			}
 
-			if (this.fontName!=null)
+			if (this.fontName!=null && this.fontName.length>0)
 			{
 				fontXml.@name = this.fontName;
 			}
