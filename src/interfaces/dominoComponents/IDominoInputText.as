@@ -168,6 +168,13 @@ package interfaces.dominoComponents
         function set htmlTitle(value:String):void;
 		function get htmlOther():String;
         function set htmlOther(value:String):void;
+		//align
+		function get alignPardef():String;
+        function set alignPardef(value:String):void;
+		function get firstlineleftmarginPardef():String;
+        function set firstlineleftmarginPardef(value:String):void;
+		function get listPardef():String;
+        function set listPardef(value:String):void;
 
 
 	}

@@ -868,6 +868,37 @@ package components.domino
 			_htmlOther=value;
 		}
 
+		//align 
+		private var _alignPardef:String;
+		function get alignPardef():String
+		{
+			return _alignPardef;
+		}
+        function set alignPardef(value:String):void
+		{
+			_alignPardef=value;
+		}
+
+		private var _firstlineleftmarginPardef:String;
+		function get firstlineleftmarginPardef():String
+		{
+			return _firstlineleftmarginPardef;
+		}
+        function set firstlineleftmarginPardef(value:String):void
+		{
+			_firstlineleftmarginPardef=value;
+		}
+
+		private var _listPardef:String;
+		function get listPardef():String
+		{
+			return _listPardef;
+		}
+        function set listPardef(value:String):void
+		{
+			_listPardef=value;
+		}
+
 		
 
 
@@ -907,6 +938,10 @@ package components.domino
 			}
 			if(xml.@color){
 				this.color = xml.@color;
+			}
+
+			if(xml.@alignPardef){
+				this.alignPardef = xml.@alignPardef;
 			}
 
 			if(xml.@pitches){
@@ -1082,6 +1117,11 @@ package components.domino
 			}
 			if(this.htmlOther){
 				xml.@htmlOther = this.htmlOther;
+			}
+
+			//align 
+			if(this.alignPardef){
+				xml.@alignPardef = this.alignPardef;
 			}
 
 			

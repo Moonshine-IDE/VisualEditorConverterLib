@@ -315,6 +315,56 @@ package components.domino
 		{
 			_truetype = value;
 		}
+		//HTML
+		private var _htmlId:String;
+		public function get htmlId():String
+		{
+			return _htmlId;
+		}
+        public function set htmlId(value:String):void
+		{
+				_htmlId = value;
+		}
+
+		private var _htmlClass:String;
+		public function get htmlClass():String
+		{
+			return _htmlClass;
+		}
+        public function set htmlClass(value:String):void
+		{
+			_htmlClass = value;
+		}
+
+		private var _htmlStyle:String;
+		public function get htmlStyle():String
+		{
+			return _htmlStyle;
+		}
+        public function set htmlStyle(value:String):void
+		{
+			_htmlStyle=value;
+		}
+
+		private var _htmlTitle:String;
+		public function get htmlTitle():String
+		{
+			return _htmlTitle;
+		}
+        public function set htmlTitle(value:String):void
+		{
+			_htmlTitle=value;
+		}
+
+		private var _htmlOther:String;
+		public function get htmlOther():String
+		{
+			return _htmlOther;
+		}
+        public function set htmlOther(value:String):void
+		{
+			_htmlOther=value;
+		}
 
 		public function fromXML(xml:XML, childFromXMLCallback:Function, surface:ISurface, lookup:ILookup):void
 		{
@@ -326,6 +376,24 @@ package components.domino
 			} else
 			{
 				this.text = unescape(xml.toString());
+			}
+			if(xml.@htmlId){
+				this.htmlId = xml.@htmlId
+			}
+			if(xml.@htmlClass){
+				this.htmlClass = xml.@htmlClass
+			}
+			if(xml.@htmlTitle){
+				this.htmlTitle = xml.@htmlTitle
+			}
+			if(xml.@htmlStyle){
+				this.htmlStyle = xml.@htmlStyle
+			}
+			if(xml.@htmlOther){
+				this.htmlOther = xml.@htmlOther
+			}
+			if(xml.@color){
+				this.color = xml.@color;
 			}
 
 			this.color = xml.@color;
@@ -407,6 +475,7 @@ package components.domino
 			{
 				fontXml.@familyid = this.familyid;
 			}
+		
 
 			var runXml:XML = new XML("<run>" + fontXml.toXMLString() + codeString + "</run>");
 			var rex:RegExp = /(\t|\n|\r)/gi;
@@ -467,6 +536,23 @@ package components.domino
 				parXML.@def = DominoGlobals.PardefDivId;
 			}
 
+	
+			//HTML core attrs
+			if(this.htmlId){
+				parXML.@htmlid = this.htmlId;
+			}
+			if(this.htmlClass){
+				parXML.@htmlclass = this.htmlClass;
+			}
+			if(this.htmlTitle){
+				parXML.@htmltitle = this.htmlTitle;
+			}
+			if(this.htmlStyle){
+				parXML.@htmlstyle = this.htmlStyle;
+			}
+			if(this.htmlOther){
+				parXML.@htmlOther = this.htmlOther;
+			}
 
 
 			return parXML;

@@ -42,6 +42,18 @@ package interfaces.dominoComponents
         function get familyid():String
         function set familyid(value:String):void;
 
+        //HTML
+		function get htmlId():String;
+        function set htmlId(value:String):void;
+		function get htmlClass():String;
+        function set htmlClass(value:String):void;
+		function get htmlStyle():String;
+        function set htmlStyle(value:String):void;
+		function get htmlTitle():String;
+        function set htmlTitle(value:String):void;
+		function get htmlOther():String;
+        function set htmlOther(value:String):void;
+
 
 
     }
