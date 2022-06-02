@@ -870,31 +870,31 @@ package components.domino
 
 		//align 
 		private var _alignPardef:String;
-		function get alignPardef():String
+		public function get alignPardef():String
 		{
 			return _alignPardef;
 		}
-        function set alignPardef(value:String):void
+        public function set alignPardef(value:String):void
 		{
 			_alignPardef=value;
 		}
 
 		private var _firstlineleftmarginPardef:String;
-		function get firstlineleftmarginPardef():String
+		public function get firstlineleftmarginPardef():String
 		{
 			return _firstlineleftmarginPardef;
 		}
-        function set firstlineleftmarginPardef(value:String):void
+        public function set firstlineleftmarginPardef(value:String):void
 		{
 			_firstlineleftmarginPardef=value;
 		}
 
 		private var _listPardef:String;
-		function get listPardef():String
+		public function get listPardef():String
 		{
 			return _listPardef;
 		}
-        function set listPardef(value:String):void
+        public function set listPardef(value:String):void
 		{
 			_listPardef=value;
 		}
