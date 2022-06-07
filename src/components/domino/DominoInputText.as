@@ -1089,11 +1089,14 @@ package components.domino
 
 			var componentXML:XML = new XML("<" + ROYALE_ELEMENT_NAME_TEXT + ">" + "</" + ROYALE_ELEMENT_NAME_TEXT + ">");
 				componentXML.@text = this.text;
+				componentXML.@className = "readOnlyInput";
 
 			if (this.type == "datetime")
 			{
 				componentXML = new XML("<" + ROYALE_ELEMENT_NAME_DATE + ">" + "</" + ROYALE_ELEMENT_NAME_DATE + ">");
 				componentXML.@dateFormat = "MM/DD/YYYY";
+				componentXML.@selectedDate = "{new Date()}";
+				componentXML.@className = "readOnlyDateField";
 			}
 
 			if (this.type == "keyword")
@@ -1102,6 +1105,7 @@ package components.domino
 				{
 					componentXML = new XML("<" + ROYALE_ELEMENT_NAME_CHECKBOX + ">" + "</" + ROYALE_ELEMENT_NAME_CHECKBOX + ">");
 					componentXML.@text = this.text;
+					componentXML.@className = "";
 				}
 			}
 
@@ -1119,6 +1123,7 @@ package components.domino
 				componentXML = new XML("<" + ROYALE_ELEMENT_NAME_JODIT  + ">" + "</" + ROYALE_ELEMENT_NAME_JODIT + ">");
 				componentXML.@data = this.text;
 				componentXML.@readonly = "{isDisabled}";
+				componentXML.@className = "";
 				componentNamespace = new Namespace("joditeditor", "classes.joditeditor.*");
 			}
 
