@@ -1123,6 +1123,8 @@ package components.domino
 				componentXML = new XML("<" + ROYALE_ELEMENT_NAME_JODIT  + ">" + "</" + ROYALE_ELEMENT_NAME_JODIT + ">");
 				componentXML.@data = this.text;
 				componentXML.@readonly = "{isDisabled}";
+				componentXML.@toolbarVisible = "{!isDisabled}";
+				componentXML.@options = "{{showCharsCounter: !isDisabled, showWordsCounter: !isDisabled, showXPathInStatusbar: !isDisabled}}";
 				componentXML.@className = "";
 				componentNamespace = new Namespace("joditeditor", "classes.joditeditor.*");
 			}
