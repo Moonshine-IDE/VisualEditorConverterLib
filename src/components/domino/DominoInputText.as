@@ -1124,7 +1124,14 @@ package components.domino
 				componentXML.@data = this.text;
 				componentXML.@readonly = "{isDisabled}";
 				componentXML.@toolbarVisible = "{!isDisabled}";
-				componentXML.@options = "{{showCharsCounter: !isDisabled, showWordsCounter: !isDisabled, showXPathInStatusbar: !isDisabled}}";
+				componentXML.@options = "{{" +
+						"allowResizeY: !isDisabled, " +
+						"showCharsCounter: !isDisabled, " +
+						"showWordsCounter: !isDisabled, " +
+						"showXPathInStatusbar: !isDisabled, " +
+						"height: null, " +
+						"minHeight: null " +
+						"}}";
 				componentXML.@className = "";
 				componentNamespace = new Namespace("joditeditor", "classes.joditeditor.*");
 			}
