@@ -265,7 +265,6 @@ package components.domino
 			for (var i:int = 0; i < childCount; i++)
 			{
 				var childXML:XML = elementsXML[i];
-				//Alert.show("100:"+childXML.@size);
 				childFromXMLCallback(component, lookup, childXML, localSurface);
 			}
 		}
@@ -382,16 +381,17 @@ package components.domino
 			section_xml.appendChild(section_title_xml)
 
 			var elementCount:int = component["numElements"];
-			//Alert.show("select child count:"+elementCount);
 			for (var i:int = 0; i < elementCount; i++)
 			{
 				var element:Object = component["getElementAt"](i);
 				if (element)
 				{
-					//Alert.show("element:"+element.toString())
+					
 					var exml:XML = element.toCode();
+				
 					if (exml)
 					{
+						
 						if (exml.name() == "par")
 						{
 							if (exml.@hidewhen && exml.@hidewhen.length() > 0)
@@ -421,9 +421,11 @@ package components.domino
 								// 				var exmlChildXml:XML=exmlChildElement.toCode();
 								// 				exml.appendChild(exmlChildXml);
 								// 		}
-								// 		//Alert.show("rowCellXML:"+rowCellXML.toXMLString());
+							
 								// }
 							}
+
+							
 
 						}
 
@@ -437,6 +439,8 @@ package components.domino
 					}
 				}
 			}
+
+			
 			
 
 			return section_xml;

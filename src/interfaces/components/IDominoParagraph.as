@@ -9,5 +9,9 @@ package interfaces.components
 		function get wrap():Boolean;
 		function set wrap(value:Boolean):void;
 		function get cssClass():String;
+
+		function get isNewLine():String
+        function set isNewLine(value:String):void;
+
 	}
 }

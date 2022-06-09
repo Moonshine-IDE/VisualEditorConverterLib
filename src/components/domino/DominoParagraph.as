@@ -36,6 +36,8 @@ package components.domino
 
 	import utils.CodeMxmlUtils;
 
+
+
 	/**
 	 *  <p>Representation and converter from paragraph element  </p>
 	 * 
@@ -136,6 +138,19 @@ package components.domino
 			_wrap = value;
 		}
 
+		//for git issue 1033- replace the break label to paragraph
+		private var _isNewLine:String;
+
+		public function get isNewLine():String
+		{
+			return _isNewLine;
+		}
+
+		public function set isNewLine(value:String):void
+		{
+			_isNewLine = value;
+		}
+
 		private var _component:IComponent;
 
 		private function get component():IComponent
@@ -165,6 +180,12 @@ package components.domino
 				this.hide = xml.@["hide"];
 			}
 
+			if(xml.@["isNewLine"]){
+				this.isNewLine = xml.@["isNewLine"];
+			}else{
+				this.isNewLine = "false";
+			}
+
 
 
 			var elementsXML:XMLList = xml.elements();
@@ -172,7 +193,7 @@ package components.domino
 			for (var i:int = 0; i < childCount; i++)
 			{
 				var childXML:XML = elementsXML[i];
-				//Alert.show("100:"+childXML.@size);
+				
 				childFromXMLCallback(component, lookup, childXML, localSurface);
 			}
 		}
@@ -197,13 +218,23 @@ package components.domino
 				xml.@hide = this.hide;
 			}
 
+			if (this.isNewLine == "true")
+			{
+				var blankRunXml:XML = new XML("<run isNewLine=\"true\"></run>");
+				var blankFontXml:XML = new XML("<font color=\"system\" size=\"12pt\" style=\"normal\"/>");
+				blankRunXml.appendChild(blankFontXml);
+				blankRunXml.appendChild(new XML("     "));
+				xml.appendChild(blankRunXml);
+				xml.@isNewLine = "true";
+			}
+
 			for (var i:int = 0; i < elementCount; i++)
 			{
 				var element:IComponent = component["getElementAt"](i) as IComponent;
 				var exml:XML = element.toCode();
 				var hidewhen:String = exml.@hidewhen;
 				var hide:String = exml.@hide;
-				//Alert.show("exml:"+exml.toXMLString());
+				
 				if (exml.name() == "par")
 				{
 					exml = exml.children()[0]
@@ -223,6 +254,8 @@ package components.domino
 				}
 				xml.appendChild(exml);
 			}
+
+
 
 			return xml;
 		}
