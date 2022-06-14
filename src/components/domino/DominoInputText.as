@@ -39,6 +39,7 @@ package components.domino
 	import interfaces.dominoComponents.IDominoInputText;
 
 	import mx.utils.Base64Encoder;
+	import utils.StringHelperUtils;
 
 	import utils.CodeMxmlUtils;
 	import org.apache.flex.packageflexsdk.util.ApacheURLLoader;
@@ -982,7 +983,10 @@ package components.domino
 
 			this.defaultvalue = xml.@defaultvalue;
 			this.hidewhen = xml.@hidewhen;
-			this.keywordsformula = xml.@keywordsformula;
+			if(xml.@keywordsformula){
+				this.keywordsformula = StringHelperUtils.base64Decode(xml.@keywordsformula);
+			}
+			
 			this.inputvalidation = xml.@inputvalidation;
 			this.inputtranslation = xml.@inputtranslation;
 			this.hide = xml.@hide;
@@ -1037,13 +1041,16 @@ package components.domino
 
 			if (this.type == "keyword")
 			{
-				this.keywords = xml.@keywords
+				if(xml.@keywords){
+					this.keywords = StringHelperUtils.base64Decode(xml.@keywords);
+				}
+				
 				this.keywordui = xml.@keywordui
 			}
 
-			//if(this.type=="formula"){
-			this.formula = xml.@formula
-			//}
+			if(xml.@formula){
+				this.formula = StringHelperUtils.base64Decode(xml.@formula)
+			}
 
 			if (this.type == "password")
 			{
