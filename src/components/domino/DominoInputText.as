@@ -32,6 +32,8 @@ package components.domino
 	import flash.net.URLVariables;
 	import flash.utils.ByteArray;
 
+	import interfaces.IComponentData;
+
 	import interfaces.ILookup;
 
 	import interfaces.IRoyaleComponentConverter;
@@ -60,7 +62,7 @@ package components.domino
 	 * Client:(option),(Declarations),Entering,Exiting,Initialize,Terminate
 	 * @see https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_FIELD_ELEMENT_XML.html
 	 */
-	public class DominoInputText extends ComponentBase implements IDominoInputText, IRoyaleComponentConverter
+	public class DominoInputText extends ComponentBase implements IDominoInputText, IRoyaleComponentConverter, IComponentData
 	{
 		public static const DOMINO_ELEMENT_NAME:String = "field";
 		public static const ELEMENT_NAME:String = "Field";
@@ -642,6 +644,16 @@ package components.domino
 			_onlyallow = value;
 		}
 
+		public function get componentData():Object
+		{
+			return {
+				fields: [{
+					name: this.nameAttribute,
+					fieldValue: this.text
+				}]
+			}
+		}
+
 		/** Domino number field property end */
 
 		public function fromXML(xml:XML, childFromXMLCallback:Function, surface:ISurface,  lookup:ILookup):void
@@ -1139,7 +1151,6 @@ package components.domino
 			componentXML.setNamespace(componentNamespace);
 
 			return componentXML;
-
 		}
 
 		public function checkFormula(formula:String):void

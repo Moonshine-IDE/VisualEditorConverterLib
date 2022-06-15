@@ -1,5 +1,6 @@
 package surface
 {
+	import interfaces.IComponentData;
 	import interfaces.ILookup;
 	import interfaces.IRoyaleComponentConverter;
 	import interfaces.ISurface;
@@ -75,7 +76,7 @@ package surface
 			
 			return 0;
 		}		
-		
+
 		public function addElement(element:Object):void
 		{
 			_elements.push(element);		
@@ -90,7 +91,28 @@ package surface
 			
 			return null;
 		}
-			
+
+		public function getComponentData():Array
+		{
+			var element:Object = this.getElementAt(0);
+			var elementCount:int = (element as IVisualComponent).numElements;
+			var componentData:Array = [];
+
+			for (var i:int = 0; i < elementCount; i++)
+			{
+				var item:IComponentData = element.getElementAt(i) as IComponentData;
+
+				if (item === null)
+				{
+					continue;
+				}
+
+				componentData.push(item.componentData);
+			}
+
+			return componentData;
+		}
+
 		public function fromXML(xml:XML, childFromXMLCallback:Function, surface:ISurface, lookup:ILookup):void
 		{
 			throw new Error("Surface doesn't implement fromXML method!");
@@ -129,7 +151,6 @@ package surface
 
 			return xml;
 		}
-
 
 		public function toRoyaleConvertCode():XML
 		{
