@@ -32,6 +32,8 @@ package components.domino
 	import flash.net.URLVariables;
 	import flash.utils.ByteArray;
 
+	import interfaces.IComponentData;
+
 	import interfaces.ILookup;
 
 	import interfaces.IRoyaleComponentConverter;
@@ -1528,11 +1530,13 @@ package components.domino
 
 			var componentXML:XML = new XML("<" + ROYALE_ELEMENT_NAME_TEXT + ">" + "</" + ROYALE_ELEMENT_NAME_TEXT + ">");
 				componentXML.@text = this.text;
+				componentXML.@className = "readOnlyInput";
 
 			if (this.type == "datetime")
 			{
 				componentXML = new XML("<" + ROYALE_ELEMENT_NAME_DATE + ">" + "</" + ROYALE_ELEMENT_NAME_DATE + ">");
 				componentXML.@dateFormat = "MM/DD/YYYY";
+				componentXML.@className = "readOnlyDateField";
 			}
 
 			if (this.type == "keyword")
@@ -1541,6 +1545,7 @@ package components.domino
 				{
 					componentXML = new XML("<" + ROYALE_ELEMENT_NAME_CHECKBOX + ">" + "</" + ROYALE_ELEMENT_NAME_CHECKBOX + ">");
 					componentXML.@text = this.text;
+					componentXML.@className = "";
 				}
 			}
 
@@ -1558,6 +1563,16 @@ package components.domino
 				componentXML = new XML("<" + ROYALE_ELEMENT_NAME_JODIT  + ">" + "</" + ROYALE_ELEMENT_NAME_JODIT + ">");
 				componentXML.@data = this.text;
 				componentXML.@readonly = "{isDisabled}";
+				componentXML.@toolbarVisible = "{!isDisabled}";
+				componentXML.@options = "{{" +
+						"allowResizeY: !isDisabled, " +
+						"showCharsCounter: !isDisabled, " +
+						"showWordsCounter: !isDisabled, " +
+						"showXPathInStatusbar: !isDisabled, " +
+						"inline: isDisabled, " +
+						"defaultLineHeight: isDisabled ? 0.25 : null" +
+						"}}";
+				componentXML.@className = "";
 				componentNamespace = new Namespace("joditeditor", "classes.joditeditor.*");
 			}
 
@@ -1565,7 +1580,6 @@ package components.domino
 			componentXML.setNamespace(componentNamespace);
 
 			return componentXML;
-
 		}
 
 		public function checkFormula(formula:String):void
