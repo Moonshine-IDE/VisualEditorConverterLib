@@ -47,6 +47,7 @@ package components.domino
 	import org.apache.flex.packageflexsdk.util.ApacheURLLoader;
 	import components.DominoConponentHideBase;
 	import global.domino.DominoGlobals;
+	import interfaces.IComponentData;
 
 
 	/**
@@ -79,7 +80,7 @@ package components.domino
 	 */
 
 	
-	public class DominoInputText extends DominoConponentHideBase implements IDominoInputText, IRoyaleComponentConverter
+	public class DominoInputText extends DominoConponentHideBase implements IDominoInputText, IRoyaleComponentConverter, IComponentData 
 	{
 		public static const DOMINO_ELEMENT_NAME:String = "field";
 		public static const ELEMENT_NAME:String = "Field";
@@ -901,7 +902,15 @@ package components.domino
 		{
 			_listPardef=value;
 		}
-
+		public function getComponentData():Object
+		{
+			return {
+				fields: [{
+					name: this.nameAttribute,
+					fieldValue: this.text
+				}]
+			}
+		}
 		
 
 

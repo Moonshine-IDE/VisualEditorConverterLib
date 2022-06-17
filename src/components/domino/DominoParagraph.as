@@ -27,6 +27,7 @@ package components.domino
 	import global.domino.DominoGlobals;
 
 	import interfaces.IComponent;
+	import interfaces.IComponentData;
 	import interfaces.ILookup;
 	import interfaces.IRoyaleComponentConverter;
 	import interfaces.ISurface;
@@ -63,7 +64,7 @@ package components.domino
 	 */
 
 
-	public class DominoParagraph extends DominoConponentHideBase implements IDominoParagraph, IRoyaleComponentConverter
+	public class DominoParagraph extends DominoConponentHideBase implements IDominoParagraph, IRoyaleComponentConverter,IComponentData
 	{
 		public static const ROYALE_XML_HORIZONTAL_ELEMENT:String = "HGroup";
 		public static const ROYALE_XML_VERTICAL_ELEMENT:String = "VGroup";
@@ -157,6 +158,31 @@ package components.domino
 		{
 			return _component ? _component : this;
 		}
+
+		public function getComponentData():Object
+		{
+			var fields:Array = [];
+
+			var elementCount:int = component["numElements"];
+			for (var i:int = 0; i < elementCount; i++)
+			{
+				var element:IComponentData = component["getElementAt"](i) as IComponentData;
+				if (element == null)
+				{
+					continue;
+				}
+
+				fields.push({
+					name: element["nameAttribute"],
+					fieldValue: element["text"]
+				})
+			}
+
+			return {
+				fields: fields
+			}
+		}
+
 
 		public function fromXML(xml:XML, childFromXMLCallback:Function, surface:ISurface, lookup:ILookup):void
 		{
