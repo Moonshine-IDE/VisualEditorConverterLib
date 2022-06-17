@@ -13,7 +13,8 @@ package global.domino
               {label: "multilingual",description: "multilingual",value:"multilingual",enabled:true,"selected": false},
               {label: "sans-serif",description: "sans-serif",value:"sans-serif",enabled:true,"selected": false},
               {label: "serif",description: "serif",value:"serif",enabled:true,"selected": false},
-              {label: "user-interface",description: "user-interface",value:"strikeuser-interfacethrough",enabled:true,"selected": false}
+              {label: "user-interface",description: "user-interface",value:"strikeuser-interfacethrough",enabled:true,"selected": false},
+              {label: "other",description: "other",value:"other",enabled:true,"selected": false}
               
         ])
 
