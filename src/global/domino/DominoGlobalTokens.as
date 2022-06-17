@@ -212,5 +212,26 @@ package global.domino
         {label: "variable",value: "variable",description:"Indicates that the number of characters that print per inch can change."}
         ]);
 
+        //<!ENTITY % pardef.list.styles "none | bullet | number | check | uncheck | circle | square | alphaupper | alphalower | romanupper | romanlower">
+         public static var Lists:ArrayList = new ArrayList([
+        {label: "none",value: "none",description: "none."},
+        {label: "bullet",value: "bullet",description:"bullet"},
+        {label: "number",value: "number",description:"number"},
+        {label: "check",value: "check",description:"check"},
+        {label: "uncheck",value: "uncheck",description:"uncheck"},
+        {label: "circle",value: "circle",description:"circle"},
+        {label: "square",value: "square",description:"square"},
+        {label: "alphaupper",value: "alphaupper",description:"alphaupper"},
+        {label: "romanupper",value: "romanupper",description:"romanupper"},
+        {label: "romanlower",value: "romanlower",description:"romanlower"}
+
+        ]);
+
+        public static var Spaceing:ArrayList = new ArrayList([
+            {label: "single",value: "1",description: "one line"},
+            {label: "half",value: "1.5",description:"a half of line"},
+            {label: "double",value: "2",description:"two lines"}
+        ]);
+
     }
 }
