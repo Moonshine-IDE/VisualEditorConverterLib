@@ -644,7 +644,7 @@ package components.domino
 			_onlyallow = value;
 		}
 
-		public function get componentData():Object
+		public function getComponentData():Object
 		{
 			return {
 				fields: [{

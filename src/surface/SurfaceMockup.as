@@ -107,7 +107,8 @@ package surface
 					continue;
 				}
 
-				componentData.push(item.componentData);
+				var compData:Object = item.getComponentData();
+				componentData.push(compData);
 			}
 
 			return componentData;
