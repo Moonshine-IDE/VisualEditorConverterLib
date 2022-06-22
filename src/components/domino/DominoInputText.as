@@ -1137,10 +1137,7 @@ package components.domino
 				xml.@htmlOther = this.htmlOther;
 			}
 
-			//align 
-			if(this.alignPardef){
-				xml.@alignPardef = this.alignPardef;
-			}
+		
 
 			
 
@@ -1188,6 +1185,12 @@ package components.domino
 			{
 				xml.@hidewhen = this.hidewhen;
 				par_xml.@hidewhen = this.hidewhen;
+			}
+			
+
+			if(this.alignPardef){
+				xml.@alignPardef = this.alignPardef;
+				par_xml.@alignPardef = this.alignPardef;
 			}
 
 			if (this.hide)
@@ -1528,6 +1531,10 @@ package components.domino
 			}else{
 				par_xml.appendChild(xml);
 			}
+
+			// if(par_xml.toXMLString().indexOf("align")>0){
+			// 	Alert.show("align:"+par_xml);
+			// }
 
 			return par_xml;
 		}

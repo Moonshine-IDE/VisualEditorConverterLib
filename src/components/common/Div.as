@@ -13,6 +13,8 @@ package components.common
 	import flash.utils.getQualifiedClassName;
 
 	import global.domino.DominoGlobals;
+
+	import mx.controls.Alert;
 	
 	public class Div extends ComponentBase implements IDiv, IRoyaleComponentConverter
 	{
@@ -180,6 +182,7 @@ package components.common
 				className=="view.domino.surfaceComponents.components::DominoTable"||
 				className=="view.domino.surfaceComponents.components::DominoTabView"){
 					xml.appendChild(toHidePerDefCode(element.toCode()));
+					xml.appendChild(toAlignPerDefCode(element.toCode()));
 				
 				}
 
@@ -293,18 +296,45 @@ package components.common
 			if(xml.@hide&& xml.@hide!=""){
 				pardefXml.@hide=xml.@hide;
 			}
+
+			if(xml.@alignPardef&& xml.@alignPardef!=""){
+				pardefXml.@align=xml.@alignPardef;
+			}
 			return pardefXml;
 		}
 
 		public function toHidePerDefCode( xml:XML):XML
 		{
 			if(xml!=null){
-				var pardefXml:XML = new XML("<pardef id=\""+DominoGlobals.PardefDivId+"\" "+" dominotype=\"dominoHide\" keeptogether=\"true\" keepwithnext=\"true\"/>" );
+				var pardefXml:XML = new XML("<pardef id=\""+DominoGlobals.PardefDivId+"\" "+" dominotype=\"dominoHideDiv\" keeptogether=\"true\" keepwithnext=\"true\"/>" );
+				
 				if(xml.@hide&& xml.@hide!=""){
 					pardefXml.@hide=xml.@hide;
 					xml.@def=DominoGlobals.PardefDivId;
 					//arond a new par for the traget element 
 					
+				}
+
+				if(xml.@alignPardef&& xml.@alignPardef.length>0){
+					Alert.show("alignPardef:"+ xml.@alignPardef);
+					pardefXml.@align=xml.@alignPardef;
+				}
+			}
+
+			return pardefXml;
+		}
+		public function toAlignPerDefCode( xml:XML):XML
+		{
+			if(xml!=null){
+				DominoGlobals.PardefDivId++
+				var pardefXml:XML = new XML("<pardef id=\""+DominoGlobals.PardefDivId+"\" "+" dominotype=\"dominoHideDiv\" keeptogether=\"true\" keepwithnext=\"true\"/>" );
+				xml.@def=DominoGlobals.PardefDivId;
+				if(xml.@hide&& xml.@hide!=""){
+					pardefXml.@hide=xml.@hide;		
+				}
+				if(xml.@alignPardef&& xml.@alignPardef.length>0){
+				
+					pardefXml.@align=xml.@alignPardef;
 				}
 			}
 
