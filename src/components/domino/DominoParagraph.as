@@ -135,6 +135,7 @@ package components.domino
 		public function getComponentData():Object
 		{
 			var fields:Array = [];
+			var dataOutput:Object = {};
 
 			var elementCount:int = component["numElements"];
 			for (var i:int = 0; i < elementCount; i++)
@@ -151,9 +152,12 @@ package components.domino
 				})
 			}
 
-			return {
-				fields: fields
+			if (fields.length > 0)
+			{
+				dataOutput.fields = fields;
 			}
+
+			return dataOutput;
 		}
 
 		public function fromXML(xml:XML, childFromXMLCallback:Function, surface:ISurface, lookup:ILookup):void

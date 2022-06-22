@@ -29,9 +29,11 @@ package components.domino
 	import global.domino.DominoGlobals;
 
 	import interfaces.IComponent;
+	import interfaces.IComponentData;
 	import interfaces.ILookup;
 	import interfaces.IRoyaleComponentConverter;
 	import interfaces.ISurface;
+	import interfaces.components.IDiv;
 	import interfaces.dominoComponents.IDominoTable;
 
 	/**
@@ -107,7 +109,7 @@ package components.domino
 	 * {@link #components.domino}
 	 * @see https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_TABLE_ELEMENT_XML.html
 	 */
-	public class DominoTable extends ComponentBase implements IDominoTable, IRoyaleComponentConverter
+	public class DominoTable extends ComponentBase implements IDominoTable, IRoyaleComponentConverter, IComponentData
 	{
 		public static const ROYALE_XML_ELEMENT:String = "SimpleTable";
 		public static const ELEMENT_NAME:String = "table";
@@ -390,6 +392,41 @@ package components.domino
 		private function get component():IComponent
 		{
 			return _component ? _component : this;
+		}
+
+		public function getComponentData():Object
+		{
+			var fields:Array = [];
+
+			var elementCount:int = component["numElements"];
+			for (var i:int = 0; i < elementCount; i++)
+			{
+				var navContent:Object = component["getElementAt"](i);
+				var navContentCount:int = navContent.numElements;
+
+				for (var j:int = 0; j < navContentCount; j++)
+				{
+					var content:GridItem = navContent.getElementAt(j);
+					var contentDiv:IDiv = content.getElementAt(0) as IDiv;
+
+					for (var k:int = 0; k < contentDiv["numElements"]; k++)
+					{
+						var elementDiv:Object = contentDiv["getElementAt"](k);
+						var componentData:IComponentData = elementDiv as IComponentData;
+
+						if (componentData == null)
+						{
+							continue;
+						}
+
+						fields.push(componentData.getComponentData());
+					}
+				}
+			}
+
+			return {
+				fields: fields
+			}
 		}
 
 		public function fromXML(xml:XML, childFromXMLCallback:Function, surface:ISurface, lookup:ILookup):void
