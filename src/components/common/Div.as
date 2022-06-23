@@ -182,7 +182,7 @@ package components.common
 				className=="view.domino.surfaceComponents.components::DominoTable"||
 				className=="view.domino.surfaceComponents.components::DominoTabView"){
 					xml.appendChild(toHidePerDefCode(element.toCode()));
-					xml.appendChild(toAlignPerDefCode(element.toCode()));
+					//xml.appendChild(toAlignPerDefCode(element.toCode()));
 				
 				}
 
@@ -306,6 +306,9 @@ package components.common
 		public function toHidePerDefCode( xml:XML):XML
 		{
 			if(xml!=null){
+			
+				
+				
 				var pardefXml:XML = new XML("<pardef id=\""+DominoGlobals.PardefDivId+"\" "+" dominotype=\"dominoHideDiv\" keeptogether=\"true\" keepwithnext=\"true\"/>" );
 				
 				if(xml.@hide&& xml.@hide!=""){
