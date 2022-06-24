@@ -646,10 +646,17 @@ package components.domino
 
 		public function getComponentData():Object
 		{
+			var fieldType:String = "String";
+			if (this.keywordui == "checkbox")
+			{
+				fieldType = "Boolean";
+			}
+
 			return {
 				fields: [{
 					name: this.nameAttribute,
-					fieldValue: this.text
+					fieldValue: fieldType == "Boolean" ? false : this.text,
+					fieldType: fieldType
 				}]
 			}
 		}

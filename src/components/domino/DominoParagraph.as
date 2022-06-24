@@ -136,6 +136,7 @@ package components.domino
 		{
 			var fields:Array = [];
 			var dataOutput:Object = {};
+			var fieldType:String = "String";
 
 			var elementCount:int = component["numElements"];
 			for (var i:int = 0; i < elementCount; i++)
@@ -146,9 +147,15 @@ package components.domino
 					continue;
 				}
 
+				if (element["keywordui"] == "checkbox")
+				{
+					fieldType = "Boolean";
+				}
+
 				fields.push({
 					name: element["nameAttribute"],
-					fieldValue: element["text"]
+					fieldValue: fieldType == "Boolean" ? false : element["text"],
+					fieldType: fieldType
 				})
 			}
 
