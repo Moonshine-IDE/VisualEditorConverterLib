@@ -297,8 +297,12 @@ package components.common
 				pardefXml.@hide=xml.@hide;
 			}
 
-			if(xml.@alignPardef&& xml.@alignPardef!=""){
+			if(xml.@alignPardef&& xml.@alignPardef.toString().length > 0){
 				pardefXml.@align=xml.@alignPardef;
+			}
+			if(xml.@listPardef&& xml.@listPardef.toString().length>0){
+				
+					pardefXml.@list=xml.@listPardef;
 			}
 			return pardefXml;
 		}
@@ -318,9 +322,13 @@ package components.common
 					
 				}
 
-				if(xml.@alignPardef&& xml.@alignPardef.length>0){
-					Alert.show("alignPardef:"+ xml.@alignPardef);
+				if(xml.@alignPardef&& xml.@alignPardef.toString().length>0){
+				
 					pardefXml.@align=xml.@alignPardef;
+				}
+				if(xml.@listPardef&& xml.@listPardef.toString().length>0){
+				
+					pardefXml.@list=xml.@listPardef;
 				}
 			}
 
@@ -335,7 +343,7 @@ package components.common
 				if(xml.@hide&& xml.@hide!=""){
 					pardefXml.@hide=xml.@hide;		
 				}
-				if(xml.@alignPardef&& xml.@alignPardef.length>0){
+				if(xml.@alignPardef&& xml.@alignPardef.toString().length>0){
 				
 					pardefXml.@align=xml.@alignPardef;
 				}

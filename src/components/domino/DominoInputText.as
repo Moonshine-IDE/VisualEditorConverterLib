@@ -956,6 +956,10 @@ package components.domino
 				this.alignPardef = xml.@alignPardef;
 			}
 
+			if(xml.@listPardef){
+				this.listPardef = xml.@listPardef;
+			}
+
 			if(xml.@pitches){
 				this.pitches = xml.@pitches;
 			}
@@ -1191,6 +1195,11 @@ package components.domino
 			if(this.alignPardef){
 				xml.@alignPardef = this.alignPardef;
 				par_xml.@alignPardef = this.alignPardef;
+			}
+
+			if(this.listPardef){
+				xml.@listPardef = this.listPardef;
+				par_xml.@listPardef = this.listPardef;
 			}
 
 			if (this.hide)

@@ -261,6 +261,7 @@ package components.domino
 				var hidewhen:String = exml.@hidewhen;
 				var hide:String = exml.@hide;
 				var alignPardef:String = exml.@alignPardef;
+				var listPardef:String = exml.@listPardef;
 				
 				if (exml.name() == "par")
 				{
@@ -282,6 +283,10 @@ package components.domino
 
 				if(alignPardef){
 					xml.@alignPardef = alignPardef;
+				}
+
+				if(listPardef){
+					xml.@listPardef = listPardef;
 				}
 				xml.appendChild(exml);
 			}
