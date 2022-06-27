@@ -27,9 +27,11 @@ package components.domino
 	import components.common.Div;
 
 	import interfaces.IComponent;
+	import interfaces.IComponentData;
 	import interfaces.ILookup;
 	import interfaces.IRoyaleComponentConverter;
 	import interfaces.ISurface;
+	import interfaces.components.IDiv;
 	import interfaces.dominoComponents.IDominoTabView;
 	import global.domino.DominoGlobals;
 
@@ -108,7 +110,7 @@ package components.domino
 	* @see https://help.hcltechsw.com/dom_designer/10.0.1/basic/H_TABLEROW_ELEMENT_XML.html
 	*/
 
-	public class DominoTabView extends DominoConponentHideBase implements IDominoTabView, IRoyaleComponentConverter
+	public class DominoTabView extends DominoConponentHideBase implements IDominoTabView, IRoyaleComponentConverter,IComponentData
 	{
 		public static const PRIME_FACES_XML_ELEMENT_NAME:String = "tabView";
         public static const ELEMENT_NAME:String = "TabView";
@@ -174,7 +176,35 @@ package components.domino
 		{
 			return _component ? _component : this;
 		}
-		
+
+		public function getComponentData():Object
+		{
+			var fields:Array = [];
+
+			var elementCount:int = component["numElements"];
+			for (var i:int = 0; i < elementCount; i++)
+			{
+				var navContent:Object = component["getElementAt"](i);
+				var content:IDiv = navContent.getElementAt(0);
+					content = content["getElementAt"](0);
+				for (var j:int = 0; j < content["numElements"]; j++)
+				{
+					var element:IComponentData = content["getElementAt"](j) as IComponentData;
+					if (element == null)
+					{
+						continue;
+					}
+
+					var componentData:Object = element.getComponentData();
+					fields.push(componentData);
+				}
+			}
+
+			return {
+				fields: fields
+			}
+		}
+
 		public function fromXML(xml:XML, childFromXMLCallback:Function, surface:ISurface, lookup:ILookup):void
 		{
 			var localSurface:ISurface = surface;

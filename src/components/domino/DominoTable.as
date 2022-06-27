@@ -30,13 +30,16 @@ package components.domino
 	import global.domino.DominoGlobals;
 
 	import interfaces.IComponent;
+	import interfaces.IComponentData;
 	import interfaces.ILookup;
 	import interfaces.IRoyaleComponentConverter;
 	import interfaces.ISurface;
+	import interfaces.components.IDiv;
 	import interfaces.dominoComponents.IDominoTable;
 
 	import spark.components.Alert;
 	import global.domino.DominoGlobals;
+
 
 
 	/**
@@ -121,7 +124,7 @@ package components.domino
 	 * @see https://github.com/Moonshine-IDE/VisualEditorConverterLib/blob/master/src/components/domino/DominoTable.as
 	 */
 
-	public class DominoTable extends DominoConponentHideBase implements IDominoTable, IRoyaleComponentConverter
+	public class DominoTable extends DominoConponentHideBase implements IDominoTable, IRoyaleComponentConverter ,IComponentData
 	{
 		public static const ROYALE_XML_ELEMENT:String = "SimpleTable";
 		public static const ELEMENT_NAME:String = "table";
@@ -404,6 +407,41 @@ package components.domino
 		private function get component():IComponent
 		{
 			return _component ? _component : this;
+		}
+
+		public function getComponentData():Object
+		{
+			var fields:Array = [];
+
+			var elementCount:int = component["numElements"];
+			for (var i:int = 0; i < elementCount; i++)
+			{
+				var navContent:Object = component["getElementAt"](i);
+				var navContentCount:int = navContent.numElements;
+
+				for (var j:int = 0; j < navContentCount; j++)
+				{
+					var content:GridItem = navContent.getElementAt(j);
+					var contentDiv:IDiv = content.getElementAt(0) as IDiv;
+
+					for (var k:int = 0; k < contentDiv["numElements"]; k++)
+					{
+						var elementDiv:Object = contentDiv["getElementAt"](k);
+						var componentData:IComponentData = elementDiv as IComponentData;
+
+						if (componentData == null)
+						{
+							continue;
+						}
+
+						fields.push(componentData.getComponentData());
+					}
+				}
+			}
+
+			return {
+				fields: fields
+			}
 		}
 
 		public function fromXML(xml:XML, childFromXMLCallback:Function, surface:ISurface, lookup:ILookup):void

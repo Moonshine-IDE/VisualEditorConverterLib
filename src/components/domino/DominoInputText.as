@@ -47,7 +47,7 @@ package components.domino
 	import org.apache.flex.packageflexsdk.util.ApacheURLLoader;
 	import components.DominoConponentHideBase;
 	import global.domino.DominoGlobals;
-	import interfaces.IComponentData;
+	
 
 
 	/**
@@ -904,10 +904,17 @@ package components.domino
 		}
 		public function getComponentData():Object
 		{
+			var fieldType:String = "String";
+			if (this.keywordui == "checkbox")
+			{
+				fieldType = "Boolean";
+			}
+
 			return {
 				fields: [{
 					name: this.nameAttribute,
-					fieldValue: this.text
+					fieldValue: fieldType == "Boolean" ? false : this.text,
+					fieldType: fieldType
 				}]
 			}
 		}
