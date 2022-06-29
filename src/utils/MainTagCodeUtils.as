@@ -75,11 +75,50 @@ package utils
 			return xml;
 		}
 
-		public static function getRoyaleViewParentContent(element:IComponent):XML
+		public static function getRoyaleViewParentContent(element:IComponent, componentData:Object):XML
 		{
 			if (element is IDominoBody)
 			{
-				return (element as IRoyaleComponentConverter).toRoyaleConvertCode();
+				var bodyXML:XML = (element as IRoyaleComponentConverter).toRoyaleConvertCode();
+
+				var cdataStart:String = "<![CDATA[\n";
+				var isDisabled:String = "	[Bindable] private var isDisabled:Boolean = false;\n";
+
+				if (componentData)
+				{
+					if (componentData.prop)
+					{
+						for each (var p:Object in componentData.prop)
+						{
+							cdataStart += "	import vo." + p.propType + ";\n";
+							cdataStart += "	[Bindable] private var " + p.propName + ":" + p.propType;
+							if (p.newInstance)
+							{
+								cdataStart += " = new " + p.propType + "()" + ";\n";
+							}
+							else
+							{
+								cdataStart += ";\n";
+							}
+						}
+					}
+				}
+
+				cdataStart += isDisabled;
+				var cdataEnd:String = "\n]]>";
+
+				cdataStart += cdataEnd;
+
+				var mxmlNamespace:Namespace = new Namespace("fx", "http://ns.adobe.com/mxml/2009");
+				var scriptXML:XML = new XML("<Script/>");
+					scriptXML.setNamespace(mxmlNamespace);
+
+				var cdata:XML = new XML(cdataStart);
+					scriptXML.appendChild(cdata);
+
+				bodyXML.appendChild(scriptXML);
+
+				return bodyXML;
 			}
 
 			return new XML("");

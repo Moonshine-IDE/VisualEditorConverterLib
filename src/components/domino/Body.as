@@ -152,12 +152,6 @@ package components.domino
 			var dataBindingXML:XML = new XML("<ContainerDataBinding />");
 				beadsXML.appendChild(dataBindingXML);
 
-			var scriptXML:XML = new XML("<Script/>");
-			var cdataXML:XML = new XML("<![CDATA[" +
-					"[Bindable] private var isDisabled:Boolean = false;" +
-					"]]>");
-				scriptXML.appendChild(cdataXML);
-
 			var direction:String = _xml.@direction;
 			if (direction == "Horizontal")
 			{
@@ -187,10 +181,8 @@ package components.domino
 
 			dataBindingXML.setNamespace(jsNamespace);
 			beadsXML.setNamespace(jNamespace);
-			scriptXML.setNamespace(mxmlNamespace);
 
 			mainContainer.appendChild(beadsXML);
-			mainContainer.appendChild(scriptXML);
 
 			return mainContainer;
 		}

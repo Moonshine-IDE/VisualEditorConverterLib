@@ -154,10 +154,10 @@ package surface
 			return xml;
 		}
 
-		public function toRoyaleConvertCode():XML
+		public function toRoyaleConvertCode(data:Object = null):XML
 		{
 			var element:Object = this.getElementAt(0);
-			var xml:XML = MainTagCodeUtils.getRoyaleViewParentContent(element as IComponent);
+			var xml:XML = MainTagCodeUtils.getRoyaleViewParentContent(element as IComponent, data);
 
 			var elementCount:int = (element as IVisualComponent).numElements;
 			
