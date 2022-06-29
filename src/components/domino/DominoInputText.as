@@ -1270,7 +1270,7 @@ package components.domino
 			}
 
 			if(this.fieldHint){
-				xml.@fieldHint = this.fieldHint
+				xml.@fieldhint = this.fieldHint
 			}
 
 			xml.@bgcolor = "#ffffff";
