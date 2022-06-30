@@ -918,7 +918,38 @@ package components.domino
 				}]
 			}
 		}
-		
+
+
+		private var _spacingInterline:String;
+		public function get spacingInterline():String
+		{
+			return _spacingInterline;
+		}
+        public function set spacingInterline(value:String):void
+		{
+			_spacingInterline=value;
+		}
+
+		private var _spacingAbove:String;
+		public function get spacingAbove():String
+		{
+			return _spacingAbove;
+		}
+        public function set spacingAbove(value:String):void
+		{
+			_spacingAbove=value;
+		}
+
+		private var _spacingBelow:String;
+		public function get spacingBelow():String
+		{
+			return _spacingBelow;
+		}
+        public function set spacingBelow(value:String):void
+		{
+			_spacingBelow=value;
+		}
+
 
 
 
@@ -1014,6 +1045,17 @@ package components.domino
 			this.hide = xml.@hide;
 			this.helpDescription = xml.@helpDescription;
 			this.fieldHint = xml.@fieldHint;
+
+			if(xml.@spacingInterline){
+				this.spacingInterline =xml.@spacingInterline;
+			}
+			if(xml.@spacingAbove){
+				this.spacingAbove =xml.@spacingAbove;
+			}
+
+			if(xml.@spacingBelow){
+				this.spacingBelow =xml.@spacingBelow;
+			}
 			//this.formula=xml.@formula;
 			this.inputProtected = xml.@inputProtected;
 			this.inputSeal = xml.@inputSeal;
@@ -1148,8 +1190,15 @@ package components.domino
 				xml.@htmlOther = this.htmlOther;
 			}
 
-		
-
+			if(this.spacingInterline){
+				xml.@spacingInterline = this.spacingInterline;
+			}
+			if(this.spacingAbove){
+				xml.@spacingAbove = this.spacingAbove;
+			}
+			if(this.spacingBelow){
+				xml.@spacingBelow = this.spacingBelow;
+			}
 			
 
 			if (this.color!=null&&this.color.length>0)

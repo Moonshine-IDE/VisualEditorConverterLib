@@ -175,6 +175,13 @@ package interfaces.dominoComponents
         function set firstlineleftmarginPardef(value:String):void;
 		function get listPardef():String;
         function set listPardef(value:String):void;
+		function get spacingInterline():String;
+        function set spacingInterline(value:String):void;
+		function get spacingAbove():String;
+        function set spacingAbove(value:String):void;
+		function get spacingBelow():String;
+        function set spacingBelow(value:String):void;
+
 
 
 	}
