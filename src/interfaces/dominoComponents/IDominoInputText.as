@@ -182,6 +182,11 @@ package interfaces.dominoComponents
 		function get spacingBelow():String;
         function set spacingBelow(value:String):void;
 
+		function get indent():String
+		function set indent(value:String):void
+		function get outdent():String
+		function set outdent(value:String):void
+
 
 
 	}

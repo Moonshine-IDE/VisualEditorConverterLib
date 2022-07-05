@@ -304,6 +304,14 @@ package components.common
 				
 					pardefXml.@list=xml.@listPardef;
 			}
+			if(xml.@indent&& xml.@indent.toString().length>0){
+				
+					pardefXml.@indent=xml.@indent;
+			}
+			if(xml.@outdent&& xml.@outdent.toString().length>0){
+				
+					pardefXml.@outdent=xml.@outdent;
+			}
 			return pardefXml;
 		}
 
@@ -330,6 +338,14 @@ package components.common
 				
 					pardefXml.@list=xml.@listPardef;
 				}
+
+				if(xml.@indent&& xml.@indent.toString().length>0){
+					pardefXml.@firstlineleftmargin= (Number(xml.@indent)+1).toString()+"in";
+				}
+				if(xml.@outdent&& xml.@outdent.toString().length>0){
+					Alert.show("v outdent:"+xml.@outdent);
+					pardefXml.@leftmargin= (Number(xml.outdent)+1).toString()+"in";
+				}
 			}
 
 			return pardefXml;
@@ -346,6 +362,13 @@ package components.common
 				if(xml.@alignPardef&& xml.@alignPardef.toString().length>0){
 				
 					pardefXml.@align=xml.@alignPardef;
+				}
+
+				if(xml.@indent){
+					pardefXml.@firstlineleftmargin= (Number(xml.@indent)+1).toString()+"in";
+				}
+				if(xml.@outdent){
+					pardefXml.@leftmargin= (Number(xml.outdent)+1).toString()+"in";
 				}
 			}
 

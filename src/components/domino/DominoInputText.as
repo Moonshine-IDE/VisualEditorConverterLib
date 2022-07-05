@@ -565,6 +565,26 @@ package components.domino
 			_keywordui = value;
 		}
 
+		private var _indent:String;
+		public function get indent():String
+		{
+			return _indent;
+		}
+		public function set indent(value:String):void
+		{
+			_indent = value;
+		}
+
+		private var _outdent:String;
+		public function get outdent():String
+		{
+			return _outdent;
+		}
+		public function set outdent(value:String):void
+		{
+			_outdent = value;
+		}
+
 
 		private var _inputProtected:Boolean;
 
@@ -971,6 +991,12 @@ package components.domino
 			this.allowmultivalues = xml.@allowmultivalues == "true";
 			this.type = xml.@type;
 			this.kind = xml.@kind;
+			if(xml.@indent){
+				this.indent = xml.@indent;
+			}
+			if(xml.@outdent){
+				this.outdent = xml.@outdent;
+			}
 			if(xml.@htmlId){
 				this.htmlId = xml.@htmlId
 			}
@@ -1251,6 +1277,15 @@ package components.domino
 			if(this.alignPardef){
 				xml.@alignPardef = this.alignPardef;
 				par_xml.@alignPardef = this.alignPardef;
+			}
+
+			if(this.indent){
+				xml.@indent = this.indent;
+				par_xml.@indent= this.indent;
+			}
+			if(this.outdent){
+				xml.@outdent = this.outdent;
+				par_xml.@outdent= this.outdent;
 			}
 
 			if(this.listPardef){

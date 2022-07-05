@@ -273,6 +273,16 @@ package components.domino
 				var hide:String = exml.@hide;
 				var alignPardef:String = exml.@alignPardef;
 				var listPardef:String = exml.@listPardef;
+				var outdent:String = exml.@outdent;
+				var indent:String = exml.@indent;
+
+				if(outdent){
+					xml.@outdent = outdent;
+				}
+
+				if(indent){
+					xml.@indent = indent;
+				}
 				
 				if (exml.name() == "par")
 				{
