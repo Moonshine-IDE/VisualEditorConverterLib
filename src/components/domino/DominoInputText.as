@@ -1217,13 +1217,13 @@ package components.domino
 			}
 
 			if(this.spacingInterline){
-				xml.@spacingInterline = this.spacingInterline;
+				xml.@linespacing = this.spacingInterline;
 			}
 			if(this.spacingAbove){
-				xml.@spacingAbove = this.spacingAbove;
+				xml.@spacebefore = this.spacingAbove;
 			}
 			if(this.spacingBelow){
-				xml.@spacingBelow = this.spacingBelow;
+				xml.@spaceafter = this.spacingBelow;
 			}
 			
 
