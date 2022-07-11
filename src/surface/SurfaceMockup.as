@@ -159,6 +159,11 @@ package surface
 			var element:Object = this.getElementAt(0);
 			var xml:XML = MainTagCodeUtils.getRoyaleViewParentContent(element as IComponent, data);
 
+			var jNamespace:Namespace = new Namespace("j", "library://ns.apache.org/royale/jewel");
+			var internalContainer:XML = new XML("<VGroup />");
+				internalContainer.@includeIn = "contentState";
+				internalContainer.setNamespace(jNamespace);
+
 			var elementCount:int = (element as IVisualComponent).numElements;
 			
 			for (var i:int = 0; i < elementCount; i++)
@@ -172,8 +177,10 @@ package surface
 
 			    XML.ignoreComments = false;
                 var code:XML = (item as IRoyaleComponentConverter).toRoyaleConvertCode();
-				xml.appendChild(code);
+				internalContainer.appendChild(code);
             }
+
+			xml.appendChild(internalContainer);
 
 			return xml;
 		}

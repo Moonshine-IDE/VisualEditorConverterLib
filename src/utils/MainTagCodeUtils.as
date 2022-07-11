@@ -88,19 +88,22 @@ package utils
 				{
 					if (componentData.prop)
 					{
-						for each (var p:Object in componentData.prop)
+						var items:String = "[Bindable] private var ";
+						var p:Object = componentData.prop.pop();
+
+						cdataStart += "	import vo." + p.propType + ";\n";
+						cdataStart += "	[Bindable] private var " + p.propName + ":" + p.propType;
+						items += p.propName + "Items:Array = [new " + p.propType + "()];\n";
+						if (p.newInstance)
 						{
-							cdataStart += "	import vo." + p.propType + ";\n";
-							cdataStart += "	[Bindable] private var " + p.propName + ":" + p.propType;
-							if (p.newInstance)
-							{
-								cdataStart += " = new " + p.propType + "()" + ";\n";
-							}
-							else
-							{
-								cdataStart += ";\n";
-							}
+							cdataStart += " = new " + p.propType + "()" + ";\n";
 						}
+						else
+						{
+							cdataStart += ";\n";
+						}
+
+						cdataStart += items;
 					}
 				}
 
