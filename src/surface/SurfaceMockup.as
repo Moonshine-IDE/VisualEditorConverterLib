@@ -164,6 +164,31 @@ package surface
 				internalContainer.@includeIn = "contentState";
 				internalContainer.setNamespace(jNamespace);
 
+			var editContainer:XML = new XML("<HGroup />");
+				editContainer.@percentWidth = "100";
+				editContainer.@itemsHorizontalAlign = "itemsRight";
+				editContainer.@gap = "2";
+				editContainer.setNamespace(jNamespace);
+			if (data)
+			{
+				var editButton:XML = new XML("<Button />");
+					editButton.@text = "Edit";
+					editButton.@click = "{this.currentState = 'contentState';}";
+					editButton.@includeIn = "dataGridState";
+					editButton.setNamespace(jNamespace);
+				var beads:XML = new XML("<beads/>");
+					beads.setNamespace(jNamespace);
+				var disabledBead:XML = new XML("<Disabled/>");
+					disabledBead.@disabled = "{this." + data.prop[0].propName + " == null}";
+					disabledBead.setNamespace(jNamespace);
+
+				beads.appendChild(disabledBead);
+				editButton.appendChild(beads);
+				editContainer.appendChild(editButton);
+
+				xml.appendChild(editContainer);
+			}
+
 			var elementCount:int = (element as IVisualComponent).numElements;
 			
 			for (var i:int = 0; i < elementCount; i++)

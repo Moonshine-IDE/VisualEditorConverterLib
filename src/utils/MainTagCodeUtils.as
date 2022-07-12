@@ -89,7 +89,7 @@ package utils
 					if (componentData.prop)
 					{
 						var items:String = "[Bindable] private var ";
-						var p:Object = componentData.prop.pop();
+						var p:Object = componentData.prop[0];
 
 						cdataStart += "	import vo." + p.propType + ";\n";
 						cdataStart += "	[Bindable] private var " + p.propName + ":" + p.propType;

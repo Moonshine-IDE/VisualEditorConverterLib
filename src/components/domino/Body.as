@@ -156,6 +156,7 @@ package components.domino
 
 			var mainContainer:XML = new XML("<VGroup></VGroup>");
 				mainContainer.@currentState = "dataGridState";
+				mainContainer.@gap = "5";
 				mainContainer.@stateChangeComplete = "{this.dispatchEvent(new Event('valueChange'))}";
 
 			var beadsXML:XML = new XML("<beads />");
