@@ -1218,12 +1218,15 @@ package components.domino
 
 			if(this.spacingInterline){
 				xml.@linespacing = this.spacingInterline;
+				par_xml.@spacingInterline = this.spacingInterline;
 			}
 			if(this.spacingAbove){
 				xml.@spacebefore = this.spacingAbove;
+				par_xml.@spacingAbove= this.spacingAbove;
 			}
 			if(this.spacingBelow){
 				xml.@spaceafter = this.spacingBelow;
+				par_xml.@spacingBelow = this.spacingBelow;
 			}
 			
 

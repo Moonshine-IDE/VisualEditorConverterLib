@@ -275,6 +275,9 @@ package components.domino
 				var listPardef:String = exml.@listPardef;
 				var outdent:String = exml.@outdent;
 				var indent:String = exml.@indent;
+				var spacingAbove:String = exml.@spacingAbove;
+				var spacingInterline:String = exml.@spacingInterline;
+				var spacingBelow:String = exml.@spacingBelow;
 
 				if(outdent){
 					xml.@outdent = outdent;
@@ -282,6 +285,17 @@ package components.domino
 
 				if(indent){
 					xml.@indent = indent;
+				}
+				if(spacingInterline){
+					xml.@spacingInterline = spacingInterline;
+				}
+
+				if(spacingBelow){
+					xml.@spacingBelow = spacingBelow;
+				}
+
+				if(spacingAbove){
+					xml.@spacingAbove = spacingAbove;
 				}
 				
 				if (exml.name() == "par")

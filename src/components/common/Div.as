@@ -338,6 +338,7 @@ package components.common
 				
 					pardefXml.@list=xml.@listPardef;
 				}
+				
 
 				if(xml.@indent&& xml.@indent.toString().length>0){
 					pardefXml.@firstlineleftmargin= (Number(xml.@indent)+1).toString()+"in";
