@@ -19,7 +19,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package components.domino
 {
-	import components.ComponentBase;
 	import components.DominoConponentHideBase;
 
 	import interfaces.ILookup;
@@ -28,7 +27,6 @@ package components.domino
 	import interfaces.ISurface;
 	import interfaces.dominoComponents.IDominoLabel;
 	import com.adobe.utils.StringUtil;
-	import interfaces.IDominoVisualHideOption;
 	import global.domino.DominoGlobals;
 	
 

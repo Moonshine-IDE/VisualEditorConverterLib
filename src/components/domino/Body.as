@@ -147,16 +147,44 @@ package components.domino
 
 		public function toRoyaleConvertCode():XML
 		{
+			var jNamespace:Namespace = new Namespace("j", "library://ns.apache.org/royale/jewel");
+			var mxmlNamespace:Namespace = new Namespace("fx", "http://ns.adobe.com/mxml/2009");
+			var jsNamespace:Namespace = new Namespace("js", "library://ns.apache.org/royale/basic");
+			var htmlNamespace:Namespace = new Namespace("html", "library://ns.apache.org/royale/html");
+			var joditEditorNamespace:Namespace = new Namespace("joditeditor", "classes.joditeditor.*");
+			var dataGridNamespace:Namespace = new Namespace("dataGrid", "classes.dataGrid.*");
+
 			var mainContainer:XML = new XML("<VGroup></VGroup>");
+				mainContainer.@currentState = "dataGridState";
+				mainContainer.@gap = "5";
+				mainContainer.@stateChangeComplete = "{this.dispatchEvent(new Event('valueChange'))}";
+
 			var beadsXML:XML = new XML("<beads />");
+				beadsXML.setNamespace(jNamespace);
+
+			mainContainer.appendChild(beadsXML);
+
 			var dataBindingXML:XML = new XML("<ContainerDataBinding />");
+				dataBindingXML.setNamespace(jsNamespace);
 				beadsXML.appendChild(dataBindingXML);
 
-			var scriptXML:XML = new XML("<Script/>");
-			var cdataXML:XML = new XML("<![CDATA[" +
-					"[Bindable] private var isDisabled:Boolean = false;" +
-					"]]>");
-				scriptXML.appendChild(cdataXML);
+			var statesBeadXML:XML = new XML("<SimpleStatesImpl />");
+				statesBeadXML.setNamespace(jsNamespace);
+				beadsXML.appendChild(statesBeadXML);
+
+			var statesXML:XML = new XML("<states />");
+				statesXML.setNamespace(jNamespace);
+			var stateXML:XML = new XML("<State />");
+				stateXML.@name = "dataGridState";
+				stateXML.setNamespace(jsNamespace);
+				statesXML.appendChild(stateXML);
+
+				stateXML = new XML("<State />");
+				stateXML.@name = "contentState";
+				stateXML.setNamespace(jsNamespace);
+				statesXML.appendChild(stateXML);
+
+			mainContainer.appendChild(statesXML);
 
 			var direction:String = _xml.@direction;
 			if (direction == "Horizontal")
@@ -169,28 +197,13 @@ package components.domino
 				mainContainer.@itemsVerticalAlign = getAlignmentVertical();
 			}
 
-			var jNamespace:Namespace = new Namespace("j", "library://ns.apache.org/royale/jewel");
 			mainContainer.addNamespace(jNamespace);
 			mainContainer.setNamespace(jNamespace);
-
-			var mxmlNamespace:Namespace = new Namespace("fx", "http://ns.adobe.com/mxml/2009");
 			mainContainer.addNamespace(mxmlNamespace);
-
-			var jsNamespace:Namespace = new Namespace("js", "library://ns.apache.org/royale/basic");
 			mainContainer.addNamespace(jsNamespace);
-
-			var htmlNamespace:Namespace = new Namespace("html", "library://ns.apache.org/royale/html");
 			mainContainer.addNamespace(htmlNamespace);
-
-			var joditEditor:Namespace = new Namespace("joditeditor", "classes.joditeditor.*");
-			mainContainer.addNamespace(joditEditor);
-
-			dataBindingXML.setNamespace(jsNamespace);
-			beadsXML.setNamespace(jNamespace);
-			scriptXML.setNamespace(mxmlNamespace);
-
-			mainContainer.appendChild(beadsXML);
-			mainContainer.appendChild(scriptXML);
+			mainContainer.addNamespace(joditEditorNamespace);
+			mainContainer.addNamespace(dataGridNamespace);
 
 			return mainContainer;
 		}

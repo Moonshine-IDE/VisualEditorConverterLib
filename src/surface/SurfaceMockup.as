@@ -154,10 +154,40 @@ package surface
 			return xml;
 		}
 
-		public function toRoyaleConvertCode():XML
+		public function toRoyaleConvertCode(data:Object = null):XML
 		{
 			var element:Object = this.getElementAt(0);
-			var xml:XML = MainTagCodeUtils.getRoyaleViewParentContent(element as IComponent);
+			var xml:XML = MainTagCodeUtils.getRoyaleViewParentContent(element as IComponent, data);
+
+			var jNamespace:Namespace = new Namespace("j", "library://ns.apache.org/royale/jewel");
+			var internalContainer:XML = new XML("<VGroup />");
+				internalContainer.@includeIn = "contentState";
+				internalContainer.setNamespace(jNamespace);
+
+			var editContainer:XML = new XML("<HGroup />");
+				editContainer.@percentWidth = "100";
+				editContainer.@itemsHorizontalAlign = "itemsRight";
+				editContainer.@gap = "2";
+				editContainer.setNamespace(jNamespace);
+			if (data)
+			{
+				var editButton:XML = new XML("<Button />");
+					editButton.@text = "Edit";
+					editButton.@click = "{this.currentState = 'contentState';}";
+					editButton.@includeIn = "dataGridState";
+					editButton.setNamespace(jNamespace);
+				var beads:XML = new XML("<beads/>");
+					beads.setNamespace(jNamespace);
+				var disabledBead:XML = new XML("<Disabled/>");
+					disabledBead.@disabled = "{this." + data.prop[0].propName + " == null}";
+					disabledBead.setNamespace(jNamespace);
+
+				beads.appendChild(disabledBead);
+				editButton.appendChild(beads);
+				editContainer.appendChild(editButton);
+
+				xml.appendChild(editContainer);
+			}
 
 			var elementCount:int = (element as IVisualComponent).numElements;
 			
@@ -172,8 +202,10 @@ package surface
 
 			    XML.ignoreComments = false;
                 var code:XML = (item as IRoyaleComponentConverter).toRoyaleConvertCode();
-				xml.appendChild(code);
+				internalContainer.appendChild(code);
             }
+
+			xml.appendChild(internalContainer);
 
 			return xml;
 		}
