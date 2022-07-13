@@ -207,6 +207,27 @@ package surface
 
 			xml.appendChild(internalContainer);
 
+			var saveContainer:XML = new XML("<HGroup />");
+			saveContainer.@percentWidth = "100";
+			saveContainer.@itemsHorizontalAlign = "itemsCenter";
+			saveContainer.@gap = "2";
+			saveContainer.@includeIn = "contentState";
+			saveContainer.setNamespace(jNamespace);
+
+			var saveButton:XML = new XML("<Button />");
+			saveButton.@text = "Save";
+			saveButton.setNamespace(jNamespace);
+
+			var cancelButton:XML = new XML("<Button />");
+			cancelButton.@text = "Cancel";
+			cancelButton.@click = "{this.currentState = 'dataGridState';}";
+			cancelButton.setNamespace(jNamespace);
+
+			saveContainer.appendChild(saveButton);
+			saveContainer.appendChild(cancelButton);
+
+			xml.appendChild(saveContainer);
+
 			return xml;
 		}
 
