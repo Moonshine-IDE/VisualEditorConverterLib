@@ -216,6 +216,8 @@ package surface
 
 			var saveButton:XML = new XML("<Button />");
 			saveButton.@text = "Save";
+			saveButton.@click = data ? "{this.currentState = 'dataGridState'; this.dg.refreshCurrentDataProvider();}"
+									 : "{this.currentState = 'dataGridState';}";
 			saveButton.setNamespace(jNamespace);
 
 			var cancelButton:XML = new XML("<Button />");
