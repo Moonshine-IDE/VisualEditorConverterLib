@@ -90,6 +90,26 @@ package components.domino
 
 			this._component = component;
 		}
+
+
+		private var _leftmargin:String;
+		public function get leftmargin():String{
+			return _leftmargin;
+		}
+        public function set leftmargin(value:String):void
+		{
+			_leftmargin = value;
+		}
+
+		private var _firstlineleftmargin:String;
+		public function get firstlineleftmargin():String
+		{
+			return _firstlineleftmargin;
+		}
+        public function set firstlineleftmargin(value:String):void
+		{
+			 _firstlineleftmargin= value;
+		}
 		private var _xml:XML;
 
 		private var _isSelected:Boolean;
@@ -223,6 +243,14 @@ package components.domino
 				this.isNewLine = "false";
 			}
 
+			if(xml.@["leftmargin"]){
+				this.leftmargin = xml.@["leftmargin"]
+			}
+
+			if(xml.@["firstlineleftmargin"]){
+				this.firstlineleftmargin = xml.@["firstlineleftmargin"]
+			}
+
 
 
 			var elementsXML:XMLList = xml.elements();
@@ -263,6 +291,14 @@ package components.domino
 				blankRunXml.appendChild(new XML("     "));
 				xml.appendChild(blankRunXml);
 				xml.@isNewLine = "true";
+			}
+
+			if(this.leftmargin){
+				xml.@leftmargin = this.leftmargin;
+			}
+
+			if(this.firstlineleftmargin){
+				xml.@firstlineleftmargin = this.firstlineleftmargin;
 			}
 
 			for (var i:int = 0; i < elementCount; i++)

@@ -13,5 +13,11 @@ package interfaces.components
 		function get isNewLine():String
         function set isNewLine(value:String):void;
 
+		function get leftmargin():String
+        function set leftmargin(value:String):void;
+
+		function get firstlineleftmargin():String
+        function set firstlineleftmargin(value:String):void;
+
 	}
 }
