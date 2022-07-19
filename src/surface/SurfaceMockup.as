@@ -216,13 +216,14 @@ package surface
 
 			var saveButton:XML = new XML("<Button />");
 			saveButton.@text = "Save";
-			saveButton.@click = data ? "{this.currentState = 'dataGridState'; this.dg.refreshCurrentDataProvider();}"
+			saveButton.@click = data ? "{this.currentState = 'dataGridState'; this." + data.prop[0].propName + "Items[this.selectedRowIndex] = this." + data.prop[0].propName + "; this.dg.refreshCurrentDataProvider();}"
 									 : "{this.currentState = 'dataGridState';}";
 			saveButton.setNamespace(jNamespace);
 
 			var cancelButton:XML = new XML("<Button />");
 			cancelButton.@text = "Cancel";
-			cancelButton.@click = "{this.currentState = 'dataGridState';}";
+			cancelButton.@click = data ? "{this.currentState = 'dataGridState'; this.selectedRowIndex = -1; this." + data.prop[0].propName + " = null}"
+					                   : "{this.currentState = 'dataGridState';}";
 			cancelButton.setNamespace(jNamespace);
 
 			saveContainer.appendChild(saveButton);
