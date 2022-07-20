@@ -1651,6 +1651,11 @@ package components.domino
 				componentXML.@text = "{$valueobject." + this.nameAttribute + "}";
 				componentXML.@className = "readOnlyInput";
 
+			if (this.type == "text")
+			{
+				componentXML.@change = "{$valueobject." + this.nameAttribute + " = event.currentTarget.text;}";
+			}
+
 			if (this.type == "datetime")
 			{
 				componentXML = new XML("<" + ROYALE_ELEMENT_NAME_DATE + ">" + "</" + ROYALE_ELEMENT_NAME_DATE + ">");

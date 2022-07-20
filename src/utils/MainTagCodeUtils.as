@@ -83,12 +83,13 @@ package utils
 
 				var cdataStart:String = "<![CDATA[\n";
 				var isDisabled:String = "	[Bindable] private var isDisabled:Boolean = false;\n";
+				var selectedRowIndex:String = "	[Bindable] private var selectedRowIndex:int = -1;\n";
 
 				if (componentData)
 				{
 					if (componentData.prop)
 					{
-						var items:String = "[Bindable] private var ";
+						var items:String = "	[Bindable] private var ";
 						var p:Object = componentData.prop[0];
 
 						cdataStart += "	import vo." + p.propType + ";\n";
@@ -108,6 +109,8 @@ package utils
 				}
 
 				cdataStart += isDisabled;
+				cdataStart += selectedRowIndex;
+
 				var cdataEnd:String = "\n]]>";
 
 				cdataStart += cdataEnd;
