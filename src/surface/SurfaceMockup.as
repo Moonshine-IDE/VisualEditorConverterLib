@@ -171,19 +171,26 @@ package surface
 				editContainer.setNamespace(jNamespace);
 			if (data)
 			{
+				var addButton:XML = new XML("<Button />");
+					addButton.@text = "Add";
+					addButton.@click = "{this.selectedRowIndex = -1; this.currentState = 'contentState'; this." + data.prop[0].propName + "= new " + data.prop[0].propType + "();}";
+					addButton.@includeIn = "dataGridState";
+					addButton.setNamespace(jNamespace);
+
 				var editButton:XML = new XML("<Button />");
 					editButton.@text = "Edit";
-					editButton.@click = "{this.currentState = 'contentState';}";
+					editButton.@click = "{this.currentState = 'contentState'; this.selectedRowIndex = dg.selectedIndex; this." + data.prop[0].propName + " = dg.selectedItem.copy();}";
 					editButton.@includeIn = "dataGridState";
 					editButton.setNamespace(jNamespace);
 				var beads:XML = new XML("<beads/>");
 					beads.setNamespace(jNamespace);
 				var disabledBead:XML = new XML("<Disabled/>");
-					disabledBead.@disabled = "{this." + data.prop[0].propName + " == null}";
+					disabledBead.@disabled = "{dg.selectedIndex == -1}";
 					disabledBead.setNamespace(jNamespace);
 
 				beads.appendChild(disabledBead);
 				editButton.appendChild(beads);
+				editContainer.appendChild(addButton);
 				editContainer.appendChild(editButton);
 
 				xml.appendChild(editContainer);
@@ -216,7 +223,9 @@ package surface
 
 			var saveButton:XML = new XML("<Button />");
 			saveButton.@text = "Save";
-			saveButton.@click = data ? "{this.currentState = 'dataGridState'; this." + data.prop[0].propName + "Items[this.selectedRowIndex] = this." + data.prop[0].propName + "; this.dg.refreshCurrentDataProvider();}"
+			saveButton.@click = data ? "{this.currentState = 'dataGridState'; " +
+					"if (this.selectedRowIndex == -1) {this." + data.prop[0].propName + "Items.push(this." + data.prop[0].propName + ");}" +
+					"else {this." + data.prop[0].propName + "Items[this.selectedRowIndex] = this." + data.prop[0].propName + ";} this.dg.refreshCurrentDataProvider();}"
 									 : "{this.currentState = 'dataGridState';}";
 			saveButton.setNamespace(jNamespace);
 
