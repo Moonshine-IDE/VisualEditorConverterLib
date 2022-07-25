@@ -1651,7 +1651,7 @@ package components.domino
 				componentXML.@text = "{$valueobject." + this.nameAttribute + "}";
 				componentXML.@className = "readOnlyInput";
 
-			if (this.type == "text")
+			if (this.type == "text" || this.type == "number")
 			{
 				componentXML.@change = "{$valueobject." + this.nameAttribute + " = event.currentTarget.text;}";
 			}

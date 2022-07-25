@@ -10,6 +10,7 @@ Visual Editor is built with [Apache Flex® SDK 4.16.1](https://flex.apache.org/i
 3. If you would like to have debuggable swc please set [IsDebug](https://github.com/prominic/VisualEditorConverterLib/blob/b57e17c3bbba455bd94bb8745d19220ae0bd5202/build.xml#L12) variable to true
 4. Run in command line `ant`
 
+Note that VisualEditorConverterLib swc will be copied automatically to [libs](https://github.com/Moonshine-IDE/MockupVisualEditor#moonshine-swc-library) folder of [MockupVisualEditor](https://github.com/Moonshine-IDE/MockupVisualEditor) if that folder is placed in `../MockupVisualEditor/libs`.
 
 ## Domino & Royale Geberated code introduce
 
