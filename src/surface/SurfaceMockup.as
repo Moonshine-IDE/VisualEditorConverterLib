@@ -190,8 +190,24 @@ package surface
 
 				beads.appendChild(disabledBead);
 				editButton.appendChild(beads);
+
+				var removeButton:XML = new XML("<Button />");
+					removeButton.@text = "Remove";
+					removeButton.@click = "{removeItem()}";
+					removeButton.@includeIn = "dataGridState";
+					removeButton.setNamespace(jNamespace);
+					beads = new XML("<beads/>");
+					beads.setNamespace(jNamespace);
+					disabledBead = new XML("<Disabled/>");
+					disabledBead.@disabled = "{dg.selectedIndex == -1}";
+
+				disabledBead.setNamespace(jNamespace);
+				beads.appendChild(disabledBead);
+				removeButton.appendChild(beads);
+
 				editContainer.appendChild(addButton);
 				editContainer.appendChild(editButton);
+				editContainer.appendChild(removeButton);
 
 				xml.appendChild(editContainer);
 			}
