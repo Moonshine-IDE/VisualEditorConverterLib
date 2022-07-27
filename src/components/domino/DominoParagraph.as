@@ -19,7 +19,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package components.domino
 {
-	import components.ComponentBase;
 	import components.DominoConponentHideBase;
 
 	import flash.utils.ByteArray;
