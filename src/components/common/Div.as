@@ -344,7 +344,7 @@ package components.common
 					pardefXml.@firstlineleftmargin= (Number(xml.@indent)+1).toString()+"in";
 				}
 				if(xml.@outdent&& xml.@outdent.toString().length>0){
-					Alert.show("v outdent:"+xml.@outdent);
+				
 					pardefXml.@leftmargin= (Number(xml.outdent)+1).toString()+"in";
 				}
 			}
