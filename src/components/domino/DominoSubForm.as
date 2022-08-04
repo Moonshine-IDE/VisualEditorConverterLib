@@ -84,8 +84,9 @@ package components.domino
 
 			if (this.subFormName)
 			{
-				xml.@subFormName = this.subFormName;
+				xml.@name = this.subFormName;
 			}
+			delete xml["@class"];
 
 			return xml;
 		}
