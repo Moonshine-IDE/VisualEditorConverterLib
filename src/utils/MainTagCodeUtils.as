@@ -82,16 +82,30 @@ package utils
 				var bodyXML:XML = (element as IRoyaleComponentConverter).toRoyaleConvertCode();
 
 				var cdataStart:String = "<![CDATA[\n";
+				var alertImport:String = "	import org.apache.royale.jewel.Alert;\n";
 				var isDisabled:String = "	[Bindable] private var isDisabled:Boolean = false;\n";
 				var selectedRowIndex:String = "	[Bindable] private var selectedRowIndex:int = -1;\n";
+				var removeItem:String = "";
+
+				cdataStart += alertImport;
 
 				if (componentData)
 				{
 					if (componentData.prop)
 					{
-						var items:String = "	[Bindable] private var ";
 						var p:Object = componentData.prop[0];
 
+						removeItem = "\tprivate function removeItem():void\n" +
+								"\t{\n" +
+								"\t\tvar alert:Alert = Alert.show('Are you sure you want to remove this item?',  'Remove', Alert.OK | Alert.CANCEL);\t\t\t\n" +
+								"\t\t\talert.addEventListener('close', function closeAlert(e:Event):void { if (e['detail'] == Alert.OK) \n" +
+								"    \t\t\t\t\t\t\t\t\t{\n" +
+								"    \t\t\t\t\t\t\t\t\t\t" + p.propName + "Items.splice(selectedRowIndex, 1); \n" +
+								"    \t\t\t\t\t\t\t\t\t\tdg.refreshCurrentDataProvider();\n" +
+								"    \t\t\t\t\t\t\t\t\t}});\n" +
+								"\t}";
+
+						var items:String = "	[Bindable] private var ";
 						cdataStart += "	import vo." + p.propType + ";\n";
 						cdataStart += "	[Bindable] private var " + p.propName + ":" + p.propType;
 						items += p.propName + "Items:Array = [new " + p.propType + "()];\n";
@@ -110,6 +124,7 @@ package utils
 
 				cdataStart += isDisabled;
 				cdataStart += selectedRowIndex;
+				cdataStart += "\n" + removeItem;
 
 				var cdataEnd:String = "\n]]>";
 

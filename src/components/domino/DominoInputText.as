@@ -1686,6 +1686,7 @@ package components.domino
 			{
 				componentXML = new XML("<" + ROYALE_ELEMENT_NAME_JODIT  + ">" + "</" + ROYALE_ELEMENT_NAME_JODIT + ">");
 				componentXML.@data = "{$valueobject." + this.nameAttribute + "}";
+				componentXML.@textChange = "{$valueobject." + this.nameAttribute + " = event.target.data;}";
 				componentXML.@readonly = "{isDisabled}";
 				componentXML.@toolbarVisible = "{!isDisabled}";
 				componentXML.@options = "{{" +
