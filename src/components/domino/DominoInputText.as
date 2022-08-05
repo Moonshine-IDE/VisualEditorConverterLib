@@ -913,7 +913,7 @@ package components.domino
 			return {
 				fields: [{
 					name: this.nameAttribute,
-					fieldValue: fieldType == "Boolean" ? false : this.text,
+					fieldValue: fieldType == "Boolean" ? false : this.defaultvalue,
 					fieldType: fieldType
 				}]
 			}
@@ -1111,11 +1111,7 @@ package components.domino
 			}
 
 			var runXML:XML = new XML("<run/>");
-
 			var fontXml:XML = new XML("<font/>");
-
-			
-			
 			var xml:XML = new XML("<" + CodeMxmlUtils.getMXMLTagNameWithSelection(this, DOMINO_ELEMENT_NAME) + "/>");
 
 			/** Domino specified Propertys start
@@ -1148,44 +1144,25 @@ package components.domino
 				xml.@htmlOther = this.htmlOther;
 			}
 
-		
-
-			
-
-			if (this.color!=null&&this.color.length>0)
+			if (this.color != null && this.color.length > 0)
 			{
 				fontXml.@color = this.color;
 			}
 
-			if (this.size!=null&&this.size.length>0)
+			if (this.size != null && this.size.length > 0)
 			{
 				fontXml.@size = this.size + "pt";
 			}
 
-			if (this.fontStyle!=null&&this.fontStyle.length>0)
+			if (this.fontStyle != null&&this.fontStyle.length > 0)
 			{
 				fontXml.@style = this.fontStyle;
 			}
 
-			if (this.fontName!=null && this.fontName.length>0)
+			if (this.fontName != null && this.fontName.length > 0)
 			{
 				fontXml.@name = this.fontName;
 			}
-
-			// if(this.pitches){
-			// 	fontXml.@pitch = this.pitches;
-			// }
-			// if(this.familyid){
-			// 	fontXml.@familyid = this.familyid;
-			// }
-
-			// if(this.truetype){
-			// 	fontXml.@truetype = this.truetype;
-			// }
-
-			
-			
-
 
 			xml.@useappletinbrowser = "false";
 			xml.@allowtabout = "false";
@@ -1197,7 +1174,6 @@ package components.domino
 				xml.@hidewhen = this.hidewhen;
 				par_xml.@hidewhen = this.hidewhen;
 			}
-			
 
 			if(this.alignPardef){
 				xml.@alignPardef = this.alignPardef;
@@ -1236,7 +1212,6 @@ package components.domino
 			{
 				xml.@type = this.type;
 			}
-		
 
 			if (this.kind)
 			{
@@ -1266,11 +1241,11 @@ package components.domino
 			}
 
 			if(this.helpDescription){
-				xml.@description = this.helpDescription
+				xml.@description = this.helpDescription;
 			}
 
 			if(this.fieldHint){
-				xml.@fieldHint = this.fieldHint
+				xml.@fieldHint = this.fieldHint;
 			}
 
 			xml.@bgcolor = "#ffffff";
@@ -1463,7 +1438,7 @@ package components.domino
 				xml.appendChild(keyword_format_xml);
 			}
 
-			var code_xml:XML = null;
+			var codeXML:XML = null;
 			//this is text computed filed
 			if (this.type == "text" || this.type == "keyword")
 			{
@@ -1474,28 +1449,28 @@ package components.domino
 					this.object = "defaultvalue";
 				}
 				//DominoGlobals.PardefDivId
+				var formulaXML:XML = null;
 				if (this.defaultvalue)
 				{
-					code_xml = new XML("<code event=\"defaultvalue\"/>");
-					var formula_xml1:XML = new XML("<formula>" + this.defaultvalue + "</formula>");
-					code_xml.appendChild(formula_xml1);
-					xml.appendChild(code_xml);
+					codeXML = new XML("<code event=\"defaultvalue\"/>");
+					formulaXML = new XML("<formula>" + this.defaultvalue + "</formula>");
+					codeXML.appendChild(formulaXML);
+					xml.appendChild(codeXML);
 				}
 				if (this.inputtranslation)
 				{
-					code_xml = new XML("<code event=\"inputtranslation\"/>");
-					var formula_xml2:XML = new XML("<formula>" + this.inputtranslation + "</formula>");
-					code_xml.appendChild(formula_xml2);
-					xml.appendChild(code_xml);
+					codeXML = new XML("<code event=\"inputtranslation\"/>");
+					formulaXML = new XML("<formula>" + this.inputtranslation + "</formula>");
+					codeXML.appendChild(formulaXML);
+					xml.appendChild(codeXML);
 
 				}
 				if (this.inputvalidation)
 				{
-					code_xml = new XML("<code event=\"inputvalidation\"/>");
+					codeXML = new XML("<code event=\"inputvalidation\"/>");
 					var formula_xml3:XML = new XML("<formula>" + this.inputvalidation + "</formula>");
-					code_xml.appendChild(formula_xml3);
-					xml.appendChild(code_xml);
-
+					codeXML.appendChild(formula_xml3);
+					xml.appendChild(codeXML);
 				}
 			}
 
