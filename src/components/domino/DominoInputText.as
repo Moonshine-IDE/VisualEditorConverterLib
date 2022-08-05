@@ -905,15 +905,21 @@ package components.domino
 		public function getComponentData():Object
 		{
 			var fieldType:String = "String";
+			var fieldValue:Object = "";
 			if (this.keywordui == "checkbox")
 			{
 				fieldType = "Boolean";
+				fieldValue = false;
+			}
+			else
+			{
+				fieldValue = this.formula ? this.formula : this.defaultvalue;
 			}
 
 			return {
 				fields: [{
 					name: this.nameAttribute,
-					fieldValue: fieldType == "Boolean" ? false : this.defaultvalue,
+					fieldValue: fieldValue,
 					fieldType: fieldType
 				}]
 			}
