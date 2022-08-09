@@ -913,7 +913,7 @@ package components.domino
 			}
 			else
 			{
-				fieldValue = this.formula ? this.formula : this.defaultvalue;
+				fieldValue = StringHelperUtils.base64Decode(this.defaultvalue);
 			}
 
 			return {
