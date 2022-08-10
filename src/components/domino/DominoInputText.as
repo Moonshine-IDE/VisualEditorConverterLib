@@ -906,6 +906,7 @@ package components.domino
 		{
 			var fieldType:String = "String";
 			var fieldValue:Object = "";
+			var fieldComment:String = "";
 			if (this.keywordui == "checkbox")
 			{
 				fieldType = "Boolean";
@@ -913,14 +914,16 @@ package components.domino
 			}
 			else
 			{
-				fieldValue = StringHelperUtils.base64Decode(this.defaultvalue);
+				fieldValue = "";
+				fieldComment = StringHelperUtils.base64Decode(this.defaultvalue);
 			}
 
 			return {
 				fields: [{
 					name: this.nameAttribute,
 					fieldValue: fieldValue,
-					fieldType: fieldType
+					fieldType: fieldType,
+					fieldComment: fieldComment
 				}]
 			}
 		}
