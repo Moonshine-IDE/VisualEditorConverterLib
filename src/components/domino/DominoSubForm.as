@@ -34,7 +34,7 @@ package components.domino
     public class DominoSubForm extends DominoConponentHideBase implements IDominoSubForm, IRoyaleComponentConverter
 	{
 		public static const DOMINO_ELEMENT_NAME:String = "subformref";
-		public static const ELEMENT_NAME:String = "SubFormRef";
+		public static const ELEMENT_NAME:String = "Subformref";
         public function DominoSubForm(component:IComponent = null)
 		{
 			super();
@@ -72,7 +72,7 @@ package components.domino
 		public function fromXML(xml:XML, childFromXMLCallback:Function, surface:ISurface, lookup:ILookup):void
 		{
 			
-			if (this.subFormName)
+			if (xml.@subFormName)
 			{
 				this.subFormName = xml.@subFormName;
 			}
