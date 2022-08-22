@@ -108,7 +108,7 @@ package utils
 						var items:String = "	[Bindable] private var ";
 						cdataStart += "	import vo." + p.propType + ";\n";
 						cdataStart += "	[Bindable] private var " + p.propName + ":" + p.propType;
-						items += p.propName + "Items:Array = [new " + p.propType + "()];\n";
+						items += p.propName + "Items:Array = [];\n";
 						if (p.newInstance)
 						{
 							cdataStart += " = new " + p.propType + "()" + ";\n";
