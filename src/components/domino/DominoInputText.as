@@ -907,7 +907,11 @@ package components.domino
 			var fieldType:String = "String";
 			var fieldValue:Object = "";
 			var fieldComment:String = "";
-			if (this.keywordui == "checkbox")
+			if (this.type == "datetime")
+			{
+				fieldType = "Date";
+			}
+			else if (this.keywordui == "checkbox")
 			{
 				fieldType = "Boolean";
 				fieldValue = false;
@@ -923,7 +927,9 @@ package components.domino
 					name: this.nameAttribute,
 					fieldValue: fieldValue,
 					fieldType: fieldType,
-					fieldComment: fieldComment
+					fieldComment: fieldComment,
+					allowMultiValues: this.allowmultivalues,
+					isRichText: this.type == "richtext"
 				}]
 			}
 		}
