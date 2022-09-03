@@ -1551,12 +1551,12 @@ package components.domino
 			var componentNamespace:Namespace = new Namespace("j", "library://ns.apache.org/royale/jewel");
 
 			var componentXML:XML = new XML("<" + ROYALE_ELEMENT_NAME_TEXT + ">" + "</" + ROYALE_ELEMENT_NAME_TEXT + ">");
-				componentXML.@text = "{$valueobject." + this.nameAttribute + "}";
+				componentXML.@text = "{itemVO." + this.nameAttribute + "}";
 				componentXML.@className = "readOnlyInput";
 
 			if (this.type == "text" || this.type == "number")
 			{
-				componentXML.@change = "{$valueobject." + this.nameAttribute + " = event.currentTarget.text;}";
+				componentXML.@change = "{itemVO." + this.nameAttribute + " = event.currentTarget.text;}";
 			}
 
 			if (this.type == "datetime")
@@ -1588,8 +1588,8 @@ package components.domino
 			if (this.type == "richtext")
 			{
 				componentXML = new XML("<" + ROYALE_ELEMENT_NAME_JODIT  + ">" + "</" + ROYALE_ELEMENT_NAME_JODIT + ">");
-				componentXML.@data = "{$valueobject." + this.nameAttribute + "}";
-				componentXML.@textChange = "{$valueobject." + this.nameAttribute + " = event.target.data;}";
+				componentXML.@data = "{itemVO." + this.nameAttribute + "}";
+				componentXML.@textChange = "{itemVO." + this.nameAttribute + " = event.target.data;}";
 				componentXML.@readonly = "{isDisabled}";
 				componentXML.@toolbarVisible = "{!isDisabled}";
 				componentXML.@options = "{{" +
