@@ -157,9 +157,10 @@ package surface
 		public function toRoyaleConvertCode(data:Object = null):XML
 		{
 			var element:Object = this.getElementAt(0);
-			var xml:XML = MainTagCodeUtils.getRoyaleViewParentContent(element as IComponent, data);
-
 			var jNamespace:Namespace = new Namespace("j", "library://ns.apache.org/royale/jewel");
+			var xml:XML = new XML("<VGroup />");
+				xml.setNamespace(jNamespace);
+
 			var internalContainer:XML = new XML("<VGroup />");
 				internalContainer.@includeIn = "contentState";
 				internalContainer.setNamespace(jNamespace);
@@ -173,13 +174,13 @@ package surface
 			{
 				var addButton:XML = new XML("<Button />");
 					addButton.@text = "Add";
-					addButton.@click = "{this.selectedRowIndex = -1; this.currentState = 'contentState'; this." + data.prop[0].propName + "= new " + data.prop[0].propType + "();}";
+					addButton.@click = "{this.proxy.selectedIndex = -1; this.currentState = 'contentState'; this.itemVO = new " + data.prop[0].propType + "();}";
 					addButton.@includeIn = "dataGridState";
 					addButton.setNamespace(jNamespace);
 
 				var editButton:XML = new XML("<Button />");
 					editButton.@text = "Edit";
-					editButton.@click = "{this.currentState = 'contentState'; this.selectedRowIndex = dg.selectedIndex; this." + data.prop[0].propName + " = dg.selectedItem.copy();}";
+					editButton.@click = "{this.currentState = 'contentState'; this.proxy.selectedIndex = dg.selectedIndex; this.itemVO = dg.selectedItem.copy();}";
 					editButton.@includeIn = "dataGridState";
 					editButton.setNamespace(jNamespace);
 				var beads:XML = new XML("<beads/>");
@@ -229,32 +230,6 @@ package surface
             }
 
 			xml.appendChild(internalContainer);
-
-			var saveContainer:XML = new XML("<HGroup />");
-			saveContainer.@percentWidth = "100";
-			saveContainer.@itemsHorizontalAlign = "itemsCenter";
-			saveContainer.@gap = "2";
-			saveContainer.@includeIn = "contentState";
-			saveContainer.setNamespace(jNamespace);
-
-			var saveButton:XML = new XML("<Button />");
-			saveButton.@text = "Save";
-			saveButton.@click = data ? "{this.currentState = 'dataGridState'; " +
-					"if (this.selectedRowIndex == -1) {this." + data.prop[0].propName + "Items.push(this." + data.prop[0].propName + ");}" +
-					"else {this." + data.prop[0].propName + "Items[this.selectedRowIndex] = this." + data.prop[0].propName + ";} this.dg.refreshCurrentDataProvider();}"
-									 : "{this.currentState = 'dataGridState';}";
-			saveButton.setNamespace(jNamespace);
-
-			var cancelButton:XML = new XML("<Button />");
-			cancelButton.@text = "Cancel";
-			cancelButton.@click = data ? "{this.currentState = 'dataGridState'; this.selectedRowIndex = -1; this." + data.prop[0].propName + " = null}"
-					                   : "{this.currentState = 'dataGridState';}";
-			cancelButton.setNamespace(jNamespace);
-
-			saveContainer.appendChild(saveButton);
-			saveContainer.appendChild(cancelButton);
-
-			xml.appendChild(saveContainer);
 
 			return xml;
 		}
