@@ -154,7 +154,7 @@ package surface
 			return xml;
 		}
 
-		public function toRoyaleConvertCode(data:Object = null):XML
+		public function toRoyaleConvertCode():XML
 		{
 			var element:Object = this.getElementAt(0);
 			var jNamespace:Namespace = new Namespace("j", "library://ns.apache.org/royale/jewel");
@@ -164,54 +164,6 @@ package surface
 			var internalContainer:XML = new XML("<VGroup />");
 				internalContainer.@includeIn = "contentState";
 				internalContainer.setNamespace(jNamespace);
-
-			var editContainer:XML = new XML("<HGroup />");
-				editContainer.@percentWidth = "100";
-				editContainer.@itemsHorizontalAlign = "itemsRight";
-				editContainer.@gap = "2";
-				editContainer.setNamespace(jNamespace);
-			if (data)
-			{
-				var addButton:XML = new XML("<Button />");
-					addButton.@text = "Add";
-					addButton.@click = "{this.proxy.selectedIndex = -1; this.currentState = 'contentState'; this.itemVO = new " + data.prop[0].propType + "();}";
-					addButton.@includeIn = "dataGridState";
-					addButton.setNamespace(jNamespace);
-
-				var editButton:XML = new XML("<Button />");
-					editButton.@text = "Edit";
-					editButton.@click = "{this.currentState = 'contentState'; this.proxy.selectedIndex = dg.selectedIndex; this.itemVO = dg.selectedItem.copy();}";
-					editButton.@includeIn = "dataGridState";
-					editButton.setNamespace(jNamespace);
-				var beads:XML = new XML("<beads/>");
-					beads.setNamespace(jNamespace);
-				var disabledBead:XML = new XML("<Disabled/>");
-					disabledBead.@disabled = "{dg.selectedIndex == -1}";
-					disabledBead.setNamespace(jNamespace);
-
-				beads.appendChild(disabledBead);
-				editButton.appendChild(beads);
-
-				var removeButton:XML = new XML("<Button />");
-					removeButton.@text = "Remove";
-					removeButton.@click = "{removeItem()}";
-					removeButton.@includeIn = "dataGridState";
-					removeButton.setNamespace(jNamespace);
-					beads = new XML("<beads/>");
-					beads.setNamespace(jNamespace);
-					disabledBead = new XML("<Disabled/>");
-					disabledBead.@disabled = "{dg.selectedIndex == -1}";
-
-				disabledBead.setNamespace(jNamespace);
-				beads.appendChild(disabledBead);
-				removeButton.appendChild(beads);
-
-				editContainer.appendChild(addButton);
-				editContainer.appendChild(editButton);
-				editContainer.appendChild(removeButton);
-
-				xml.appendChild(editContainer);
-			}
 
 			var elementCount:int = (element as IVisualComponent).numElements;
 			
