@@ -1652,6 +1652,8 @@ package components.domino
 			{
 				componentXML = new XML("<" + ROYALE_ELEMENT_NAME_DATE + ">" + "</" + ROYALE_ELEMENT_NAME_DATE + ">");
 				componentXML.@dateFormat = "MM/DD/YYYY";
+				componentXML.@selectedDate = "{itemVO." + this.nameAttribute + "}";
+				componentXML.@change = "{itemVO." + this.nameAttribute + " = event.currentTarget.selectedDate;}";
 				componentXML.@className = "readOnlyDateField";
 			}
 
