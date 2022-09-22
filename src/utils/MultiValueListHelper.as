@@ -12,7 +12,7 @@ package utils
                 case "number":
                         return "Number";
                     break;
-                case "date":
+                case "datetime":
                         return "Datetime";
                     break;
                 default:
