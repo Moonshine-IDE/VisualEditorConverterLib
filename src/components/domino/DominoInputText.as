@@ -1649,6 +1649,8 @@ package components.domino
 				componentXML.@dataProvider = "{itemVO." + this.nameAttribute + "}";
 				componentXML.@percentWidth = 100;
 				componentXML.@inputType = MultiValueListHelper.getListType(this.type);
+				componentXML.@isDisabled = "{isDisabled}";
+
 				if (this.type == "number")
 				{
 					componentXML.@restrictPattern = "[^0-9]";
