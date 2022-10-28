@@ -1710,7 +1710,7 @@ package components.domino
 						"showWordsCounter: !isDisabled, " +
 						"showXPathInStatusbar: !isDisabled, " +
 						"inline: isDisabled, " +
-						"defaultLineHeight: isDisabled ? 0.25 : null" +
+						"defaultLineHeight: isDisabled ? 1 : null" +
 						"}}";
 				componentXML.@className = "";
 				componentNamespace = new Namespace("joditeditor", "classes.joditeditor.*");
