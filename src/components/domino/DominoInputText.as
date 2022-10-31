@@ -1685,17 +1685,17 @@ package components.domino
 						componentXML.@className = "";
 					}
 				}
-			}
 
-			var beadsXML:XML = new XML("<beads />");
+				var beadsXML:XML = new XML("<beads />");
 				beadsXML.setNamespace(componentNamespace);
 
-			var disabledXML:XML = new XML("<Disabled/>");
+				var disabledXML:XML = new XML("<Disabled/>");
 				disabledXML.setNamespace(new Namespace("j", "library://ns.apache.org/royale/jewel"));
 				disabledXML.@disabled = "{isDisabled}";
 
-			beadsXML.appendChild(disabledXML);
-			componentXML.appendChild(beadsXML);
+				beadsXML.appendChild(disabledXML);
+				componentXML.appendChild(beadsXML);
+			}
 
 			if (this.type == "richtext")
 			{
