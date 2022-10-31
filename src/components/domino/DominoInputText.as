@@ -1703,14 +1703,15 @@ package components.domino
 				componentXML.@data = "{itemVO." + this.nameAttribute + "}";
 				componentXML.@textChange = "{itemVO." + this.nameAttribute + " = event.target.data;}";
 				componentXML.@readonly = "{isDisabled}";
-				componentXML.@toolbarVisible = "{!isDisabled}";
+				componentXML.@toolbarVisible = "false";
 				componentXML.@options = "{{" +
 						"allowResizeY: !isDisabled, " +
-						"showCharsCounter: !isDisabled, " +
-						"showWordsCounter: !isDisabled, " +
-						"showXPathInStatusbar: !isDisabled, " +
+						"showCharsCounter: false, " +
+						"showWordsCounter: false, " +
+						"showXPathInStatusbar: false, " +
 						"inline: isDisabled, " +
-						"defaultLineHeight: isDisabled ? 1 : null" +
+						"defaultLineHeight: isDisabled ? 1 : null," +
+						"minHeight: 40" +
 						"}}";
 				componentXML.@className = "";
 				componentNamespace = new Namespace("joditeditor", "classes.joditeditor.*");
