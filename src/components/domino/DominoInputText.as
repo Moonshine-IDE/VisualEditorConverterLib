@@ -1662,6 +1662,8 @@ package components.domino
 				componentXML.@dataProvider = "{itemVO." + this.nameAttribute + "}";
 				componentXML.@percentWidth = 100;
 				componentXML.@inputType = MultiValueListHelper.getListType(this.type);
+				componentXML.@isDisabled = "{isDisabled}";
+
 				if (this.type == "number")
 				{
 					componentXML.@restrictPattern = "[^0-9]";
@@ -1696,17 +1698,17 @@ package components.domino
 						componentXML.@className = "";
 					}
 				}
-			}
 
-			var beadsXML:XML = new XML("<beads />");
+				var beadsXML:XML = new XML("<beads />");
 				beadsXML.setNamespace(componentNamespace);
 
-			var disabledXML:XML = new XML("<Disabled/>");
+				var disabledXML:XML = new XML("<Disabled/>");
 				disabledXML.setNamespace(new Namespace("j", "library://ns.apache.org/royale/jewel"));
 				disabledXML.@disabled = "{isDisabled}";
 
-			beadsXML.appendChild(disabledXML);
-			componentXML.appendChild(beadsXML);
+				beadsXML.appendChild(disabledXML);
+				componentXML.appendChild(beadsXML);
+			}
 
 			if (this.type == "richtext")
 			{
@@ -1714,14 +1716,15 @@ package components.domino
 				componentXML.@data = "{itemVO." + this.nameAttribute + "}";
 				componentXML.@textChange = "{itemVO." + this.nameAttribute + " = event.target.data;}";
 				componentXML.@readonly = "{isDisabled}";
-				componentXML.@toolbarVisible = "{!isDisabled}";
+				componentXML.@toolbarVisible = "false";
 				componentXML.@options = "{{" +
 						"allowResizeY: !isDisabled, " +
-						"showCharsCounter: !isDisabled, " +
-						"showWordsCounter: !isDisabled, " +
-						"showXPathInStatusbar: !isDisabled, " +
+						"showCharsCounter: false, " +
+						"showWordsCounter: false, " +
+						"showXPathInStatusbar: false, " +
 						"inline: isDisabled, " +
-						"defaultLineHeight: isDisabled ? 0.25 : null" +
+						"defaultLineHeight: isDisabled ? 1 : null," +
+						"minHeight: 40" +
 						"}}";
 				componentXML.@className = "";
 				componentNamespace = new Namespace("joditeditor", "classes.joditeditor.*");
