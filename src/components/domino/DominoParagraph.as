@@ -380,6 +380,7 @@ package components.domino
 				paragraphXML = new XML("<" + ROYALE_XML_VERTICAL_ELEMENT + "/>");
 			}
 			paragraphXML.setNamespace(htmlNamespace);
+			CodeMxmlUtils.setMXMLComponentSize(this, paragraphXML);
 
 			var elementCount:int = component["numElements"];
 			for (var i:int = 0; i < elementCount; i++)
@@ -391,6 +392,7 @@ package components.domino
 				}
 
 				var elementXML:XML = element.toRoyaleConvertCode();
+
 				paragraphXML.appendChild(elementXML);
 			}
 

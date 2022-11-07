@@ -1699,6 +1699,8 @@ package components.domino
 					}
 				}
 
+				CodeMxmlUtils.setMXMLComponentSize(this, componentXML);
+
 				var beadsXML:XML = new XML("<beads />");
 				beadsXML.setNamespace(componentNamespace);
 

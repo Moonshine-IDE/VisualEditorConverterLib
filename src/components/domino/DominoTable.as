@@ -32,15 +32,12 @@
 
 package components.domino
 {
-	import components.ComponentBase;
 	import components.GridItem;
 	import components.GridRow;
 	import components.common.Div;
 	import components.DominoConponentHideBase;
 
 	import converter.DominoConverter;
-
-	import global.domino.DominoGlobals;
 
 	import interfaces.IComponent;
 	import interfaces.IComponentData;
@@ -50,7 +47,6 @@ package components.domino
 	import interfaces.components.IDiv;
 	import interfaces.dominoComponents.IDominoTable;
 
-	import spark.components.Alert;
 	import global.domino.DominoGlobals;
 
 

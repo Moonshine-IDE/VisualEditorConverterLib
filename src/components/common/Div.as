@@ -44,8 +44,6 @@ package components.common
 	import flash.utils.getQualifiedClassName;
 
 	import global.domino.DominoGlobals;
-
-	import mx.controls.Alert;
 	
 	public class Div extends ComponentBase implements IDiv, IRoyaleComponentConverter
 	{
@@ -268,7 +266,11 @@ package components.common
 				{
 					continue;
 				}
-				componentXML.appendChild((element as IRoyaleComponentConverter).toRoyaleConvertCode());
+
+				var childComponent:XML = (element as IRoyaleComponentConverter).toRoyaleConvertCode();
+				CodeMxmlUtils.setMXMLComponentSize(element, childComponent);
+
+				componentXML.appendChild(childComponent);
             }
 
 			return componentXML;

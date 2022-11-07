@@ -115,8 +115,8 @@ package components
 		{
 			this.percentWidth = "@percentWidth" in xml ? xml.@percentWidth : Number.NaN;
 			this.percentHeight = "@percentHeight" in xml ? xml.@percentHeight : Number.NaN;
-			this.width = "@width" in xml ? xml.@width : Number.NaN;;
-			this.height = "@height" in xml ? xml.@height : Number.NaN;;
+			this.width = "@width" in xml ? xml.@width : Number.NaN;
+			this.height = "@height" in xml ? xml.@height : Number.NaN;
 		}
 	}
 }

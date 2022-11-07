@@ -31,11 +31,32 @@
 ////////////////////////////////////////////////////////////////////////////////
 package utils
 {
-	public class CodeMxmlUtils  
+	public class CodeMxmlUtils
 	{
 		public static function getMXMLTagNameWithSelection(component:Object, rootElementName:String):String
 		{
 			return (component.isSelected ? "_moonshineSelected_"+ rootElementName : rootElementName);
+		}
+
+		public static function setMXMLComponentSize(component:Object, xml:XML):void
+		{
+			if (!isNaN(component["percentWidth"]))
+			{
+				xml.@percentWidth = component["percentWidth"];
+			}
+			else if (!isNaN(component["width"]))
+			{
+				xml.@width = component["width"];
+			}
+
+			if (!isNaN(component["percentHeight"]))
+			{
+				xml.@percentHeight = component["percentHeight"];
+			}
+			else if (!isNaN(component["height"]))
+			{
+				xml.@height = component["height"];
+			}
 		}
 	}
 }
