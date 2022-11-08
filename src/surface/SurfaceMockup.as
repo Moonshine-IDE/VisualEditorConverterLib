@@ -194,7 +194,18 @@ package surface
 
 			var internalContainer:XML = new XML("<VGroup />");
 				internalContainer.@includeIn = "contentState";
+				internalContainer.@percentWidth = "100";
+				internalContainer.@percentHeight = "100";
 				internalContainer.setNamespace(jNamespace);
+
+			var beadsXML:XML = new XML("<beads />");
+			beadsXML.setNamespace(jNamespace);
+
+			var scrollViewportXML:XML = new XML("<ScrollingViewport/>");
+				scrollViewportXML.setNamespace(jNamespace);
+
+			beadsXML.appendChild(scrollViewportXML);
+			internalContainer.appendChild(beadsXML);
 
 			var elementCount:int = (element as IVisualComponent).numElements;
 			
