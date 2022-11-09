@@ -104,6 +104,7 @@ package components.domino
 		public static const ROYALE_ELEMENT_NAME_CHECKBOX:String = "CheckBox";
 		public static const ROYALE_ELEMENT_NAME_JODIT:String = "JoditEditor";
 		public static const ROYALE_CUSTOM_ELEMENT_NAME_MULTIVALUELIST:String = "MultiValueList";
+		public static const ROYALE_CUSTOM_ELEMENT_NAME_TEXT:String = "DominoTextInputMultiline";
 
 		public static function base64Encode(str:String, charset:String = "UTF-8"):String
 		{
@@ -1653,9 +1654,9 @@ package components.domino
 		//</j:ComboBox>
 		public function toRoyaleConvertCode():XML
 		{
-			var componentNamespace:Namespace = new Namespace("j", "library://ns.apache.org/royale/jewel");
+			var componentNamespace:Namespace = new Namespace("components", "views.components.*");
 
-			var componentXML:XML = new XML("<" + ROYALE_ELEMENT_NAME_TEXT + ">" + "</" + ROYALE_ELEMENT_NAME_TEXT + ">");
+			var componentXML:XML = new XML("<" + ROYALE_CUSTOM_ELEMENT_NAME_TEXT + ">" + "</" + ROYALE_CUSTOM_ELEMENT_NAME_TEXT + ">");
 			if (this.allowmultivalues)
 			{
 				componentXML = new XML("<" + ROYALE_CUSTOM_ELEMENT_NAME_MULTIVALUELIST + "/>");
@@ -1668,48 +1669,52 @@ package components.domino
 				{
 					componentXML.@restrictPattern = "[^0-9]";
 				}
-				componentNamespace = new Namespace("components", "views.components.*");
 			}
 			else
 			{
 				componentXML.@text = "{itemVO." + this.nameAttribute + "}";
-				componentXML.@className = "readOnlyInput";
 
 				if (this.type == "text" || this.type == "number")
 				{
 					componentXML.@change = "{itemVO." + this.nameAttribute + " = event.currentTarget.text;}";
+					componentXML.@isDisabled = "{isDisabled}";
 				}
-
-				if (this.type == "datetime")
-				{
-					componentXML = new XML("<" + ROYALE_ELEMENT_NAME_DATE + ">" + "</" + ROYALE_ELEMENT_NAME_DATE + ">");
-					componentXML.@dateFormat = "MM/DD/YYYY";
-					componentXML.@selectedDate = "{itemVO." + this.nameAttribute + "}";
-					componentXML.@change = "{itemVO." + this.nameAttribute + " = event.currentTarget.selectedDate;}";
-					componentXML.@className = "readOnlyDateField";
-				}
-
-				if (this.type == "keyword")
-				{
-					if (this.keywordui == "checkbox")
-					{
-						componentXML = new XML("<" + ROYALE_ELEMENT_NAME_CHECKBOX + ">" + "</" + ROYALE_ELEMENT_NAME_CHECKBOX + ">");
-						componentXML.@text = this.text;
-						componentXML.@className = "";
-					}
-				}
-
-				CodeMxmlUtils.setMXMLComponentSize(this, componentXML);
 
 				var beadsXML:XML = new XML("<beads />");
-				beadsXML.setNamespace(componentNamespace);
+				beadsXML.setNamespace(new Namespace("j", "library://ns.apache.org/royale/jewel"));
 
 				var disabledXML:XML = new XML("<Disabled/>");
 				disabledXML.setNamespace(new Namespace("j", "library://ns.apache.org/royale/jewel"));
 				disabledXML.@disabled = "{isDisabled}";
 
 				beadsXML.appendChild(disabledXML);
-				componentXML.appendChild(beadsXML);
+
+				if (this.type == "datetime")
+				{
+					componentNamespace = new Namespace("j", "library://ns.apache.org/royale/jewel");
+
+					componentXML = new XML("<" + ROYALE_ELEMENT_NAME_DATE + ">" + "</" + ROYALE_ELEMENT_NAME_DATE + ">");
+					componentXML.@dateFormat = "MM/DD/YYYY";
+					componentXML.@selectedDate = "{itemVO." + this.nameAttribute + "}";
+					componentXML.@change = "{itemVO." + this.nameAttribute + " = event.currentTarget.selectedDate;}";
+					componentXML.@className = "readOnlyDateField";
+					componentXML.appendChild(beadsXML);
+				}
+
+				if (this.type == "keyword")
+				{
+					if (this.keywordui == "checkbox")
+					{
+						componentNamespace = new Namespace("j", "library://ns.apache.org/royale/jewel");
+
+						componentXML = new XML("<" + ROYALE_ELEMENT_NAME_CHECKBOX + ">" + "</" + ROYALE_ELEMENT_NAME_CHECKBOX + ">");
+						componentXML.@text = this.text;
+						componentXML.@className = "";
+						componentXML.appendChild(beadsXML);
+					}
+				}
+
+				CodeMxmlUtils.setMXMLComponentSize(this, componentXML);
 			}
 
 			if (this.type == "richtext")
