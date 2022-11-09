@@ -250,13 +250,13 @@ package components.common
 		{
 			var componentXML:XML = new XML("<" + ROYALE_HORIZONTAL_XML_ELEMENT_NAME + "/>");
 
-			var royaleNamespace:Namespace = new Namespace("j", "library://ns.apache.org/royale/jewel");
-            componentXML.setNamespace(royaleNamespace);
-
-			if(direction == "Vertical")
+			if (cssClass.indexOf("flexVerticalLayout") > -1)
 			{
 				componentXML = new XML("<" + ROYALE_VERTICAL_XML_ELEMENT_NAME + "/>");
 			}
+
+			var royaleNamespace:Namespace = new Namespace("j", "library://ns.apache.org/royale/jewel");
+            componentXML.setNamespace(royaleNamespace);
 
 			var elementCount:int = component["numElements"];
             for(var i:int = 0; i < elementCount; i++)
