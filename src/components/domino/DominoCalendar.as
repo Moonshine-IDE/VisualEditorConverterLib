@@ -398,11 +398,6 @@ package components.domino
 			this.maxDate = xml.@maxDate;
 			this.yearformat = xml.@yearformat;
 			this.calendarValue = xml.@value;
-			if (xml.@width)
-			{
-				this.width = Number(xml.@width);
-			}
-
 			this.weekdayformat = xml.@weekdayformat;
 			this.timeseparator = xml.@timeseparator;
 			this.time = xml.@time;
