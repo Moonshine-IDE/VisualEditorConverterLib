@@ -1018,8 +1018,6 @@ package components.domino
 			this.idAttribute = xml.@id;
 			this.required = xml.@required == "true";
 			this.nameAttribute = xml.@name;
-			this.width = xml.@width;
-			this.height = xml.@height;
 			this.allowmultivalues = xml.@allowmultivalues == "true";
 			this.type = xml.@type;
 			this.kind = xml.@kind;
