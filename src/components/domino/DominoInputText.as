@@ -1655,6 +1655,12 @@ package components.domino
 			var componentNamespace:Namespace = new Namespace("components", "views.components.*");
 
 			var componentXML:XML = new XML("<" + ROYALE_CUSTOM_ELEMENT_NAME_TEXT + ">" + "</" + ROYALE_CUSTOM_ELEMENT_NAME_TEXT + ">");
+			var componentStyles:XML = new XML("<style/>");
+			var cssStyles:XML = new XML("<SimpleCSSStyles/>");
+			var cssStylesNamespace:Namespace = new Namespace("js", "library://ns.apache.org/royale/basic");
+				cssStyles.setNamespace(cssStylesNamespace);
+				componentStyles.appendChild(cssStyles);
+
 			if (this.allowmultivalues)
 			{
 				componentXML = new XML("<" + ROYALE_CUSTOM_ELEMENT_NAME_MULTIVALUELIST + "/>");
@@ -1667,6 +1673,8 @@ package components.domino
 				{
 					componentXML.@restrictPattern = "[^0-9]";
 				}
+
+				componentStyles.setNamespace(componentNamespace);
 			}
 			else
 			{
@@ -1710,6 +1718,13 @@ package components.domino
 						componentXML.@className = "";
 						componentXML.appendChild(beadsXML);
 					}
+				}
+
+				componentStyles.setNamespace(componentNamespace);
+				if (this.fontName)
+				{
+					cssStyles.@fontFamily = this.fontName;
+					componentXML.appendChild(componentStyles);
 				}
 
 				CodeMxmlUtils.setMXMLComponentSize(this, componentXML);
