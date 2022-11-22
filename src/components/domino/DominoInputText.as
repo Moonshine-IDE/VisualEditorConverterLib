@@ -102,7 +102,7 @@ package components.domino
 		public static const ROYALE_ELEMENT_NAME_TEXT:String = "TextInput";
 		public static const ROYALE_ELEMENT_NAME_DATE:String = "DateField";
 		public static const ROYALE_ELEMENT_NAME_CHECKBOX:String = "CheckBox";
-		public static const ROYALE_ELEMENT_NAME_JODIT:String = "JoditEditor";
+		public static const ROYALE_ELEMENT_NAME_RICH_TEXT:String = "RichTextEditor";
 		public static const ROYALE_CUSTOM_ELEMENT_NAME_MULTIVALUELIST:String = "MultiValueList";
 		public static const ROYALE_CUSTOM_ELEMENT_NAME_TEXT:String = "DominoTextInputMultiline";
 
@@ -1732,7 +1732,7 @@ package components.domino
 
 			if (this.type == "richtext")
 			{
-				componentXML = new XML("<" + ROYALE_ELEMENT_NAME_JODIT  + ">" + "</" + ROYALE_ELEMENT_NAME_JODIT + ">");
+				componentXML = new XML("<" + ROYALE_ELEMENT_NAME_RICH_TEXT  + ">" + "</" + ROYALE_ELEMENT_NAME_RICH_TEXT + ">");
 				componentXML.@data = "{itemVO." + this.nameAttribute + "}";
 				componentXML.@textChange = "{itemVO." + this.nameAttribute + " = event.target.data;}";
 				componentXML.@readonly = "{isDisabled}";
