@@ -32,8 +32,6 @@
 
 package components.domino
 {
-	import components.ComponentBase;
-
 	import flash.events.ErrorEvent;
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
@@ -1652,18 +1650,21 @@ package components.domino
 		//</j:ComboBox>
 		public function toRoyaleConvertCode():XML
 		{
-			var componentNamespace:Namespace = new Namespace("components", "views.components.*");
-
 			var componentXML:XML = new XML("<" + ROYALE_CUSTOM_ELEMENT_NAME_TEXT + ">" + "</" + ROYALE_CUSTOM_ELEMENT_NAME_TEXT + ">");
+				componentXML.setNamespace(new Namespace("components", "$ProjectName.views.components.*"));
+
 			var componentStyles:XML = new XML("<style/>");
+				componentStyles.setNamespace(new Namespace("components", "$ProjectName.views.components.*"));
+
 			var cssStyles:XML = new XML("<SimpleCSSStyles/>");
-			var cssStylesNamespace:Namespace = new Namespace("js", "library://ns.apache.org/royale/basic");
-				cssStyles.setNamespace(cssStylesNamespace);
+				cssStyles.setNamespace(new Namespace("js", "library://ns.apache.org/royale/basic"));
+
 				componentStyles.appendChild(cssStyles);
 
 			if (this.allowmultivalues)
 			{
 				componentXML = new XML("<" + ROYALE_CUSTOM_ELEMENT_NAME_MULTIVALUELIST + "/>");
+				componentXML.setNamespace(new Namespace("components", "$ProjectName.views.components.*"));
 				componentXML.@dataProvider = "{itemVO." + this.nameAttribute + "}";
 				componentXML.@percentWidth = 100;
 				componentXML.@inputType = MultiValueListHelper.getListType(this.type);
@@ -1673,8 +1674,6 @@ package components.domino
 				{
 					componentXML.@restrictPattern = "[^0-9]";
 				}
-
-				componentStyles.setNamespace(componentNamespace);
 			}
 			else
 			{
@@ -1697,30 +1696,33 @@ package components.domino
 
 				if (this.type == "datetime")
 				{
-					componentNamespace = new Namespace("j", "library://ns.apache.org/royale/jewel");
-
 					componentXML = new XML("<" + ROYALE_ELEMENT_NAME_DATE + ">" + "</" + ROYALE_ELEMENT_NAME_DATE + ">");
+					componentXML.setNamespace(new Namespace("j", "library://ns.apache.org/royale/jewel"));
 					componentXML.@dateFormat = "MM/DD/YYYY";
 					componentXML.@selectedDate = "{itemVO." + this.nameAttribute + "}";
 					componentXML.@change = "{itemVO." + this.nameAttribute + " = event.currentTarget.selectedDate;}";
 					componentXML.@className = "readOnlyDateField";
 					componentXML.appendChild(beadsXML);
+
+					componentStyles.setNamespace(new Namespace("j", "library://ns.apache.org/royale/jewel"));
+					componentStyles.removeNamespace(componentStyles.namespace("components"));
 				}
 
 				if (this.type == "keyword")
 				{
 					if (this.keywordui == "checkbox")
 					{
-						componentNamespace = new Namespace("j", "library://ns.apache.org/royale/jewel");
-
 						componentXML = new XML("<" + ROYALE_ELEMENT_NAME_CHECKBOX + ">" + "</" + ROYALE_ELEMENT_NAME_CHECKBOX + ">");
+						componentXML.setNamespace(new Namespace("j", "library://ns.apache.org/royale/jewel"));
 						componentXML.@text = this.text;
 						componentXML.@className = "";
 						componentXML.appendChild(beadsXML);
+
+						componentStyles.setNamespace(new Namespace("j", "library://ns.apache.org/royale/jewel"));
+						componentStyles.removeNamespace(componentStyles.namespace("components"));
 					}
 				}
 
-				componentStyles.setNamespace(componentNamespace);
 				if (this.fontName)
 				{
 					cssStyles.@fontFamily = this.fontName;
@@ -1733,6 +1735,7 @@ package components.domino
 			if (this.type == "richtext")
 			{
 				componentXML = new XML("<" + ROYALE_ELEMENT_NAME_RICH_TEXT  + ">" + "</" + ROYALE_ELEMENT_NAME_RICH_TEXT + ">");
+				componentXML.setNamespace(new Namespace("joditeditor", "$ProjectName.classes.joditeditor.*"));
 				componentXML.@data = "{itemVO." + this.nameAttribute + "}";
 				componentXML.@textChange = "{itemVO." + this.nameAttribute + " = event.target.data;}";
 				componentXML.@readonly = "{isDisabled}";
@@ -1747,11 +1750,7 @@ package components.domino
 						"minHeight: 40" +
 						"}}";
 				componentXML.@className = "";
-				componentNamespace = new Namespace("joditeditor", "classes.joditeditor.*");
 			}
-
-			componentXML.addNamespace(componentNamespace);
-			componentXML.setNamespace(componentNamespace);
 
 			return componentXML;
 		}
