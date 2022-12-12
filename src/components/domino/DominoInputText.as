@@ -1740,15 +1740,20 @@ package components.domino
 				componentXML.@textChange = "{itemVO." + this.nameAttribute + " = event.target.data;}";
 				componentXML.@readonly = "{isDisabled}";
 				componentXML.@toolbarVisible = "false";
-				componentXML.@options = "{{" +
+
+				var optionsRichText:String = "{{" +
 						"allowResizeY: !isDisabled, " +
 						"showCharsCounter: false, " +
 						"showWordsCounter: false, " +
 						"showXPathInStatusbar: false, " +
 						"inline: isDisabled, " +
-						"defaultLineHeight: isDisabled ? 1 : null," +
-						"minHeight: 40" +
-						"}}";
+						"defaultLineHeight: isDisabled ? 1 : null, " +
+						"minHeight: 40";
+
+				optionsRichText += this.fontName ? ", style: { fontFamily: '" + this.fontName + "'}}}" : "}}";
+
+				componentXML.@options = optionsRichText;
+
 				componentXML.@className = "";
 			}
 
