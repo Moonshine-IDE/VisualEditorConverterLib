@@ -44,13 +44,13 @@ package components.domino
     import utils.CodeMxmlUtils;
     import interfaces.IComponent;
     import interfaces.dominoComponents.IDominoShareActions;
-	import view.EditingSurface;
+
 
     public class DominoShareActions extends DominoConponentHideBase implements IDominoShareActions, IRoyaleComponentConverter
 	{
 		public static const DOMINO_ELEMENT_NAME:String = "sharedactions";
 		public static const ELEMENT_NAME:String = "Sharedactions";
-		public var editingSurface:EditingSurface;
+		//public var editingSurface:EditingSurface;
 		
 		
 		public function DominoShareActions(component:IComponent = null)
