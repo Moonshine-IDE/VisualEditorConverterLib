@@ -36,6 +36,13 @@ package utils
 	import  flash.utils.ByteArray;
 	public class StringHelperUtils
 	{
+
+		public static const AMPERSAND:String = "&amp;"
+		public static const APOSTROPHE:String = "&apos;"
+		public static const DBL_QUOTES:String = "&quot;"
+		public static const GT:String = "&gt;"
+		public static const LT:String = "&lt;"
+
 		public function trim(str:String, char:String):String
 		{
 			return trimBack(trimFront(str, char), char);
@@ -90,6 +97,29 @@ package utils
 			base64.decode(str);
 			var byteArray:ByteArray = base64.toByteArray();
 			return byteArray.readMultiByte(byteArray.length, charset);;
+		}
+
+
+		public static function fixXmlSpecailCharacter(text:String):String
+		{
+			var amppattern:RegExp = /&/g;
+			text = text.replace(amppattern, AMPERSAND);
+
+			var ltpattern:RegExp = /</g;
+			text = text.replace(ltpattern, LT);
+			var gtpattern:RegExp = />/g;
+			text = text.replace(gtpattern, GT);
+
+			var qtpattern:RegExp = /"/g;
+			text = text.replace(qtpattern, DBL_QUOTES);
+
+
+			var aposattern:RegExp = /'/g;
+			text = text.replace(aposattern, APOSTROPHE);
+
+			return text
+
+
 		}
 	}
 }
