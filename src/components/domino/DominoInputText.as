@@ -1546,7 +1546,16 @@ package components.domino
 					for (var k:int = 0; k < myArrayOfLines.length; k = k + 1)
 					{
 
-						var text_format_xml:XML = new XML("<text>" + myArrayOfLines[k] + "</text>");
+						var text_format_xml:XML
+
+						try{
+							text_format_xml= new XML("<text>" + myArrayOfLines[k] + "</text>");
+						
+						} catch(error:Error){
+							text_format_xml=new XML("<text>" + StringHelperUtils.fixXmlSpecailCharacter(myArrayOfLines[k]) + "</text>");
+
+						}
+						
 						textlist_format_xml.appendChild(text_format_xml)
 					}
 					keyword_format_xml.appendChild(textlist_format_xml)

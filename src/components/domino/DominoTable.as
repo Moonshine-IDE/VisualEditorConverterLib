@@ -48,6 +48,8 @@ package components.domino
 	import interfaces.dominoComponents.IDominoTable;
 
 	import global.domino.DominoGlobals;
+	import mx.controls.Alert;
+	import utils.StringHelperUtils;
 
 
 
@@ -934,10 +936,20 @@ package components.domino
 			if (fieldXML.@hidewhen && fieldXML.@hidewhen.length() > 0)
 			{
 				var code_xml:XML = new XML("<code event=\"hidewhen\" />");
-				var formula_xml:XML = new XML("<formula>" + fieldXML.@hidewhen + "</formula>");
+				var formula_xml:XML ;
+				 try
+            	{	
+					formula_xml= new XML("<formula>" + fieldXML.@hidewhen + "</formula>");
+				
+				}catch (error:Error) {
+					formula_xml=new XML("<formula>" + StringHelperUtils.fixXmlSpecailCharacter(fieldXML.@hidewhen) + "</formula>");
+					
+				}
+
 				code_xml.appendChild(formula_xml);
 				//predefXML.@hidewhen=fieldXML.@hidewhen
 				predefXML.appendChild(code_xml);
+
 			}
 
 			return predefXML;
