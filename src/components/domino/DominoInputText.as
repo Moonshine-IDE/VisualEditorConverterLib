@@ -102,6 +102,7 @@ package components.domino
 		public static const ROYALE_ELEMENT_NAME_CHECKBOX:String = "CheckBox";
 		public static const ROYALE_ELEMENT_NAME_RICH_TEXT:String = "RichTextEditor";
 		public static const ROYALE_CUSTOM_ELEMENT_NAME_MULTIVALUELIST:String = "MultiValueList";
+		public static const ROYALE_CUSTOM_ELEMENT_NAME_MULTIVALUECHECKBOXES:String = "MultiValueCheckboxes";
 		public static const ROYALE_CUSTOM_ELEMENT_NAME_TEXT:String = "DominoTextInputMultiline";
 
 		public static function base64Encode(str:String, charset:String = "UTF-8"):String
@@ -1663,16 +1664,26 @@ package components.domino
 
 			if (this.allowmultivalues)
 			{
-				componentXML = new XML("<" + ROYALE_CUSTOM_ELEMENT_NAME_MULTIVALUELIST + "/>");
-				componentXML.setNamespace(new Namespace("components", "$ProjectName.views.components.*"));
-				componentXML.@dataProvider = "{itemVO." + this.nameAttribute + "}";
-				componentXML.@percentWidth = 100;
-				componentXML.@inputType = MultiValueListHelper.getListType(this.type);
-				componentXML.@isDisabled = "{isDisabled}";
-
-				if (this.type == "number")
+				if (this.type == "keyword" && this.keywordui == "checkbox")
 				{
-					componentXML.@restrictPattern = "[^0-9]";
+					componentXML = new XML("<" + ROYALE_CUSTOM_ELEMENT_NAME_MULTIVALUECHECKBOXES + "/>");
+					componentXML.setNamespace(new Namespace("components", "$ProjectName.views.components.*"));
+					componentXML.@isDisabled = "{isDisabled}";
+					componentXML.@checkboxesKeywords = this.keywords;
+				}
+				else
+				{
+					componentXML = new XML("<" + ROYALE_CUSTOM_ELEMENT_NAME_MULTIVALUELIST + "/>");
+					componentXML.setNamespace(new Namespace("components", "$ProjectName.views.components.*"));
+					componentXML.@dataProvider = "{itemVO." + this.nameAttribute + "}";
+					componentXML.@percentWidth = 100;
+					componentXML.@inputType = MultiValueListHelper.getListType(this.type);
+					componentXML.@isDisabled = "{isDisabled}";
+
+					if (this.type == "number")
+					{
+						componentXML.@restrictPattern = "[^0-9]";
+					}
 				}
 			}
 			else
