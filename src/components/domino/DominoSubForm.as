@@ -43,6 +43,7 @@ package components.domino
 	import global.domino.DominoGlobals;
     import utils.CodeMxmlUtils;
     import interfaces.IComponent;
+	import mx.controls.Alert;
 
     public class DominoSubForm extends DominoConponentHideBase implements IDominoSubForm, IRoyaleComponentConverter
 	{
@@ -82,6 +83,17 @@ package components.domino
 			_subFormName = value;
 		}
 
+		private var _subFormFormula:String;
+		public function get subFormFormula():String
+		{
+			return _subFormFormula;
+		}
+
+		public function set subFormFormula(value:String):void
+		{
+			_subFormFormula = value;
+		}
+
 		public function fromXML(xml:XML, childFromXMLCallback:Function, surface:ISurface, lookup:ILookup):void
 		{
 			
@@ -89,6 +101,31 @@ package components.domino
 			{
 				this.subFormName = xml.@subFormName;
 			}
+
+			//some times , the subfrom name defined in the formual , so we need handle it in here
+            var children:XMLList = xml.children();
+            if ( children.length() > 0 ) {
+                 for (var i:int = 0; i < children.length(); i++)
+				{
+					 if(children[i].name()=="code"){
+						
+							var childrenFormula:XMLList = children[i].children();
+							for (var j:int = 0; j < children.length(); j++){
+								if(childrenFormula[j]!=null){
+									if(childrenFormula[j].name()=="formula"){
+										this.subFormFormula=childrenFormula[j].text();
+									}
+								}
+							}
+						
+						
+                    }
+				}
+				
+				
+            }
+
+
 		}
 
 		public function toCode():XML
@@ -100,6 +137,14 @@ package components.domino
 				xml.@name = this.subFormName;
 			}
 			delete xml["@class"];
+
+			if(this.subFormFormula)
+			{
+				var codexml:XML = new XML("<code event=\"value\"/>");
+				var formulaxml:XML = new XML("<formula>"+this.subFormFormula+"</formula>");
+				codexml.appendChild(formulaxml);
+				xml.appendChild(codexml);
+			}
 
 			return xml;
 		}
