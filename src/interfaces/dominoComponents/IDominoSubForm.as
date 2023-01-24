@@ -48,7 +48,8 @@ package interfaces.dominoComponents
         //subform name
         function get subFormName():String;
         function set subFormName(value:String):void;
-
+        function get subFormFormula():String;
+        function set subFormFormula(value:String):void;
     }
 }
 
