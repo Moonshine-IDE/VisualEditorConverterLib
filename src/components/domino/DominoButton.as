@@ -385,6 +385,12 @@ package components.domino
 			{
 				xml.@height = this.height + "pt";
 			}
+			//for default height it is 30pt , but it show incorrect in the Notes client.
+			//So , if the height is 30pt , we need remove it , so it can show correct default height in the Notes client.
+
+			// if(xml.@height =="30pt"){
+			// 	delete xml.@height;
+			// }
 
 			if (this.widthtype)
 			{
