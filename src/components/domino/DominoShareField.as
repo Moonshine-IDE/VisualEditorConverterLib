@@ -129,6 +129,8 @@ package components.domino
 			}
 			delete xml["@class"];
 
+			
+
 			// if(this.subFormFormula)
 			// {
 			// 	var codexml:XML = new XML("<code event=\"value\"/>");
@@ -136,6 +138,7 @@ package components.domino
 			// 	codexml.appendChild(formulaxml);
 			// 	xml.appendChild(codexml);
 			// }
+
 
 			return xml;
 		}
