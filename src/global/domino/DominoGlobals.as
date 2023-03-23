@@ -42,6 +42,7 @@ package global.domino
         public static var NotesId:int;
         public static var NotesDocumentId:int;
         public static var RoyaleTabeViewId:int =1;
+        public static var FieldPastNameCount:int =1;
 
     }
 }
