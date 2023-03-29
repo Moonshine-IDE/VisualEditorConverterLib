@@ -128,12 +128,12 @@ package converter
 				 {
 					 parent.addElement(item);
 				 }
-
+				 localSurface.addItem(item);
 				 return item;
 			}
 		}
 		
-		private static function itemFromXML(parent:Object, lookup:ILookup, itemXML:XML, surface:ISurface):IComponent
+		public static function itemFromXML(parent:Object, lookup:ILookup, itemXML:XML, surface:ISurface):IComponent
 		{
 			var localSurface:ISurface = surface;
 			var name:String = itemXML.localName();
