@@ -72,7 +72,7 @@ package converter
 		}
 
 
-		public static function pastFromXML(parent:Object, lookup:ILookup, xml:XML,surface:ISurface):Object
+		public static function pasteFromXML(parent:Object, lookup:ILookup, xml:XML,surface:ISurface):Object
 		{
 			if(xml != null)
 			{
@@ -86,7 +86,7 @@ package converter
 					{
 						var elementXML:XML = elements[i];
 					
-						pastItemFromXML(parent, lookup, elementXML, localSurface);
+						pasteItemFromXML(parent, lookup, elementXML, localSurface);
 						
 					}
 				}
@@ -96,7 +96,7 @@ package converter
 		}
 
 
-		private static function pastItemFromXML(parent:Object, lookup:ILookup, itemXML:XML, surface:ISurface):IComponent
+		private static function pasteItemFromXML(parent:Object, lookup:ILookup, itemXML:XML, surface:ISurface):IComponent
 		{
 			var localSurface:ISurface = surface;
 			var name:String = itemXML.localName();
@@ -110,7 +110,7 @@ package converter
                 for(var i:int = 0; i < elementCount; i++)
                 {
                    var elementXML:XML = elements[i];
-                   pastItemFromXML(parent, lookup, elementXML, localSurface);
+                   pasteItemFromXML(parent, lookup, elementXML, localSurface);
                 }
 				return null;
 			}
