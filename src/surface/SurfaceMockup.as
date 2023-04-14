@@ -193,7 +193,6 @@ package surface
 				xml.setNamespace(jNamespace);
 
 			var internalContainer:XML = new XML("<VGroup />");
-				internalContainer.@includeIn = "contentState";
 				internalContainer.@percentWidth = "100";
 				internalContainer.@percentHeight = "100";
 				internalContainer.setNamespace(jNamespace);

@@ -47,12 +47,26 @@ package components.domino
 
     public class DominoSubForm extends DominoConponentHideBase implements IDominoSubForm, IRoyaleComponentConverter
 	{
+		public static const ROYALE_XML_HORIZONTAL_ELEMENT:String = "HGroup";
+		public static const ROYALE_XML_VERTICAL_ELEMENT:String = "VGroup";
 		public static const DOMINO_ELEMENT_NAME:String = "subformref";
 		public static const ELEMENT_NAME:String = "Subformref";
         public function DominoSubForm(component:IComponent = null)
 		{
 			super();
             this._component = component;
+		}
+
+		private var _cssClass:String = "flexHorizontalLayout flexHorizontalLayoutLeft flexHorizontalLayoutTop";
+
+		public function get cssClass():String
+		{
+			return _cssClass;
+		}
+
+		public function set cssClass(value:String):void
+		{
+			_cssClass = value;
 		}
 
 		private var _isSelected:Boolean;
@@ -151,8 +165,18 @@ package components.domino
 
 		public function toRoyaleConvertCode():XML
 		{
-			return null;
+			//Convert to simple container to avoid compile problems.
+			var htmlNamespace:Namespace = new Namespace("j", "library://ns.apache.org/royale/jewel");
+			var subFormXML:XML = new XML("<" + ROYALE_XML_HORIZONTAL_ELEMENT + "/>");
+			if (cssClass.indexOf("flexVerticalLayout") > -1)
+			{
+				subFormXML = new XML("<" + ROYALE_XML_VERTICAL_ELEMENT + "/>");
+			}
 
+			subFormXML.setNamespace(htmlNamespace);
+			CodeMxmlUtils.setMXMLComponentSize(this, subFormXML);
+
+			return subFormXML;
 		}
     }
 }
