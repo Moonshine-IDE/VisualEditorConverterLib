@@ -43,7 +43,6 @@ package components.domino
 	import global.domino.DominoGlobals;
     import utils.CodeMxmlUtils;
     import interfaces.IComponent;
-	import mx.controls.Alert;
 
     public class DominoSubForm extends DominoConponentHideBase implements IDominoSubForm, IRoyaleComponentConverter
 	{
