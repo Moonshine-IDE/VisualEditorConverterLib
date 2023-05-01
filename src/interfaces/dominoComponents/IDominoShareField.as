@@ -29,20 +29,26 @@
 //  it in the license file.
 //
 ////////////////////////////////////////////////////////////////////////////////
-/**
- * Domino dxl file need some global variables
- * So, we define a global class in here 
+/** 
+ * Represents a few lines of selected or highlighted text. 
+ * To apply a formatting style to a large block of text, use the <block> element. 
+ * run dxl details please review follow url: 
+ * https://www.ibm.com/support/knowledgecenter/SSVRGU_10.0.1/basic/H_RUN_ELEMENT_XML.html
+ * Contained by: %richtext.nonhot.inline;
+ * Contains: &lt;font&gt;, %richtext.inline;
  */
-package global.domino
+package interfaces.dominoComponents
 {
-    public class DominoGlobals {
-        public static var PardefId:int =1;
-        public static var PardefDivId:int=1000;
-        public static var PardefPardefAlignId:int=10000;
-        public static var NotesId:int;
-        public static var NotesDocumentId:int;
-        public static var RoyaleTabeViewId:int =1;
-        public static var FieldPastNameCount:int =1;
+    import interfaces.IComponent;
+    import interfaces.IDominoVisualHideOption;
+    import interfaces.IIsSelected;
 
+    public interface IDominoShareField  extends  IDominoVisualHideOption,IComponent,IIsSelected
+    {  
+        //subform name
+        function get shareFieldName():String;
+        function set shareFieldName(value:String):void;
+       
     }
 }
+

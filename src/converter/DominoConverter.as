@@ -70,8 +70,70 @@ package converter
 				}
 			}
 		}
+
+
+		public static function pasteFromXML(parent:Object, lookup:ILookup, xml:XML,surface:ISurface):Object
+		{
+			if(xml != null)
+			{
+				var localSurface:ISurface = surface;
+				var elements:XMLList = xml.elements();
+				if(elements!=null)
+				{
+					var elementCount:int = elements.length();
+			
+					for(var i:int = 0; i < elementCount; i++)
+					{
+						var elementXML:XML = elements[i];
+					
+						pasteItemFromXML(parent, lookup, elementXML, localSurface);
+						
+					}
+				}
+			}
+
+			return parent;
+		}
+
+
+		private static function pasteItemFromXML(parent:Object, lookup:ILookup, itemXML:XML, surface:ISurface):IComponent
+		{
+			var localSurface:ISurface = surface;
+			var name:String = itemXML.localName();
+			//we don't need handel "<div>" in the domino visual editor
+			if(!(name in lookup.lookup))
+			{
+				
+				
+                var elements:XMLList = itemXML.elements();
+                var elementCount:int = elements.length();
+                for(var i:int = 0; i < elementCount; i++)
+                {
+                   var elementXML:XML = elements[i];
+                   pasteItemFromXML(parent, lookup, elementXML, localSurface);
+                }
+				return null;
+			}
+			//Alert.show("domino convert name:"+name);
+			var item:IComponent = getNewInstanceOfComponent(lookup, name);
+			if(item === null)
+			{
+				
+				return null;
+			}
+			else
+			{
+				 item.fromXML(itemXML, itemFromXML, localSurface, lookup);
+				 if(parent!=null)
+				 {
+					 parent.addElement(item);
+				 }
+				 localSurface.addItem(item);
+				 return item;
+			}
+		}
 		
-		private static function itemFromXML(parent:Object, lookup:ILookup, itemXML:XML, surface:ISurface):IComponent
+		public static function itemFromXML(parent:Object, lookup:ILookup, itemXML:XML, surface:ISurface):IComponent
 		{
 			var localSurface:ISurface = surface;
 			var name:String = itemXML.localName();
