@@ -43,12 +43,9 @@ package components.domino
 	import global.domino.DominoGlobals;
     import utils.CodeMxmlUtils;
     import interfaces.IComponent;
-	import mx.controls.Alert;
 
     public class DominoSubForm extends DominoConponentHideBase implements IDominoSubForm, IRoyaleComponentConverter
 	{
-		public static const ROYALE_XML_HORIZONTAL_ELEMENT:String = "HGroup";
-		public static const ROYALE_XML_VERTICAL_ELEMENT:String = "VGroup";
 		public static const DOMINO_ELEMENT_NAME:String = "subformref";
 		public static const ELEMENT_NAME:String = "Subformref";
         public function DominoSubForm(component:IComponent = null)
@@ -165,16 +162,13 @@ package components.domino
 
 		public function toRoyaleConvertCode():XML
 		{
-			//Convert to simple container to avoid compile problems.
-			var htmlNamespace:Namespace = new Namespace("j", "library://ns.apache.org/royale/jewel");
-			var subFormXML:XML = new XML("<" + ROYALE_XML_HORIZONTAL_ELEMENT + "/>");
-			if (cssClass.indexOf("flexVerticalLayout") > -1)
-			{
-				subFormXML = new XML("<" + ROYALE_XML_VERTICAL_ELEMENT + "/>");
-			}
-
+			var subformNameViews:String = this.subFormName + "Views";
+			var htmlNamespace:Namespace = new Namespace(subformNameViews, "$ProjectName.views.modules.subforms." + this.subFormName + "." + subformNameViews + ".*");
+			var subFormXML:XML = new XML("<" + this.subFormName + "/>");
 			subFormXML.setNamespace(htmlNamespace);
-			CodeMxmlUtils.setMXMLComponentSize(this, subFormXML);
+
+			subFormXML.@itemVO = "{itemVO}";
+			subFormXML.@isDisabled = "{isDisabled}";
 
 			return subFormXML;
 		}
