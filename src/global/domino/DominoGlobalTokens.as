@@ -258,7 +258,7 @@ package global.domino
 
         ]);
 
-        public static var Spaceing:ArrayList = new ArrayList([
+        public static var Spacing:ArrayList = new ArrayList([
             {label: "single",value: "1",description: "one line"},
             {label: "half",value: "1.5",description:"a half of line"},
             {label: "double",value: "2",description:"two lines"}
