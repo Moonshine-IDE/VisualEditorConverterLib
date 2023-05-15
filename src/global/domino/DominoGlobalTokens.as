@@ -244,7 +244,7 @@ package global.domino
         ]);
 
         //<!ENTITY % pardef.list.styles "none | bullet | number | check | uncheck | circle | square | alphaupper | alphalower | romanupper | romanlower">
-         public static var Lists:ArrayList = new ArrayList([
+         public static var ListStyles:ArrayList = new ArrayList([
         {label: "none",value: "none",description: "none."},
         {label: "bullet",value: "bullet",description:"bullet"},
         {label: "number",value: "number",description:"number"},
@@ -258,7 +258,7 @@ package global.domino
 
         ]);
 
-        public static var Spaceing:ArrayList = new ArrayList([
+        public static var Spacing:ArrayList = new ArrayList([
             {label: "single",value: "1",description: "one line"},
             {label: "half",value: "1.5",description:"a half of line"},
             {label: "double",value: "2",description:"two lines"}
