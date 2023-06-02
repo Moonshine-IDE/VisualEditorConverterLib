@@ -264,5 +264,14 @@ package global.domino
             {label: "double",value: "2",description:"two lines"}
         ]);
 
+       // <!ENTITY % totals.options "none | total | averageperchild | percentoverall | percentparent | averageperentry ">
+        public static var ColumnTotalsOptions:ArrayList = new ArrayList([
+            {label: "none",value: "none",description: "none"},
+            {label: "total",value: "total",description:"total"},
+            {label: "averageperchild",value: "averageperchild",description:"averageperchild"},
+            {label: "percentoverall",value: "percentoverall",description:"percentoverall"},
+            {label: "percentparent",value: "percentparent",description:"percentparent"},
+            {label: "averageperentry",value: "averageperentry",description:"averageperentry"}
+        ]);
     }
 }
