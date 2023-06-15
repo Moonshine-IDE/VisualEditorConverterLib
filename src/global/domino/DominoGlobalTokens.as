@@ -273,5 +273,18 @@ package global.domino
             {label: "percentparent",value: "percentparent",description:"percentparent"},
             {label: "averageperentry",value: "averageperentry",description:"averageperentry"}
         ]);
+
+        public static var ColumnStylesOptions:ArrayList = new ArrayList([
+            {label: "General",value: "general",description: "general"},
+            {label: "Number",value: "number",description:"number"},
+            {label: "Date/Time",value: "datetime",description:"datetime"},
+            {label: "Names",value: "names",description:"names"}
+        ]);
+
+
+           public static var ColumnStylesPreferencesForDisplay:ArrayList = new ArrayList([
+            {label: "User setting",value: "usersetting",description: "usersetting"},
+            {label: "Custom",value: "custom",description:"custom"}
+        ]);
     }
 }
