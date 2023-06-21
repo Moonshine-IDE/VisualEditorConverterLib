@@ -282,9 +282,29 @@ package global.domino
         ]);
 
 
-           public static var ColumnStylesPreferencesForDisplay:ArrayList = new ArrayList([
+        public static var ColumnStylesPreferencesForDisplay:ArrayList = new ArrayList([
             {label: "User setting",value: "usersetting",description: "usersetting"},
             {label: "Custom",value: "custom",description:"custom"}
+        ]);
+
+        public static var ViewColumnDateTimeDisplay:ArrayList = new ArrayList([
+            {label: "Only month, day and year",value: "monthdayyear",description: "Only month, day and year"},
+            {label: "Only weekday, month and day",value: "weekdaymonthday",description:"Only weekday, month and day"},
+            {label: "Only month and year",value: "monthyear",description:"Only month and year"},
+            {label: "Only month and day",value: "monthday",description:"Only month and day"},
+            {label: "Only year",value: "year",description:"Only year"}
+        ]);
+
+        public static var ViewColumnDateTimeDisplaySpecial:ArrayList = new ArrayList([
+            {label: "Show 'today' when appropriate",value: "monthdayyear",description: "Only month, day and year"},
+            {label: "Always show 4 digit year",value: "weekdaymonthday",description:"Only weekday, month and day"},
+            {label: "Show 4 digit year for 21st century",value: "monthyear",description:"Only month and year"},
+            {label: "Show year only if not this year",value: "monthday",description:"Only month and day"}
+        ]);
+
+        public static var ViewColumnDateTimeDisplayCalendar:ArrayList = new ArrayList([
+            {label: "Gregorian' when appropriate",value: "monthdayyear",description: "Only month, day and year"},
+            {label: "Hijri",value: "weekdaymonthday",description:"Only weekday, month and day"}
         ]);
     }
 }
