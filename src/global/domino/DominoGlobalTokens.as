@@ -303,14 +303,14 @@ package global.domino
         ]);
 
         public static var ViewColumnDateTimeDisplayCalendar:ArrayList = new ArrayList([
-            {label: "Gregorian' when appropriate",value: "gregorian",description: "Christian calendar which is a revised version of the Julian calendar that incorporated leap years to keep sync with the lunar cycle"},
+            {label: "Gregorian",value: "gregorian",description: "Christian calendar which is a revised version of the Julian calendar that incorporated leap years to keep sync with the lunar cycle"},
             {label: "Hijri",value: "hijri",description:"Islamic calendar based on twelve lunar months.."}
         ]);
 
         public static var ViewColumnDateTimeDisplayFormat:ArrayList = new ArrayList([
-            {label: "YMDW",value: "ymdt",description: "year-month-day-weekday"},
-            {label: "WMDY",value: "wmdy",description:"weekday-month-day-year"},
-            {label: "WDMY",value: "wdmy",description:"weekday-day-month-year"}
+            {label: "YMDW",value: "yearmonthdayweekday",description: "year-month-day-weekday"},
+            {label: "WMDY",value: "weekdaymonthdayyear",description:"weekday-month-day-year"},
+            {label: "WDMY",value: "weekdaydaymonthyear",description:"weekday-day-month-year"}
         ]);
 
         public static var ViewColumnDateDay:ArrayList = new ArrayList([
@@ -346,9 +346,9 @@ package global.domino
 
         public static var ViewColumnTimeShow:ArrayList = new ArrayList([
             {label: "All",value: "all",description: "year two digit"},
-            {label: "Hours, minutes, and seconds",value: "all",description: "year two digit"},
-            {label: "Hours and minutes",value: "all",description: "year two digit"},
-            {label: "Hours only",value: "all",description: "year two digit"},
+            {label: "Hours, minutes, and seconds",value: "hourminutesecond",description: "year two digit"},
+            {label: "Hours and minutes",value: "hourminute",description: "year two digit"},
+            {label: "Hours only",value: "hour",description: "year two digit"},
         ]);
          public static var ViewColumnTimeFormat:ArrayList = new ArrayList([
             {label: "12 hour",value: "12",description: "year two digit"},
