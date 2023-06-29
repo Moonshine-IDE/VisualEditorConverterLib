@@ -288,9 +288,9 @@ package global.domino
         ]);
 
         public static var ViewColumnDateTimeDisplay:ArrayList = new ArrayList([
-            {label: "Only month, day and year",value: "monthdayyear",description: "Only month, day and year"},
+            {label: "Only month, day and year",value: "yearmonthday",description: "Only month, day and year"},
             {label: "Only weekday, month and day",value: "weekdaymonthday",description:"Only weekday, month and day"},
-            {label: "Only month and year",value: "monthyear",description:"Only month and year"},
+            {label: "Only month and year",value: "yearmonth",description:"Only month and year"},
             {label: "Only month and day",value: "monthday",description:"Only month and day"},
             {label: "Only year",value: "year",description:"Only year"}
         ]);
@@ -314,19 +314,19 @@ package global.domino
         ]);
 
         public static var ViewColumnDateDay:ArrayList = new ArrayList([
-            {label: "d",value: "d",description: "day one digit"},
-            {label: "dd",value: "dd",description: "day two digit"}
+            {label: "d",value: "onedigitday",description: "day one digit"},
+            {label: "dd",value: "twodigitday",description: "day two digit"}
         ]); 
         public static var ViewColumnDateMonth:ArrayList = new ArrayList([
-            {label: "m",value: "m",description: "month one digit"},
-            {label: "mm",value: "mm",description: "month two digit"},
-            {label: "mmm",value: "mmm",description: "month there digit"},
-            {label: "mmmm",value: "mmmm",description: "month four digit"}
+            {label: "m",value: "onedigitmonth",description: "month one digit"},
+            {label: "mm",value: "twodigitmonth",description: "month two digit"},
+            {label: "mmm",value: "theredigitmonth",description: "month there digit"},
+            {label: "mmmm",value: "fourdigitmonth",description: "month four digit"}
         ]);   
 
         public static var ViewColumnDateYear:ArrayList = new ArrayList([
-            {label: "yy",value: "yy",description: "year two digit"},
-            {label: "yyyy",value: "yyyy",description: "year four digit"}
+            {label: "yy",value: "twodigityear",description: "year two digit"},
+            {label: "yyyy",value: "fourdigityear",description: "year four digit"}
         ]);
         public static var ViewColumnDateYearYMDW:ArrayList = new ArrayList([
             {label: "ge",value: "ge",description: "year two digit"},
@@ -338,10 +338,10 @@ package global.domino
         ]);
 
         public static var ViewColumnDateWeekday:ArrayList = new ArrayList([
-            {label: "w",value: "w",description: "year two digit"},
-            {label: "ww",value: "ww",description: "year four digit"},
-            {label: "(w)",value: "(w)",description: "year four digit"},
-            {label: "(ww)",value: "(ww)",description: "year four digit"}
+            {label: "w",value: "shortname",description: "year two digit"},
+            {label: "ww",value: "fullname",description: "year four digit"},
+            {label: "(w)",value: "shortnameparens",description: "year four digit"},
+            {label: "(ww)",value: "fullnameparens",description: "year four digit"}
         ]);
 
         public static var ViewColumnTimeShow:ArrayList = new ArrayList([
