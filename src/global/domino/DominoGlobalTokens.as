@@ -320,8 +320,8 @@ package global.domino
         public static var ViewColumnDateMonth:ArrayList = new ArrayList([
             {label: "m",value: "onedigitmonth",description: "month one digit"},
             {label: "mm",value: "twodigitmonth",description: "month two digit"},
-            {label: "mmm",value: "theredigitmonth",description: "month there digit"},
-            {label: "mmmm",value: "fourdigitmonth",description: "month four digit"}
+            {label: "mmm",value: "shortname",description: "month there digit"},
+            {label: "mmmm",value: "fullname",description: "month four digit"}
         ]);   
 
         public static var ViewColumnDateYear:ArrayList = new ArrayList([
