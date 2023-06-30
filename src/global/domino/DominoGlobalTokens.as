@@ -329,12 +329,12 @@ package global.domino
             {label: "yyyy",value: "fourdigityear",description: "year four digit"}
         ]);
         public static var ViewColumnDateYearYMDW:ArrayList = new ArrayList([
-            {label: "ge",value: "ge",description: "year two digit"},
-            {label: "gee",value: "gee",description: "year four digit"},
-            {label: "gge",value: "gge",description: "year four digit"},
-            {label: "ggee",value: "ggee",description: "year four digit"},
-            {label: "ggge",value: "ggge",description: "year four digit"},
-            {label: "gggee",value: "gggee",description: "year four digit"}
+            {label: "ge",value: "oneletterepochnameonedigityear",description: "year two digit"},
+            {label: "gee",value: "oneletterepochnametwodigityear",description: "year four digit"},
+            {label: "gge",value: "shortepochnameonedigityear",description: "year four digit"},
+            {label: "ggee",value: "shortepochnametwodigityear",description: "year four digit"},
+            {label: "ggge",value: "fullepochnameonedigityear",description: "year four digit"},
+            {label: "gggee",value: "fullepochnametwodigityear",description: "year four digit"}
         ]);
 
         public static var ViewColumnDateWeekday:ArrayList = new ArrayList([
