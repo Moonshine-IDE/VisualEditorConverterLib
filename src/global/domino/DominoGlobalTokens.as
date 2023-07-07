@@ -353,7 +353,14 @@ package global.domino
          public static var ViewColumnTimeFormat:ArrayList = new ArrayList([
             {label: "12 hour",value: "12",description: "year two digit"},
             {label: "24 hour",value: "24",description: "year two digit"}
-         ]);    
+         ]);   
+
+
+        public static var ViewColumnNamesVertival:ArrayList = new ArrayList([
+            {label: "Top",value: "top",description: "top"},
+            {label: "Middle",value: "middle",description: "middle"},
+            {label: "Bottom",value: "bottom",description: "bottom"}
+         ]);  
 
     }
 }
