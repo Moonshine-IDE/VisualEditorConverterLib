@@ -44,6 +44,7 @@ package global.domino
         public static var RoyaleTabeViewId:int =1;
         public static var FieldPastNameCount:int =1;
         public static var DominoViewColumnCount:int =1;
+        public static var DominoViewSharedColumnCount:int =1;
 
     }
 }
