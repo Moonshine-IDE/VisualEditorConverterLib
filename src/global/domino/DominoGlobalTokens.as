@@ -44,7 +44,7 @@ package global.domino
               {label: "multilingual",description: "multilingual",value:"multilingual",enabled:true,"selected": false},
               {label: "sans-serif",description: "sans-serif",value:"sans-serif",enabled:true,"selected": false},
               {label: "serif",description: "serif",value:"serif",enabled:true,"selected": false},
-              {label: "user-interface",description: "user-interface",value:"strikeuser-interfacethrough",enabled:true,"selected": false}
+              {label: "user-interface",description: "user-interface",value:"user-interface",enabled:true,"selected": false}
               
         ])
 
@@ -244,7 +244,7 @@ package global.domino
         ]);
 
         //<!ENTITY % pardef.list.styles "none | bullet | number | check | uncheck | circle | square | alphaupper | alphalower | romanupper | romanlower">
-         public static var Lists:ArrayList = new ArrayList([
+         public static var ListStyles:ArrayList = new ArrayList([
         {label: "none",value: "none",description: "none."},
         {label: "bullet",value: "bullet",description:"bullet"},
         {label: "number",value: "number",description:"number"},
@@ -258,11 +258,109 @@ package global.domino
 
         ]);
 
-        public static var Spaceing:ArrayList = new ArrayList([
+        public static var Spacing:ArrayList = new ArrayList([
             {label: "single",value: "1",description: "one line"},
             {label: "half",value: "1.5",description:"a half of line"},
             {label: "double",value: "2",description:"two lines"}
         ]);
+
+       // <!ENTITY % totals.options "none | total | averageperchild | percentoverall | percentparent | averageperentry ">
+        public static var ColumnTotalsOptions:ArrayList = new ArrayList([
+            {label: "none",value: "none",description: "none"},
+            {label: "total",value: "total",description:"total"},
+            {label: "averageperchild",value: "averageperchild",description:"averageperchild"},
+            {label: "percentoverall",value: "percentoverall",description:"percentoverall"},
+            {label: "percentparent",value: "percentparent",description:"percentparent"},
+            {label: "averageperentry",value: "averageperentry",description:"averageperentry"}
+        ]);
+
+        public static var ColumnStylesOptions:ArrayList = new ArrayList([
+            {label: "General",value: "general",description: "general"},
+            {label: "Number",value: "number",description:"number"},
+            {label: "Date/Time",value: "datetime",description:"datetime"},
+            {label: "Names",value: "names",description:"names"}
+        ]);
+
+
+        public static var ColumnStylesPreferencesForDisplay:ArrayList = new ArrayList([
+            {label: "User setting",value: "usersetting",description: "usersetting"},
+            {label: "Custom",value: "custom",description:"custom"}
+        ]);
+
+        public static var ViewColumnDateTimeDisplay:ArrayList = new ArrayList([
+            {label: "Only month, day and year",value: "yearmonthday",description: "Only month, day and year"},
+            {label: "Only weekday, month and day",value: "weekdaymonthday",description:"Only weekday, month and day"},
+            {label: "Only month and year",value: "yearmonth",description:"Only month and year"},
+            {label: "Only month and day",value: "monthday",description:"Only month and day"},
+            {label: "Only year",value: "year",description:"Only year"}
+        ]);
+
+        public static var ViewColumnDateTimeDisplaySpecial:ArrayList = new ArrayList([
+            {label: "Show 'today' when appropriate",value: "showtodaywhenappropriate",description: "Only month, day and year"},
+            {label: "Always show 4 digit year",value: "fourdigityear",description:"Only weekday, month and day"},
+            {label: "Show 4 digit year for 21st century",value: "fourdigityearfor21stcentury",description:"Only month and year"},
+            {label: "Show year only if not this year",value: "omitthisyear",description:"Only month and day"}
+        ]);
+
+        public static var ViewColumnDateTimeDisplayCalendar:ArrayList = new ArrayList([
+            {label: "Gregorian",value: "gregorian",description: "Christian calendar which is a revised version of the Julian calendar that incorporated leap years to keep sync with the lunar cycle"},
+            {label: "Hijri",value: "hijri",description:"Islamic calendar based on twelve lunar months.."}
+        ]);
+
+        public static var ViewColumnDateTimeDisplayFormat:ArrayList = new ArrayList([
+            {label: "YMDW",value: "yearmonthdayweekday",description: "year-month-day-weekday"},
+            {label: "WMDY",value: "weekdaymonthdayyear",description:"weekday-month-day-year"},
+            {label: "WDMY",value: "weekdaydaymonthyear",description:"weekday-day-month-year"}
+        ]);
+
+        public static var ViewColumnDateDay:ArrayList = new ArrayList([
+            {label: "d",value: "onedigitday",description: "day one digit"},
+            {label: "dd",value: "twodigitday",description: "day two digit"}
+        ]); 
+        public static var ViewColumnDateMonth:ArrayList = new ArrayList([
+            {label: "m",value: "onedigitmonth",description: "month one digit"},
+            {label: "mm",value: "twodigitmonth",description: "month two digit"},
+            {label: "mmm",value: "shortname",description: "month there digit"},
+            {label: "mmmm",value: "fullname",description: "month four digit"}
+        ]);   
+
+        public static var ViewColumnDateYear:ArrayList = new ArrayList([
+            {label: "yy",value: "twodigityear",description: "year two digit"},
+            {label: "yyyy",value: "fourdigityear",description: "year four digit"}
+        ]);
+        public static var ViewColumnDateYearYMDW:ArrayList = new ArrayList([
+            {label: "ge",value: "oneletterepochnameonedigityear",description: "year two digit"},
+            {label: "gee",value: "oneletterepochnametwodigityear",description: "year four digit"},
+            {label: "gge",value: "shortepochnameonedigityear",description: "year four digit"},
+            {label: "ggee",value: "shortepochnametwodigityear",description: "year four digit"},
+            {label: "ggge",value: "fullepochnameonedigityear",description: "year four digit"},
+            {label: "gggee",value: "fullepochnametwodigityear",description: "year four digit"}
+        ]);
+
+        public static var ViewColumnDateWeekday:ArrayList = new ArrayList([
+            {label: "w",value: "shortname",description: "year two digit"},
+            {label: "ww",value: "fullname",description: "year four digit"},
+            {label: "(w)",value: "shortnameparens",description: "year four digit"},
+            {label: "(ww)",value: "fullnameparens",description: "year four digit"}
+        ]);
+
+        public static var ViewColumnTimeShow:ArrayList = new ArrayList([
+            {label: "All",value: "all",description: "year two digit"},
+            {label: "Hours, minutes, and seconds",value: "hourminutesecond",description: "year two digit"},
+            {label: "Hours and minutes",value: "hourminute",description: "year two digit"},
+            {label: "Hours only",value: "hour",description: "year two digit"},
+        ]);
+         public static var ViewColumnTimeFormat:ArrayList = new ArrayList([
+            {label: "12 hour",value: "12",description: "year two digit"},
+            {label: "24 hour",value: "24",description: "year two digit"}
+         ]);   
+
+
+        public static var ViewColumnNamesVertival:ArrayList = new ArrayList([
+            {label: "Top",value: "top",description: "top"},
+            {label: "Middle",value: "middle",description: "middle"},
+            {label: "Bottom",value: "bottom",description: "bottom"}
+         ]);  
 
     }
 }
