@@ -60,6 +60,8 @@ package components.domino
 	import org.apache.flex.packageflexsdk.util.ApacheURLLoader;
 	import components.DominoConponentHideBase;
 	import global.domino.DominoGlobals;
+
+	import mx.controls.Alert;
 	
 
 
@@ -1567,7 +1569,16 @@ package components.domino
 
 			var codeXML:XML = null;
 			//this is text computed filed
-			if (this.type == "text" || this.type == "keyword")
+			var formulaXML:XML = null;
+				//Alert.show("this.defaultvalue:"+this.defaultvalue);
+			if (this.defaultvalue)
+			{
+				codeXML = new XML("<code event=\"defaultvalue\"/>");
+				formulaXML = new XML("<formula>" + this.defaultvalue + "</formula>");
+				codeXML.appendChild(formulaXML);
+				xml.appendChild(codeXML);
+			}
+			if (this.type == "text" || this.type == "keyword" || this.type == "datetime")
 			{
 				//for now the formula only add to default value
 
@@ -1576,14 +1587,7 @@ package components.domino
 					this.object = "defaultvalue";
 				}
 				//DominoGlobals.PardefDivId
-				var formulaXML:XML = null;
-				if (this.defaultvalue)
-				{
-					codeXML = new XML("<code event=\"defaultvalue\"/>");
-					formulaXML = new XML("<formula>" + this.defaultvalue + "</formula>");
-					codeXML.appendChild(formulaXML);
-					xml.appendChild(codeXML);
-				}
+				
 				if (this.inputtranslation)
 				{
 					codeXML = new XML("<code event=\"inputtranslation\"/>");
