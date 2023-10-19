@@ -1212,7 +1212,6 @@ package components.domino
 			var runXML:XML = new XML("<run/>");
 			var fontXml:XML = new XML("<font/>");
 			var xml:XML = new XML("<" + CodeMxmlUtils.getMXMLTagNameWithSelection(this, DOMINO_ELEMENT_NAME) + "/>");
-
 			/** Domino specified Propertys start
 			 * follow propertys are not supported with moonshine ide , but if we need them we can consider add them in moonshine ide on later.
 			 * these all propertys will default  to "false"
@@ -1570,11 +1569,13 @@ package components.domino
 			var codeXML:XML = null;
 			//this is text computed filed
 			var formulaXML:XML = null;
-				//Alert.show("this.defaultvalue:"+this.defaultvalue);
 			if (this.defaultvalue)
 			{
+				// if(this.nameAttribute=="IfFormula"){
+				// 	Alert.show("defaultvalue:"+this.defaultvalue);
+				// }
 				codeXML = new XML("<code event=\"defaultvalue\"/>");
-				formulaXML = new XML("<formula>" + this.defaultvalue + "</formula>");
+				formulaXML = new XML("<formula>" + StringHelperUtils.fixXmlSpecailCharacter(this.defaultvalue) + "</formula>");
 				codeXML.appendChild(formulaXML);
 				xml.appendChild(codeXML);
 			}
@@ -1653,13 +1654,14 @@ package components.domino
 			}else{
 				par_xml.appendChild(xml);
 			}
-
+			
 			// if(par_xml.toXMLString().indexOf("align")>0){
 			// 	Alert.show("align:"+par_xml);
 			// }
 
 			return par_xml;
 		}
+		
 
 		//</j:ComboBox>
 		public function toRoyaleConvertCode():XML
