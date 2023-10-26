@@ -1022,6 +1022,7 @@ package components.domino
 			this.allowmultivalues = xml.@allowmultivalues == "true";
 			this.type = xml.@type;
 			this.kind = xml.@kind;
+			this.object=xml.@object;
 			if(xml.@indent){
 				this.indent = xml.@indent;
 			}
@@ -1240,6 +1241,9 @@ package components.domino
 			}
 			if(this.htmlOther){
 				xml.@htmlOther = this.htmlOther;
+			}
+			if(this.object){
+				xml.@object=this.object;
 			}
 			if(this.spacingInterline){
 				xml.@linespacing = this.spacingInterline;
