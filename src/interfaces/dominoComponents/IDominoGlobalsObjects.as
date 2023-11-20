@@ -45,5 +45,9 @@ package interfaces.dominoComponents
 
         function get declarations():String;
         function set declarations(value:String):void;
+
+        function fromXMLDominoObject(xml:XML):void
+
+
     }
 }

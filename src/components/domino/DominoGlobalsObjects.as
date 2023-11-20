@@ -99,6 +99,22 @@ package components.domino
                 this.declarations = xml.@declarations
             }
         }
+        public function fromXMLDominoObject(xml:XML):void
+		{
+            if(xml.@options){
+                this.options = xml.@options
+            }
+            if(xml.@terminate){
+                this.terminate = xml.@terminate
+            }
+            if(xml.@initialize){
+                this.initialize = xml.@initialize
+            }
+
+            if(xml.@declarations){
+                this.declarations = xml.@declarations
+            }
+        }
         public function toCode():XML
 		{
             var goobalsXml:XML = new XML("<globals/>");
