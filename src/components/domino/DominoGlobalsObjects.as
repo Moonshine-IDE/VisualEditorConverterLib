@@ -38,6 +38,7 @@ package components.domino
     import interfaces.ILookup;
 
 	import interfaces.ISurface;
+    
 	public class DominoGlobalsObjects implements IDominoGlobalsObjects, IRoyaleComponentConverter
 	{
 		public static const ELEMENT_NAME:String = "dominoGlobals";
@@ -45,7 +46,13 @@ package components.domino
         private var _terminate:String;
         private var _options:String;
         private var _declarations:String;
-		public function DominoGlobalsObjects()
+        private static const OPTOIN_HEADER="'++LotusScript Development Environment:2:5:(Options):0:74"
+        private static const FORWARD_HEADER="'++LotusScript Development Environment:2:5:(Forward):0:1"
+        private static const DECLARATIONS_HEADER="'++LotusScript Development Environment:2:5:(Declarations):0:10"
+        private static const INITIALIZE_HEADER="'++LotusScript Development Environment:2:2:Initialize:1:10"
+        private static const TERMINATE_HEADER="'++LotusScript Development Environment:2:2:Terminate:1:10"
+        
+        public function DominoGlobalsObjects()
 		{
 			
 		}
@@ -117,38 +124,44 @@ package components.domino
         }
         public function toCode():XML
 		{
-            var goobalsXml:XML = new XML("<globals/>");
+            var goobalsXml:XML = new XML("<item/>");
+            goobalsXml.@name="$Script"
+            goobalsXml.@summary="false"
+            goobalsXml.@sign="true"
+
+            
+            var text:String="";
+            
             if (this.options)
 			{
-				var optoinsXml:XML=new XML("<code event='options'/>");
-                var lsXml1:XML=new XML("<lotusscript>"+this.options+"</lotusscript>");
-                optoinsXml.appendChild(lsXml1);
-                goobalsXml.appendChild(optoinsXml);
+				text=OPTOIN_HEADER+"\n";
+                text=text+this.options+"\n";
             }
             if (this.terminate)
 			{
-				var terninateXml:XML=new XML("<code event='terminate'/>");
-                var lsXml2:XML=new XML("<lotusscript>"+this.terminate+"</lotusscript>");
-                terninateXml.appendChild(lsXml2);
-                goobalsXml.appendChild(terninateXml);
+				text=text+TERMINATE_HEADER+"\n";
+                text=text+"Sub Terminate"+"\n";
+                text=text+"' "+this.terminate+"\n";
+                text=text+"End Sub"+"\n";
             }
             if (this.declarations)
 			{
-				var declarationsXml:XML=new XML("<code event='declarations'/>");
-                var lsXml3:XML=new XML("<lotusscript>"+this.declarations+"</lotusscript>");
-                declarationsXml.appendChild(lsXml3);
-                goobalsXml.appendChild(declarationsXml);
+				text=text+DECLARATIONS_HEADER+"\n";
+                text=text+"' "+this.declarations+"\n";
             }
 
             if (this.initialize)
 			{
-				var initializeXml:XML=new XML("<code event='initialize'/>");
-                var lsXml:XML=new XML("<lotusscript>"+this.initialize+"</lotusscript>");
-                initializeXml.appendChild(lsXml);
-                goobalsXml.appendChild(initializeXml);
+				text=text+INITIALIZE_HEADER+"\n";
+                text=text+"Sub Initialize"+"\n";
+                text=text+"' "+this.initialize+"\n";
+                text=text+"End Sub"+"\n";
             }
-			
 
+            var breakXML:XML=new XML("<break/>");
+			var textXml:XML = new XML("<text>"+text+"</text>");
+            textXml.appendChild(breakXML);
+            goobalsXml.appendChild(textXml);
 
             return goobalsXml
 
