@@ -38,6 +38,7 @@ package components.domino
     import interfaces.ILookup;
 
 	import interfaces.ISurface;
+    import utils.StringHelperUtils;
     
 	public class DominoGlobalsObjects implements IDominoGlobalsObjects, IRoyaleComponentConverter
 	{
@@ -135,27 +136,37 @@ package components.domino
             if (this.options)
 			{
 				text=OPTOIN_HEADER+"\n";
-                text=text+this.options+"\n";
+                text=text+StringHelperUtils.fixXmlSpecailCharacter(this.options)+"\n";
             }
             if (this.terminate)
 			{
 				text=text+TERMINATE_HEADER+"\n";
-                text=text+"Sub Terminate"+"\n";
-                text=text+"' "+this.terminate+"\n";
-                text=text+"End Sub"+"\n";
+                if(this.terminate.indexOf("Sub Terminate")<0){
+                    text=text+"Sub Terminate"+"\n";
+                } 
+                text=text+"' "+StringHelperUtils.fixXmlSpecailCharacter(this.terminate)+"\n";
+                if(this.terminate.indexOf("End Sub")<0){
+                    text=text+"End Sub"+"\n";
+                }
+                
             }
             if (this.declarations)
 			{
 				text=text+DECLARATIONS_HEADER+"\n";
-                text=text+"' "+this.declarations+"\n";
+                text=text+"' "+StringHelperUtils.fixXmlSpecailCharacter(this.declarations)+"\n";
             }
 
             if (this.initialize)
 			{
 				text=text+INITIALIZE_HEADER+"\n";
-                text=text+"Sub Initialize"+"\n";
-                text=text+"' "+this.initialize+"\n";
-                text=text+"End Sub"+"\n";
+                if(this.initialize.indexOf("Sub Initialize")<0){
+                    text=text+"Sub Initialize"+"\n";
+                } 
+                text=text+"' "+StringHelperUtils.fixXmlSpecailCharacter(this.initialize)+"\n";
+                if(this.initialize.indexOf("End Sub")<0){
+                    text=text+"End Sub"+"\n";
+                }
+               
             }
 
             var breakXML:XML=new XML("<break/>");
