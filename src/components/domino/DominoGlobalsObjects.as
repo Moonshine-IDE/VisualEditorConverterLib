@@ -141,13 +141,13 @@ package components.domino
             if (this.terminate)
 			{
 				text=text+TERMINATE_HEADER+"\n";
-                if(this.terminate.indexOf("Sub Terminate")<0){
-                    text=text+"Sub Terminate"+"\n";
-                } 
-                text=text+"' "+StringHelperUtils.fixXmlSpecailCharacter(this.terminate)+"\n";
-                if(this.terminate.indexOf("End Sub")<0){
-                    text=text+"End Sub"+"\n";
-                }
+                // if(this.terminate.indexOf("Sub Terminate")<0){
+                //     text=text+"Sub Terminate"+"\n";
+                // } 
+                text=text+StringHelperUtils.fixXmlSpecailCharacter(this.terminate)+"\n";
+                // if(this.terminate.indexOf("End Sub")<0){
+                //     text=text+"End Sub"+"\n";
+                // }
                 
             }
             if (this.declarations)
@@ -159,13 +159,13 @@ package components.domino
             if (this.initialize)
 			{
 				text=text+INITIALIZE_HEADER+"\n";
-                if(this.initialize.indexOf("Sub Initialize")<0){
-                    text=text+"Sub Initialize"+"\n";
-                } 
-                text=text+"' "+StringHelperUtils.fixXmlSpecailCharacter(this.initialize)+"\n";
-                if(this.initialize.indexOf("End Sub")<0){
-                    text=text+"End Sub"+"\n";
-                }
+                // if(this.initialize.indexOf("Sub Initialize")<0){
+                //     text=text+"Sub Initialize"+"\n";
+                // } 
+                text=text+StringHelperUtils.fixXmlSpecailCharacter(this.initialize)+"\n";
+                // if(this.initialize.indexOf("End Sub")<0){
+                //     text=text+"End Sub"+"\n";
+                // }
                
             }
 
