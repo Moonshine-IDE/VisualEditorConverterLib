@@ -153,7 +153,7 @@ package components.domino
             if (this.declarations)
 			{
 				text=text+DECLARATIONS_HEADER+"\n";
-                text=text+"' "+StringHelperUtils.fixXmlSpecailCharacter(this.declarations)+"\n";
+                text=text+StringHelperUtils.fixXmlSpecailCharacter(this.declarations)+"\n";
             }
 
             if (this.initialize)
