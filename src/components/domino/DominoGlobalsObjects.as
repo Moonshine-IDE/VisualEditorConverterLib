@@ -39,6 +39,9 @@ package components.domino
 
 	import interfaces.ISurface;
     import utils.StringHelperUtils;
+    import com.adobe.utils.StringUtil;
+    import utils.StringHelperUtils;
+    
     
 	public class DominoGlobalsObjects implements IDominoGlobalsObjects, IRoyaleComponentConverter
 	{
@@ -47,6 +50,7 @@ package components.domino
         private var _terminate:String;
         private var _options:String;
         private var _declarations:String;
+        private var functionDelayed:String;
         private static const OPTOIN_HEADER="'++LotusScript Development Environment:2:5:(Options):0:74"
         private static const FORWARD_HEADER="'++LotusScript Development Environment:2:5:(Forward):0:1"
         private static const DECLARATIONS_HEADER="'++LotusScript Development Environment:2:5:(Declarations):0:10"
@@ -125,6 +129,7 @@ package components.domino
         }
         public function toCode():XML
 		{
+            functionDelayed=FORWARD_HEADER+"\n";
             var goobalsXml:XML = new XML("<item/>");
             goobalsXml.@name="$Script"
             goobalsXml.@summary="false"
@@ -132,24 +137,26 @@ package components.domino
 
             
             var text:String="";
+            if (this.initialize)
+			{
+                  functionDelayed=functionDelayed+"Declare Sub Initialize\n"
+            }
+            if (this.terminate)
+			{
+                functionDelayed=functionDelayed+"Declare Sub Terminate\n"
+            }
+
+            
             
             if (this.options)
 			{
 				text=OPTOIN_HEADER+"\n";
                 text=text+StringHelperUtils.fixXmlSpecailCharacter(this.options)+"\n";
             }
-            if (this.terminate)
-			{
-				text=text+TERMINATE_HEADER+"\n";
-                // if(this.terminate.indexOf("Sub Terminate")<0){
-                //     text=text+"Sub Terminate"+"\n";
-                // } 
-                text=text+StringHelperUtils.fixXmlSpecailCharacter(this.terminate)+"\n";
-                // if(this.terminate.indexOf("End Sub")<0){
-                //     text=text+"End Sub"+"\n";
-                // }
-                
+            if(functionDelayed!="FORWARD_HEADER+\n"){
+                text=text+functionDelayed
             }
+            
             if (this.declarations)
 			{
 				text=text+DECLARATIONS_HEADER+"\n";
@@ -158,17 +165,23 @@ package components.domino
 
             if (this.initialize)
 			{
-				text=text+INITIALIZE_HEADER+"\n";
-                // if(this.initialize.indexOf("Sub Initialize")<0){
-                //     text=text+"Sub Initialize"+"\n";
-                // } 
+              	text=text+INITIALIZE_HEADER+"\n";
+                
                 text=text+StringHelperUtils.fixXmlSpecailCharacter(this.initialize)+"\n";
-                // if(this.initialize.indexOf("End Sub")<0){
-                //     text=text+"End Sub"+"\n";
-                // }
-               
+                
             }
-
+            if (this.terminate)
+			{
+                functionDelayed=functionDelayed+"Declare Sub Terminate\n"
+				text=text+TERMINATE_HEADER+"\n";
+                
+                text=text+StringHelperUtils.fixXmlSpecailCharacter(this.terminate)+"\n";
+              
+                
+            }
+            text=StringUtil.trim(text);
+           
+            
             var breakXML:XML=new XML("<break/>");
 			var textXml:XML = new XML("<text>"+text+"</text>");
             textXml.appendChild(breakXML);
@@ -181,5 +194,6 @@ package components.domino
 		{
             return null;
         } 
+       
     }
 }
