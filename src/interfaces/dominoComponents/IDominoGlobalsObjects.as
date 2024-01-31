@@ -48,6 +48,8 @@ package interfaces.dominoComponents
 
         function fromXMLDominoObject(xml:XML):void
 
+        function toCompileCode(key:String):XML
+
 
     }
 }

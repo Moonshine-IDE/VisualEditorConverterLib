@@ -190,6 +190,71 @@ package components.domino
             return goobalsXml
 
         }
+
+        public function toCompileCode(key:String):XML
+		{
+            functionDelayed=FORWARD_HEADER+"\n";
+            var goobalsXml:XML = new XML("<item/>");
+            goobalsXml.@name="$Script"
+            goobalsXml.@summary="false"
+            goobalsXml.@sign="true"
+
+            
+            var text:String="";
+            
+             if (key=="globalsInitialize")
+			{
+                  functionDelayed=functionDelayed+"Declare Sub Initialize\n"
+            }
+            if (key=="globalsTerminate")
+			{
+                functionDelayed=functionDelayed+"Declare Sub Terminate\n"
+            }
+
+            
+            
+            if (key=="globalsOptions")
+			{
+				text=OPTOIN_HEADER+"\n";
+                text=text+StringHelperUtils.fixXmlSpecailCharacter(this.options)+"\n";
+            }
+            if(functionDelayed!="FORWARD_HEADER+\n"){
+                text=text+functionDelayed
+            }
+            
+            if (key=="globalsDeclarations")
+			{
+				text=text+DECLARATIONS_HEADER+"\n";
+                text=text+StringHelperUtils.fixXmlSpecailCharacter(this.declarations)+"\n";
+            }
+
+            if (key=="globalsInitialize")
+			{
+              	text=text+INITIALIZE_HEADER+"\n";
+                
+                text=text+StringHelperUtils.fixXmlSpecailCharacter(this.initialize)+"\n";
+                
+            }
+            if (key=="globalsTerminate")
+			{
+                functionDelayed=functionDelayed+"Declare Sub Terminate\n"
+				text=text+TERMINATE_HEADER+"\n";
+                
+                text=text+StringHelperUtils.fixXmlSpecailCharacter(this.terminate)+"\n";
+              
+                
+            }
+            text=StringUtil.trim(text);
+           
+            
+            var breakXML:XML=new XML("<break/>");
+			var textXml:XML = new XML("<text>"+text+"</text>");
+            textXml.appendChild(breakXML);
+            goobalsXml.appendChild(textXml);
+
+            return goobalsXml
+
+        }
         public function toRoyaleConvertCode():XML
 		{
             return null;
