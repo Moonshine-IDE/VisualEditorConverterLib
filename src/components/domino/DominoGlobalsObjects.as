@@ -157,7 +157,7 @@ package components.domino
                 text=text+functionDelayed
             }
             
-            if (this.declarations)
+            if (this.declarations&&this.declarations.length>0)
 			{
 				text=text+DECLARATIONS_HEADER+"\n";
                 text=text+StringHelperUtils.fixXmlSpecailCharacter(this.declarations)+"\n";
