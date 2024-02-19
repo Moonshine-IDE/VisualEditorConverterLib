@@ -213,7 +213,7 @@ package components.domino
 
             
             
-            if (key=="globalsOptions")
+            if (key=="globalsOptions" && this.options && this.options.length>0)
 			{
 				text=OPTOIN_HEADER+"\n";
                 text=text+StringHelperUtils.fixXmlSpecailCharacter(this.options)+"\n";
@@ -222,20 +222,20 @@ package components.domino
                 text=text+functionDelayed
             }
             
-            if (key=="globalsDeclarations")
+            if (key=="globalsDeclarations"&& this.declarations&&this.declarations.length>0)
 			{
 				text=text+DECLARATIONS_HEADER+"\n";
                 text=text+StringHelperUtils.fixXmlSpecailCharacter(this.declarations)+"\n";
             }
 
-            if (key=="globalsInitialize")
+            if (key=="globalsInitialize" && this.initialize&&this.initialize.length>0  )
 			{
               	text=text+INITIALIZE_HEADER+"\n";
                 
                 text=text+StringHelperUtils.fixXmlSpecailCharacter(this.initialize)+"\n";
                 
             }
-            if (key=="globalsTerminate")
+            if (key=="globalsTerminate" && this.terminate&&this.terminate.length>0  )
 			{
                 functionDelayed=functionDelayed+"Declare Sub Terminate\n"
 				text=text+TERMINATE_HEADER+"\n";
