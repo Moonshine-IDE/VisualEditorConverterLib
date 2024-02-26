@@ -65,7 +65,10 @@ package converter
 						var elementXML:XML = elements[i];
 					
 						var component:IComponent = itemFromXML(localSurface, lookup, elementXML, localSurface);
-						localSurface.addItem(component);
+						if(component!=null)
+						{
+							localSurface.addItem(component);
+						}
 					}
 				}
 			}
