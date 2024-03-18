@@ -60,6 +60,8 @@ package components.domino
 	import org.apache.flex.packageflexsdk.util.ApacheURLLoader;
 	import components.DominoConponentHideBase;
 	import global.domino.DominoGlobals;
+
+	import mx.controls.Alert;
 	
 
 
@@ -1020,6 +1022,7 @@ package components.domino
 			this.allowmultivalues = xml.@allowmultivalues == "true";
 			this.type = xml.@type;
 			this.kind = xml.@kind;
+			this.object=xml.@object;
 			if(xml.@indent){
 				this.indent = xml.@indent;
 			}
@@ -1210,7 +1213,6 @@ package components.domino
 			var runXML:XML = new XML("<run/>");
 			var fontXml:XML = new XML("<font/>");
 			var xml:XML = new XML("<" + CodeMxmlUtils.getMXMLTagNameWithSelection(this, DOMINO_ELEMENT_NAME) + "/>");
-
 			/** Domino specified Propertys start
 			 * follow propertys are not supported with moonshine ide , but if we need them we can consider add them in moonshine ide on later.
 			 * these all propertys will default  to "false"
@@ -1239,6 +1241,9 @@ package components.domino
 			}
 			if(this.htmlOther){
 				xml.@htmlOther = this.htmlOther;
+			}
+			if(this.object){
+				xml.@object=this.object;
 			}
 			if(this.spacingInterline){
 				xml.@linespacing = this.spacingInterline;
@@ -1567,7 +1572,18 @@ package components.domino
 
 			var codeXML:XML = null;
 			//this is text computed filed
-			if (this.type == "text" || this.type == "keyword")
+			var formulaXML:XML = null;
+			if (this.defaultvalue)
+			{
+				// if(this.nameAttribute=="IfFormula"){
+				// 	Alert.show("defaultvalue:"+this.defaultvalue);
+				// }
+				codeXML = new XML("<code event=\"defaultvalue\"/>");
+				formulaXML = new XML("<formula>" + StringHelperUtils.fixXmlSpecailCharacter(this.defaultvalue) + "</formula>");
+				codeXML.appendChild(formulaXML);
+				xml.appendChild(codeXML);
+			}
+			if (this.type == "text" || this.type == "keyword" || this.type == "datetime")
 			{
 				//for now the formula only add to default value
 
@@ -1576,14 +1592,7 @@ package components.domino
 					this.object = "defaultvalue";
 				}
 				//DominoGlobals.PardefDivId
-				var formulaXML:XML = null;
-				if (this.defaultvalue)
-				{
-					codeXML = new XML("<code event=\"defaultvalue\"/>");
-					formulaXML = new XML("<formula>" + this.defaultvalue + "</formula>");
-					codeXML.appendChild(formulaXML);
-					xml.appendChild(codeXML);
-				}
+				
 				if (this.inputtranslation)
 				{
 					codeXML = new XML("<code event=\"inputtranslation\"/>");
@@ -1649,13 +1658,14 @@ package components.domino
 			}else{
 				par_xml.appendChild(xml);
 			}
-
+			
 			// if(par_xml.toXMLString().indexOf("align")>0){
 			// 	Alert.show("align:"+par_xml);
 			// }
 
 			return par_xml;
 		}
+		
 
 		//</j:ComboBox>
 		public function toRoyaleConvertCode():XML
